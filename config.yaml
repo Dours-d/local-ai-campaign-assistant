@@ -1,0 +1,25 @@
+default_provider: ollama
+fallback_order:
+  - ollama
+  - lm_studio
+  - gpt4all
+
+providers:
+  ollama:
+    host: localhost
+    port: 11434
+    default_model: gemma3:latest
+    
+  lm_studio:
+    host: localhost
+    port: 1234
+    default_model: null 
+    
+  gpt4all:
+    host: localhost
+    port: 4891
+    default_model: mistral-7b-instruct
+
+generation:
+  temperature: 0.7
+  max_tokens: 2048
