@@ -14,23 +14,23 @@ def main():
     trust_engine = TrustProjection(debt_manager)
     
     total_debt = debt_manager.get_total_unsatisfied_debt()
-    print(f"Total Unsatisfied Historical Debt: ${total_debt:,.2f}")
+    print(f"Total Unsatisfied Historical Debt: €{total_debt:,.2f}")
     
     print("\n--- Shareholder Breakdown (Trustee Candidates) ---")
     stats = trust_engine.get_shareholder_stats()
     
     for s in stats[:10]: # Top 10
         print(f"Shareholder: {s['shareholder'][:50]}...")
-        print(f"  Debt Owed: ${s['debt_amount']:.2f}")
+        print(f"  Debt Owed: €{s['debt_amount']:.2f}")
         print(f"  Trust Share: {s['trust_share_percent']:.2f}%")
         print("-" * 30)
 
     print("\n--- System Velocity & Resolution Projections ---")
-    # Assume a hypothetical monthly resolution of $500 from new campaigns
+    # Assume a hypothetical monthly resolution of €500 from new campaigns
     velocity = 500.0
     projection = trust_engine.project_resolution(velocity)
     
-    print(f"Current Velocity: ${velocity}/month (Debt Resolution Layer)")
+    print(f"Current Velocity: €{velocity}/month (Debt Resolution Layer)")
     print(f"Projected Time to Full Resolution: {projection['projected_months']} months")
     print(f"System Status: {projection['system_status']}")
 

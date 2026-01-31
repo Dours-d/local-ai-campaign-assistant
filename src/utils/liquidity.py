@@ -18,9 +18,33 @@ class LiquidityManager:
     
     @staticmethod
     def parse_amount(amount_str: str) -> float:
-        """Extracts numerical value from currency strings like '€5,000' or '$100'"""
+        """Extracts numerical value from strings like '€5,000.00' or '€5.000,00'"""
         if not amount_str: return 0.0
-        clean = re.sub(r'[^\d.]', '', amount_str.replace(',', ''))
+        
+        # Remove currency symbols and spaces
+        clean = re.sub(r'[^\d,.]', '', amount_str)
+        
+        # Determine if it's European (dot for thousands, comma for decimal)
+        # or US (comma for thousands, dot for decimal)
+        if ',' in clean and '.' in clean:
+            if clean.find(',') > clean.find('.'):
+                # European: 5.000,00 -> 5000.00
+                clean = clean.replace('.', '').replace(',', '.')
+            else:
+                # US: 5,000.00 -> 5000.00
+                clean = clean.replace(',', '')
+        elif ',' in clean:
+            # If only comma exists, check if it's decimal or thousands
+            # Usually if there are 3 digits after, it might be thousands, 
+            # but in many contexts it's decimal. 
+            # Let's assume comma is decimal if it's the only separator
+            # unless it looks like a thousands separator.
+            parts = clean.split(',')
+            if len(parts[-1]) == 3 and len(parts) > 1:
+                clean = clean.replace(',', '')
+            else:
+                clean = clean.replace(',', '.')
+        
         return float(clean) if clean else 0.0
 
     def calculate_split(self, goal_amount_str: str) -> Dict[str, Any]:

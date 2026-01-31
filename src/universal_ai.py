@@ -1,6 +1,8 @@
 from typing import Optional, Dict, Any, Tuple
 import yaml
 from .providers.ollama import OllamaProvider
+from .providers.lm_studio import LMStudioProvider
+from .providers.gpt4all import GPT4AllProvider
 from .config.settings import Settings
 from .providers.base import AIResponse
 from .utils.validator import ResponseValidator, ValidationResult
@@ -21,6 +23,18 @@ class UniversalAI:
                 host=config.get("host", "localhost"),
                 port=config.get("port", 11434),
                 default_model=config.get("default_model", "gemma3:latest")
+            )
+        elif name == "lm_studio":
+            return LMStudioProvider(
+                host=config.get("host", "localhost"),
+                port=config.get("port", 1234),
+                default_model=config.get("default_model")
+            )
+        elif name == "gpt4all":
+            return GPT4AllProvider(
+                host=config.get("host", "localhost"),
+                port=config.get("port", 4891),
+                default_model=config.get("default_model", "mistral-7b-instruct")
             )
         raise ValueError(f"Provider {name} not implemented yet")
 

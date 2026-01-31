@@ -3,6 +3,7 @@ import os
 from datetime import datetime
 from typing import List, Dict, Any
 from pathlib import Path
+from .currency_converter import CurrencyConverter
 
 class HistoricalDonation:
     def __init__(self, timestamp: datetime, amount: float, currency: str, shareholder: str, status: str = "unsatisfied"):
@@ -11,7 +12,11 @@ class HistoricalDonation:
         self.currency = currency
         self.shareholder = shareholder
         self.status = status # unsatisfied, partially_resolved, resolved
-        self.remaining_amount = amount
+        
+        # Convert to EUR (Main project currency)
+        self.amount_eur = CurrencyConverter.convert_to_eur(amount, currency)
+        self.fx_fee_eur = CurrencyConverter.get_fee(amount, currency)
+        self.remaining_amount = self.amount_eur
 
 class DebtManager:
     """
@@ -66,7 +71,7 @@ class DebtManager:
         # print(f"DEBUG: Loaded {len(self.donations)} donations.")
 
     def get_total_unsatisfied_debt(self) -> float:
-        """Sum of all remaining amounts in base currency (assumed simplified for now)"""
+        """Sum of all remaining amounts in EUR"""
         return sum(d.remaining_amount for d in self.donations if d.status != "resolved")
 
     def get_debts_by_shareholder(self) -> Dict[str, float]:

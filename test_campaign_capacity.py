@@ -12,7 +12,7 @@ def main():
     # Sample Campaign Data
     campaign_vars = {
         "project_title": "Clean Water for Gaza",
-        "goal_amount": "€5,000",
+        "goal_amount": "€5000",
         "context": "Water infrastructure was damaged. We need to install 5 solar-powered desalination units to provide potable water to 10,000 residents."
     }
     
