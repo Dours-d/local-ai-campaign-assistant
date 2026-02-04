@@ -1,0 +1,8 @@
+{
+  "beneficiary_id": "MOCK-USER-001",
+  "title": "Test Campaign",
+  "story": "This is a test story.",
+  "display_name": "Tester",
+  "files": [],
+  "flagged_for_review": false
+}

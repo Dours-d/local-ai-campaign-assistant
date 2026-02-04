@@ -1,79 +1,74 @@
+
 import json
 import os
-from datetime import datetime, timedelta
+from datetime import datetime
+
+LEDGER_FILE = "data/internal_ledger.json"
+REPORT_OUTPUT = "data/reports/monday_report_latest.md"
 
 def generate_report():
-    unified_file = 'data/campaigns_unified.json'
-    batch_file = 'data/whydonate_batch_create.json'
-    
-    if not os.path.exists(unified_file):
-        print("Unified database not found.")
+    if not os.path.exists(LEDGER_FILE):
+        print("Error: Ledger file not found. Run scripts/reconcile_ledger.py first.")
         return
 
-    with open(unified_file, 'r', encoding='utf-8') as f:
-        data = json.load(f)
-    
-    # Unified data has campaigns under 'campaigns' key
-    campaign_list = data.get('campaigns', [])
-    summary = data.get('summary', {})
-    
-    # Also load batch file for creation status
-    batch_list = []
-    if os.path.exists(batch_file):
-        with open(batch_file, 'r', encoding='utf-8') as f:
-            batch_list = json.load(f)
+    with open(LEDGER_FILE, 'r', encoding='utf-8') as f:
+        ledger = json.load(f)
 
-    # Filter for the last 48 hours (Weekend activity)
-    now = datetime.now()
-    weekend_start = now - timedelta(days=2)
+    today = datetime.now().strftime("%Y-%m-%d")
     
-    weekend_new = []
-    ready_for_payout = []
-    threshold = 100
-    
-    # Healthy creation check
-    status0_count = len([c for c in batch_list if c.get('status') == 'failed_debug'])
-    created_count = len([c for c in batch_list if c.get('status') == 'created_initial'])
+    total_gross = sum(d['raised_gross_eur'] for d in ledger.values())
+    total_net_raised = sum(d['raised_gross_eur'] - d['sustainability_fees_eur'] - d['stripe_fx_fees_eur'] for d in ledger.values())
+    total_sustainability = sum(d['sustainability_fees_eur'] for d in ledger.values())
+    total_fx = sum(d['stripe_fx_fees_eur'] for d in ledger.values())
+    total_payouts = sum(d['payouts_completed_eur'] for d in ledger.values())
+    total_remaining = total_net_raised - total_payouts
 
-    for c in campaign_list:
-        raised = c.get('raised_eur', 0)
-        
-        # Check if created recently
-        # (Assuming 'created_at' is in ISO format)
-        try:
-            created_at = datetime.fromisoformat(c.get('created_at', '').replace('Z', '+00:00'))
-            if created_at > weekend_start:
-                weekend_new.append(c)
-        except:
-            pass
-            
-        # Check threshold
-        if raised >= threshold:
-            ready_for_payout.append(c)
+    report = f"""# Monday Transparency Report: Gaza Resilience Fund
+**Date**: {today}
 
-    print("\n" + "="*40)
-    print(f" MONDAY TACTICAL REPORT - {now.strftime('%Y-%m-%d')}")
-    print("="*40)
-    
-    print(f"\n[1] WEEKEND PROGRESS")
-    print(f" - New Campaigns Found: {len(weekend_new)}")
-    print(f" - Successfully Created (Whydonate): {created_count}")
-    print(f" - Infrastructure Blocks (Status 0/429): {status0_count}")
-    
-    print(f"\n[2] CURRENT DEBT LOAD")
-    print(f" - Total Outstanding Debt: €{summary.get('total_raised_eur', 0):,.2f}")
-    print(f" - Total Beneficiaries Managed: {summary.get('total_campaigns', 0)}")
-    
-    print(f"\n[3] PAYOUT STRATEGY (Snowball)")
-    print(f" - Ready for Disbursement (>=€{threshold}): {len(ready_for_payout)}")
-    # Sort by amount (largest for impact)
-    ready_for_payout.sort(key=lambda x: x.get('raised_eur', 0), reverse=True)
-    for c in ready_for_payout[:15]:
-        print(f"   * €{c['raised_eur']:>7.2f} - {c['title'][:50]}...")
+## 📊 Global Summary
+| Metric | Amount (EUR) |
+| :--- | :--- |
+| **Total Raised (Gross)** | €{total_gross:,.2f} |
+| **Stripe FX Fees (2.5%)** | €{total_fx:,.2f} |
+| **Sustainability Fee (25%)** | €{total_sustainability:,.2f} |
+| **Total Payouts Completed** | **€{total_payouts:,.2f}** |
+| **Net Remaining for Redistribution** | **€{total_remaining:,.2f}** |
 
-    print("\n" + "="*40)
-    print(" ACTION REQUIRED: Update statuses for 'Ready' holders.")
-    print("="*40 + "\n")
+---
+
+## 👨‍👩‍👧‍👦 Beneficiary Breakdown (Top Allocations)
+*Minimum disbursement threshold: €500.00*
+
+| ID | Gross Raised | Sustainability Fee | Payouts Done | Remaining Balance | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+"""
+
+    # Sort by net available + payouts (total value allocated)
+    sorted_ledger = sorted(ledger.items(), key=lambda x: (x[1]['net_available_eur'] + x[1]['payouts_completed_eur']), reverse=True)
+
+    for name, data in sorted_ledger:
+        if data['raised_gross_eur'] > 0:
+            status = "✅ Threshold Met" if (data['net_available_eur'] + data['payouts_completed_eur']) >= 500 else "⏳ Accumulating"
+            report += f"| {name} | €{data['raised_gross_eur']:.2f} | €{data['sustainability_fees_eur']:.2f} | €{data['payouts_completed_eur']:.2f} | €{data['net_available_eur']:.2f} | {status} |\n"
+
+    report += """
+---
+
+## 🛡️ Sovereign Principles Reminder
+1. **Isolation Policy**: We do not interact with Chuffed/Stripe APIs to prevent further freezes. All data is derived from offline exports.
+2. **Zero-Waste**: Funds are batch-payout in €500 units to avoid bank transfer fees ($20/wire).
+3. **Auditability**: This report is generated deterministically from the `internal_ledger.json`.
+
+---
+*End of Report*
+"""
+
+    os.makedirs(os.path.dirname(REPORT_OUTPUT), exist_ok=True)
+    with open(REPORT_OUTPUT, 'w', encoding='utf-8') as f:
+        f.write(report)
+    
+    print(f"Monday Report generated at: {REPORT_OUTPUT}")
 
 if __name__ == "__main__":
     generate_report()

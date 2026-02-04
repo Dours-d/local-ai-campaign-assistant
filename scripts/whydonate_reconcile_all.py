@@ -37,17 +37,54 @@ def run_js(ws, js, timeout=60):
 def main():
     try:
         r = requests.get(CDP_URL).json()
-        target = next((t for t in r if 'whydonate.com/dashboard' in t.get('url', '') and t['type'] == 'page'), None)
+        tabs = [t for t in r if 'whydonate.com' in t.get('url', '') and t['type'] == 'page']
+        
+        # Priority 1: Already on fundraisers list
+        target = next((t for t in tabs if 'fundraisers' in t.get('url', '').lower()), None)
+        # Priority 2: Generic dashboard
+        if not target:
+            target = next((t for t in tabs if 'dashboard' in t.get('url', '').lower() and 'start' not in t.get('url', '').lower()), None)
+        # Priority 3: Any whydonate except the start page (to avoid interference)
+        if not target:
+            target = next((t for t in tabs if 'start' not in t.get('url', '').lower()), None)
+        # Fallback
+        if not target and tabs:
+            target = tabs[0]
         
         if not target:
-            print("Dashboard not found. Opening...")
-            requests.put(f"{CDP_URL}/new?https://whydonate.com/dashboard")
-            time.sleep(8)
+            print("Whydonate tab not found. Opening fundraisers dashboard...")
+            requests.put(f"{CDP_URL}/new?https://whydonate.com/en/dashboard/fundraisers/")
+            time.sleep(5)
             r = requests.get(CDP_URL).json()
-            target = next((t for t in r if 'whydonate.com/dashboard' in t.get('url', '') and t['type'] == 'page'), None)
+            target = next((t for t in r if 'whydonate.com' in t.get('url', '') and t['type'] == 'page'), None)
 
+        if not target:
+            print("Failed to open or find Whydonate tab.")
+            return
+
+        print(f"Connecting to: {target['url']}")
         ws = websocket.create_connection(target['webSocketDebuggerUrl'])
         ws.settimeout(60)
+        
+        # Check if login is required
+        current_url = target['url']
+        if "login" in current_url.lower() or "dashboard" not in current_url.lower():
+            print(f"Navigating to fundraisers dashboard (Current: {current_url})...")
+            run_js(ws, "window.location.href = 'https://whydonate.com/en/dashboard/fundraisers/'")
+            time.sleep(5)
+            
+        # Wait up to 60s for the dashboard to load (handling potential login)
+        print("Waiting for dashboard to be ready...")
+        for _ in range(12):
+            url = run_js(ws, "window.location.href")
+            if url and "dashboard" in url.lower() and "login" not in url.lower():
+                print(f"Dashboard reached: {url}")
+                break
+            time.sleep(5)
+            print("Still waiting for dashboard/login...")
+        else:
+            print("Timed out waiting for dashboard. Please ensure you are logged in.")
+            return
         
         print("Gathering all active Whydonate campaigns (Title + URL)...")
         
@@ -69,24 +106,33 @@ def main():
 
         # Scrape titles and relative paths
         print("Scraping cards...")
+        # Save HTML for inspection
+        html_src = run_js(ws, "document.documentElement.outerHTML")
+        with open("whydonate_dashboard_debug.html", "w", encoding='utf-8') as f:
+            f.write(html_src)
+        print("Saved dashboard source to whydonate_dashboard_debug.html")
+
         # Wait for cards to appear
         for _ in range(10):
-            has_cards = run_js(ws, "!!document.querySelector('mat-card-title')")
+            has_cards = run_js(ws, "!!document.querySelector('mat-card-title, .title-text, h3, .campaign-title')")
             if has_cards: break
             time.sleep(2)
 
         data = run_js(ws, """
-            Array.from(document.querySelectorAll('mat-card, .fundraising-card, .campaign-card')).map(card => {
-                const titleEl = card.querySelector('mat-card-title') || card.querySelector('.title-text') || card.querySelector('h3');
-                const linkEl = card.querySelector('a[href*="/fundraising/"]');
-                if (titleEl && linkEl) {
-                    return {
-                        title: titleEl.innerText.trim(),
-                        url: linkEl.href
-                    };
-                }
-                return null;
-            }).filter(x => x !== null)
+            (function() {
+                const cards = Array.from(document.querySelectorAll('mat-card, .fundraising-card, .campaign-card, .card, .ng-star-inserted'));
+                return cards.map(card => {
+                    const titleEl = card.querySelector('mat-card-title') || card.querySelector('.title-text') || card.querySelector('h3') || card.querySelector('.campaign-title');
+                    const linkEl = card.querySelector('a[href*="/fundraising/"]');
+                    if (titleEl && linkEl) {
+                        return {
+                            title: titleEl.innerText.trim(),
+                            url: linkEl.href
+                        };
+                    }
+                    return null;
+                }).filter(x => x !== null && x.title.length > 5);
+            })()
         """)
         
         if not data:

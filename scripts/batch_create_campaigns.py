@@ -734,7 +734,7 @@ def check_for_double(title, existing_campaigns):
 
 def main():
     BATCH_JSON = os.path.join(os.getcwd(), 'data', 'whydonate_batch_create.json')
-    MAX_BATCH = 5
+    MAX_BATCH = 9999
     existing_file = "data/whydonate_all_campaigns.json"
     
     if not os.path.exists(BATCH_JSON):

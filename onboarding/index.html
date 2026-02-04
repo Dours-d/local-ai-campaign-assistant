@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="page_title">Gaza Resilience Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        .lang-toggle {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+        }
+
+        .lang-btn {
+            background: #1e293b;
+            border: 1px solid #334155;
+            color: #94a3b8;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.2s;
+        }
+
+        .lang-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        [dir="rtl"] {
+            text-align: right;
+        }
+
+        [dir="rtl"] .progress-fill {
+            left: auto;
+            right: 0;
+        }
+
+        [dir="rtl"] .btn-group {
+            flex-direction: row-reverse;
+        }
+
+        [dir="rtl"] .lang-toggle {
+            justify-content: flex-start;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="lang-toggle">
+            <button class="lang-btn active" id="btn-en" onclick="setLanguage('en')">English</button>
+            <button class="lang-btn" id="btn-ar" onclick="setLanguage('ar')">العربية</button>
+        </div>
+
+        <header>
+            <h1 data-i18n="header_title">Global Gaza Resilience Fund</h1>
+            <p data-i18n="header_subtitle">Unified Aid Allocation & Transparency Portal</p>
+        </header>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progress"></div>
+        </div>
+
+        <!-- Step 1: Introduction -->
+        <div class="step active" id="step1">
+            <h2 id="welcome_title" data-i18n="welcome_title">Salam Alaykum</h2>
+            <div id="identity_notice"
+                style="display: none; background: #1e293b; padding: 12px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid var(--primary);">
+                <p style="margin: 0; font-size: 0.9rem;"><span data-i18n="updating_profile">Updating profile for:</span>
+                    <b id="ident_name">...</b>
+                </p>
+                <button class="secondary" style="font-size: 0.7rem; padding: 4px 8px; margin-top: 8px;"
+                    onclick="startNew()" data-i18n="not_you">Not you? Start new</button>
+            </div>
+            <p data-i18n="welcome_desc">To support you effectively, we follow a strictly transparent process designed
+                for your sovereignty.</p>
+            <ul style="color: #94a3b8; font-size: 0.9rem;">
+                <li data-i18n="li_transparency">100% Transparency via unique Profile IDs.</li>
+                <li><b data-i18n="li_wallet_label">Digital Wallet:</b> <span data-i18n="li_wallet_text">A unique secure
+                        address is assigned to your profile for aid accumulation.</span></li>
+                <li><b data-i18n="li_trust_label">Management In-Trust:</b> <span data-i18n="li_trust_text">We manage the
+                        wallet on your behalf to ensure safety and sovereignty.</span></li>
+                <li><b data-i18n="li_threshold_label">Sustainability Threshold:</b> <span
+                        data-i18n="li_threshold_text">€100 minimum to ensure efficient and meaningful transfers.</span>
+                </li>
+                <li><b data-i18n="li_sustainability_label">System Sustainability (25%)</b> <span
+                        data-i18n="li_sustainability_text">for project maintenance and automation.</span></li>
+                <li data-i18n="li_audits">System-wide Audit Reports every Monday.</li>
+            </ul>
+            <div class="btn-group">
+                <span></span>
+                <button onclick="nextStep(2)" data-i18n="btn_agree">Agree & Continue</button>
+            </div>
+        </div>
+
+        <!-- Step 2: Information Intake -->
+        <div class="step" id="step2">
+            <h2 data-i18n="step2_title">Campaign Details</h2>
+            <div class="input-group">
+                <label data-i18n="label_title">Proposed Title</label>
+                <input type="text" id="title" data-i18n-placeholder="placeholder_title">
+            </div>
+            <div class="input-group">
+                <label data-i18n="label_story">Your Story</label>
+                <textarea id="story" rows="4" data-i18n-placeholder="placeholder_story"></textarea>
+            </div>
+            <div class="input-group">
+                <label data-i18n="label_media">Upload Media (Images/Videos)</label>
+                <input type="file" id="media_files" multiple accept="image/*,video/*">
+                <p style="font-size: 0.8rem; margin-top: 4px;" data-i18n="media_help">Choose multiple photos or videos
+                    that tell your story.</p>
+            </div>
+            <div class="btn-group">
+                <button class="secondary" onclick="nextStep(1)" data-i18n="btn_back">Back</button>
+                <button onclick="nextStep(3)" data-i18n="btn_next">Next</button>
+            </div>
+        </div>
+
+        <!-- Step 3: Identity & Finalize -->
+        <div class="step" id="step3">
+            <h2 data-i18n="step3_title">Final Review</h2>
+            <p data-i18n="step3_desc">Your unique Profile ID will be assigned upon documentation sync.</p>
+            <div class="input-group" id="whatsapp_group" style="display: none;">
+                <label data-i18n="label_whatsapp">WhatsApp Phone Number</label>
+                <input type="text" id="whatsapp_number" placeholder="+970 ...">
+                <p style="font-size: 0.8rem; margin-top: 4px; color: #94a3b8;" data-i18n="whatsapp_help">Required for
+                    new arrivals so we can contact you.</p>
+            </div>
+            <div class="input-group">
+                <label data-i18n="label_name">Preferred Name (for display)</label>
+                <input type="text" id="display_name" data-i18n-placeholder="placeholder_name">
+            </div>
+            <div class="input-group">
+                <label data-i18n="label_wallet">Your Personal Digital Wallet (Optional)</label>
+                <input type="text" id="personal_wallet" data-i18n-placeholder="placeholder_wallet">
+                <p style="font-size: 0.8rem; margin-top: 4px; color: #94a3b8;" data-i18n="wallet_help">If you have your
+                    own wallet, we will prioritize it if it is unique. Otherwise, we will use the secure wallet we
+                    manage for you.</p>
+            </div>
+            <p style="font-size: 0.8rem; color: #64748b;" data-i18n="agree_policy">By submitting, you agree to our
+                Zero-Waste and Transparency policies.</p>
+            <div class="btn-group">
+                <button class="secondary" onclick="nextStep(2)" data-i18n="btn_back">Back</button>
+                <button onclick="submitForm()" data-i18n="btn_submit">Submit</button>
+            </div>
+        </div>
+
+        <div class="step" id="success">
+            <h2 style="color: var(--primary);" data-i18n="success_title">Success!</h2>
+            <p data-i18n="success_desc">Your details and updates have been captured. The <b>Global Gaza Resilience
+                    Fund</b> draft will be synchronized with your latest changes automatically.</p>
+            <p data-i18n="success_footer">Check back with your coordinator on Monday for the audit report.</p>
+        </div>
+    </div>
+
+    <script>
+        const translations = {
+            en: {
+                page_title: "Gaza Resilience Portal",
+                header_title: "Global Gaza Resilience Fund",
+                header_subtitle: "Unified Aid Allocation & Transparency Portal",
+                welcome_title: "Salam Alaykum",
+                updating_profile: "Updating profile for:",
+                not_you: "Not you? Start new",
+                welcome_desc: "To support you effectively, we follow a strictly transparent process designed for your sovereignty.",
+                li_transparency: "100% Transparency via unique Profile IDs.",
+                li_wallet_label: "Digital Wallet:",
+                li_wallet_text: "A unique secure address is assigned to your profile for aid accumulation.",
+                li_trust_label: "Management In-Trust:",
+                li_trust_text: "We manage the wallet on your behalf to ensure safety and sovereignty.",
+                li_threshold_label: "Sustainability Threshold:",
+                li_threshold_text: "€100 minimum to ensure efficient and meaningful transfers.",
+                li_sustainability_label: "System Sustainability (25%)",
+                li_sustainability_text: "for project maintenance and automation.",
+                li_audits: "System-wide Audit Reports every Monday.",
+                btn_agree: "Agree & Continue",
+                step2_title: "Campaign Details",
+                label_title: "Proposed Title",
+                placeholder_title: "e.g. Help my family rebuild...",
+                label_story: "Your Story",
+                placeholder_story: "Tell us what happened and what you need...",
+                label_media: "Upload Media (Images/Videos)",
+                media_help: "Choose multiple photos or videos that tell your story.",
+                btn_back: "Back",
+                btn_next: "Next",
+                step3_title: "Final Review",
+                step3_desc: "Your unique Profile ID will be assigned upon documentation sync.",
+                label_whatsapp: "WhatsApp Phone Number",
+                placeholder_whatsapp: "+970 ...",
+                whatsapp_help: "Required for new arrivals (+970 or +972 codes only).",
+                error_invalid_phone: "Please provide a valid phone number starting with +970 or +972.",
+                label_name: "Preferred Name (for display)",
+                placeholder_name: "First Name Only",
+                label_wallet: "Your Personal Digital Wallet (Optional)",
+                placeholder_wallet: "USDT Address",
+                wallet_help: "If you have your own wallet, we will prioritize it if it is unique. Otherwise, we will use the secure wallet we manage for you.",
+                agree_policy: "By submitting, you agree to our Zero-Waste and Transparency policies.",
+                btn_submit: "Submit",
+                success_title: "Success!",
+                success_desc: "Your details and updates have been captured. The Global Gaza Resilience Fund draft will be synchronized with your latest changes automatically.",
+                success_footer: "Check back with your coordinator on Monday for the audit report."
+            },
+            ar: {
+                page_title: "بوابة غزة للصمود",
+                header_title: "صندوق غزة العالمي للصمود",
+                header_subtitle: "بوابة توثيق المساعدات والشفافية الموحدة",
+                welcome_title: "السلام عليكم ورحمة الله",
+                updating_profile: "تحديث ملف:",
+                not_you: "ليس أنت؟ ابدأ من جديد",
+                welcome_desc: "لدعمكم بشكل فعال، نتبع عملية شفافة تماماً مصممة لضمان سيادتكم الرقمية.",
+                li_transparency: "شفافية 100% من خلال معرفات شخصية فريدة.",
+                li_wallet_label: "محفظة رقمية:",
+                li_wallet_text: "يتم تخصيص عنوان آمن فريد لملفك لتجميع المساعدات.",
+                li_trust_label: "إدارة الأمانة:",
+                li_trust_text: "نقوم بإدارة المحفظة نيابة عنك لضمان الأمن والسيادة.",
+                li_threshold_label: "حد الاستدامة:",
+                li_threshold_text: "100 يورو كحد أدنى لضمان تحويلات فعالة وذات مغزى.",
+                li_sustainability_label: "استمرارية النظام (25%)",
+                li_sustainability_text: "لصيانة النظام والأتمتة.",
+                li_audits: "تقارير تدقيق شاملة للمظام كل يوم اثنين.",
+                btn_agree: "موافق والمتابعة",
+                step2_title: "تفاصيل الحملة",
+                label_title: "العنوان المقترح",
+                placeholder_title: "مثال: ساعدوا عائلتي في إعادة البناء...",
+                label_story: "قصتك",
+                placeholder_story: "أخبرنا بما حدث وما تحتاجه...",
+                label_media: "تحميل الوسائط (صور/فيديو)",
+                media_help: "اختر صوراً أو فيديوهات متعددة تروي قصتك.",
+                btn_back: "رجوع",
+                btn_next: "التالي",
+                step3_title: "المراجعة النهائية",
+                step3_desc: "سيتم تخصيص رقم تعريفي فريد لك عند مزامنة المستندات.",
+                label_whatsapp: "رقم واتساب",
+                placeholder_whatsapp: "+970 ...",
+                whatsapp_help: "مطلوب للقادمين الجدد (المقدمة +970 أو +972 فقط).",
+                error_invalid_phone: "يرجى تقديم رقم هاتف صالح يبدأ بـ +970 أو +972.",
+                label_name: "الاسم المفضل (للعرض)",
+                placeholder_name: "الاسم الأول فقط",
+                label_wallet: "محفظتك الرقمية الخاصة (اختياري)",
+                placeholder_wallet: "عنوان USDT",
+                wallet_help: "إذا كانت لديك محفظتك الخاصة، فسنعطيها الأولوية إذا كانت فريدة. خلاف ذلك، سنستخدم المحفظة الآمنة التي نديرها لك.",
+                agree_policy: "بإرسالك لهذا الطلب، فإنك توافق على سياسات الشفافية وعدم الهدر.",
+                btn_submit: "إرسال",
+                success_title: "نجاح!",
+                success_desc: "تم استلام تفاصيلك وتحديثاتك. سيتم مزامنة مسودة صندوق غزة العالمي للصمود مع آخر تغييراتك تلقائياً.",
+                success_footer: "راجع منسقك يوم الاثنين للحصول على تقرير التدقيق."
+            }
+        };
+
+        let currentLang = 'en';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            document.documentElement.lang = lang;
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+
+            // Update buttons
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('btn-' + lang).classList.add('active');
+
+            // Update text
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+
+            // Update placeholders
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-i18n-placeholder');
+                if (translations[lang][key]) {
+                    el.placeholder = translations[lang][key];
+                }
+            });
+        }
+
+        function nextStep(step) {
+            document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+            if (step === 'success') {
+                document.getElementById('success').classList.add('active');
+                document.getElementById('progress').style.width = '100%';
+            } else {
+                document.getElementById('step' + step).classList.add('active');
+                document.getElementById('progress').style.width = (step * 33) + '%';
+            }
+        }
+
+        window.onload = async function () {
+            // Default to Arabic
+            setLanguage('ar');
+
+            const pathParts = window.location.pathname.split('/');
+            const beneficiaryId = pathParts[pathParts.length - 1];
+
+            if (!beneficiaryId || beneficiaryId === 'onboard' || beneficiaryId === 'index.html' || beneficiaryId === '') {
+                document.getElementById('whatsapp_group').style.display = 'block';
+            } else {
+                try {
+                    const response = await fetch(`/submission/${beneficiaryId}`);
+                    const cleanName = beneficiaryId.replace(/_/g, ' ');
+
+                    if (response.ok) {
+                        const data = await response.json();
+                        document.getElementById('title').value = data.title || '';
+                        document.getElementById('story').value = data.story || '';
+                        document.getElementById('display_name').value = data.display_name || cleanName;
+                        document.getElementById('personal_wallet').value = data.personal_wallet || '';
+                        document.getElementById('ident_name').textContent = data.display_name || cleanName;
+                    } else {
+                        document.getElementById('display_name').value = cleanName;
+                        document.getElementById('ident_name').textContent = cleanName;
+                    }
+                    document.getElementById('identity_notice').style.display = 'block';
+                } catch (error) {
+                    console.error('Error loading existing data:', error);
+                }
+            }
+        };
+
+        function startNew() {
+            window.location.href = '/onboard';
+        }
+
+        async function submitForm() {
+            const beneficiaryId = window.location.pathname.split('/').pop() || 'unknown';
+            const whatsappNumber = document.getElementById('whatsapp_number').value.trim();
+
+            // Validation for Viral Arrivals
+            if (!beneficiaryId || beneficiaryId === 'onboard' || beneficiaryId === 'index.html' || beneficiaryId === 'unknown' || beneficiaryId === '') {
+                if (!whatsappNumber) {
+                    alert(currentLang === 'ar' ? 'رقم واتساب مطلوب.' : 'WhatsApp number required.');
+                    return;
+                }
+
+                // Prefix check: +970 or +972
+                if (!whatsappNumber.startsWith('+970') && !whatsappNumber.startsWith('+972')) {
+                    alert(translations[currentLang].error_invalid_phone);
+                    return;
+                }
+            }
+
+            const formData = new FormData();
+            formData.append('beneficiary_id', beneficiaryId);
+            formData.append('title', document.getElementById('title').value);
+            formData.append('story', document.getElementById('story').value);
+            formData.append('display_name', document.getElementById('display_name').value);
+            formData.append('personal_wallet', document.getElementById('personal_wallet').value);
+            formData.append('whatsapp_number', whatsappNumber);
+
+            const fileInput = document.getElementById('media_files');
+            for (let i = 0; i < fileInput.files.length; i++) {
+                formData.append('files', fileInput.files[i]);
+            }
+
+            try {
+                const response = await fetch('/upload', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (response.ok) {
+                    nextStep('success');
+                } else {
+                    const errorMsg = currentLang === 'ar' ? 'فشل الإرسال. يرجى المحاولة مرة أخرى.' : 'Submission failed. Please try again.';
+                    alert(errorMsg);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                nextStep('success');
+            }
+        }
+    </script>
+</body>
+
+</html>
