@@ -4,7 +4,7 @@ from sovereign_vault import SovereignVault
 
 DATA_FILE = "data/potential_beneficiaries.json"
 OUTPUT_FILE = "data/onboarding_messages.txt"
-PORTAL_URL = "https://arcade-watt-vendor-leather.trycloudflare.com/onboard" # Seamless Cloudflare Tunnel
+PORTAL_URL = "https://dours-d.github.io/local-ai-campaign-assistant/index.html"
 
 def generate_messages():
     if not os.path.exists(DATA_FILE):
@@ -65,7 +65,7 @@ def generate_messages():
         msg += f"السلام عليكم ورحمة الله.\n\n"
         msg += f"نتواصل معك لتقديم الدعم في تفعيل ووصول قصتك إلى الداعمين حول العالم. حتى لو لم تكن متأكداً تماماً من الخطوات الآن، فقد قمنا بإعداد هذا المسار لمساعدتك في بناء حملتك.\n\n"
         msg += f"أنت صاحب هذه القصة. يرجى استخدام الرابط الخاص بك لإضافة تفاصيلك وصورك. كما يمكنك تزويدنا بعنوان محفظتك الرقمية الخاصة إذا كنت تملك واحدة:\n"
-        msg += f"{PORTAL_URL}/{name}\n\n"
+        msg += f"{PORTAL_URL}?u={name}\n\n"
         msg += "إدارة المساعدات والسيادة الرقمية:\n"
         msg += f"- 'محفظة رقمية مخصصة': {address}\n"
         msg += "  هذا العنوان مخصص حصراً لتأمين المبالغ التي تُجمع لقصتك.\n"
@@ -90,7 +90,7 @@ def generate_messages():
         msg += f"- Your Personal 'Digital Wallet' (Address): {address}\n"
         msg += f"  This is your dedicated address for aid accumulation.\n"
         msg += f"  (Note: If you provide your own address, we will use it provided it is unique to you. Otherwise, we use the secure HD wallet above managed in-trust for your safety).\n"
-        msg += "- Disbursement (Sovereign Crypto Only): When your balance reaches €100, funds are transferred EXCLUSIVELY to a personal digital wallet owned directy by you.\n"
+        msg += "- Disbursement (Sovereign Crypto Only): When your balance reaches €100, funds are transferred EXCLUSIVELY to a personal digital wallet owned directly by you.\n"
         msg += "  (Legal Note: Payouts are restricted to sovereign crypto wallets to ensure total legal safety for all parties. We cannot send funds to middlemen).\n"
         msg += "- Transparency: A unique ID is assigned to your profile to ensure correct fund allocation and auditability.\n"
         msg += "- System Sustainability (25%): A portion of raised funds (25%) is used to maintain the automated infrastructure, ensuring the continued flow of aid to those who need it.\n"
