@@ -1,0 +1,36 @@
+
+# Data & Logs
+data/
+logs/
+backups/
+temp_search_umm.txt
+temp_summary.txt
+validation_report.txt
+debug_output*.txt
+diag_output.txt
+run_output*.log
+wa_dump.json
+fidf_source.html
+profile_source.html
+whydonate_dashboard_debug.html
+whydonate_debug.html
+whydonate_elements.json
+whydonate_magic_debug.json
+whydonate_network_fails.json
+dashboard_sample.html
+debug_html_dump.txt
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+.pytest_cache/
+.env
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Executables
+cloudflared.exe
