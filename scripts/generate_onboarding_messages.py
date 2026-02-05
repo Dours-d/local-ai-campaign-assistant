@@ -4,7 +4,7 @@ from sovereign_vault import SovereignVault
 
 DATA_FILE = "data/potential_beneficiaries.json"
 OUTPUT_FILE = "data/onboarding_messages.txt"
-PORTAL_URL = "https://dours-d.github.io/local_ai_campaign_assistant/#"
+PORTAL_URL = "https://dours-d.github.io/local-ai-campaign-assistant/#"
 VIRAL_URL = "https://bit.ly/g-gz-resi-fund"
 
 def generate_messages():
