@@ -193,8 +193,8 @@
                 step3_desc: "Your unique Profile ID will be assigned upon documentation sync.",
                 label_whatsapp: "WhatsApp Phone Number",
                 placeholder_whatsapp: "+970 ...",
-                whatsapp_help: "Required for new arrivals (+970 or +972 codes only).",
-                error_invalid_phone: "Please provide a valid phone number starting with +970 or +972.",
+                whatsapp_help: "Required for new arrivals (+970, +972, or international).",
+                error_invalid_phone: "Please provide a valid phone number starting with +.",
                 label_name: "Preferred Name (for display)",
                 placeholder_name: "First Name Only",
                 label_wallet: "Your Personal Digital Wallet (Optional)",
@@ -238,8 +238,8 @@
                 step3_desc: "سيتم تخصيص رقم تعريفي فريد لك عند مزامنة المستندات.",
                 label_whatsapp: "رقم واتساب",
                 placeholder_whatsapp: "+970 ...",
-                whatsapp_help: "مطلوب للقادمين الجدد (المقدمة +970 أو +972 فقط).",
-                error_invalid_phone: "يرجى تقديم رقم هاتف صالح يبدأ بـ +970 أو +972.",
+                whatsapp_help: "مطلوب للقادمين الجدد (+970، +972، أو دولي).",
+                error_invalid_phone: "يرجى تقديم رقم هاتف صالح يبدأ بـ +.",
                 label_name: "الاسم المفضل (للعرض)",
                 placeholder_name: "الاسم الأول فقط",
                 label_wallet: "محفظتك الرقمية الخاصة (اختياري)",
@@ -339,8 +339,8 @@
                     return;
                 }
 
-                // Prefix check: +970 or +972
-                if (!whatsappNumber.startsWith('+970') && !whatsappNumber.startsWith('+972')) {
+                // Prefix check: +
+                if (!whatsappNumber.startsWith('+')) {
                     alert(translations[currentLang].error_invalid_phone);
                     return;
                 }

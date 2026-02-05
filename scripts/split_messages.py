@@ -17,21 +17,33 @@ def split_messages():
     with open(SOURCE_FILE, 'r', encoding='utf-8') as f:
         content = f.read()
 
-    # Messages are separated by delimiters and start with a header
-    # --- MESSAGE FOR <ID> ---
-    # ... message ...
-    # ----------------------------
+    # Split by the message header
+    blocks = re.split(r"--- MESSAGE FOR (.*?) ---\n", content)
     
-    pattern = r"--- MESSAGE FOR (.*?) ---\n(.*?)\n-{28,}"
-    matches = re.findall(pattern, content, re.DOTALL)
-
-    if not matches:
+    # re.split with a capture group returns [pre-match, group, post-match, group, post-match, ...]
+    # So we want to skip the first element (which is empty or contains header-less text)
+    # Then iterate in pairs of ID and Body
+    
+    if len(blocks) < 3:
         print("No messages found in the source file.")
         return
 
-    print(f"Splitting {len(matches)} messages...")
+    messages_to_write = []
+    for i in range(1, len(blocks), 2):
+        search_id = blocks[i].strip()
+        body = blocks[i+1]
+        
+        # The body might contain the trailing dashes from the previous pattern
+        # We clean it up by taking content until the last delimiter if present, 
+        # but since we split by headers, the body is just the text until the next header.
+        # We should just strip the trailing ----------------------------
+        body = re.sub(r"\n-{20,}\s*$", "", body, flags=re.MULTILINE)
+        
+        messages_to_write.append((search_id, body.strip()))
+
+    print(f"Splitting {len(messages_to_write)} messages...")
     
-    for search_id, message_body in matches:
+    for search_id, message_body in messages_to_write:
         # Clean the ID for filename
         filename = f"{search_id.strip()}.txt"
         file_path = os.path.join(OUTPUT_DIR, filename)
@@ -39,7 +51,7 @@ def split_messages():
         with open(file_path, 'w', encoding='utf-8') as out_f:
             out_f.write(message_body.strip())
     
-    print(f"Successfully created {len(matches)} individual files in {OUTPUT_DIR}")
+    print(f"Successfully created {len(messages_to_write)} individual files in {OUTPUT_DIR}")
 
 if __name__ == "__main__":
     split_messages()

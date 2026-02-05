@@ -2,3 +2,7 @@ requests
 pydantic
 pyyaml
 pytest
+flask
+flask-cors
+Pillow
+numpy

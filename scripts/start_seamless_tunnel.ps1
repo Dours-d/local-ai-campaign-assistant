@@ -15,4 +15,4 @@ Write-Host "`nStarting Seamless Tunnel for Onboarding Portal..." -ForegroundColo
 Write-Host "The link below starting with https://... will be PASSWORD-FREE for users.`n" -ForegroundColor Yellow
 
 # Run cloudflared tunnel
-& $ExePath tunnel --url http://localhost:5000
+& $ExePath tunnel --url http://127.0.0.1:5000 --logfile data/tunnel.log

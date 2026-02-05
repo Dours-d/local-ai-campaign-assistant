@@ -137,5 +137,5 @@ def upload_file():
     return jsonify({"status": "success", "message": f"Data saved for {beneficiary_id}"}), 200
 
 if __name__ == '__main__':
-    print(f"Starting intake server on http://localhost:5000")
-    app.run(port=5000)
+    print(f"Starting intake server on http://0.0.0.0:5000")
+    app.run(host='0.0.0.0', port=5000)

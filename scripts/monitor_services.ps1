@@ -51,11 +51,17 @@ while ($true) {
                             $NewHtml = $HtmlContent -replace 'const destination = "[^"]+";', "const destination = `"$CurrentUrl`";"
                             Set-Content -Path $HtmlPath -Value $NewHtml
                              
-                            # Git Automation
-                            git add $HtmlPath
-                            git commit -m "Auto-update tunnel URL to $CurrentUrl"
-                            git push
-                            Write-Log "GitHub Pages updated successfully."
+                            # Git Automation (Explicit check for git)
+                            if (Get-Command git -ErrorAction SilentlyContinue) {
+                                Write-Log "Tunnel URL changed to $CurrentUrl. Committing updates..."
+                                git add $HtmlPath
+                                git commit -m "Auto-update tunnel URL to $CurrentUrl"
+                                git push
+                                Write-Log "GitHub Pages updated successfully."
+                            }
+                            else {
+                                Write-Log "WARNING: git command not found. Cannot update portal redirect."
+                            }
                         }
                     }
                 }
