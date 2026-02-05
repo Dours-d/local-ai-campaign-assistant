@@ -12,7 +12,7 @@ This portal ensures secure access to your local AI campaign assistant.
 
 <script>
   // Read the URL directly injected by the monitoring script
-  var destination = "https://travis-marie-vault-winter.trycloudflare.com";
+  var destination = "https://dours-laptop-2cli8k04.tail482749.ts.net";
   var search = window.location.search || "";
   var finalUrl = destination + search;
 
