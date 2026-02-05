@@ -11,8 +11,8 @@ This portal ensures secure access to your local AI campaign assistant.
 <a id="redirect-link" href="#" class="btn">Click here if not redirected automatically</a>
 
 <script>
-  // Read the URL from the Jekyll data file (injected at build time)
-  var destination = "{{ site.data.tunnel.url }}";
+  // Read the URL directly injected by the monitoring script
+  var destination = "https://beautiful-civil-joined-careers.trycloudflare.com";
   var search = window.location.search || "";
   var finalUrl = destination + search;
 
@@ -22,3 +22,4 @@ This portal ensures secure access to your local AI campaign assistant.
     window.location.replace(finalUrl);
   }, 1000); // Small delay to show the "faithful" UI
 </script>
+
