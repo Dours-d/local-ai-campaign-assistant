@@ -4,21 +4,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redirecting to Onboarding Portal...</title>
-    <script>
-        const destination = "https://tackle-mega-src-spent.trycloudflare.com";
-        const search = window.location.search || "";
-        window.location.replace(destination + search);
-    </script>
+    <title>Redirecting to Gaza Resilience Portal...</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background: #0f172a;
+            color: #94a3b8;
+        }
+
+        .box {
+            text-align: center;
+            padding: 2rem;
+            background: #1e293b;
+            border-radius: 12px;
+            border: 1px solid #334155;
+        }
+
+        a {
+            color: #38bdf8;
+            text-decoration: none;
+        }
+    </style>
 </head>
 
 <body>
-    <p>Redirecting to secure portal: <a href="#" id="link">Click here if not redirected</a></p>
+    <div class="box">
+        <p id="msg">Connecting to secure portal...</p>
+        <p><a id="link" href="#">Click here if not redirected automatically</a></p>
+    </div>
     <script>
-        const destinationLink = "https://fellow-blonde-automatically-cordless.trycloudflare.com";
-        document.getElementById("link").href = destinationLink + window.location.search;
+        // Updated automatically by monitor script
+        var destination = "https://tackle-mega-src-spent.trycloudflare.com";
+
+        // Handle hash routing for deep links
+        var hash = window.location.hash;
+        var path = "";
+        if (hash && hash.length > 1) {
+            path = hash.substring(1);
+        }
+        var search = window.location.search || "";
+        var finalUrl = destination + path + search;
+
+        document.getElementById("link").href = finalUrl;
+        setTimeout(() => { window.location.replace(finalUrl); }, 500);
     </script>
 </body>
 
 </html>
-
