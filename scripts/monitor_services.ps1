@@ -35,10 +35,10 @@ while ($true) {
     # 3. Update GitHub Pages Redirect (Dynamic Redirection)
     try {
         if (Test-Path "data/tunnel.log") {
-            $TunnelLog = Get-Content "data/tunnel.log" -Tail 100 | Out-String
-            if ($TunnelLog -match "https://[a-z0-9-]+\.trycloudflare\.com") {
-                $CurrentUrl = $matches[0]
-                $CurrentUrl = $matches[0]
+            $TunnelLog = Get-Content "data/tunnel.log" -Tail 200
+            $AllMatches = $TunnelLog | Select-String -Pattern "https://[a-z0-9-]+\.trycloudflare\.com" -AllMatches
+            if ($AllMatches) {
+                $CurrentUrl = $AllMatches[-1].Matches.Value
                 $TargetFile = "docs/index.md"
                 
                 if (Test-Path $TargetFile) {
