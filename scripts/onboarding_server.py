@@ -73,7 +73,10 @@ def upload_file():
             sanitized_id = "".join([c for c in whatsapp_number if c.isdigit() or c == '+'])
             beneficiary_id = f"viral_{sanitized_id}"
         else:
-            return jsonify({"error": "WhatsApp number required for new arrivals"}), 400
+            # Generate a random temporary ID if no number provided
+            import uuid
+            random_id = str(uuid.uuid4())[:8]
+            beneficiary_id = f"viral_anon_{random_id}"
 
     # Load existing data if available
     json_path = os.path.join(DATA_DIR, f"{beneficiary_id}_submission.json")

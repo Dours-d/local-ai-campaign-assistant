@@ -240,9 +240,9 @@
                 li_audits: "System-wide Audit Reports every Monday.",
                 btn_agree: "Agree & Continue",
                 step2_title: "Campaign Details",
-                label_title: "Proposed Title",
+                label_title: "Proposed Title (Optional)",
                 placeholder_title: "e.g. Help my family rebuild...",
-                label_story: "Your Story",
+                label_story: "Your Story (Optional)",
                 placeholder_story: "Tell us what happened and what you need...",
                 label_media: "Upload Media (Images/Videos)",
                 media_help: "Choose multiple photos or videos that tell your story.",
@@ -250,15 +250,15 @@
                 btn_next: "Next",
                 step3_title: "Final Review",
                 step3_desc: "Your unique Profile ID will be assigned upon documentation sync.",
-                label_whatsapp: "WhatsApp Phone Number",
+                label_whatsapp: "WhatsApp (Optional)",
                 placeholder_whatsapp: "+970 ...",
-                whatsapp_help: "Required for new arrivals (+970, +972, or international).",
-                error_invalid_phone: "Please provide a valid phone number starting with +.",
-                label_name: "Preferred Name (for display)",
+                whatsapp_help: "Optional: Provide a number if you'd like us to reach out.",
+                error_invalid_phone: "Note: Phone numbers usually start with +.",
+                label_name: "Preferred Name (Optional)",
                 placeholder_name: "First Name Only",
-                label_wallet: "Your Personal Digital Wallet (Optional)",
+                label_wallet: "Your Digital Wallet (Optional)",
                 placeholder_wallet: "USDT Address (TRC20)",
-                wallet_help: "If you have your own wallet, ensure it is on the Tron (TRC20) network. We will prioritize it if it is unique. Otherwise, we will use the secure wallet we manage for you.",
+                wallet_help: "If you have your own TRC20 wallet, you can provide it here.",
                 agree_policy: "By submitting, you agree to our Zero-Waste and Transparency policies.",
                 btn_submit: "Submit",
                 success_title: "Success!",
@@ -285,9 +285,9 @@
                 li_audits: "تقارير تدقيق شاملة للمظام كل يوم اثنين.",
                 btn_agree: "موافق والمتابعة",
                 step2_title: "تفاصيل الحملة",
-                label_title: "العنوان المقترح",
+                label_title: "العنوان المقترح (اختياري)",
                 placeholder_title: "مثال: ساعدوا عائلتي في إعادة البناء...",
-                label_story: "قصتك",
+                label_story: "قصتك (اختياري)",
                 placeholder_story: "أخبرنا بما حدث وما تحتاجه...",
                 label_media: "تحميل الوسائط (صور/فيديو)",
                 media_help: "اختر صوراً أو فيديوهات متعددة تروي قصتك.",
@@ -295,15 +295,15 @@
                 btn_next: "التالي",
                 step3_title: "المراجعة النهائية",
                 step3_desc: "سيتم تخصيص رقم تعريفي فريد لك عند مزامنة المستندات.",
-                label_whatsapp: "رقم واتساب",
+                label_whatsapp: "واتساب (اختياري)",
                 placeholder_whatsapp: "+970 ...",
-                whatsapp_help: "مطلوب للقادمين الجدد (+970، +972، أو دولي).",
-                error_invalid_phone: "يرجى تقديم رقم هاتف صالح يبدأ بـ +.",
-                label_name: "الاسم المفضل (للعرض)",
+                whatsapp_help: "اختياري: زودنا برقم إذا كنت ترغب في التواصل معك.",
+                error_invalid_phone: "ملاحظة: تبدأ أرقام الهاتف عادة بـ +.",
+                label_name: "الاسم المفضل (اختياري)",
                 placeholder_name: "الاسم الأول فقط",
-                label_wallet: "محفظتك الرقمية الخاصة (اختياري)",
+                label_wallet: "محفظتك الرقمية (اختياري)",
                 placeholder_wallet: "عنوان USDT (TRC20)",
-                wallet_help: "إذا كانت لديك محفظتك الخاصة، فيرجى التأكد من أنها على شبكة ترون (TRC20). سنعطيها الأولوية إذا كانت فريدة. خلاف ذلك، سنستخدم المحفظة الآمنة التي نديرها لك.",
+                wallet_help: "إذا كانت لديك محفظتك الخاصة TRC20، يمكنك تزويدنا بها هنا.",
                 agree_policy: "بإرسالك لهذا الطلب، فإنك توافق على سياسات الشفافية وعدم الهدر.",
                 btn_submit: "إرسال",
                 success_title: "نجاح!",
@@ -391,21 +391,7 @@
             const beneficiaryId = window.location.pathname.split('/').pop() || 'unknown';
             const whatsappNumber = document.getElementById('whatsapp_number').value.trim();
 
-            // Validation for Viral Arrivals
-            if (!beneficiaryId || beneficiaryId === 'onboard' || beneficiaryId === 'index.html' || beneficiaryId === 'unknown' || beneficiaryId === '') {
-                if (!whatsappNumber) {
-                    alert(currentLang === 'ar' ? 'رقم واتساب مطلوب.' : 'WhatsApp number required.');
-                    return;
-                }
-
-                // Prefix check: +
-                if (!whatsappNumber.startsWith('+')) {
-                    alert(translations[currentLang].error_invalid_phone);
-                    return;
-                }
-            }
-
-            const formData = new FormData();
+            // Relaxation: No strict validation alerts for viral arrivals
             formData.append('beneficiary_id', beneficiaryId);
             formData.append('title', document.getElementById('title').value);
             formData.append('story', document.getElementById('story').value);
