@@ -4,7 +4,7 @@ from sovereign_vault import SovereignVault
 
 DATA_FILE = "data/potential_beneficiaries.json"
 OUTPUT_FILE = "data/onboarding_messages.txt"
-PORTAL_URL = "https://tackle-mega-src-spent.trycloudflare.com/#"
+PORTAL_URL = "https://den-dennis-newark-before.trycloudflare.com/#"
 VIRAL_URL = "https://bit.ly/g-gz-resi-fund"
 
 def generate_messages():
