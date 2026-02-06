@@ -392,6 +392,7 @@
             const whatsappNumber = document.getElementById('whatsapp_number').value.trim();
 
             // Relaxation: No strict validation alerts for viral arrivals
+            const formData = new FormData();
             formData.append('beneficiary_id', beneficiaryId);
             formData.append('title', document.getElementById('title').value);
             formData.append('story', document.getElementById('story').value);
