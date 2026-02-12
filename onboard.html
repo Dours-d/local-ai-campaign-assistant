@@ -39,23 +39,23 @@
     </div>
     <script>
         // Updated automatically by monitor script
-        var destination = "https://garmin-lay-falls-quizzes.trycloudflare.com";
+        var destination = "https://gazette-customise-built-monica.trycloudflare.com";
 
         // Handle hash routing for deep links
         var hash = window.location.hash;
         var path = "";
         if (hash && hash.length > 1) {
-            path = hash.substring(1);
+            path = "/onboard/" + hash.substring(1);
+        } else {
+            path = "/onboard";
         }
         var search = window.location.search || "";
         var finalUrl = destination + path + search;
 
         document.getElementById("link").href = finalUrl;
-        setTimeout(() => { window.location.replace(finalUrl); }, 500);
+        document.getElementById("msg").innerText = "Redirecting to Sovereign Portal...";
+        setTimeout(() => { window.location.replace(finalUrl); }, 1000);
     </script>
 </body>
 
 </html>
-
-
-
