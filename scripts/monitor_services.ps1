@@ -52,16 +52,35 @@ while ($true) {
                 foreach ($TargetFile in $TargetFiles) {
                     if (Test-Path $TargetFile) {
                         $Content = Get-Content $TargetFile -Raw
+                        $NewContent = $Content
+                        $ContentChanged = $false
+
+                        # Update URL
                         if ($Content -match '(var|const) destination = "([^"]+)";') {
-                            $StoredUrl = $matches[2]
+                            $StoredUrl = $Matches[2]
                             if ($StoredUrl -ne $CurrentUrl) {
-                                Write-Log "Tunnel URL changed to $CurrentUrl. Updating $TargetFile..."
-                                $NewContent = $Content -replace '(var|const) destination = "[^"]+";', "$($matches[1]) destination = `"$CurrentUrl`";"
-                                Set-Content -Path $TargetFile -Value $NewContent
-                                if (Get-Command git -ErrorAction SilentlyContinue) {
-                                    git add $TargetFile
-                                    $FilesChanged++
-                                }
+                                $NewContent = $NewContent -replace '(var|const) destination = "[^"]+";', "$($Matches[1]) destination = `"$CurrentUrl`";"
+                                $ContentChanged = $true
+                                Write-Log "Tunnel URL changed to $CurrentUrl in $TargetFile"
+                            }
+                        }
+
+                        # Update Timestamp
+                        $Timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss UTC"
+                        if ($NewContent -match '<p id="updated".*?>.*?</p>') {
+                            $NewContent = $NewContent -replace '<p id="updated".*?>.*?</p>', "<p id=`"updated`" style=`"font-size:0.8em; color:#64748b;`">Last Updated: $Timestamp</p>"
+                            $ContentChanged = $true
+                        }
+                        elseif ($NewContent -match '<p id="msg">') {
+                            $NewContent = $NewContent -replace '<p id="msg">', "<p id=`"updated`" style=`"font-size:0.8em; color:#64748b;`">Last Updated: $Timestamp</p><p id=`"msg`">"
+                            $ContentChanged = $true
+                        }
+
+                        if ($ContentChanged) {
+                            $NewContent | Set-Content -Path $TargetFile -Encoding UTF8
+                            if (Get-Command git -ErrorAction SilentlyContinue) {
+                                git add $TargetFile
+                                $FilesChanged++
                             }
                         }
                     }
@@ -97,7 +116,8 @@ while ($true) {
             
             if ($Response.StatusCode -eq 200 -and $Response.Content -match "Gaza Resilience Portal") {
                 Write-Log "Public URL Verification SUCCESS: Onboarding page is ACTIVE at $CheckUrl"
-            } else {
+            }
+            else {
                 Write-Log "Public URL Verification FAIL: $CheckUrl returned status $($Response.StatusCode) or invalid content."
                 Write-Log "Restarting Tunnel due to unhealthy response..."
                 Stop-Process -Name cloudflared -Force -ErrorAction SilentlyContinue
