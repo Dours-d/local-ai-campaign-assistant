@@ -1,0 +1,52 @@
+Found sheet: noor
+--- HEADERS ---
+A: Campaign Title
+B: Title
+C: First Name
+D: Last Name
+E: Donation
+F: Currency
+G: Regular Giving
+H: Regular Giving Occurrence
+I: Regular Giving Cancellation Date (Australia/Sydney)
+J: Stripe Payment ID
+K: PayPal or Credit/debit card (Stripe)
+L: Date (Australia/Sydney)
+M: Date (UTC)
+N: Email
+O: Link to receipt
+P: Invoice No
+Q: Paypal Invoice ID
+R: Keep me updated
+S: Display my donation
+T: Perk
+U: Number of Perks
+V: Perk Question
+W: Perk Answer
+X: Address
+Y: Locality
+Z: Region
+AA: Postcode
+AB: Country
+AC: Offline
+AD: Total Transaction
+AE: Net Donation
+AF: Processing Fees
+AG: Chuffed Optional Donation
+AH: Chuffed Fees
+AI: Converted Amount
+AJ: Corrected 3 %
+AK: All €
+AL: Cumule
+AM: Adjusted USDT
+AN: <text:s/>
+AO: Phone
+AR: Phone
+
+--- SAMPLE ROW 2 ---
+
+--- CANDIDATE TOTALS (Rows 2-71) ---
+Column E (Donation): 1687.91
+Column AB (Country): 0.00
+Column AC (Offline): 0.00
+Column AF (Processing Fees): 0.00

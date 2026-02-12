@@ -5,7 +5,7 @@ import time
 import os
 import sys
 
-CDP_URL = "http://localhost:9222/json"
+CDP_URL = "http://127.0.0.1:9222/json"
 GAZA_PICTURES = r"C:\Users\gaelf\Pictures\GAZA"
 
 MSG_ID = 1
@@ -369,27 +369,28 @@ def process_campaign(ws, campaign):
     print("Step 2: Choosing target...", flush=True)
     js2 = """
     (async function() {
+        // Wait for page to be ready
+        for (let i = 0; i < 20; i++) {
+            if (document.body.innerText.toLowerCase().includes('who is this fundraiser for') || 
+                document.body.innerText.toLowerCase().includes('yourself') ||
+                document.body.innerText.toLowerCase().includes('mijzelf')) break;
+            await new Promise(r => setTimeout(r, 500));
+        }
+
         if (document.querySelector('input[placeholder*="Title"]')) return "SKIPPED_ALREADY_ON_3";
         
         const targets = ["myself", "mijzelf", "yourself", "uzelf", "u zelf", "moi-même", "moi-meme"];
         let attempts = 0;
-        while (attempts < 10) {
-            const myself = Array.from(document.querySelectorAll('mat-card, .fundraiser-type-card, div[role="button"], span, p, h3, div')).find(el => {
+        while (attempts < 15) {
+            const myself = Array.from(document.querySelectorAll('mat-card, .fundraiser-type-card, div[role="button"], span, p, h3, div, .mdc-card')).find(el => {
                 const t = (el.innerText || "").toLowerCase().trim();
                 return targets.includes(t) || (el.children.length === 0 && targets.some(tgt => t.includes(tgt)));
             });
 
             if (myself) {
-                const choice = myself.closest('mat-card, .fundraiser-type-card, div[role="button"], mat-chip-option') || myself;
+                const choice = myself.closest('mat-card, .fundraiser-type-card, div[role="button"], mat-chip-option, .mdc-card') || myself;
                 choice.click();
-                await new Promise(r => setTimeout(r, 1500));
-            } else {
-                // Fallback: click first card-like thing
-                const firstCard = document.querySelector('mat-card, .fundraiser-type-card, .selection-card');
-                if (firstCard) {
-                    firstCard.click();
-                    await new Promise(r => setTimeout(r, 1000));
-                }
+                await new Promise(r => setTimeout(r, 1000));
             }
             
             const btn = document.getElementById('saveStep2') || 
@@ -398,18 +399,18 @@ def process_campaign(ws, campaign):
                             return t.includes('next') || t.includes('volgende') || t.includes('suivant');
                         });
             if (btn) {
-                btn.disabled = false;
+                btn.removeAttribute('disabled');
                 btn.click();
                 // Wait to see if it moves
-                await new Promise(r => setTimeout(r, 3000));
-                if (document.querySelector('input[placeholder*="Title"]') || 
-                    document.querySelector('input[formcontrolname="title"]') ||
-                    document.querySelector('textarea')) {
-                    return "SUCCESS";
-                }
+                await new Promise(r => setTimeout(r, 4000));
+                const onStep3 = document.querySelector('input[placeholder*="Title"]') || 
+                                document.querySelector('input[formcontrolname="title"]') ||
+                                document.querySelector('input[placeholder*="itulo"]') ||
+                                document.querySelector('textarea');
+                if (onStep3) return "SUCCESS";
             }
             attempts++;
-            await new Promise(r => setTimeout(r, 2000));
+            await new Promise(r => setTimeout(r, 1000));
         }
         return "TARGET_BUTTON_NOT_FOUND_OR_STUCK";
     })()
@@ -733,7 +734,7 @@ def check_for_double(title, existing_campaigns):
     return False
 
 def main():
-    BATCH_JSON = os.path.join(os.getcwd(), 'data', 'whydonate_batch_create.json')
+    BATCH_JSON = os.path.join(os.getcwd(), 'data', 'raneen_batch.json')
     MAX_BATCH = 9999
     existing_file = "data/whydonate_all_campaigns.json"
     

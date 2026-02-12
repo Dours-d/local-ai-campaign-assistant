@@ -1,0 +1,36 @@
+Total submission files: 35
+--------------------------------------------------
+[MISSING] WA: +967784681640 | Filename: 967784681640_submission.json
+[MISSING] WA: +972567243079 | Filename: 972567243079_submission.json
+[MISSING] WA: +972592172016 | Filename: 972592172016_submission.json
+[MISSING] WA: +972592475288 | Filename: 972592475288_submission.json
+[MISSING] WA: +972592566759 | Filename: 972592566759_submission.json
+[MISSING] WA: +972597341113 | Filename: 972597341113_submission.json
+[MISSING] WA: +972597662819 | Filename: 972597662819_submission.json
+[MISSING] WA: +972599904464 | Filename: 972599904464_submission.json
+[ANON/NO_WA] ID: MOCK-USER-001 | Filename: MOCK-USER-001_submission.json
+[PENDING] WA: +972500000000 | Filename: test_ping_submission.json
+[PENDING] WA: +0797172654 | Filename: viral_+0797172654_submission.json
+[PENDING] WA: +970123456789 | Filename: viral_+970123456789_submission.json
+[PENDING] WA: +970555555555 | Filename: viral_+970555555555_submission.json
+[PENDING] WA: +97055555555 | Filename: viral_+97055555555_submission.json
+[PENDING] WA: +9720592566759 | Filename: viral_+9720592566759_submission.json
+[PENDING] WA: +9720594025212 | Filename: viral_+9720594025212_submission.json
+[PENDING] WA: +9720595562213 | Filename: viral_+9720595562213_submission.json
+[PENDING] WA: +972123456789 | Filename: viral_+972123456789_submission.json
+[PENDING] WA: +972592645759 | Filename: viral_+972592645759_submission.json
+[PENDING] WA: +972595038299 | Filename: viral_+972595038299_submission.json
+[PENDING] WA: +972599197456 | Filename: viral_+972599197456_submission.json
+[PENDING] WA: +00972597341113 | Filename: viral_00972597341113_submission.json
+[PENDING] WA: +0592115058 | Filename: viral_0592115058_submission.json
+[PENDING] WA: +0593622959 | Filename: viral_0593622959_submission.json
+[PENDING] WA: +0597172654 | Filename: viral_0597172654_submission.json
+[PENDING] WA: +0598289338 | Filename: viral_0598289338_submission.json
+[PENDING] WA: +0599283183 | Filename: viral_0599283183_submission.json
+[PENDING] WA: +0599560696 | Filename: viral_0599560696_submission.json
+[ANON/NO_WA] ID: viral_anon_3c60deb6 | Filename: viral_anon_3c60deb6_submission.json
+[ANON/NO_WA] ID: viral_anon_b598c157 | Filename: viral_anon_b598c157_submission.json
+[ANON/NO_WA] ID: viral_anon_ba9db621 | Filename: viral_anon_ba9db621_submission.json
+[ANON/NO_WA] ID: viral_anon_c3a16664 | Filename: viral_anon_c3a16664_submission.json
+--------------------------------------------------
+Total pending to process: 32

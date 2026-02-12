@@ -1,0 +1,68 @@
+
+--- DUMPING Rania ROWS 160-170 ---
+Rows 160-160:
+Tag: <table:table-row table:style-name="ro1">
+XML: <table:table-cell table:number-columns-repeated="27"/><table:table-cell table:style-name="ce471" table:formula="of:=[.AB159]-[.AF160]" office:value-type="float" office:value="2744.2894" calcext:value-type="float"><text:p>2744.29</text:p></table:table-cell><table:table-cell table:number-columns-repeated="3"/><table:table-cell table:style-name="ce476" office:value-type="float" office:value="250" calcext:value-type="float"><text:p>250.00</text:p></table:table-cell><table:table-cell table:number-columns-repeated="5"/>...
+--------------------------------------------------
+Rows 161-161:
+Tag: <table:table-row table:style-name="ro1">
+XML: <table:table-cell table:number-columns-repeated="27"/><table:table-cell table:style-name="ce373" table:formula="of:=[.AB160]-[.AF161]" office:value-type="float" office:value="2444.2894" calcext:value-type="float"><text:p>2444.29</text:p></table:table-cell><table:table-cell table:number-columns-repeated="3"/><table:table-cell table:style-name="ce476" office:value-type="float" office:value="300" calcext:value-type="float"><text:p>300.00</text:p></table:table-cell><table:table-cell table:number-columns-repeated="5"/>...
+--------------------------------------------------
+Rows 162-162:
+Tag: <table:table-row table:style-name="ro1">
+XML: <table:table-cell table:number-columns-repeated="27"/><table:table-cell table:style-name="ce373" table:formula="of:=[.AB161]-[.AF162]" office:value-type="float" office:value="930.169400000001" calcext:value-type="float"><text:p>930.17</text:p></table:table-cell><table:table-cell table:number-columns-repeated="3"/><table:table-cell table:style-name="ce476" office:value-type="float" office:value="1514.12" calcext:value-type="float"><text:p>1514.12</text:p></table:table-cell><table:table-cell table:number-columns-repeated="5"/>...
+--------------------------------------------------
+Rows 163-163:
+Tag: <table:table-row table:style-name="ro1">
+XML: <table:table-cell table:number-columns-repeated="27"/><table:table-cell table:style-name="ce373" table:formula="of:=[.AB162]-[.AF163]" office:value-type="float" office:value="585.029400000001" calcext:value-type="float"><text:p>585.03</text:p></table:table-cell><table:table-cell table:number-columns-repeated="3"/><table:table-cell table:style-name="ce476" office:value-type="float" office:value="345.14" calcext:value-type="float"><text:p>345.14</text:p></table:table-cell><table:table-cell table:number-columns-repeated="5"/>...
+--------------------------------------------------
+Rows 164-164:
+Tag: <table:table-row table:style-name="ro1">
+XML: <table:table-cell table:number-columns-repeated="27"/><table:table-cell table:formula="of:=[.AB163]-[.AF164]" office:value-type="float" office:value="385.029400000001" calcext:value-type="float"><text:p>385.03</text:p></table:table-cell><table:table-cell table:number-columns-repeated="3"/><table:table-cell office:value-type="float" office:value="200" calcext:value-type="float"><text:p>200.00</text:p></table:table-cell><table:table-cell table:number-columns-repeated="5"/>...
+--------------------------------------------------
+Rows 165-1048575:
+Tag: <table:table-row table:style-name="ro1" table:number-rows-repeated="1048411">
+XML: <table:table-cell table:number-columns-repeated="37"/>...
+--------------------------------------------------
+
+--- DUMPING Ibtisam ROWS 400-420 ---
+Rows 400-400:
+Tag: <table:table-row table:style-name="ro1">
+XML: <table:table-cell table:number-columns-repeated="27"/><table:table-cell table:style-name="ce373" table:formula="of:=[.AB399]-[.AF400]" office:value-type="float" office:value="1890.343" calcext:value-type="float"><text:p>1890.34</text:p></table:table-cell><table:table-cell table:number-columns-repeated="3"/><table:table-cell table:style-name="ce313" office:value-type="float" office:value="500" calcext:value-type="float"><text:p>500.00</text:p></table:table-cell><table:table-cell table:number-columns-repeated="5"/><table:table-cell table:style-name="Default" table:number-columns-repeated="16347"/>...
+--------------------------------------------------
+Rows 401-401:
+Tag: <table:table-row table:style-name="ro1">
+XML: <table:table-cell table:number-columns-repeated="27"/><table:table-cell table:style-name="ce373" table:formula="of:=[.AB400]-[.AF401]" office:value-type="float" office:value="1390.343" calcext:value-type="float"><text:p>1390.34</text:p></table:table-cell><table:table-cell table:number-columns-repeated="3"/><table:table-cell table:style-name="ce313" office:value-type="float" office:value="500" calcext:value-type="float"><text:p>500.00</text:p></table:table-cell><table:table-cell table:number-columns-repeated="5"/><table:table-cell table:style-name="Default" table:number-columns-repeated="16347"/>...
+--------------------------------------------------
+Rows 402-402:
+Tag: <table:table-row table:style-name="ro1">
+XML: <table:table-cell table:number-columns-repeated="27"/><table:table-cell table:style-name="ce373" table:formula="of:=[.AB401]-[.AF402]" office:value-type="float" office:value="1190.343" calcext:value-type="float"><text:p>1190.34</text:p></table:table-cell><table:table-cell table:number-columns-repeated="3"/><table:table-cell table:style-name="ce313" office:value-type="float" office:value="200" calcext:value-type="float"><text:p>200.00</text:p></table:table-cell><table:table-cell table:number-columns-repeated="5"/><table:table-cell table:style-name="Default" table:number-columns-repeated="16347"/>...
+--------------------------------------------------
+Rows 403-403:
+Tag: <table:table-row table:style-name="ro1">
+XML: <table:table-cell table:number-columns-repeated="27"/><table:table-cell table:formula="of:=[.AB402]-[.AF403]" office:value-type="float" office:value="940.343" calcext:value-type="float"><text:p>940.34</text:p></table:table-cell><table:table-cell table:number-columns-repeated="3"/><table:table-cell office:value-type="float" office:value="250" calcext:value-type="float"><text:p>250.00</text:p></table:table-cell><table:table-cell table:number-columns-repeated="5"/><table:table-cell table:style-name="Default" table:number-columns-repeated="16347"/>...
+--------------------------------------------------
+Rows 404-404:
+Tag: <table:table-row table:style-name="ro1">
+XML: <table:table-cell table:number-columns-repeated="27"/><table:table-cell table:formula="of:=[.AB403]-[.AF404]" office:value-type="float" office:value="0.00299999999981537" calcext:value-type="float"><text:p>0.00</text:p></table:table-cell><table:table-cell table:number-columns-repeated="3"/><table:table-cell office:value-type="float" office:value="940.34" calcext:value-type="float"><text:p>940.34</text:p></table:table-cell><table:table-cell table:number-columns-repeated="5"/><table:table-cell table:style-name="Default" table:number-columns-repeated="16347"/>...
+--------------------------------------------------
+Rows 405-407:
+Tag: <table:table-row table:style-name="ro1" table:number-rows-repeated="3">
+XML: <table:table-cell table:number-columns-repeated="37"/><table:table-cell table:style-name="Default" table:number-columns-repeated="16347"/>...
+--------------------------------------------------
+Rows 408-408:
+Tag: <table:table-row table:style-name="ro1">
+XML: <table:table-cell office:value-type="string" calcext:value-type="string"><text:p>Help Ibtisam survive in Gaza</text:p></table:table-cell><table:table-cell/><table:table-cell office:value-type="string" calcext:value-type="string"><text:p>Mary</text:p></table:table-cell><table:table-cell office:value-type="string" calcext:value-type="string"><text:p>Taylor</text:p></table:table-cell><table:table-cell office:value-type="float" office:value="45" calcext:value-type="float"><text:p>45</text:p></table:table-cell><table:table-cell table:style-name="Default" office:value-type="string" calcext:value-type="string"><text:p>usd</text:p></table:table-cell><table:table-cell office:value-type="string" calcext:value-type="string"><text:p>py_1SJKSpLigK4UxpFNjoTNJ5GS</text:p></table:table-cell><table:table-cell office:value-type="string" calcext:value-type="string"><text:p>Stripe</text:p></table:table-cell><table:table-cell table:style-name="ce244" office:value-type="string" calcext:value-type="string"><...
+--------------------------------------------------
+Rows 409-409:
+Tag: <table:table-row table:style-name="ro1">
+XML: <table:table-cell office:value-type="string" calcext:value-type="string"><text:p>Help Ibtisam survive in Gaza</text:p></table:table-cell><table:table-cell/><table:table-cell office:value-type="string" calcext:value-type="string"><text:p>Virginia</text:p></table:table-cell><table:table-cell office:value-type="string" calcext:value-type="string"><text:p>&amp; friends from Golden Bay &amp; Aotearoa New Zealand</text:p></table:table-cell><table:table-cell office:value-type="float" office:value="400" calcext:value-type="float"><text:p>400</text:p></table:table-cell><table:table-cell table:style-name="Default" office:value-type="string" calcext:value-type="string"><text:p>aud</text:p></table:table-cell><table:table-cell office:value-type="string" calcext:value-type="string"><text:p>py_1SI2pvLigK4UxpFNxCJeVZnc</text:p></table:table-cell><table:table-cell office:value-type="string" calcext:value-type="string"><text:p>Stripe</text:p></table:table-cell><table:table-cell table:style-name="ce244" ...
+--------------------------------------------------
+Rows 410-410:
+Tag: <table:table-row table:style-name="ro1">
+XML: <table:table-cell table:number-columns-repeated="27"/><table:table-cell table:style-name="ce313" table:formula="of:=SUM([.AG408:.AG409])" office:value-type="float" office:value="249.2124" calcext:value-type="float"><text:p>249.21</text:p></table:table-cell><table:table-cell table:number-columns-repeated="9"/><table:table-cell table:style-name="Default" table:number-columns-repeated="16347"/>...
+--------------------------------------------------
+Rows 411-1048575:
+Tag: <table:table-row table:style-name="ro1" table:number-rows-repeated="1048165">
+XML: <table:table-cell table:number-columns-repeated="37"/><table:table-cell table:style-name="Default" table:number-columns-repeated="16347"/>...
+--------------------------------------------------

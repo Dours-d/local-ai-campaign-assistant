@@ -1,0 +1,72 @@
+Total submission files: 35
+--------------------------------------------------
+[Low] MISSING | WA: +967784681640 | Name: 967784681640 | File: 967784681640_submission.json
+[High] MISSING | WA: +972567243079 | Name: 972567243079 | File: 972567243079_submission.json
+[Low] MISSING | WA: +972592172016 | Name: جمال محمود حسين سمرة  | File: 972592172016_submission.json
+[High] MISSING | WA: +972592475288 | Name: 972592475288 | File: 972592475288_submission.json
+[Low] MISSING | WA: +972592566759 | Name: 972592566759 | File: 972592566759_submission.json
+[High] MISSING | WA: +972597341113 | Name: 972597341113 | File: 972597341113_submission.json
+[High] MISSING | WA: +972597662819 | Name: 972597662819 | File: 972597662819_submission.json
+[High] MISSING | WA: +972599904464 | Name: 972599904464 | File: 972599904464_submission.json
+[High] ANON/NO_WA | ID: MOCK-USER-001 | Name: Tester | File: MOCK-USER-001_submission.json
+[Low] PENDING | WA: +972500000000 | Name:  | File: test_ping_submission.json
+[High] PENDING | WA: +0797172654 | Name: زهير ضبان | File: viral_+0797172654_submission.json
+[High] PENDING | WA: +970123456789 | Name: Test User | File: viral_+970123456789_submission.json
+[High] PENDING | WA: +970555555555 | Name: Abdul Haadi | File: viral_+970555555555_submission.json
+[High] PENDING | WA: +97055555555 | Name: Abdul Haadi | File: viral_+97055555555_submission.json
+[Low] PENDING | WA: +9720592566759 | Name: محمود زاهر راشد | File: viral_+9720592566759_submission.json
+[Low] PENDING | WA: +9720594025212 | Name: وسام جبريل نمر الصوير | File: viral_+9720594025212_submission.json
+[High] PENDING | WA: +9720595562213 | Name: محمود | File: viral_+9720595562213_submission.json
+[High] PENDING | WA: +972123456789 | Name: Abdul Haadi | File: viral_+972123456789_submission.json
+[High] PENDING | WA: +972592645759 | Name: رنين القرعان | File: viral_+972592645759_submission.json
+[High] PENDING | WA: +972595038299 | Name: Salem | File: viral_+972595038299_submission.json
+[High] PENDING | WA: +972599197456 | Name: Rana Hani  | File: viral_+972599197456_submission.json
+[High] PENDING | WA: +00972597341113 | Name: تامر شراب | File: viral_00972597341113_submission.json
+[High] PENDING | WA: +0592115058 | Name: نهى | File: viral_0592115058_submission.json
+[Low] PENDING | WA: +0593622959 | Name: ندي ناهض الرقب | File: viral_0593622959_submission.json
+[High] PENDING | WA: +0597172654 | Name: زهير محمود هاشم ضبان  | File: viral_0597172654_submission.json
+[High] PENDING | WA: +0598289338 | Name: علي عياد | File: viral_0598289338_submission.json
+[Low] PENDING | WA: +0599283183 | Name: اسلام | File: viral_0599283183_submission.json
+[High] PENDING | WA: +0599560696 | Name: محمد | File: viral_0599560696_submission.json
+[Low] ANON/NO_WA | ID: viral_anon_3c60deb6 | Name:  | File: viral_anon_3c60deb6_submission.json
+[Low] ANON/NO_WA | ID: viral_anon_b598c157 | Name:  | File: viral_anon_b598c157_submission.json
+[Low] ANON/NO_WA | ID: viral_anon_ba9db621 | Name:  | File: viral_anon_ba9db621_submission.json
+[Low] ANON/NO_WA | ID: viral_anon_c3a16664 | Name:  | File: viral_anon_c3a16664_submission.json
+--------------------------------------------------
+Total pending to process (High Quality): 20
+Total submission files: 35
+--------------------------------------------------
+[Low] MISSING | WA: +967784681640 | Name: 967784681640 | File: 967784681640_submission.json
+[High] MISSING | WA: +972567243079 | Name: 972567243079 | File: 972567243079_submission.json
+[Low] MISSING | WA: +972592172016 | Name: جمال محمود حسين سمرة  | File: 972592172016_submission.json
+[High] MISSING | WA: +972592475288 | Name: 972592475288 | File: 972592475288_submission.json
+[Low] MISSING | WA: +972592566759 | Name: 972592566759 | File: 972592566759_submission.json
+[High] MISSING | WA: +972597341113 | Name: 972597341113 | File: 972597341113_submission.json
+[High] MISSING | WA: +972597662819 | Name: 972597662819 | File: 972597662819_submission.json
+[High] MISSING | WA: +972599904464 | Name: 972599904464 | File: 972599904464_submission.json
+[High] ANON/NO_WA | ID: MOCK-USER-001 | Name: Tester | File: MOCK-USER-001_submission.json
+[Low] PENDING | WA: +972500000000 | Name:  | File: test_ping_submission.json
+[High] PENDING | WA: +0797172654 | Name: زهير ضبان | File: viral_+0797172654_submission.json
+[High] PENDING | WA: +970123456789 | Name: Test User | File: viral_+970123456789_submission.json
+[High] PENDING | WA: +970555555555 | Name: Abdul Haadi | File: viral_+970555555555_submission.json
+[High] PENDING | WA: +97055555555 | Name: Abdul Haadi | File: viral_+97055555555_submission.json
+[Low] PENDING | WA: +9720592566759 | Name: محمود زاهر راشد | File: viral_+9720592566759_submission.json
+[Low] PENDING | WA: +9720594025212 | Name: وسام جبريل نمر الصوير | File: viral_+9720594025212_submission.json
+[High] PENDING | WA: +9720595562213 | Name: محمود | File: viral_+9720595562213_submission.json
+[High] PENDING | WA: +972123456789 | Name: Abdul Haadi | File: viral_+972123456789_submission.json
+[High] PENDING | WA: +972592645759 | Name: رنين القرعان | File: viral_+972592645759_submission.json
+[High] PENDING | WA: +972595038299 | Name: Salem | File: viral_+972595038299_submission.json
+[High] PENDING | WA: +972599197456 | Name: Rana Hani  | File: viral_+972599197456_submission.json
+[High] PENDING | WA: +00972597341113 | Name: تامر شراب | File: viral_00972597341113_submission.json
+[High] PENDING | WA: +0592115058 | Name: نهى | File: viral_0592115058_submission.json
+[Low] PENDING | WA: +0593622959 | Name: ندي ناهض الرقب | File: viral_0593622959_submission.json
+[High] PENDING | WA: +0597172654 | Name: زهير محمود هاشم ضبان  | File: viral_0597172654_submission.json
+[High] PENDING | WA: +0598289338 | Name: علي عياد | File: viral_0598289338_submission.json
+[Low] PENDING | WA: +0599283183 | Name: اسلام | File: viral_0599283183_submission.json
+[High] PENDING | WA: +0599560696 | Name: محمد | File: viral_0599560696_submission.json
+[Low] ANON/NO_WA | ID: viral_anon_3c60deb6 | Name:  | File: viral_anon_3c60deb6_submission.json
+[Low] ANON/NO_WA | ID: viral_anon_b598c157 | Name:  | File: viral_anon_b598c157_submission.json
+[Low] ANON/NO_WA | ID: viral_anon_ba9db621 | Name:  | File: viral_anon_ba9db621_submission.json
+[Low] ANON/NO_WA | ID: viral_anon_c3a16664 | Name:  | File: viral_anon_c3a16664_submission.json
+--------------------------------------------------
+Total pending to process (High Quality): 20

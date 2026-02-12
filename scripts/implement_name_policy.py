@@ -21,21 +21,40 @@ def implement_stable_name_policy():
     
     # helper to normalize names
     def get_fname(c):
-        val = c.get("privacy", {}).get("first_name")
-        if not val:
-            return "Unknown"
+        # MANUAL FIX: "The Ahmed" (Smile Campaign) was misidentified as "Lets"
+        if c.get("id") == "chuffed_151256":
+            return "Ahmed"
+
+        privacy = c.get("privacy", {})
+        val = privacy.get("first_name")
+        full = privacy.get("full_name")
+        display = privacy.get("display_name")
         
-        name = str(val).strip()
-        parts = name.split()
+        # Basis for grouping
+        basis = str(val or "").strip()
+        if not basis or basis.lower() in ["unknown", "none", "null"]:
+            basis = str(display or full or "Unknown").strip()
+            
+        parts = basis.split()
+        if not parts: return "Unknown"
         
-        # Check for "Mother of" prefixes (Umm, Um, Om)
-        if len(parts) > 1:
-            prefix = parts[0].lower()
-            if prefix in ["umm", "um", "om"]:
-                # Return "Umm Ahmed" as the grouping key, not just "Umm"
+        standard_prefixes = ["umm", "um", "om", "abu", "aba", "abi", "bin", "bint"]
+        
+        # Logic: If the first word is a prefix, we ALWAYS want the second word too
+        # This handles cases where people are called "Abu Ahmed" or "Umm Reem"
+        primary_prefix = parts[0].lower()
+        if primary_prefix in standard_prefixes:
+            if len(parts) > 1:
                 return f"{parts[0]} {parts[1]}"
+            else:
+                # If only one part (the prefix), try to find the full name context
+                context_parts = str(full or display or "").strip().split()
+                if len(context_parts) > 1 and context_parts[0].lower() == primary_prefix:
+                    return f"{context_parts[0]} {context_parts[1]}"
+                return parts[0] # Fallback to just "Abu" if nothing else exists
         
-        return name
+        # For non-prefix names, group by the first name part (e.g. "Ahmed")
+        return parts[0]
 
     for c in campaigns:
         fname = get_fname(c)
@@ -83,7 +102,11 @@ def implement_stable_name_policy():
         # BUT: The user specifically requested "-###".
         # SAFE APPROACH: If count > 1 OR (count == 1 but we already have suffixed versions), force suffix.
         
-        should_suffix = len(group) > 1 or len(existing_suffixes) > 0
+        # FORCE SUFFIX for common prefixes (Abu, Umm, etc.) to ensure a "sustained" policy
+        standard_prefixes = ["umm", "um", "om", "abu", "aba", "abi", "bin", "bint"]
+        is_prefix_name = any(fname.lower().startswith(p + " ") for p in standard_prefixes) or fname.lower() in standard_prefixes
+        
+        should_suffix = len(group) > 1 or len(existing_suffixes) > 0 or is_prefix_name
         
         if not should_suffix:
             # Single unique name, no suffix needed.
@@ -112,6 +135,7 @@ def implement_stable_name_policy():
             
             old_name = c["privacy"].get("internal_name")
             if old_name != internal_name:
+                print(f"Updating {old_name} -> {internal_name}")
                 c["privacy"]["internal_name"] = internal_name
                 c["privacy"]["homonym_suffix"] = suffix_str
                 updates_count += 1

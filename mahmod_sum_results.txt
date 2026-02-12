@@ -1,0 +1,10 @@
+Stats for 'Mahmod':
+  Count: 120
+  EUR: 1760.00 | AUD: 215.00 | USD: 1453.00 | GBP: 177.00
+  Total EUR Equiv: 3449.53
+Stats for 'Mahmoud':
+  Count: 0
+  EUR: 0.00 | AUD: 0.00 | USD: 0.00 | GBP: 0.00
+  Total EUR Equiv: 0.00
+
+GRAND TOTAL UNPAID IN MAIN: 3449.53 EUR

@@ -1,0 +1,9 @@
+Sheet                                    | Row  | Highlights
+----------------------------------------------------------------------------------------------------
+Let&apos;s draw a smile (Ahmed&apos;s da | 21   | A(Campaign Title): Let&apos;s draw a smile together | AA(Total Transaction): 5 | AB(Net Donation): 4.54 | AC(Processing Fees): 0.46 | AD(Chuffed Optional Donation): 0 | AE(Chuffed Fees): 0 | AF(Converted Amount): 4.18 | AG(Corrected 3 %): 4.0546
+Rania                                    | 164  | AB(Net Donation): 385.029400000001 | AF(Converted Amount): 200
+Mohammed  Suhail                         | 111  | AB(Net Donation): 164.6653 | AC(Processing Fees): 200
+Fayez                                    | 895  | AB(Net Donation): 4447.821 | AC(Processing Fees): 300
+Mahmoud Basem                            | 492  | AB(Net Donation): 1073.1303 | AF(Converted Amount): 250
+Samirah                                  | 350  | AG(Corrected 3 %): 405.57161
+Main                                     | 1    | A(Campaign Title): Campaign Title | AA(Total Transaction): Total Transaction | AB(Net Donation): Net Donation | AC(diff): diff | AD(Processing Fees): Processing Fees | AE(Chuffed Optional Donation): Chuffed Optional Donation | AF(Converted Amount): Converted Amount | AG(Currency): Currency

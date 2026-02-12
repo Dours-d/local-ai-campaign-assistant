@@ -1,0 +1,26 @@
+DEBUG: Total Debt: 3342.8700000000003
+DEBUG: Mapped Debt: 1729.9600000000003
+DEBUG: Orphan Debt: 1612.91
+DEBUG: Adding Orphan Row
+Report generated: C:\Users\gaelf\Documents\GitHub\local_ai_campaign_assistant\scripts\..\data\reports\trust_health_report.md
+CSV generated: C:\Users\gaelf\Documents\GitHub\local_ai_campaign_assistant\scripts\..\data\reports\trust_health_table.csv
+# 🛡️ Sovereign Trust Health Report
+**Date**: 2026-02-09
+
+## 🍎 Digestible Summary (The State of the Trust)
+The Trust is currently valued at **€3,342.87** (Self-Borrowed Asset).
+### Trust Phase: 🏗️ CREATION
+- **Trust Value (Self-Borrowed Asset)**: €3,342.87
+- **Total Assets (Vault)**: €0.00
+- **Reimbursement Gap**: €3,342.87
+
+### 🕯️ The Concept of Sustainability
+> "The Entire Debt represents the Value of the Trust as a 'self-borrowed' asset."
+> 
+> **10% Rule**: New trustees acknowledge the endured pain of the pioneers by contributing 10% of their effort to reimburse this asset.
+
+### 🔭 Perspective for the Future
+In a perfect world, equal fundraising success would be the norm. In a **better world**, no Trustee would need to raise money at all.
+
+The **Umbrella Fund** represents a developmental opportunity to experiment with marketing the **Global Gaza Resilience Fund** for its beneficiaries.
+This endeavor aims, over a long timeframe, to become a utility for Palestinians and potentially other protected populations.

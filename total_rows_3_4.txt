@@ -1,0 +1,5 @@
+First Sheet: Main
+
+--- Rows 3 and 4 (First Sheet) ---
+Row 3: {'A': 'Help Zina and her Family rebuild their lives in Gaza Palestine.', 'C': 'Davut', 'D': 'Arulpragasam', 'E': '18', 'F': 'eur', 'P': 'py_1SNrBVLigK4UxpFN5orEeCXS', 'Q': 'Stripe', 'R': '2025-10-30 19:25:38', 'S': '2025-10-30T08:25:38Z', 'T': 'drm52688@gmail.com', 'U': 'https://chuffedimages.s3.amazonaws.com/receipts/4711665_EUHBqjO7x4_receipt.pdf', 'V': '4711665', 'X': 'Yes', 'AA': 'Yes', 'DE': 'No', 'DF': '18', 'DG': '17.15', 'DH': '0.85', 'DI': '0', 'DL': '0'}
+Row 4: {'A': 'Help Hala and her family rebuild their lives in Gaza', 'C': 'Davut', 'D': 'Arulpragasam', 'E': '216', 'F': 'eur', 'P': 'py_1SNqQrLigK4UxpFNB0K1kd0X', 'Q': 'Stripe', 'R': '2025-10-30 18:37:22', 'S': '2025-10-30T07:37:22Z', 'T': 'drm52688@gmail.com', 'U': 'https://chuffedimages.s3.amazonaws.com/receipts/4711465_wazGKZ8Z2p_receipt.pdf', 'V': '4711465', 'X': 'Yes', 'AA': 'Yes', 'DE': 'No', 'DF': '216', 'DG': '209.24', 'DH': '6.76', 'DI': '0', 'DL': '0'}

@@ -1,0 +1,5 @@
+--- ALL ANNOTATIONS ---
+Sheet: Zaitoun
+Annotation Text: Total due on the 22 of october
+Cell Context: ><table:table-cell table:number-columns-repeated="3"/></table:table-row><table:table-row table:style-name="ro1"><table:table-cell table:number-columns-repeated="27"/><table:table-cell table:formula="of:=[.AB281]-[.AF281]" office:value-type="float" office:value="4486.8117" calcext:value-type="float">
+--------------------------------------------------

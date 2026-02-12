@@ -129,6 +129,22 @@
         <!-- Step 1: Introduction -->
         <div class="step active" id="step1">
             <h2 id="welcome_title" data-i18n="welcome_title">Salam Alaykum</h2>
+
+            <!-- NEW: Identity Lookup -->
+            <div id="lookup_section"
+                style="background: rgba(255,255,255,0.03); padding: 20px; border-radius: 16px; margin-bottom: 24px; border: 1px dashed rgba(255,255,255,0.1);">
+                <p style="font-size: 0.9rem; margin-top: 0;" data-i18n="lookup_desc">Enter your WhatsApp number to
+                    access your campaign:</p>
+                <div style="display: flex; gap: 8px;">
+                    <input type="text" id="lookup_id" placeholder="970xxxxxxxxx"
+                        style="flex: 1; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); color: white; padding: 12px; border-radius: 8px;">
+                    <button onclick="lookupIdentity()" style="width: auto; padding: 0 20px;"
+                        data-i18n="btn_go">Go</button>
+                </div>
+                <p style="font-size: 0.75rem; color: #64748b; margin-bottom: 0; margin-top: 8px;"
+                    data-i18n="lookup_help">Format: Country code + number (no + or spaces)</p>
+            </div>
+
             <div id="identity_notice" class="identity-notice">
                 <p><span data-i18n="updating_profile">Updating profile for:</span>
                     <b id="ident_name">...</b>
@@ -264,7 +280,10 @@
                 btn_uploading: "Uploading...",
                 success_title: "Success!",
                 success_desc: "Your details and updates have been captured. The Global Gaza Resilience Fund draft will be synchronized with your latest changes automatically.",
-                success_footer: "Check back with your coordinator on Monday for the audit report."
+                success_footer: "Check back with your coordinator on Monday for the audit report.",
+                lookup_desc: "Enter your WhatsApp number to access your campaign:",
+                btn_go: "Go",
+                lookup_help: "Format: Country code + number (no + or spaces)"
             },
             ar: {
                 page_title: "بوابة غزة للصمود",
@@ -310,7 +329,10 @@
                 btn_uploading: "جاري الإرسال...",
                 success_title: "نجاح!",
                 success_desc: "تم استلام تفاصيلك وتحديثاتك. سيتم مزامنة مسودة صندوق غزة العالمي للصمود مع آخر تغييراتك تلقائياً.",
-                success_footer: "راجع منسقك يوم الاثنين للحصول على تقرير التدقيق."
+                success_footer: "راجع منسقك يوم الاثنين للحصول على تقرير التدقيق.",
+                lookup_desc: "أدخل رقم الواتساب الخاص بك للوصول إلى حملتك:",
+                btn_go: "دخول",
+                lookup_help: "التنسيق: رمز الدولة + الرقم (بدون + أو مسافات)"
             }
         };
 
@@ -362,7 +384,10 @@
 
             if (!beneficiaryId || beneficiaryId === 'onboard' || beneficiaryId === 'index.html' || beneficiaryId === '') {
                 document.getElementById('whatsapp_group').style.display = 'block';
+                document.getElementById('lookup_section').style.display = 'block';
+                document.getElementById('identity_notice').style.display = 'none';
             } else {
+                document.getElementById('lookup_section').style.display = 'none';
                 try {
                     const response = await fetch(`/submission/${beneficiaryId}`);
                     const cleanName = beneficiaryId.replace(/_/g, ' ');
@@ -385,12 +410,33 @@
             }
         };
 
+        function lookupIdentity() {
+            const rawId = document.getElementById('lookup_id').value.trim();
+            if (!rawId) return;
+
+            // Sanitize: keep only digits
+            const cleanId = rawId.replace(/\D/g, '');
+            if (cleanId.length < 7) {
+                alert(currentLang === 'ar' ? "يرجى إدخال رقم هاتف صحيح مع رمز الدولة." : "Please enter a valid phone number with country code.");
+                return;
+            }
+
+            // Redirect to the same page with the ID in the path
+            // The server serves this same file for /onboard/<id>
+            window.location.href = '/onboard/' + cleanId;
+        }
+
         function startNew() {
             window.location.href = '/onboard';
         }
 
         async function submitForm() {
-            const beneficiaryId = window.location.pathname.split('/').pop() || 'unknown';
+            const pathParts = window.location.pathname.split('/');
+            let beneficiaryId = pathParts[pathParts.length - 1];
+
+            if (beneficiaryId === 'onboard' || beneficiaryId === 'index.html' || beneficiaryId === '') {
+                beneficiaryId = 'unknown';
+            }
             const whatsappNumber = document.getElementById('whatsapp_number').value.trim();
             const submitBtn = event.target;
             const originalBtnText = submitBtn.textContent;

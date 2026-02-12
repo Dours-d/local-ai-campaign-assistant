@@ -1,0 +1,10 @@
+--- ALL ANNOTATIONS DUMP ---
+Sheet: Zaitoun | Comment: Total due on the 22 of october
+
+--- SEARCHING FOR TARGET FIGURES ---
+Figure 43735 found in XML.
+ Context: type="string" calcext:value-type="string"><text:p>https://chuffedimages.s3.amazonaws.com/receipts/3843735_TXRgxBAXyS_receipt.pdf</text:p></table:table-cell><table:table-cell table:style-name="Default"
+ Sheet context: Main
+------------------------------
+
+--- CHECKING AHMED SPECIFICALLY ---

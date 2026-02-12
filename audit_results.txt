@@ -1,0 +1,8 @@
+
+--- AUDIT: Rania (AB164) ---
+Cell XML: <table:table-cell table:number-columns-repeated="3"/><table:table-cell office:value-type="float" office:value="200" calcext:value-type="float"><text:p>200.00</text:p></table:table-cell>
+Comment: No annotation
+Value: 200
+
+--- AUDIT: Ibtisam (AB410) ---
+Cell AB410 in sheet Ibtisam not found (index logic issue?)

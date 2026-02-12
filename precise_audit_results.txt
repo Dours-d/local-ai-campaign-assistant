@@ -1,0 +1,2 @@
+Ahmed (AB21): {'value': '4.54', 'comment': '', 'xml': '<table:table-cell table:style-name="ce150" office:value-type="float" office:value="4.54" calcext:value-type="float"><text:p>4.54</text:p></table:table-cell>'}
+Rania (AB164): {'value': '385.029400000001', 'comment': '', 'xml': '<table:table-cell table:formula="of:=[.AB163]-[.AF164]" office:value-type="float" office:value="385.029400000001" calcext:value-type="float"><text:p>385.03</text:p></table:table-cell>'}

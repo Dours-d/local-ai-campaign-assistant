@@ -1,0 +1,73 @@
+Found sheet: noor
+
+--- FIRST 70 LINES AUDIT (Column E) ---
+Row 3: Help Bilal support his family in Gaza - 30.0
+Row 4: Help Bilal support his family in Gaza - 35.0
+Row 5: Help Bilal support his family in Gaza - 6.0
+Row 6: Help Bilal support his family in Gaza - 25.0
+Row 8: Help Ahmed survive in Gaza during the genocide - 5.0
+Row 9: Help Mohamad support his family and save them from starvation in Gaza - 22.0
+Row 10: Help Ahmed Ashraf in his family of seven in Gaza - 42.0
+Row 11: Help Anas Mohammed&apos;s family survive the destruction in Gaza - 100.0
+Row 12: Help Ahmed survive in Gaza during the genocide - 5.0
+Row 13: Help Khaled Protect His Family &amp; Rebuild His Future🍉🍉 - 25.0
+Row 14: Help Ahmed Ashraf in his family of seven in Gaza - 8.91
+Row 15: Help Um Youssef her family of nine in destroyed Gaza - 20.0
+Row 16: Help Mohammed Suhail support his family and his injured father in Gaza - 10.0
+Row 17: Help Ahmed survive in Gaza during the genocide - 15.0
+Row 18: Help Ahmed survive in Gaza during the genocide - 25.0
+Row 19: Help Ahmed survive in Gaza during the genocide - 25.0
+Row 20: Help Ahmed survive in Gaza during the genocide - 20.0
+Row 21: Help Lama regain control of her destiny in Gaza - 50.0
+Row 22: Help Samirah and her Family rebuild their lives &amp; Palestine - 5.0
+Row 23: Help Ahmed survive in Gaza during the genocide - 10.0
+Row 24: Help Ahmed survive in Gaza during the genocide - 10.0
+Row 25: Help Ahmed survive in Gaza during the genocide - 10.0
+Row 26: Help Abdulrahman and family evacuate Northern Gaza - 10.0
+Row 27: Help Ahmed survive in Gaza during the genocide - 10.0
+Row 28: Help Ahmed survive in Gaza during the genocide - 25.0
+Row 29: Help Iman Eq. and her family in Gaza - 10.0
+Row 30: Help Ahmed survive in Gaza during the genocide - 25.0
+Row 31: Help Ahmed survive in Gaza during the genocide - 25.0
+Row 32: Help Ahmed survive in Gaza during the genocide - 9.0
+Row 33: Help Ahmed survive in Gaza during the genocide - 10.0
+Row 34: Help Ahmed survive in Gaza during the genocide - 10.0
+Row 35: Help Ahmed survive in Gaza during the genocide - 5.0
+Row 36: Help Ahmed survive in Gaza during the genocide - 10.0
+Row 37: Help Ahmed survive in Gaza during the genocide - 5.0
+Row 38: Help Ahmed survive in Gaza during the genocide - 10.0
+Row 39: Help Ahmed survive in Gaza during the genocide - 5.0
+Row 40: Help Gaza Nurse Abdel-Rahim Louh Rebuild His Home – He and His Family Are Living in a Tent - 10.0
+Row 41: Help Ahmed survive in Gaza during the genocide - 7.0
+Row 42: Help Ahmed survive in Gaza during the genocide - 25.0
+Row 43: Help Ahmed survive in Gaza during the genocide - 50.0
+Row 44: Help Azhar support her family in Gaza - 25.0
+Row 45: Help Mohannad begin an extraordinary normal life in Gaza - 100.0
+Row 46: Help Duaa and her family survive in Gaza Palestine - 50.0
+Row 47: Help Gaza Nurse Abdel-Rahim Louh Rebuild His Home – He and His Family Are Living in a Tent - 20.0
+Row 48: Help Azhar support her family in Gaza - 65.0
+Row 49: Help Azhar support her family in Gaza - 5.0
+Row 50: Help Mlalak providing winter clothing and food to her family in Gaza - 40.0
+Row 51: Help Reem buy food for her family in Gaza - 5.0
+Row 52: Help Azhar support her family in Gaza - 50.0
+Row 53: Help Reem buy food for her family in Gaza - 10.0
+Row 54: Help Azhar support her family in Gaza - 25.0
+Row 55: Help Mohammed Rebuild His Future &amp; Feed His Family of 8 💔🏕🍽 - 25.0
+Row 56: Help Ahmed from Gaza to support him and his family - 20.0
+Row 57: Help Samirah and her Family rebuild their lives &amp; Palestine - 5.0
+Row 58: Help Khaled Yahya rebuild his life in Gaza Palestine - 3.0
+Row 59: Help Ahmed Ashraf in his family of seven in Gaza - 50.0
+Row 60: Help Rami Odeh support his family of 8 children in Gaza - 80.0
+Row 61: Help Hassan survive in Gaza - 5.0
+Row 62: Help Ahmed survive in Gaza during the genocide - 45.0
+Row 63: Help Hisham surpass the trauma and rebuild his life in Gaza - 15.0
+Row 64: Help Walid Ashour to start over and save his brother in Gaza - 10.0
+Row 65: Help Duaa and her family survive in Gaza Palestine - 20.0
+Row 66: Help Hanin support her family and her injured husband in Gaza - 100.0
+Row 67: Help Bilal support his family in Gaza - 25.0
+Row 68: Help Ibtisam and her family surviving in Gaza - 20.0
+Row 69: Help sister Lian support the life of 10 in Gaza - 40.0
+Row 70: Help Hala and her family rebuild their lives in Gaza - 15.0
+
+Total Rows Counted: 67
+Total Debt (First 70 lines): 1637.91

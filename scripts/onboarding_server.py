@@ -50,7 +50,6 @@ def serve_portal(beneficiary_id=None):
     return app.send_static_file('index.html')
 
 @app.route('/submission/<beneficiary_id>', methods=['GET'])
-@login_required
 def get_submission(beneficiary_id):
     json_path = os.path.join(DATA_DIR, f"{beneficiary_id}_submission.json")
     if os.path.exists(json_path):

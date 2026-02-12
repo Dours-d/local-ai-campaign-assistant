@@ -1,0 +1,20 @@
+"CommandLine","Name","ProcessId"
+"""C:\Program Files\PowerShell\7-preview\pwsh.exe"" -noexit -command ""try { . \""c:\Users\gaelf\AppData\Local\Programs\Antigravity\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\"" } catch {}""","pwsh.exe","28460"
+"""C:\Program Files\PowerShell\7-preview\pwsh.exe"" -noexit -command ""try { . \""c:\Users\gaelf\AppData\Local\Programs\Antigravity\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\"" } catch {}""","pwsh.exe","28232"
+"""C:\Program Files\PowerShell\7-preview\pwsh.exe"" -noexit -command ""try { . \""c:\Users\gaelf\AppData\Local\Programs\Antigravity\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\"" } catch {}""","pwsh.exe","18096"
+"""C:\Program Files\PowerShell\7-preview\pwsh.exe"" -NoProfile -ExecutionPolicy Bypass -Command ""Import-Module 'c:\Users\gaelf\.antigravity\extensions\ms-vscode.powershell-2025.4.0-universal\modules\PowerShellEditorServices\PowerShellEditorServices.psd1'; Start-EditorServices -HostName 'Visual Studio Code Host' -HostProfileId 'Microsoft.VSCode' -HostVersion '2025.4.0' -BundledModulesPath 'c:\Users\gaelf\.antigravity\extensions\ms-vscode.powershell-2025.4.0-universal\modules' -EnableConsoleRepl -StartupBanner \""PowerShell Extension v2025.4.0
+Copyright (c) Microsoft Corporation.
+
+https://aka.ms/vscode-powershell
+Type 'help' to get help.
+\"" -LogLevel 'Warning' -LogPath 'c:\Users\gaelf\AppData\Roaming\Antigravity\logs\20260208T140444\window1\exthost\ms-vscode.powershell' -SessionDetailsPath 'c:\Users\gaelf\AppData\Roaming\Antigravity\User\globalStorage\ms-vscode.powershell\sessions\PSES-VSCode-24316-825329.json' -FeatureFlags @() ""","pwsh.exe","22704"
+"""C:\Users\gaelf\miniconda3\python.exe"" scripts/onboarding_server.py","python.exe","27208"
+"""C:\Program Files\PowerShell\7-preview\pwsh.exe"" -noexit -command ""try { . \""c:\Users\gaelf\AppData\Local\Programs\Antigravity\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\"" } catch {}""","pwsh.exe","11144"
+"""C:\Users\gaelf\miniconda3\python.exe"" scripts/watch_onboarding.py","python.exe","27460"
+"""C:\Users\gaelf\miniconda3\python.exe"" scripts/onboarding_server.py","python.exe","25580"
+"""C:\Users\gaelf\miniconda3\python.exe"" scripts/watch_onboarding.py","python.exe","25172"
+"""C:\Program Files\PowerShell\7-preview\pwsh.exe"" -noexit -command ""try { . \""c:\Users\gaelf\AppData\Local\Programs\Antigravity\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\"" } catch {}""","pwsh.exe","23852"
+"""C:\Program Files\PowerShell\7-preview\pwsh.exe"" -noexit -command ""try { . \""c:\Users\gaelf\AppData\Local\Programs\Antigravity\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\"" } catch {}""","pwsh.exe","33032"
+"""C:\Program Files\PowerShell\7-preview\pwsh.exe"" -noexit -command ""try { . \""c:\Users\gaelf\AppData\Local\Programs\Antigravity\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\"" } catch {}""","pwsh.exe","30356"
+"""C:\Program Files\PowerShell\7-preview\pwsh.exe"" -noexit -command ""try { . \""c:\Users\gaelf\AppData\Local\Programs\Antigravity\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\"" } catch {}""","pwsh.exe","30784"
+"""C:\Program Files\PowerShell\7-preview\pwsh.exe"" -noexit -command ""try { . \""c:\Users\gaelf\AppData\Local\Programs\Antigravity\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\"" } catch {}""","pwsh.exe","23492"

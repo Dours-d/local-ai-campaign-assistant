@@ -1,0 +1,24 @@
+
+--- Main ROW 1 ---
+A: Campaign Title | B: Title | C: First Name | D: Last Name | E: Donation | F: Currency | G: Ref donation | H: PayPal or Credit/debit card (Stripe) | I: Date (Australia/Sydney) | J: Date (UTC) | K: Email | L: Link to receipt | M: Invoice No | N: Paypal Invoice ID | O: Keep me updated | P: Display my donation | Q: Perk | R: Number of Perks | S: Perk Question | T: Perk Answer | U: Address | V: Locality | W: Region | X: Postcode | Y: Country | Z: Offline | AA: Total Transaction | AB: Net Donation | AC: diff | AD: Processing Fees | AE: Chuffed Optional Donation | AF: Converted Amount | AG: Currency | AH: Converted Amount | AI: UTM Campaign | AJ: UTM Content | AK: UTM Medium | AL: UTM Source | AM: UTM Term | AN: Phone | AO: Phone | AP: accounted | AQ: Not accounted | AR: Today | AS: Available On (UTC)
+
+--- Main ROW 10 ---
+A: Help Mahmoud provide his family surviving in Gaza | C: Denisse | D: Aguirre | E: 50 | F: usd | J: py_1SNmxiLigK4UxpFNWuCeE00c | K: Stripe | L: 2025-10-30 14:55:21 | M: 2025-10-30T03:55:21Z | N: denisse060880@gmail.com | O: https://chuffedimages.s3.amazonaws.com/receipts/4710611_ggszBVLmcx_receipt.pdf | P: 4710611 | R: No | S: No | AC: No | AD: 51 | AE: 48.2 | AF: 1.8 | AG: 1 | AH: 0 | AI: 42.18
+
+--- Rania ROW 1 ---
+A: Campaign Title | B: Title | C: First Name | D: Last Name | E: Donation | F: Currency | G: Stripe Payment ID | H: PayPal or Credit/debit card (Stripe) | I: Date (Australia/Sydney) | J: Date (UTC) | K: Email | L: Link to receipt | M: Invoice No | N: Paypal Invoice ID | O: Keep me updated | P: Display my donation | Q: Perk | R: Number of Perks | S: Perk Question | T: Perk Answer | U: Address | V: Locality | W: Region | X: Postcode | Y: Country | Z: Offline | AA: Total Transaction | AB: Net Donation | AC: Processing Fees | AD: Chuffed Optional Donation | AE: Chuffed Fees | AF: Converted Amount | AG: Corrected 3 % | AH: UTM Content | AI: UTM Medium | AJ: UTM Source | AK: UTM Term
+
+--- Rania ROW 164 ---
+AB: 385.029400000001 | AF: 200
+
+--- Let's draw a smile (Ahmed's daughter) ROW 1 ---
+A: Campaign Title | B: Title | C: First Name | D: Last Name | E: Donation | F: Currency | G: Stripe Payment ID | H: PayPal or Credit/debit card (Stripe) | I: Date (Australia/Sydney) | J: Date (UTC) | K: Email | L: Link to receipt | M: Invoice No | N: Paypal Invoice ID | O: Keep me updated | P: Display my donation | Q: Perk | R: Number of Perks | S: Perk Question | T: Perk Answer | U: Address | V: Locality | W: Region | X: Postcode | Y: Country | Z: Offline | AA: Total Transaction | AB: Net Donation | AC: Processing Fees | AD: Chuffed Optional Donation | AE: Chuffed Fees | AF: Converted Amount | AG: Corrected 3 % | AH: UTM Content | AI: UTM Medium | AJ: UTM Source | AK: UTM Term
+
+--- Let's draw a smile (Ahmed's daughter) ROW 21 ---
+A: Let&apos;s draw a smile together | C: maija | D: anstine | E: 5 | F: usd | G: py_1S6ykrLigK4UxpFNyjeX9hlD | H: Stripe | I: 2025-09-14 05:04:56 | J: 2025-09-13T19:04:56Z | K: maija.anstine@gmail.com | L: https://chuffedimages.s3.amazonaws.com/receipts/4247363_wqEr8L5yG4_receipt.pdf | M: 4247363 | O: Yes | P: Yes | Z: No | AA: 5 | AB: 4.54 | AC: 0.46 | AD: 0 | AE: 0 | AF: 4.18 | AG: 4.0546
+
+--- Mohammed  Suhail ROW 1 ---
+A: Campaign Title | B: Title | C: First Name | D: Last Name | E: Donation | F: Currency | G: Stripe Payment ID | H: PayPal or Credit/debit card (Stripe) | I: Date (Australia/Sydney) | J: Date (UTC) | K: Email | L: Link to receipt | M: Invoice No | N: Paypal Invoice ID | O: Keep me updated | P: Display my donation | Q: Perk | R: Number of Perks | S: Perk Question | T: Perk Answer | U: Address | V: Locality | W: Region | X: Postcode | Y: Country | Z: Offline | AA: Total Transaction | AB: Net Donation | AC: Processing Fees | AD: Chuffed Optional Donation | AE: Chuffed Fees | AF: Converted Amount | AG: Corrected 3 % | AH: UTM Content | AI: UTM Medium | AJ: UTM Source | AK: UTM Term
+
+--- Mohammed  Suhail ROW 111 ---
+AB: 164.6653 | AC: 200
