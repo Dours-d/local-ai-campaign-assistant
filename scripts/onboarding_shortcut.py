@@ -7,13 +7,12 @@ import os
 import re
 from PIL import Image, ImageDraw
 
-# Add current directory to path so we can import local scripts if needed
+# Add current directory to path
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 try:
     from generate_standard_onboarding import generate_standard_message
 except ImportError:
-    # Fallback definition if import fails
     def generate_standard_message(name_or_id):
         PORTAL_URL = "https://dours-d.github.io/local-ai-campaign-assistant/onboard.html"
         msg = f"السلام عليكم ورحمة الله وبركاته.\n\n"
@@ -35,11 +34,10 @@ except ImportError:
         msg += f"Your campaign will be linked to a digital wallet to ensure aid reaches you fully and securely.\n"
         return msg
 
-# --- CONFIG ---
 HOTKEY = 'ctrl+alt+o'
+last_trigger_time = 0
 
 def create_icon():
-    # Create simple green square icon
     width = 64
     height = 64
     image = Image.new('RGB', (width, height), color=(0, 255, 136))
@@ -47,124 +45,95 @@ def create_icon():
     draw.rectangle([16, 16, 48, 48], fill=(255, 255, 255))
     return image
 
-def process_clipboard_logic():
-    print("Processing clipboard logic...")
+def process_selection():
+    print("\n=== Processing ===")
+    
+    # Save original clipboard
     try:
-        import winsound
-        winsound.Beep(1000, 200) # High beep for start
+        original_clipboard = pyperclip.paste()
     except:
-        pass
-
-    # 1. Clear Clipboard to detect if Copy worked
+        original_clipboard = ""
+    
+    # Clear and copy
     pyperclip.copy("")
     time.sleep(0.1)
     
-    # 2. Simulate Ctrl+C (multiple attempts)
-    for attempt in range(2):
-        keyboard.send('ctrl+c')
-        time.sleep(0.5) # Increased wait for OS
-        
-        # 3. Read Clipboard
-        selected_text = pyperclip.paste()
-        
-        if selected_text.strip():
-            break
-        
-        print(f"Attempt {attempt + 1} failed, retrying...")
-    else:
-        # All attempts failed
-        print("No text selected or copy failed after retries.")
-        try:
-            import winsound
-            winsound.Beep(500, 200) # Low beep for error
-        except:
-            pass
+    keyboard.send('ctrl+c')
+    time.sleep(0.4)
+    
+    selected_text = pyperclip.paste()
+    
+    if not selected_text.strip():
+        print("ERROR: No text selected")
+        pyperclip.copy(original_clipboard)  # Restore
         return
-
-    print(f"Captured: {selected_text}")
     
-    # 4. Clean Input (Extract numbers) - LIMIT TO 15 DIGITS MAX
+    print(f"Selected: {selected_text[:50]}...")
+    
+    # Extract and limit ID to 12 digits (standard phone length)
     clean_id = re.sub(r'\D', '', selected_text)
+    if len(clean_id) > 12:
+        clean_id = clean_id[:12]
     
-    # Take only first 15 digits (max international phone number length)
-    if len(clean_id) > 15:
-        print(f"Warning: Extracted {len(clean_id)} digits, truncating to first 15")
-        clean_id = clean_id[:15]
+    if not clean_id or len(clean_id) < 7:
+        clean_id = selected_text.strip()[:30]
     
-    if not clean_id or len(clean_id) < 5:
-        # Fallback: maybe they selected a name? Use text as is, just strip
-        clean_id = selected_text.strip()
-        # But limit to reasonable length
-        if len(clean_id) > 50:
-            print(f"Warning: Text too long ({len(clean_id)} chars), truncating")
-            clean_id = clean_id[:50]
+    print(f"ID: {clean_id}")
     
-    # 5. Generate Message
-    onboarding_msg = generate_standard_message(clean_id)
+    # Generate and copy message
+    message = generate_standard_message(clean_id)
+    pyperclip.copy(message)
     
-    # 6. Copy New Message to Clipboard
-    pyperclip.copy(onboarding_msg)
-    time.sleep(0.3)
-    
-    # 7. Simulate Ctrl+V
-    keyboard.send('ctrl+v')
-    time.sleep(0.2)
-    
-    # 8. Clear clipboard to prevent re-reading the pasted message
-    pyperclip.copy("")
-    
-    print(f"Pasted onboarding message for ID: {clean_id}")
-    try:
-        import winsound
-        winsound.Beep(1200, 100) # Success blip
-    except:
-        pass
+    print(f"✓ Message copied to clipboard! Press Ctrl+V to paste.")
+    print("=" * 40)
 
 def on_trigger():
-    # Prevent recursive triggers or processing
     global last_trigger_time
     current_time = time.time()
     
-    # Debounce: Ignore triggers within 3 seconds of the last one
-    if current_time - last_trigger_time < 3.0:
-        print(f"Debounced (too soon: {current_time - last_trigger_time:.2f}s)")
+    # 5-second debounce
+    if current_time - last_trigger_time < 5.0:
+        elapsed = current_time - last_trigger_time
+        print(f"Debounced ({elapsed:.1f}s ago, wait {5.0 - elapsed:.1f}s more)")
         return
     
     last_trigger_time = current_time
-    time.sleep(0.1) 
-    process_clipboard_logic()
+    time.sleep(0.3)  # Let user release keys
+    process_selection()
 
 def on_test(icon, item):
-    print("Test triggered from tray. waiting 3 seconds to switch window...")
-    time.sleep(3)
-    process_clipboard_logic()
+    print("Manual trigger - waiting 2s...")
+    time.sleep(2)
+    process_selection()
 
 def setup_hotkey():
     try:
         keyboard.add_hotkey(HOTKEY, on_trigger)
-        print(f"Listening for {HOTKEY}...")
+        print(f"✓ Listening for {HOTKEY}")
     except Exception as e:
-        print(f"Error registering hotkey: {e}")
+        print(f"ERROR registering hotkey: {e}")
 
 def quit_app(icon, item):
     icon.stop()
     os._exit(0)
 
 def main():
-    global last_trigger_time
-    last_trigger_time = 0
+    print("=" * 40)
+    print("Onboarding Assistant - SIMPLE MODE")
+    print("=" * 40)
+    print("1. Select phone number")
+    print(f"2. Press {HOTKEY}")
+    print("3. Message copied - press Ctrl+V to paste")
+    print("=" * 40)
     
     setup_hotkey()
     
-    # Setup System Tray
-    icon = pystray.Icon("OnboardingAssistant", create_icon(), f"Onboarding Assistant ({HOTKEY})")
+    icon = pystray.Icon("OnboardingAssistant", create_icon(), f"Onboarding ({HOTKEY})")
     icon.menu = pystray.Menu(
-        pystray.MenuItem("Trigger Now (Wait 3s)", on_test),
+        pystray.MenuItem("Test (Wait 2s)", on_test),
         pystray.MenuItem("Exit", quit_app)
     )
     
-    print("Onboarding Assistant Running in Tray.")
-    print("Log:")
     icon.run()
 
 if __name__ == "__main__":
