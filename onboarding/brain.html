@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Dunya دنيا - Gaza Resilience</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Cairo:wght@400;700&display=swap"
         rel="stylesheet">
@@ -116,7 +116,8 @@
         }
 
         .ki-item {
-            padding: 12px 16px;
+            padding: 16px 16px;
+            /* Larger touch target */
             margin-bottom: 8px;
             border-radius: 12px;
             cursor: pointer;
@@ -307,6 +308,33 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
+        /* --- MOBILE RESPONSIVENESS --- */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .chat-container {
+                width: calc(100% - 40px);
+                right: 20px;
+                bottom: 20px;
+                height: 60vh;
+                max-height: 600px;
+            }
+
+            .content-area {
+                padding: 20px;
+            }
+
+            .sidebar {
+                margin-bottom: 20px;
+            }
+        }
+
         .chat-close {
             background: rgba(0, 0, 0, 0.1);
             color: #1a1612;
@@ -409,6 +437,11 @@
             justify-content: center;
             align-items: center;
             box-shadow: 0 0 30px rgba(212, 163, 115, 0.4);
+            backdrop-filter: none;
+            /* Prevent look-through effect */
+            -webkit-backdrop-filter: none;
+            z-index: 2000;
+            /* Ensure it's on top of everything */
         }
 
         .chat-minimized .chat-header {
@@ -431,6 +464,14 @@
             letter-spacing: 0.5px;
             font-weight: 800;
             animation: pulse-glow 2s infinite ease-in-out;
+            /* display: block !important; REMOVED to prevent overriding hidden spans */
+        }
+
+        /* Cleanup inner header elements when minimized */
+        .chat-minimized .relay-toggle-container,
+        .chat-minimized .chat-close,
+        .chat-minimized #model-badge {
+            display: none !important;
         }
 
         /* --- NOOR RELAY SWITCH --- */
@@ -543,7 +584,7 @@
         <div class="chat-header">
             <div>
                 <span>✨ NOOR نور</span>
-                <span id="model-badge">DeepSeek</span>
+                <span id="model-badge">Llama 3 70B [Groq]</span>
             </div>
             <div style="display: flex; align-items: center; gap: 12px;">
                 <div class="relay-toggle-container" onclick="event.stopPropagation()">
@@ -598,11 +639,17 @@
             if (res.ok) {
                 const data = await res.json();
                 currentRole = data.role;
-                document.getElementById('role-display').textContent = `${data.role}: ${data.email || 'Cloudflare Verified'}`;
-                if (currentRole !== "GUEST") {
-                    document.getElementById('login-overlay').style.display = 'none';
-                    loadKIList();
+
+                if (currentRole === "GUEST") {
+                    document.getElementById('role-display').textContent = "Public Access (Guest)";
+                    document.getElementById('role-display').style.background = "rgba(255, 255, 255, 0.1)";
+                } else {
+                    document.getElementById('role-display').textContent = `${data.role}: ${data.email || 'Cloudflare Verified'}`;
                 }
+
+                document.getElementById('role-display').style.display = 'inline-block';
+                document.getElementById('login-overlay').style.display = 'none';
+                loadKIList();
             }
         }
 
