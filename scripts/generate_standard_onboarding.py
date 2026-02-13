@@ -12,6 +12,8 @@ def generate_standard_message(name_or_id):
     msg += f"يرجى استخدام هذا الرابط لمراجعة بياناتكم الأولية ورفع الصور والقصة الخاصة بكم.\n"
     msg += f"إذا لم يعمل الرابط المباشر، يمكنك الدخول إلى {PORTAL_URL} وإدخال رقم الواتساب الخاص بك المكون من رمز الدولة ثم الرقم (بدون + أو مسافات).\n\n"
     msg += f"الـ ID الخاص بكم هو: {name_or_id}\n\n"
+    msg += f"🌍 **رابط دنيا (الشفافية والذكاء الاصطناعي/Noor)**:\n"
+    msg += f"https://dours-d.github.io/local-ai-campaign-assistant/brain.html\n\n"
     msg += f"سيتم ربط حملتكم بمحفظة رقمية لضمان وصول المساعدة كاملة وبأمان.\n\n"
     msg += "-" * 30 + "\n\n"
     msg += f"Salam Alaykum.\n\n"
@@ -21,6 +23,8 @@ def generate_standard_message(name_or_id):
     msg += f"Use this link to verify your details and upload your photos and story.\n"
     msg += f"If the direct link doesn't work, you can go to {PORTAL_URL} and enter your WhatsApp number (Country code + number, no + or spaces).\n\n"
     msg += f"Your ID is: {name_or_id}\n\n"
+    msg += f"🌍 **DUNYA: Digital Intelligence (Noor AI)**:\n"
+    msg += f"https://dours-d.github.io/local-ai-campaign-assistant/brain.html\n\n"
     msg += f"Your campaign will be linked to a digital wallet to ensure aid reaches you fully and securely.\n"
     
     return msg
