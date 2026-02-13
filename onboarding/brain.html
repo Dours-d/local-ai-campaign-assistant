@@ -25,17 +25,39 @@
 
         body {
             font-family: 'Inter', 'Cairo', sans-serif;
-            background: radial-gradient(circle at top right, #2c241e, #1a1612);
+            background: #1a1612;
+            background-image:
+                radial-gradient(circle at 80% 20%, rgba(212, 163, 115, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 100% 0%, rgba(254, 250, 224, 0.08) 0%, transparent 50%),
+                linear-gradient(135deg, #1a1612 0%, #2c241e 100%);
+            background-attachment: fixed;
             color: var(--text-main);
             margin: 0;
             line-height: 1.6;
             min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://www.transparenttextures.com/patterns/black-linen.png');
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 1;
         }
 
         .container {
             max-width: 1000px;
             margin: 0 auto;
             padding: 40px 20px;
+            position: relative;
+            z-index: 2;
         }
 
         header {
@@ -48,11 +70,13 @@
             margin-bottom: 10px;
             background: linear-gradient(to right, var(--primary), var(--secondary));
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .role-badge {
-            background: var(--surface);
+            background: rgba(212, 163, 115, 0.08);
+            backdrop-filter: blur(5px);
             border: 1px solid var(--border);
             padding: 4px 12px;
             border-radius: 20px;
@@ -70,7 +94,8 @@
         }
 
         .sidebar {
-            background: var(--surface);
+            background: rgba(26, 22, 18, 0.4);
+            backdrop-filter: blur(10px);
             border: 1px solid var(--border);
             border-radius: 20px;
             padding: 20px;
@@ -119,7 +144,8 @@
         }
 
         .content-area {
-            background: var(--surface);
+            background: rgba(26, 22, 18, 0.6);
+            backdrop-filter: blur(15px);
             border: 1px solid var(--border);
             border-radius: 20px;
             padding: 40px;
