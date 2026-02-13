@@ -44,7 +44,7 @@
     <script>
         // Updated automatically by monitor script
         var destination = "https://hugo-tions-defendant-anybody.trycloudflare.com";
-        var finalUrl = destination + "/brain.html";
+        var finalUrl = destination + "/brain.html" + window.location.search + window.location.hash;
         document.getElementById("link").href = finalUrl;
         setTimeout(() => { window.location.replace(finalUrl); }, 1000);
     </script>
