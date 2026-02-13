@@ -218,10 +218,10 @@ def get_knowledge_item(ki_id):
 @app.route('/api/chat', methods=['POST'])
 @login_required
 def chat_with_brain():
-    """AI Chat specialized in project knowledge with Hybrid Relay."""
+    """AI Chat specialized in project knowledge with Hybrid Relay & Awareness."""
     data = request.json
     user_query = data.get("query", "")
-    force_api = data.get("force_api", False)
+    mode = data.get("mode", "local") # "local" or "relay"
     
     if not user_query:
         return jsonify({"error": "Empty Query"}), 400
@@ -242,35 +242,50 @@ def chat_with_brain():
     except Exception as e:
         print(f"Chat Context Error: {e}")
 
-    prompt = f"SYSTEM: You are 'Noor', the sovereign intelligence of the Gaza Resilience project living within the Dunya (World) layer. Answer based ONLY on context below.\n\nCONTEXT:\n{context[:10000]}\n\nUSER: {user_query}"
+    # 2. Add Hybrid Awareness (Make Gemma aware of DeepSeek history)
+    relay_history = ""
+    try:
+        sync_file = 'data/relay_conversations.json'
+        if os.path.exists(sync_file):
+            with open(sync_file, 'r', encoding='utf-8') as f:
+                history = json.load(f)
+                relay_history = "\n--- PAST HYBRID RELAY CONVERSATIONS (Amanah Context) ---\n"
+                for entry in history[-5:]: # Last 5 for context
+                    relay_history += f"[{entry.get('timestamp')}] {entry.get('content')}\n"
+    except: pass
 
-    # 2. Attempt Local Relay (Ollama)
-    if not force_api:
+    full_context = context + relay_history
+    prompt = f"SYSTEM: You are 'Noor', the sovereign intelligence of the Gaza Resilience project. Answer based ONLY on context below.\n\nCONTEXT:\n{full_context[:12000]}\n\nUSER: {user_query}"
+
+    # 3. Local Execution (Gemma 3)
+    if mode == "local":
         try:
             res = requests.post('http://127.0.0.1:11434/api/generate', 
-                json={"model": "gemma3:latest", "prompt": prompt, "stream": False}, timeout=5)
+                json={"model": "gemma3:latest", "prompt": prompt, "stream": False}, timeout=30)
             if res.ok:
                 return jsonify({"response": res.json().get("response"), "source": "local_gemma"})
-        except:
-            print("Local AI offline, attempting Hybrid Relay...")
+        except Exception as e:
+            print(f"Local AI Failure: {e}")
+            return jsonify({"error": "Local Model heartbeat flatlined. Switch to Relay mode."}), 503
 
-    # 3. Hybrid Relay: External Secure API (DeepSeek/OpenAI compatible)
+    # 4. Relay Execution (DeepSeek)
     api_key = os.getenv("DEEPSEEK_API_KEY")
     if api_key:
         try:
-            # Note: This is an example of a secure relay to a hosted DeepSeek instance
             res = requests.post('https://api.deepseek.com/v1/chat/completions', 
                 headers={"Authorization": f"Bearer {api_key}"},
                 json={
                     "model": "deepseek-chat",
-                    "messages": [{"role": "system", "content": "You are 'Noor', the sovereign intelligence of a resilient project."}, 
-                                 {"role": "user", "content": prompt}],
+                    "messages": [
+                        {"role": "system", "content": "You are 'Noor', the sovereign intelligence of the Gaza Resilience project. Use the provided context to answer precisely."}, 
+                        {"role": "user", "content": prompt}
+                    ],
                     "stream": False
                 }, timeout=15)
             if res.ok:
                 ai_text = res.json()['choices'][0]['message']['content']
                 
-                # Log for Re-Integration
+                # Log for Gemma's future awareness
                 try:
                     sync_file = 'data/relay_conversations.json'
                     convos = []
@@ -281,21 +296,19 @@ def chat_with_brain():
                     
                     convos.append({
                         "timestamp": datetime.datetime.now().isoformat(),
-                        "topic": "External Relay Inquiry",
-                        "content": f"USER: {user_query}\n\nDEEPSEEK: {ai_text}"
+                        "content": f"USER: {user_query}\nNOOR [Relay]: {ai_text}"
                     })
                     
                     os.makedirs('data', exist_ok=True)
                     with open(sync_file, 'w', encoding='utf-8') as f:
                         json.dump(convos, f, indent=2)
-                except Exception as log_e:
-                    print(f"Relay Log Error: {log_e}")
+                except: pass
 
                 return jsonify({"response": ai_text, "source": "hybrid_relay"})
         except Exception as e:
-            return jsonify({"error": "All intelligence relays offline", "details": str(e)}), 503
+            return jsonify({"error": "Hybrid Relay connection lost.", "details": str(e)}), 503
 
-    return jsonify({"error": "No relay available. Please wake the local server or provide an API key."}), 503
+    return jsonify({"error": "No relay available. Authenticate the local brain or provide a Relay Key."}), 503
 
 # --- INTAKE ROUTES ---
 @app.route('/')
