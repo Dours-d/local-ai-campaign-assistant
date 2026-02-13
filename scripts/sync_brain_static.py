@@ -10,7 +10,7 @@ def sync_brain():
     if not os.path.exists(ki_source):
         ki_source = os.path.join(appdata, 'antigravity', 'brain')
     
-    docs_target = 'docs/ki_archive'
+    docs_target = 'ki_archive'
     
     if not os.path.exists(ki_source):
         print("Brain source not found.")

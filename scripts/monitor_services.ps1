@@ -55,7 +55,7 @@ while ($true) {
             $AllMatches = $TunnelLog | Select-String -Pattern "https://[a-z0-9-]+\.trycloudflare\.com" -AllMatches
             if ($AllMatches) {
                 $CurrentUrl = $AllMatches[-1].Matches.Value
-                $TargetFiles = @("docs/index.md", "docs/index.html", "docs/onboard.html", "docs/brain.html")
+                $TargetFiles = @("index.md", "index.html", "onboard.html", "brain.html")
                 $FilesChanged = 0
                 
                 foreach ($TargetFile in $TargetFiles) {
@@ -100,7 +100,7 @@ while ($true) {
                     # Sync Brain Static Archive
                     try {
                         & $VenvPython scripts/sync_brain_static.py
-                        git add docs/ki_archive
+                        git add ki_archive .nojekyll
                     }
                     catch { Write-Log "Archive Sync Failed: $_" }
 
