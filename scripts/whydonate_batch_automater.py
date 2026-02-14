@@ -1,267 +1,348 @@
+import re
 import requests
 import json
 import websocket
 import time
 import os
 import sys
+import traceback
+from PIL import Image
+
+# Configure UTF-8 encoding for Windows console
+if sys.platform == 'win32':
+    import io
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8', errors='replace')
 
 CDP_URL = "http://127.0.0.1:9222/json"
 
 class WhyDonateAutomator:
+    global_msg_id = 100
+
     def __init__(self, cdp_url=CDP_URL):
         self.cdp_url = cdp_url
         self.ws = None
 
     def connect(self):
         try:
-            r = requests.get(self.cdp_url).json()
-            target = next((t for t in r if t['type'] == 'page'), None)
-            if not target: return False
-            self.ws = websocket.create_connection(
-                target['webSocketDebuggerUrl'].replace('localhost', '127.0.0.1'),
-                suppress_origin_check=True,
-                header={"Host": "127.0.0.1:9222"}
-            )
-            self.send_cdp("Runtime.enable")
-            self.send_cdp("DOM.enable")
+            r = requests.get(self.cdp_url)
+            tabs = r.json()
+            # Prefer existing WhyDonate tabs
+            target_tab = next((t for t in tabs if "whydonate.com" in t.get('url', '')), tabs[0])
+            self.ws = websocket.create_connection(target_tab['webSocketDebuggerUrl'])
             return True
-        except: return False
+        except Exception as e:
+            print(f"Connection failed: {e}")
+            return False
 
     def send_cdp(self, method, params=None):
-        msg_id = int(time.time() * 1000) % 1000000
-        msg = {"id": msg_id, "method": method}
-        if params: msg["params"] = params
+        WhyDonateAutomator.global_msg_id += 1
+        msg = {"id": WhyDonateAutomator.global_msg_id, "method": method, "params": params or {}}
         self.ws.send(json.dumps(msg))
-        return msg_id
+        return WhyDonateAutomator.global_msg_id
 
     def recv_until_id(self, msg_id, timeout=10):
         start = time.time()
         while time.time() - start < timeout:
-            try:
-                self.ws.settimeout(0.5)
-                res = json.loads(self.ws.recv())
-                if res.get('id') == msg_id: return res
-            except: continue
+            res = json.loads(self.ws.recv())
+            if res.get('id') == msg_id: return res
         return None
 
     def run_js(self, js):
-        mid = self.send_cdp("Runtime.evaluate", {"expression": js, "returnByValue": True, "awaitPromise": True})
+        mid = self.send_cdp("Runtime.evaluate", {"expression": js, "returnByValue": True})
         res = self.recv_until_id(mid)
-        if res and 'result' in res:
-            return res['result'].get('result', {}).get('value')
-        return None
+        return res.get('result', {}).get('result', {}).get('value')
 
-    def take_screenshot(self, filename, scroll_to_bottom=False):
-        if scroll_to_bottom:
-            self.run_js("window.scrollTo(0, document.body.scrollHeight)")
-        else:
-            self.run_js("window.scrollTo(0, 0)")
-        time.sleep(1)
-        mid = self.send_cdp("Page.captureScreenshot")
-        res = self.recv_until_id(mid, timeout=15)
+    def take_screenshot(self, filename):
+        mid = self.send_cdp("Page.captureScreenshot", {"format": "png"})
+        res = self.recv_until_id(mid)
         if res and 'result' in res:
             import base64
             with open(filename, "wb") as f:
                 f.write(base64.b64decode(res['result']['data']))
             print(f"Screenshot saved to {filename}")
-            return True
-        return False
 
-    def click_text(self, text, selector="button, span, div, a"):
-        js = f"""
-        (function() {{
-            const elms = Array.from(document.querySelectorAll('{selector}'));
-            const target = elms.find(el => (el.innerText || "").includes("{text}"));
-            if (target) {{
-                target.scrollIntoView();
-                target.click();
-                return true;
-            }}
-            return false;
-        }})()
-        """
-        return self.run_js(js)
-
-    def type_text(self, text):
+    def type_string(self, text):
         for char in text:
-            # Use only 'char' event to avoid doubling in some browser environments
             self.send_cdp("Input.dispatchKeyEvent", {"type": "char", "text": char})
             time.sleep(0.05)
 
+    def press_key(self, key, code):
+        self.send_cdp("Input.dispatchKeyEvent", {"type": "keyDown", "key": key, "windowsVirtualKeyCode": code})
+        self.send_cdp("Input.dispatchKeyEvent", {"type": "keyUp", "key": key, "windowsVirtualKeyCode": code})
+
+    def upload_file(self, selector, file_path):
+        try:
+            res = self.send_cdp("DOM.getDocument")
+            doc = self.recv_until_id(res)
+            node_res = self.send_cdp("DOM.querySelector", {"nodeId": doc['result']['root']['nodeId'], "selector": selector})
+            node = self.recv_until_id(node_res)
+            if node and 'result' in node:
+                self.send_cdp("DOM.setFileInputFiles", {"files": [file_path], "nodeId": node['result']['nodeId']})
+                return True
+        except: pass
+        return False
+
+    def get_url(self):
+        return self.run_js("window.location.href")
+
     def get_step(self):
-        return self.run_js("document.body.innerText.match(/Step (\\d)\\/4/)?.[1]")
-
-    def upload_image(self, file_path):
         try:
-            mid = self.send_cdp("DOM.getDocument")
-            root = self.recv_until_id(mid)['result']['root']
-            mid = self.send_cdp("DOM.querySelector", {"nodeId": root['nodeId'], "selector": "input[type='file']"})
-            node_res = self.recv_until_id(mid)
-            if not node_res or 'result' not in node_res: return False
-            node_id = node_res['result']['nodeId']
-            mid = self.send_cdp("DOM.setFileInputFiles", {"files": [file_path], "nodeId": node_id})
-            return True
-        except: return False
-
-    def close(self):
-        if self.ws: self.ws.close()
-
-def process_batch(queue_file):
-    if not os.path.exists(queue_file):
-        print("Queue file not found.")
-        return
-
-    with open(queue_file, 'r', encoding='utf-8') as f:
-        queue = json.load(f)
-
-    for item in queue:
-        print(f"\n--- Starting {item['bid']} ---")
-        automator = WhyDonateAutomator()
-        if not automator.connect():
-            print("Failed to connect.")
-            continue
-
-        try:
-            # 0. Load Page
-            automator.run_js("window.location.href = 'https://whydonate.com/fundraising/start'")
-            time.sleep(10)
-            
-            # 1. Step 1: Category & Address
-            print("Processing Step 1/4...")
-            automator.take_screenshot(f"data/verify_s1_{item['bid']}.png")
-            
-            # Fill address - focus and type
-            js_focus = """
-            (function() {
-                const addr = document.querySelector('input[formcontrolname="location"]');
-                if (addr) {
-                    addr.focus();
-                    addr.scrollIntoView();
-                    return true;
-                }
-                return false;
-            })()
-            """
-            focused = automator.run_js(js_focus)
-            print(f"Focused address: {focused}")
-            if focused:
-                automator.type_text("Amman, Jordan")
-                time.sleep(4) 
-                
-                # Try to click the first suggestion
-                js_select = """
+            res = self.run_js("""
                 (function() {
-                    const selectors = [
-                        'mat-option', 
-                        '.mdc-list-item', 
-                        '.pac-item', 
-                        '.autocomplete-result',
-                        '.mat-mdc-autocomplete-panel .mdc-list-item'
-                    ];
-                    for (const s of selectors) {
-                        const opt = document.querySelector(s);
-                        if (opt && opt.offsetParent !== null) {
-                            opt.scrollIntoView();
-                            opt.click();
-                            return "Clicked " + s;
-                        }
-                    }
-                    return "No suggestion found";
+                    const el = Array.from(document.querySelectorAll('span, div, p, mat-step-header'))
+                        .find(e => e.innerText && e.innerText.match(/Step \\d\\/4/i));
+                    if (el) return el.innerText.match(/Step (\\d)\\/4/i)[1];
+                    const activeStep = document.querySelector('.mat-step-header[aria-selected="true"] .mat-step-label-active');
+                    if (activeStep) return activeStep.innerText.match(/Step (\\d)/i)?.[1];
+                    return null;
                 })()
-                """
-                res = automator.run_js(js_select)
-                print(f"Selection Result: {res}")
-                
-                # If no matching suggestion found by selector, try Enter as fallback
-                if "No suggestion" in str(res):
-                    print("Falling back to Enter key...")
-                    automator.send_cdp("Input.dispatchKeyEvent", {"type": "keyDown", "windowsVirtualKeyCode": 13, "nativeVirtualKeyCode": 13})
-                    automator.send_cdp("Input.dispatchKeyEvent", {"type": "keyUp", "windowsVirtualKeyCode": 13, "nativeVirtualKeyCode": 13})
-                
-                time.sleep(2)
-                automator.take_screenshot(f"data/s1_addr_final_{item['bid']}.png")
-            
-            # Click Category and verify
-            print("Clicking Humanitarian Aid...")
-            automator.click_text("Humanitarian Aid")
-            time.sleep(2)
-            
-            chip_state = automator.run_js("JSON.stringify(Array.from(document.querySelectorAll('mat-chip-row, .mdc-chip')).filter(el => el.innerText.includes('Humanitarian Aid')).map(el => ({cls: el.className})))")
-            print(f"Chip State: {chip_state}")
-            
-            automator.take_screenshot(f"data/s1_cat_clicked_{item['bid']}.png", scroll_to_bottom=False)
-            
-            # Click Next
-            print("Clicking Next...")
-            automator.click_text("Next", "button")
-            time.sleep(5)
-            automator.take_screenshot(f"data/s1_after_next_{item['bid']}.png", scroll_to_bottom=True)
-            
-            # 2. Step 2: Target
-            if automator.get_step() != "2":
-                print(f"Warning: Expected Step 2, but at Step {automator.get_step()}. Retrying Next...")
-                automator.click_text("Next", "button")
-                time.sleep(3)
-            
-            print("Processing Step 2/4...")
-            automator.take_screenshot(f"data/verify_s2_{item['bid']}.png")
-            automator.click_text("Myself")
-            time.sleep(2)
-            automator.click_text("Next", "button")
-            time.sleep(5)
+            """)
+            if res: return int(res)
+            res = self.run_js("document.body.innerText.match(/Step (\\d)\\/4/i)?.[1]")
+            return int(res) if res else 1
+        except: return 1
 
-            # 3. Step 3: Details
-            if automator.get_step() != "3":
-                print(f"Warning: Expected Step 3, but at Step {automator.get_step()}. Retrying Next...")
-                automator.click_text("Next", "button")
-                time.sleep(3)
-
-            print("Processing Step 3/4...")
-            automator.take_screenshot(f"data/verify_s3_{item['bid']}.png")
-            
-            policy = f"\n\n---\n**Beneficiary ID: {item['bid']}**\nFunds are disbursed when €100 is reached."
-            desc = item['description'] + policy
-            
-            js_fill = f"""
+    def fill_step1(self, item):
+        if self.get_step() >= 2:
+            print("DEBUG: Already past Step 1. Skipping.", flush=True)
+            return True
+        print("Processing Step 1/4 (Location Selection)...", flush=True)
+        self.take_screenshot(f"data/verify_s1_{item['bid']}.png")
+        
+        # 1. Select Category (JS)
+        print("DEBUG: Selecting Category...", flush=True)
+        self.run_js("""
+            (function() {
+                const target = Array.from(document.querySelectorAll('mat-card, .mat-mdc-card, .category-card, div'))
+                    .find(el => el.innerText && el.innerText.trim() === 'Children & Family');
+                if (target) {
+                    const card = target.closest('mat-card, .mat-mdc-card, .category-card, div[class*="card"]');
+                    if (card) card.click(); else target.click();
+                    return "CLICKED";
+                }
+                return "NOT_FOUND";
+            })()
+        """)
+        time.sleep(3)
+        
+        # 2. Fill Address
+        location = "Porto, Portugal"
+        print(f"DEBUG: Typing Location: {location}", flush=True)
+        self.run_js("""
+            const i = document.querySelector('input[formcontrolname="address"], input[placeholder*="address"]');
+            if (i) { i.focus(); i.value = ''; i.dispatchEvent(new Event('input', {bubbles:true})); }
+        """)
+        time.sleep(1)
+        self.type_string(location)
+        time.sleep(3)
+        
+        # 3. Select from Dropdown
+        print(f"DEBUG: Selecting '{location}' from dropdown...", flush=True)
+        drop_res = self.run_js(f"""
             (function() {{
-                const title = document.querySelector('input[placeholder*="Title"]');
-                if (title) {{ title.value = {json.dumps(item['title'])}; title.dispatchEvent(new Event('input', {{bubbles:true}})); }}
-                const story = document.querySelector('textarea');
-                if (story) {{ story.value = {json.dumps(desc)}; story.dispatchEvent(new Event('input', {{bubbles:true}})); }}
-                const goal = document.querySelector('input[type="number"]');
-                if (goal) {{ goal.value = "{item['goal']}"; goal.dispatchEvent(new Event('input', {{bubbles:true}})); }}
+                const options = Array.from(document.querySelectorAll('.pac-item, .mat-option, div[role="option"]'));
+                const target = options.find(o => o.innerText.includes({json.dumps(location)}));
+                if (target) {{ target.click(); return "CLICKED_TARGET"; }}
+                if (options.length > 0) {{ options[0].click(); return "CLICKED_FIRST"; }}
+                return "DROPDOWN_EMPTY";
             }})()
-            """
-            automator.run_js(js_fill)
-            automator.upload_image(item['image'])
-            time.sleep(8)
-            
-            automator.click_text("Next", "button")
+        """)
+        print(f"DEBUG: Dropdown status: {drop_res}", flush=True)
+        time.sleep(3)
+        
+        # 4. Click Next
+        is_enabled = self.run_js("const btn = document.getElementById('saveStep1') || document.querySelector('button.mat-stepper-next'); btn && !btn.disabled")
+        if is_enabled:
+            print("DEBUG: Next enabled. Clicking...", flush=True)
+            self.run_js("const btn = document.getElementById('saveStep1') || document.querySelector('button.mat-stepper-next'); if(btn) btn.click();")
             time.sleep(5)
+            if self.get_step() >= 2: return True
+        return False
 
-            # 4. Step 4: Finalize
-            if automator.get_step() != "4":
-                print(f"Warning: Expected Step 4, but at Step {automator.get_step()}.")
-            
-            print("Processing Step 4/4...")
-            automator.take_screenshot(f"data/verify_s4_{item['bid']}.png")
-            
-            # Accept terms
-            automator.run_js("document.querySelectorAll('mat-checkbox').forEach(c => c.click())")
-            time.sleep(2)
-            
-            # Click Final Finish (STRICT button only)
-            automator.click_text("Finish", "button.mat-flat-button, button.mat-raised-button")
-            time.sleep(15)
-            
-            automator.take_screenshot(f"data/verify_final_{item['bid']}.png")
-            print(f"Done. Final URL: {automator.run_js('window.location.href')}")
+    def fill_step2(self, item):
+        if self.get_step() >= 3:
+            print("DEBUG: Already past Step 2. Skipping.", flush=True)
+            return True
+        print(f"DEBUG: fill_step2 start for {item['bid']}", flush=True)
+        self.take_screenshot(f"data/verify_s2_start_{item['bid']}.png")
+        
+        # 1. Select "Someone Else"
+        self.run_js("""
+            (function() {
+                const target = Array.from(document.querySelectorAll('mat-card, .mat-mdc-card, .category-card, div'))
+                    .find(el => el.innerText && el.innerText.trim() === 'Someone Else');
+                if (target) {
+                    const card = target.closest('mat-card, .mat-mdc-card, .category-card, div[class*=\"card\"]');
+                    if (card) card.click(); else target.click();
+                }
+            })()
+        """)
+        time.sleep(5)
+        
+        # 2. Fill Beneficiary Name
+        raw_name = item['title'].replace("Help ", "").split("&")[0].split("and")[0].split("with")[0].strip()
+        name = raw_name[:40].strip()
+        print(f"DEBUG: Typing Beneficiary Name: {name}...", flush=True)
+        self.run_js("""
+            const i = document.querySelector('input[formcontrolname="name"], input[placeholder*="Name"]');
+            if (i) { i.focus(); i.value = ''; i.dispatchEvent(new Event('input', {bubbles:true})); }
+        """)
+        time.sleep(1)
+        self.type_string(name)
+        time.sleep(3)
+        
+        # 3. Click Next
+        for _ in range(3):
+            self.run_js("const btn = document.querySelector('button.mat-stepper-next'); if(btn) btn.click();")
+            time.sleep(3)
+            if self.get_step() >= 3: return True
+        return False
 
+    def fill_step3(self, item):
+        if self.get_step() >= 4:
+            print("DEBUG: Already past Step 3. Skipping.", flush=True)
+            return True
+        print("Processing Step 3/4 (Content & Media)...", flush=True)
+        self.take_screenshot(f"data/verify_s3_start_{item['bid']}.png")
+        
+        # 0. Title & Unique URL
+        title = item.get('title', 'Help support this campaign')
+        from datetime import datetime
+        ts = datetime.now().strftime("%H%M%S")
+        slug = f"f-{item['bid']}-{ts}"[:70] 
+        
+        self.run_js(f"""
+            (function() {{
+                const t = document.querySelector('input[formcontrolname=\"title\"], input.fundraiserTitle');
+                if (t) {{ t.focus(); t.value = {json.dumps(title)}; t.dispatchEvent(new Event('input', {{bubbles:true}})); }}
+                const u = document.querySelector('input[formcontrolname=\"custom_url\"], input.linkUrl');
+                if (u) {{ u.focus(); u.removeAttribute('readonly'); u.value = {json.dumps(slug)}; u.dispatchEvent(new Event('input', {{bubbles:true}})); }}
+            }})()
+        """)
+        time.sleep(2)
+
+        # 1. Fill Story
+        description = item.get('campaign_description') or item.get('description') or item.get('story') or "Help support this campaign. We need your support to rebuild lives."
+        if len(description) < 15: description += " Please help us support this worthy cause."
+        
+        print(f"DEBUG: Filling Description ({len(description)} chars)...", flush=True)
+        self.run_js("const s = document.getElementById('createFundraiserStoryDescription'); if(s) s.click();")
+        time.sleep(2)
+        
+        story_res = self.run_js(f"""
+            (function() {{
+                const ta = document.querySelector('textarea.createFundraiserStory, textarea[formcontrolname=\"description\"]');
+                if (ta) {{
+                    ta.focus();
+                    ta.value = {json.dumps(description)};
+                    ta.dispatchEvent(new Event('input', {{bubbles:true}}));
+                    return "STORY_SET_TEXTAREA";
+                }}
+                const editor = document.querySelector('.ql-editor');
+                if (editor) {{
+                    editor.innerHTML = '<p>' + {json.dumps(description)} + '</p>';
+                    editor.dispatchEvent(new Event('input', {{bubbles:true}}));
+                    return "STORY_SET_QL";
+                }}
+                return "STORY_NOT_FOUND";
+            }})()
+        """)
+        print(f"DEBUG: Story filling result: {story_res}", flush=True)
+        time.sleep(2)
+        
+        # 2. Upload Image
+        img_url = item.get('image') or item.get('image_url')
+        if img_url:
+            img_path = os.path.abspath(f"data/temp_{item['bid']}.jpg")
+            try:
+                r = requests.get(img_url, timeout=10)
+                if r.status_code == 200:
+                    with open(img_path, 'wb') as f: f.write(r.content)
+                    self.upload_file('input[type="file"]', img_path)
+                    time.sleep(5)
+            except Exception as e: print(f"Image failed: {e}")
+
+        self.take_screenshot(f"data/verify_s3_filled_{item['bid']}.png")
+        print("DEBUG: Clicking Next iteratively...", flush=True)
+        for i in range(10):
+            self.run_js("""
+                const nextBtn = Array.from(document.querySelectorAll('button'))
+                    .find(b => (b.innerText.includes('Next') || b.classList.contains('mat-stepper-next')) && !b.disabled);
+                if (nextBtn) {
+                    nextBtn.scrollIntoView({behavior: "smooth", block: "center"});
+                    nextBtn.click();
+                }
+            """)
+            time.sleep(4)
+            step = self.get_step()
+            print(f"DEBUG: Attempt {i+1}, current step: {step}", flush=True)
+            if step >= 4:
+                print(f"DEBUG: Step 3 advanced after {i+1} attempts.", flush=True)
+                return True
+            self.take_screenshot(f"data/verify_s3_retry_{i}_{item['bid']}.png")
+            
+        print(f"WARNING: Step 3 failed for {item['bid']} after 10 attempts.", flush=True)
+        return False
+
+    def finalize_campaign(self, item):
+        print("Finalizing Campaign (Step 4)...", flush=True)
+        goal = str(item.get('goal', 1000))
+        self.run_js(f"""
+            const g = document.querySelector('input[formcontrolname="target_amount"]');
+            if (g) {{ g.focus(); g.value = {json.dumps(goal)}; g.dispatchEvent(new Event('input', {{bubbles:true}})); }}
+            document.querySelectorAll('mat-checkbox input').forEach(c => {{ if(!c.checked) c.click(); }});
+        """)
+        time.sleep(2)
+        self.take_screenshot(f"data/verify_s4_{item['bid']}.png")
+        
+        # Click Finish / Start
+        self.run_js("""
+            const btns = Array.from(document.querySelectorAll('button'));
+            const finish = btns.find(b => b.innerText.includes('Finish') || b.innerText.includes('Start Fundraiser'));
+            if (finish) finish.click();
+        """)
+        time.sleep(10)
+        
+        final_url = self.get_url()
+        if "whydonate.com/fundraising/" in final_url and "/create" not in final_url:
+            print(f"SUCCESS: Campaign created at {final_url}", flush=True)
+            with open("data/success_campaigns.txt", "a") as f: f.write(f"{item['bid']}|{final_url}\n")
+            return True
+        return False
+
+    def process_item(self, item):
+        print(f"--- Processing {item['bid']} ---", flush=True)
+        try:
+            url = self.get_url() or ""
+            is_creation = "/create" in url or "fundraising/start" in url
+            if "whydonate.com" not in url or not is_creation:
+                print(f"DEBUG: Navigating to start from {url}...", flush=True)
+                self.run_js('window.location.href = "https://whydonate.com/fundraising/start"')
+                time.sleep(10)
+
+            if not self.fill_step1(item): return False
+            if not self.fill_step2(item): return False
+            if not self.fill_step3(item): return False
+            if not self.finalize_campaign(item): return False
+            return True
         except Exception as e:
-            print(f"System Error: {e}")
-        finally:
-            automator.close()
+            print(f"ERROR: {e}", flush=True)
+            traceback.print_exc()
+            return False
+
+def main():
+    if len(sys.argv) < 2:
+        print("Usage: python whydonate_batch_automater.py <queue_json>")
+        return
+    with open(sys.argv[1], 'r', encoding='utf-8') as f:
+        queue = json.load(f)
+    
+    automator = WhyDonateAutomator()
+    if not automator.connect(): return
+    
+    for item in queue:
+        automator.process_item(item)
 
 if __name__ == "__main__":
-    q = sys.argv[1] if len(sys.argv) > 1 else "data/batch_queue.json"
-    process_batch(q)
+    main()

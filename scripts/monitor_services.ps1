@@ -68,44 +68,71 @@ while ($true) {
             $AllMatches = $TunnelLog | Select-String -Pattern "https://[a-z0-9-]+\.trycloudflare\.com" -AllMatches
             if ($AllMatches) {
                 $CurrentUrl = $AllMatches[-1].Matches.Value
-                $TargetFiles = @("index.md", "index.html", "onboard.html", "brain.html", "docs/public_brain.html")
-                $FilesChanged = 0
-                
-                foreach ($TargetFile in $TargetFiles) {
-                    if (Test-Path $TargetFile) {
-                        $Content = Get-Content $TargetFile -Raw
-                        $NewContent = $Content
-                        $ContentChanged = $false
-
-                        # Update URL
-                        if ($Content -match '(var|const) (destination|targetUrl) = "([^"]+)";') {
-                            $StoredUrl = $Matches[3]
-                            if ($StoredUrl -ne $CurrentUrl) {
-                                $NewContent = $NewContent -replace '(var|const) (destination|targetUrl) = "[^"]+";', "$($Matches[1]) $($Matches[2]) = `"$CurrentUrl`";"
-                                $ContentChanged = $true
-                                Write-Log "Tunnel URL changed to $CurrentUrl in $TargetFile"
-                            }
-                        }
-
-                        # Update Timestamp
-                        $Timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss UTC"
-                        if ($NewContent -match '<p id="updated".*?>.*?</p>') {
-                            $NewContent = $NewContent -replace '<p id="updated".*?>.*?</p>', "<p id=`"updated`" style=`"font-size:0.8em; color:#64748b;`">Last Updated: $Timestamp</p>"
-                            $ContentChanged = $true
-                        }
-                        elseif ($NewContent -match '<p id="msg">') {
-                            $NewContent = $NewContent -replace '<p id="msg">', "<p id=`"updated`" style=`"font-size:0.8em; color:#64748b;`">Last Updated: $Timestamp</p><p id=`"msg`">"
-                            $ContentChanged = $true
-                        }
-
-                        if ($ContentChanged) {
-                            $NewContent | Set-Content -Path $TargetFile -Encoding UTF8
-                            if (Get-Command git -ErrorAction SilentlyContinue) {
-                                git add $TargetFile
-                                $FilesChanged++
+                $TargetFiles = @("index.md", "index.html", "onboard.html", "brain.html", "docs/index.html", "docs/onboard.html", "docs/brain.html", "docs/public_brain.html", "docs/public_brain.html", "onboarding/index.html", "onboarding/brain.html")
+                # Track if URL actually changed to minimize pushes
+                $UrlChanged = $false
+                foreach ($CheckFile in $TargetFiles) {
+                    if (Test-Path $CheckFile) {
+                        $Content = Get-Content $CheckFile -Raw
+                        if ($Content -match '(var|const) (githubOnboardingUrl|destination|targetUrl) = "([^"]+)";') {
+                            if ($Matches[3] -ne $CurrentUrl) {
+                                $UrlChanged = $true
+                                break
                             }
                         }
                     }
+                }
+
+                # Heartbeat logic: Push every 1 hour regardless of URL change to show server is alive
+                $HeartbeatIntervalMinutes = 60
+                $LastHeartbeatFile = "data/last_heartbeat.txt"
+                $NeedsHeartbeat = $true
+                if (Test-Path $LastHeartbeatFile) {
+                    $LastTime = [DateTime]::Parse((Get-Content $LastHeartbeatFile))
+                    if ((Get-Date) -lt $LastTime.AddMinutes($HeartbeatIntervalMinutes)) {
+                        $NeedsHeartbeat = $false
+                    }
+                }
+
+                if ($UrlChanged -or $NeedsHeartbeat) {
+                    foreach ($TargetFile in $TargetFiles) {
+                        if (Test-Path $TargetFile) {
+                            $Content = Get-Content $TargetFile -Raw
+                            $NewContent = $Content
+                            $ContentChanged = $false
+
+                            # Update URL if needed
+                            if ($Content -match '(var|const) (githubOnboardingUrl|destination|targetUrl) = "([^"]+)";') {
+                                if ($Matches[3] -ne $CurrentUrl) {
+                                    $NewContent = $NewContent -replace '(var|const) (githubOnboardingUrl|destination|targetUrl) = "[^"]+";', "$($Matches[1]) $($Matches[2]) = `"$CurrentUrl`";"
+                                    $ContentChanged = $true
+                                }
+                            }
+
+                            # Update Timestamp
+                            $Timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss UTC"
+                            if ($NewContent -match '<p id="updated".*?>.*?</p>') {
+                                $NewContent = $NewContent -replace '<p id="updated".*?>.*?</p>', "<p id=`"updated`" style=`"font-size:0.8em; color:#64748b;`">Last Updated: $Timestamp</p>"
+                                $ContentChanged = $true
+                            }
+                            elseif ($NewContent -match '<p id="msg">') {
+                                $NewContent = $NewContent -replace '<p id="msg">', "<p id=`"updated`" style=`"font-size:0.8em; color:#64748b;`">Last Updated: $Timestamp</p><p id=`"msg`">"
+                                $ContentChanged = $true
+                            }
+
+                            if ($ContentChanged) {
+                                $NewContent | Set-Content -Path $TargetFile -Encoding UTF8
+                                if (Get-Command git -ErrorAction SilentlyContinue) {
+                                    git add $TargetFile
+                                    $FilesChanged++
+                                }
+                            }
+                        }
+                    }
+                    if ($NeedsHeartbeat -and -not $UrlChanged) {
+                        Write-Log "Triggering hourly heartbeat push..."
+                    }
+                    Get-Date | Out-File -FilePath $LastHeartbeatFile
                 }
 
                 if ($FilesChanged -gt 0) {
@@ -133,7 +160,7 @@ while ($true) {
         # Get Current URL from index.html if not already known from step 3
         if (-not $CurrentUrl -and (Test-Path "index.html")) {
             $IndexContent = Get-Content "index.html" -Raw
-            if ($IndexContent -match 'destination = "([^"]+)";') {
+            if ($IndexContent -match '(githubOnboardingUrl|destination) = "([^"]+)";') {
                 $CurrentUrl = $Matches[1]
             }
         }

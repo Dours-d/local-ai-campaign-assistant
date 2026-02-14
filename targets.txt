@@ -1,0 +1,25 @@
+ID: 7EA87EC8FD4D8CFD9F30512421F8F306
+Type: page
+Title: WhyDonate: Personal Crowdfunding and Charity Fundraising
+URL: https://whydonate.com/fundraising/start
+--------------------
+ID: 1FDD6308BF9F75BFD59E9ED6B4D21488
+Type: iframe
+Title: https://connect-js.stripe.com/data_layer_e5fc5edd136fae78c843.html#pageViewId=8c70f2a7-cb72-4d74-b2df-debe1017f3e2&amp;platformUrl=https%3A%2F%2Fwhydonate.com%2Ffundraising%2Fstart&amp;stripe_internal_running_in_iframe=true
+URL: https://connect-js.stripe.com/data_layer_e5fc5edd136fae78c843.html#pageViewId=8c70f2a7-cb72-4d74-b2df-debe1017f3e2&platformUrl=https%3A%2F%2Fwhydonate.com%2Ffundraising%2Fstart&stripe_internal_running_in_iframe=true
+--------------------
+ID: 6B8990CD3ED5EDDB6C55A1D7BF9E1376
+Type: iframe
+Title: https://js.stripe.com/v3/m-outer-3437aaddcdf6922d623e172c2d6f9278.html#url=https%3A%2F%2Fwhydonate.com%2Ffundraising%2Fstart&amp;title=WhyDonate%3A%20Personal%20Crowdfunding%20and%20Charity%20Fundraising&amp;referrer=&amp;muid=3e637e96-de03-453d-88c8-65474632a00bd4be53&amp;sid=a5c95014-8258-49d7-8bfc-bfe25755de2090e833&amp;version=6&amp;preview=false&amp;__shared_params__[version]=v3
+URL: https://js.stripe.com/v3/m-outer-3437aaddcdf6922d623e172c2d6f9278.html#url=https%3A%2F%2Fwhydonate.com%2Ffundraising%2Fstart&title=WhyDonate%3A%20Personal%20Crowdfunding%20and%20Charity%20Fundraising&referrer=&muid=3e637e96-de03-453d-88c8-65474632a00bd4be53&sid=a5c95014-8258-49d7-8bfc-bfe25755de2090e833&version=6&preview=false&__shared_params__[version]=v3
+--------------------
+ID: FAE687F7FABFF4C02ED8E906FB03F0FB
+Type: iframe
+Title: https://m.stripe.network/inner.html#url=https%3A%2F%2Fwhydonate.com%2Ffundraising%2Fstart&amp;title=WhyDonate%3A%20Personal%20Crowdfunding%20and%20Charity%20Fundraising&amp;referrer=&amp;muid=3e637e96-de03-453d-88c8-65474632a00bd4be53&amp;sid=a5c95014-8258-49d7-8bfc-bfe25755de2090e833&amp;version=6&amp;preview=false&amp;__shared_params__[version]=v3
+URL: https://m.stripe.network/inner.html#url=https%3A%2F%2Fwhydonate.com%2Ffundraising%2Fstart&title=WhyDonate%3A%20Personal%20Crowdfunding%20and%20Charity%20Fundraising&referrer=&muid=3e637e96-de03-453d-88c8-65474632a00bd4be53&sid=a5c95014-8258-49d7-8bfc-bfe25755de2090e833&version=6&preview=false&__shared_params__[version]=v3
+--------------------
+ID: 0DD4ED170E847AB172149351D11805E8
+Type: worker
+Title: 
+URL: 
+--------------------

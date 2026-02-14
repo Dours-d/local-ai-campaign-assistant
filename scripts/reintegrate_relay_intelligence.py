@@ -6,7 +6,7 @@ import requests
 
 def ingest_relay_logs():
     """
-    Scans the server logs for DeepSeek 'Relay Mode' conversations 
+    Scans the server logs for Groq 'Relay Mode' conversations 
     and distills them into new Knowledge Items for the local brain.
     """
     # In a real implementation, we would parse onboarding_server.log
@@ -35,8 +35,8 @@ def ingest_relay_logs():
         
         metadata = {
             "title": f"External Insight: {topic}",
-            "summary": f"Distilled intelligence from DeepSeek Relay conversation on {timestamp}.",
-            "source": "DeepSeek Relay",
+            "summary": f"Distilled intelligence from Groq Relay conversation on {timestamp}.",
+            "source": "Groq Relay",
             "timestamp": datetime.datetime.now().isoformat()
         }
         
@@ -44,7 +44,7 @@ def ingest_relay_logs():
             json.dump(metadata, f, indent=2)
             
         with open(os.path.join(ki_dir, 'artifacts', 'insight.md'), 'w') as f:
-            f.write(f"# DeepSeek Relay Insight\n\n## Topic: {topic}\n\n{content}\n\n---\n*This insight was captured while the local server was offline and has been re-integrated into the Sovereign Brain.*")
+            f.write(f"# Groq Relay Insight\n\n## Topic: {topic}\n\n{content}\n\n---\n*This insight was captured while the local server was offline and has been re-integrated into the Sovereign Brain.*")
         
         print(f"Ingested relay insight: {ki_id}")
 

@@ -12,7 +12,7 @@ This portal ensures secure access to your local AI campaign assistant.
 
 <script>
   // Read the URL directly injected by the monitoring script
-  var destination = "https://precipitation-decided-series-thermal.trycloudflare.com";
+  var githubOnboardingUrl = "https://precipitation-decided-series-thermal.trycloudflare.com";
   
   // Handle Deep Linking via Hash (e.g. https://gd-pages/#/onboard/123 -> https://tunnel/onboard/123)
   var hash = window.location.hash;
@@ -24,7 +24,7 @@ This portal ensures secure access to your local AI campaign assistant.
   // Fallback to query if no hash (legacy support)
   var search = window.location.search || "";
   
-  var finalUrl = destination + path + search;
+  var finalUrl = githubOnboardingUrl + path + search;
 
   document.getElementById("redirect-link").href = finalUrl;
   document.getElementById("status-message").innerText = "Redirecting to secure node...";

@@ -161,7 +161,7 @@ def whoami():
 
 # --- KNOWLEDGE (SHARED BRAIN) ROUTES ---
 @app.route('/api/knowledge', methods=['GET'])
-@login_required
+# @login_required - Public Access Enabled for Transparency
 def list_knowledge():
     """Lists available Knowledge Items (Distilled Intelligence)."""
     if not os.path.exists(KI_PATH):
@@ -189,7 +189,7 @@ def list_knowledge():
     return jsonify(ki_list)
 
 @app.route('/api/knowledge/<ki_id>', methods=['GET'])
-@login_required
+# @login_required - Public Access Enabled
 def get_knowledge_item(ki_id):
     """Reads a specific Knowledge Item's distilled artifacts."""
     ki_base = os.path.join(KI_PATH, secure_filename(ki_id))
@@ -216,7 +216,7 @@ def get_knowledge_item(ki_id):
 
 # --- THE VOICE: AI CHAT ---
 @app.route('/api/chat', methods=['POST'])
-@login_required
+# @login_required - Public Access Enabled
 def chat_with_brain():
     """AI Chat specialized in project knowledge with Hybrid Relay & Awareness."""
     data = request.json
@@ -242,7 +242,7 @@ def chat_with_brain():
     except Exception as e:
         print(f"Chat Context Error: {e}")
 
-    # 2. Add Hybrid Awareness (Make Gemma aware of DeepSeek history)
+    # 2. Add Hybrid Awareness (Make Gemma aware of Groq history)
     relay_history = ""
     try:
         sync_file = 'data/relay_conversations.json'
@@ -268,14 +268,14 @@ def chat_with_brain():
             print(f"Local AI Failure: {e}")
             return jsonify({"error": "Local Model heartbeat flatlined. Switch to Relay mode."}), 503
 
-    # 4. Relay Execution (DeepSeek)
-    api_key = os.getenv("DEEPSEEK_API_KEY")
+    # 4. Relay Execution (Groq - Llama 3 70B)
+    api_key = os.getenv("GROQ_API_KEY")
     if api_key:
         try:
-            res = requests.post('https://api.deepseek.com/v1/chat/completions', 
+            res = requests.post('https://api.groq.com/openai/v1/chat/completions', 
                 headers={"Authorization": f"Bearer {api_key}"},
                 json={
-                    "model": "deepseek-chat",
+                    "model": "llama-3.3-70b-versatile",
                     "messages": [
                         {"role": "system", "content": "You are 'Noor', the sovereign intelligence of the Gaza Resilience project. Use the provided context to answer precisely."}, 
                         {"role": "user", "content": prompt}
@@ -304,7 +304,7 @@ def chat_with_brain():
                         json.dump(convos, f, indent=2)
                 except: pass
 
-                return jsonify({"response": ai_text, "source": "hybrid_relay"})
+                return jsonify({"response": ai_text, "source": "hybrid_relay_groq"})
         except Exception as e:
             return jsonify({"error": "Hybrid Relay connection lost.", "details": str(e)}), 503
 
@@ -316,6 +316,10 @@ def chat_with_brain():
 @app.route('/onboard/<beneficiary_id>')
 def serve_portal(beneficiary_id=None):
     return app.send_static_file('index.html')
+
+@app.route('/brain')
+def serve_brain():
+    return app.send_static_file('brain.html')
 
 @app.route('/api/check_scope/<beneficiary_id>')
 def check_scope(beneficiary_id):
