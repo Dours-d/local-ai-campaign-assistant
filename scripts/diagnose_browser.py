@@ -5,14 +5,22 @@ import sys
 
 def get_browser_state():
     try:
-        res = requests.get('http://localhost:9222/json')
-        pages = res.json()
+        r = requests.get('http://localhost:9222/json')
+        tabs = r.json()
+        # Find the correct tab: must be a page and contain whydonate
+        pages = [t for t in tabs if t.get('type') == 'page' and 'whydonate.com' in t.get('url', '')]
         if not pages:
-            print("No pages found")
+            # Fallback to any page if no whydonate page found
+            pages = [t for t in tabs if t.get('type') == 'page']
+            
+        if not pages:
+            print("No browser pages found")
             return
         
-        page_id = pages[0]['id']
-        ws_url = pages[0]['webSocketDebuggerUrl']
+        target = pages[0]
+        page_id = target['id']
+        ws_url = target['webSocketDebuggerUrl']
+        print(f"Connecting to: {target.get('url')} (Title: {target.get('title')})")
         
         ws = websocket.create_connection(ws_url)
         

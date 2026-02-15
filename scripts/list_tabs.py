@@ -1,6 +1,8 @@
-import requests
-import json
-
-r = requests.get('http://localhost:9222/json').json()
-for t in r:
-    print(f"{t.get('type')} | {t.get('url')} | {t.get('id')}")
+import requests, json
+try:
+    r = requests.get("http://127.0.0.1:9222/json")
+    tabs = r.json()
+    for t in tabs:
+        print(f"Type: {t.get('type')} | Title: {t.get('title')} | URL: {t.get('url')}")
+except Exception as e:
+    print(f"Error: {e}")

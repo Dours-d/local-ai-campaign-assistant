@@ -1,0 +1,6 @@
+2026/02/15-09:15:33.113 3c84 Reusing MANIFEST C:\Users\gaelf\Documents\GitHub\local_ai_campaign_assistant\edge_profile\Default\Local Storage\leveldb/MANIFEST-000001
+2026/02/15-09:15:33.128 3c84 Recovering log #3
+2026/02/15-09:15:33.132 3c84 Reusing old log C:\Users\gaelf\Documents\GitHub\local_ai_campaign_assistant\edge_profile\Default\Local Storage\leveldb/000003.log 
+2026/02/15-10:05:34.475 18d8 Level-0 table #5: started
+2026/02/15-10:05:34.493 18d8 Level-0 table #5: 19270 bytes OK
+2026/02/15-10:05:34.497 18d8 Delete type=0 #3

@@ -217,13 +217,15 @@
         }
 
         .login-card {
-            background: var(--surface);
+            background: rgba(26, 22, 18, 0.8);
+            backdrop-filter: blur(20px);
             border: 1px solid var(--border);
             padding: 40px;
-            border-radius: 24px;
+            border-radius: 32px;
             width: 100%;
             max-width: 400px;
             text-align: center;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
         }
 
         input {
@@ -609,12 +611,17 @@
 <body>
     <div id="login-overlay">
         <div class="login-card">
-            <div style="font-size: 3rem; margin-bottom: 20px;">🌍</div>
-            <h1 style="background: none; -webkit-text-fill-color: initial; color: white;">DUNYA دنيا</h1>
-            <p style="color: #94a3b8;">Enter the Sovereign Access Key to connect to the world's intelligence.</p>
-            <input type="password" id="pass" placeholder="Sovereign Access Key"
-                style="text-align: center; letter-spacing: 4px;">
-            <button onclick="doLogin()">Authenticate</button>
+            <div style="font-size: 1.2rem; margin-bottom: 16px; opacity: 0.8;">🌍</div>
+            <h1
+                style="font-size: 1rem; margin-bottom: 10px; background: none; -webkit-text-fill-color: initial; color: white; letter-spacing: 3px; font-weight: 700; text-transform: uppercase;">
+                DUNYA دنيا</h1>
+            <p style="color: #64748b; font-size: 0.75rem; line-height: 1.6; max-width: 250px; margin: 0 auto;">Enter the
+                Sovereign Access Key to establish a secure connection.
+            </p>
+            <input type="password" id="pass" placeholder="••••••••"
+                style="text-align: center; letter-spacing: 6px; font-size: 0.9rem; margin: 24px 0; padding: 12px; border-color: rgba(212, 163, 115, 0.1);">
+            <button onclick="doLogin()"
+                style="font-size: 0.75rem; padding: 12px 24px; letter-spacing: 2px;">Authenticate</button>
         </div>
     </div>
 
