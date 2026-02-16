@@ -57,8 +57,10 @@ while ($true) {
     }
     catch {
         Write-Log "Health Check FAILED: Server is unresponsive or returning 502. Restarting..."
-        Stop-Process -Name "python" -Force -ErrorAction SilentlyContinue 
-        # Note: We stop ALL python processes to be safe, monitor will restart them in next loop iteration
+        $SrvProc = Get-Process -Name python -ErrorAction SilentlyContinue | Where-Object { $_.CommandLine -like "*onboarding_server.py*" }
+        if ($SrvProc) { Stop-Process -Id $SrvProc.Id -Force }
+        $WatchProc = Get-Process -Name python -ErrorAction SilentlyContinue | Where-Object { $_.CommandLine -like "*watch_onboarding.py*" }
+        if ($WatchProc) { Stop-Process -Id $WatchProc.Id -Force }
     }
 
     # 3. Update GitHub Pages Redirect (Dynamic Redirection)
@@ -68,13 +70,22 @@ while ($true) {
             $AllMatches = $TunnelLog | Select-String -Pattern "https://[a-z0-9-]+\.trycloudflare\.com" -AllMatches
             if ($AllMatches) {
                 $CurrentUrl = $AllMatches[-1].Matches.Value
-                $TargetFiles = @("index.md", "index.html", "onboard.html", "brain.html", "docs/index.html", "docs/onboard.html", "docs/brain.html", "docs/public_brain.html", "docs/public_brain.html", "onboarding/index.html", "onboarding/brain.html")
+                
+                # Files that MUST point to the Cloudflare Tunnel (The "Brain" & "Onboarding" App)
+                $AppFiles = @("onboarding/index.html", "onboarding/brain.html")
+                
+                # Files that should point to the Vercel Frontend (The "Funnel" / Redirectors)
+                # We do NOT update these with the Cloudflare URL anymore, as they should stay static or be updated manually to Vercel.
+                # If you want to force them to Vercel, we can add logic here, but for now we just STOP overwriting them with Cloudflare.
+                
+                $TargetFiles = $AppFiles 
+
                 # Track if URL actually changed to minimize pushes
                 $UrlChanged = $false
                 foreach ($CheckFile in $TargetFiles) {
                     if (Test-Path $CheckFile) {
                         $Content = Get-Content $CheckFile -Raw
-                        if ($Content -match '(var|const) (githubOnboardingUrl|destination|targetUrl) = "([^"]+)";') {
+                        if ($Content -match '(var|const) (githubOnboardingUrl|destination|targetUrl) = "([^"]*)";') {
                             if ($Matches[3] -ne $CurrentUrl) {
                                 $UrlChanged = $true
                                 break
@@ -102,9 +113,9 @@ while ($true) {
                             $ContentChanged = $false
 
                             # Update URL if needed
-                            if ($Content -match '(var|const) (githubOnboardingUrl|destination|targetUrl) = "([^"]+)";') {
+                            if ($Content -match '(var|const) (githubOnboardingUrl|destination|targetUrl) = "([^"]*)";') {
                                 if ($Matches[3] -ne $CurrentUrl) {
-                                    $NewContent = $NewContent -replace '(var|const) (githubOnboardingUrl|destination|targetUrl) = "[^"]+";', "$($Matches[1]) $($Matches[2]) = `"$CurrentUrl`";"
+                                    $NewContent = $NewContent -replace '(var|const) (githubOnboardingUrl|destination|targetUrl) = "[^"]*";', "$($Matches[1]) $($Matches[2]) = `"$CurrentUrl`";"
                                     $ContentChanged = $true
                                 }
                             }
