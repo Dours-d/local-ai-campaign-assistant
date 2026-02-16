@@ -45,19 +45,24 @@
 
         // Handle hash routing for deep links
         var hash = window.location.hash;
-        var path = "";
+        var destination = "";
+
         if (hash && hash.length > 1) {
-            // Clean hash to avoid double /onboard/ prefixes
+            // Clean hash to isolate ID
             var cleanHash = hash.substring(1);
+            // Remove common prefixes if present, to just get the raw ID
             if (cleanHash.startsWith('/onboard/')) cleanHash = cleanHash.replace('/onboard/', '');
-            if (cleanHash.startsWith('onboard/')) cleanHash = cleanHash.replace('onboard/', '');
-            if (cleanHash.startsWith('/')) cleanHash = cleanHash.substring(1);
-            path = "/onboard/" + cleanHash;
+            else if (cleanHash.startsWith('onboard/')) cleanHash = cleanHash.replace('onboard/', '');
+            else if (cleanHash.startsWith('/')) cleanHash = cleanHash.substring(1);
+
+            // Construct correct Vercel path: /onboard/ID
+            destination = "/onboard/" + cleanHash;
         } else {
-            path = "/onboard";
+            destination = "/onboard";
         }
+
         var search = window.location.search || "";
-        var finalUrl = githubOnboardingUrl + path + search;
+        var finalUrl = githubOnboardingUrl + destination + search;
 
         document.getElementById("link").href = finalUrl;
         document.getElementById("msg").innerText = "Redirecting to Sovereign Portal...";
