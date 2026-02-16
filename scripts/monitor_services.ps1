@@ -14,16 +14,7 @@ function Write-Log($Message) {
     $LogEntry | Out-File -FilePath $LogFile -Append
 }
 
-Write-Log "Starting Monitor Service..."
-
-# Intelligence Intake Phase: Reintegrate Relay conversations
-try {
-    Write-Log "Intellectual Intake: Re-integrating relay intelligence..."
-    & $VenvPython scripts/reintegrate_relay_intelligence.py
-}
-catch {
-    Write-Log "Intelligence Reintegration skipped or failed: $_"
-}
+Write-Log "Starting Final Monitor Service v4..."
 
 while ($true) {
     # 1. Check Onboarding Server
@@ -33,170 +24,111 @@ while ($true) {
         Start-Process $VenvPython -ArgumentList "$ServerScript" -WorkingDirectory $WorkDir -WindowStyle Hidden
     }
 
-    # 1.5. Check Watchdog Service
-    $WatchdogProcess = Get-Process -Name python -ErrorAction SilentlyContinue | Where-Object { $_.CommandLine -like "*watch_onboarding.py*" }
-    if (-not $WatchdogProcess) {
-        Write-Log "Watchdog Service NOT found. Restarting..."
-        Start-Process $VenvPython -ArgumentList "scripts/watch_onboarding.py" -WorkingDirectory $WorkDir -WindowStyle Hidden
-    }
-
     # 2. Check Stable Tunnel (Cloudflare)
     $TunnelProcess = Get-Process -Name cloudflared -ErrorAction SilentlyContinue
     if (-not $TunnelProcess) {
         Write-Log "Stable Tunnel (Cloudflare) NOT found. Restarting..."
         Start-Process pwsh -ArgumentList "-File", "$WorkDir\scripts\start_stable_tunnel.ps1" -WorkingDirectory $WorkDir -WindowStyle Hidden
-        Start-Sleep -Seconds 10 # Wait for tunnel to initialize
+        Start-Sleep -Seconds 10
     }
 
-    # 3. HTTP Health Check (502 Prevention)
-    try {
-        $Response = Invoke-WebRequest -Uri "http://127.0.0.1:5000/onboard" -Method Head -TimeoutSec 5 -ErrorAction Stop
-        if ($Response.StatusCode -ne 200) {
-            throw "Non-200 Response"
-        }
-    }
-    catch {
-        Write-Log "Health Check FAILED: Server is unresponsive or returning 502. Restarting..."
-        $SrvProc = Get-Process -Name python -ErrorAction SilentlyContinue | Where-Object { $_.CommandLine -like "*onboarding_server.py*" }
-        if ($SrvProc) { Stop-Process -Id $SrvProc.Id -Force }
-        $WatchProc = Get-Process -Name python -ErrorAction SilentlyContinue | Where-Object { $_.CommandLine -like "*watch_onboarding.py*" }
-        if ($WatchProc) { Stop-Process -Id $WatchProc.Id -Force }
-    }
-
-    # 3. Update GitHub Pages Redirect (Dynamic Redirection)
+    # 3. GitHub Update logic
     try {
         if (Test-Path "data/tunnel.log") {
-            $TunnelLog = Get-Content "data/tunnel.log" -Tail 1000
-            $AllMatches = $TunnelLog | Select-String -Pattern "https://[a-z0-9-]+\.trycloudflare\.com" -AllMatches
-            if ($AllMatches) {
-                $CurrentUrl = $AllMatches[-1].Matches.Value
-                
-                # Files that MUST point to the Cloudflare Tunnel (The "Brain" & "Onboarding" App)
-                $AppFiles = @("onboarding/index.html", "onboarding/brain.html")
-                
-                # Files that should point to the Vercel Frontend (The "Funnel" / Redirectors)
-                # We do NOT update these with the Cloudflare URL anymore, as they should stay static or be updated manually to Vercel.
-                # If you want to force them to Vercel, we can add logic here, but for now we just STOP overwriting them with Cloudflare.
-                
-                $TargetFiles = $AppFiles 
+            # Use -Tail 200 and then join to avoid -Raw conflict
+            $Lines = Get-Content "data/tunnel.log" -Tail 200 -ErrorAction SilentlyContinue
+            if ($Lines) {
+                $TunnelLog = $Lines -join "`n"
+                $Match = [regex]::Match($TunnelLog, "https://[a-z0-9-]+\.trycloudflare\.com")
+                if ($Match.Success) {
+                    # Get the LAST match in case multiple tunnels appear in the tail
+                    $AllMatches = [regex]::Matches($TunnelLog, "https://[a-z0-9-]+\.trycloudflare\.com")
+                    $CurrentUrl = $AllMatches[$AllMatches.Count - 1].Value
+                    
+                    $TunnelTargets = @("onboarding/index.html", "onboarding/brain.html")
+                    $VercelUrl = "https://local-ai-campaign-assistant.vercel.app"
+                    $RedirectorTargets = @("index.md", "index.html", "onboard.html", "brain.html", "docs/index.html", "docs/onboard.html", "docs/brain.html")
 
-                # Track if URL actually changed to minimize pushes
-                $UrlChanged = $false
-                foreach ($CheckFile in $TargetFiles) {
-                    if (Test-Path $CheckFile) {
-                        $Content = Get-Content $CheckFile -Raw
-                        if ($Content -match '(var|const) (githubOnboardingUrl|destination|targetUrl) = "([^"]*)";') {
-                            if ($Matches[3] -ne $CurrentUrl) {
-                                $UrlChanged = $true
-                                break
+                    $FilesChangedCount = 0
+                    $Timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss UTC"
+
+                    # Update Tunnel Targets (point to Cloudflare)
+                    foreach ($Target in $TunnelTargets) {
+                        $FilePath = "$WorkDir\$Target"
+                        if (Test-Path $FilePath) {
+                            $Content = Get-Content $FilePath -Raw -ErrorAction SilentlyContinue
+                            if ([string]::IsNullOrWhiteSpace($Content)) {
+                                $Content = (Get-Content $FilePath) -join "`r`n"
+                            }
+                            
+                            $Pattern = '(var|const|let)\s+(githubOnboardingUrl|destination|targetUrl)\s*=\s*"([^"]*)";'
+                            $Regex = [regex]$Pattern
+                            $InnerMatch = $Regex.Match($Content)
+                            
+                            if ($InnerMatch.Success) {
+                                if ($InnerMatch.Groups[3].Value -ne $CurrentUrl) {
+                                    $VarKeyword = $InnerMatch.Groups[1].Value
+                                    $VarName = $InnerMatch.Groups[2].Value
+                                    $NewContent = $Regex.Replace($Content, "$VarKeyword $VarName = `"$CurrentUrl`";")
+                                    $NewContent | Set-Content -Path $FilePath -Encoding UTF8 -NoNewline
+                                    git add $FilePath
+                                    $FilesChangedCount++
+                                    Write-Log "Queued update for $Target -> $CurrentUrl"
+                                }
                             }
                         }
                     }
-                }
 
-                # Heartbeat logic: Push every 1 hour regardless of URL change to show server is alive
-                $HeartbeatIntervalMinutes = 60
-                $LastHeartbeatFile = "data/last_heartbeat.txt"
-                $NeedsHeartbeat = $true
-                if (Test-Path $LastHeartbeatFile) {
-                    $LastTime = [DateTime]::Parse((Get-Content $LastHeartbeatFile))
-                    if ((Get-Date) -lt $LastTime.AddMinutes($HeartbeatIntervalMinutes)) {
-                        $NeedsHeartbeat = $false
-                    }
-                }
-
-                if ($UrlChanged -or $NeedsHeartbeat) {
-                    foreach ($TargetFile in $TargetFiles) {
-                        if (Test-Path $TargetFile) {
-                            $Content = Get-Content $TargetFile -Raw
+                    # Update Redirector Targets (point to Vercel)
+                    foreach ($Target in $RedirectorTargets) {
+                        $FilePath = "$WorkDir\$Target"
+                        if (Test-Path $FilePath) {
+                            $Content = Get-Content $FilePath -Raw -ErrorAction SilentlyContinue
+                            if ([string]::IsNullOrWhiteSpace($Content)) {
+                                $Content = (Get-Content $FilePath) -join "`r`n"
+                            }
+                            
+                            $Changed = $false
                             $NewContent = $Content
-                            $ContentChanged = $false
-
-                            # Update URL if needed
-                            if ($Content -match '(var|const) (githubOnboardingUrl|destination|targetUrl) = "([^"]*)";') {
-                                if ($Matches[3] -ne $CurrentUrl) {
-                                    $NewContent = $NewContent -replace '(var|const) (githubOnboardingUrl|destination|targetUrl) = "[^"]*";', "$($Matches[1]) $($Matches[2]) = `"$CurrentUrl`";"
-                                    $ContentChanged = $true
+                            
+                            $Pattern = '(var|const|let)\s+(githubOnboardingUrl|destination|targetUrl)\s*=\s*"([^"]*)";'
+                            $Regex = [regex]$Pattern
+                            $InnerMatch = $Regex.Match($Content)
+                            
+                            if ($InnerMatch.Success) {
+                                if ($InnerMatch.Groups[3].Value -ne $VercelUrl) {
+                                    $VarKeyword = $InnerMatch.Groups[1].Value
+                                    $VarName = $InnerMatch.Groups[2].Value
+                                    $NewContent = $Regex.Replace($NewContent, "$VarKeyword $VarName = `"$VercelUrl`";")
+                                    $Changed = $true
                                 }
                             }
-
-                            # Update Timestamp
-                            $Timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss UTC"
+                            
+                            # Also update timestamp for redirectors
                             if ($NewContent -match '<p id="updated".*?>.*?</p>') {
                                 $NewContent = $NewContent -replace '<p id="updated".*?>.*?</p>', "<p id=`"updated`" style=`"font-size:0.8em; color:#64748b;`">Last Updated: $Timestamp</p>"
-                                $ContentChanged = $true
-                            }
-                            elseif ($NewContent -match '<p id="msg">') {
-                                $NewContent = $NewContent -replace '<p id="msg">', "<p id=`"updated`" style=`"font-size:0.8em; color:#64748b;`">Last Updated: $Timestamp</p><p id=`"msg`">"
-                                $ContentChanged = $true
+                                $Changed = $true
                             }
 
-                            if ($ContentChanged) {
-                                $NewContent | Set-Content -Path $TargetFile -Encoding UTF8
-                                if (Get-Command git -ErrorAction SilentlyContinue) {
-                                    git add $TargetFile
-                                    $FilesChanged++
-                                }
+                            if ($Changed) {
+                                $NewContent | Set-Content -Path $FilePath -Encoding UTF8 -NoNewline
+                                git add $FilePath
+                                $FilesChangedCount++
+                                Write-Log "Queued update for $Target -> $VercelUrl"
                             }
                         }
                     }
-                    if ($NeedsHeartbeat -and -not $UrlChanged) {
-                        Write-Log "Triggering hourly heartbeat push..."
-                    }
-                    Get-Date | Out-File -FilePath $LastHeartbeatFile
-                }
 
-                if ($FilesChanged -gt 0) {
-                    Write-Log "Committing $FilesChanged update(s) to GitHub..."
-                    # Sync Brain Static Archive
-                    try {
-                        & $VenvPython scripts/sync_brain_static.py
-                        git add ki_archive .nojekyll
+                    if ($FilesChangedCount -gt 0) {
+                        Write-Log "Pushing $FilesChangedCount updates to GitHub..."
+                        git commit -m "System Sync: Monitoring active at $Timestamp"
+                        git push
                     }
-                    catch { Write-Log "Archive Sync Failed: $_" }
-
-                    git commit -m "Auto-update tunnel URL and Brain Archive"
-                    git push
-                    Write-Log "GitHub Pages & Brain Archive updated successfully."
                 }
             }
         }
     }
-    catch {
-        Write-Log "Error updating redirection: $_"
-    }
+    catch { Write-Log "GitHub Update failure: $_" }
 
-    # 4. Verify Public URL Availability
-    try {
-        # Get Current URL from index.html if not already known from step 3
-        if (-not $CurrentUrl -and (Test-Path "index.html")) {
-            $IndexContent = Get-Content "index.html" -Raw
-            if ($IndexContent -match '(githubOnboardingUrl|destination) = "([^"]+)";') {
-                $CurrentUrl = $Matches[1]
-            }
-        }
-
-        if ($CurrentUrl) {
-            # Verify the actual onboarding page content
-            $CheckUrl = "$CurrentUrl/onboard"
-            $Response = Invoke-WebRequest -Uri $CheckUrl -UseBasicParsing -TimeoutSec 15 -ErrorAction Stop
-            
-            if ($Response.StatusCode -eq 200 -and $Response.Content -match "Gaza Resilience Portal") {
-                Write-Log "Public URL Verification SUCCESS: Onboarding page is ACTIVE at $CheckUrl"
-            }
-            else {
-                Write-Log "Public URL Verification FAIL: $CheckUrl returned status $($Response.StatusCode) or invalid content."
-                Write-Log "Restarting Tunnel due to unhealthy response..."
-                Stop-Process -Name cloudflared -Force -ErrorAction SilentlyContinue
-            }
-        }
-    }
-    catch {
-        Write-Log "Public URL Verification ERROR: Could not reach $CurrentUrl. $_"
-        Write-Log "Restarting Tunnel due to connectivity failure..."
-        Stop-Process -Name cloudflared -Force -ErrorAction SilentlyContinue
-    }
-
-    # Wait for 60 seconds before next check
     Start-Sleep -Seconds 60
 }

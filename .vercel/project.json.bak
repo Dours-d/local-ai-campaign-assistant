@@ -1,0 +1,16 @@
+{
+  "projectId": "prj_0zRitbBPpwKVVmxdyzcspDlx7BaB",
+  "orgId": "team_fIuAXVcOC3wshK11APnEyg1z",
+  "projectName": "local-ai-campaign-assistant",
+  "settings": {
+    "createdAt": 1771200176427,
+    "framework": "jekyll",
+    "devCommand": null,
+    "installCommand": null,
+    "buildCommand": null,
+    "outputDirectory": ".",
+    "rootDirectory": null,
+    "directoryListing": false,
+    "nodeVersion": "24.x"
+  }
+}

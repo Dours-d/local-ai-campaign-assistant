@@ -1,0 +1,30 @@
+2026/02/15-09:15:33.364 3c84 Reusing MANIFEST C:\Users\gaelf\Documents\GitHub\local_ai_campaign_assistant\edge_profile\Default\Session Storage/MANIFEST-000001
+2026/02/15-09:15:33.365 3c84 Recovering log #3
+2026/02/15-09:15:33.369 3c84 Reusing old log C:\Users\gaelf\Documents\GitHub\local_ai_campaign_assistant\edge_profile\Default\Session Storage/000003.log 
+2026/02/15-09:53:25.047 18d8 Level-0 table #5: started
+2026/02/15-09:53:25.056 18d8 Level-0 table #5: 21466 bytes OK
+2026/02/15-09:53:25.059 18d8 Delete type=0 #3
+2026/02/15-10:13:55.126 18d8 Level-0 table #7: started
+2026/02/15-10:13:55.132 18d8 Level-0 table #7: 10174 bytes OK
+2026/02/15-10:13:55.135 18d8 Delete type=0 #4
+2026/02/15-10:32:25.832 18d8 Level-0 table #9: started
+2026/02/15-10:32:25.839 18d8 Level-0 table #9: 9366 bytes OK
+2026/02/15-10:32:25.843 18d8 Delete type=0 #6
+2026/02/15-10:46:18.070 18d8 Level-0 table #11: started
+2026/02/15-10:46:18.078 18d8 Level-0 table #11: 9085 bytes OK
+2026/02/15-10:46:18.082 18d8 Delete type=0 #8
+2026/02/15-11:04:39.558 18d8 Level-0 table #13: started
+2026/02/15-11:04:39.563 18d8 Level-0 table #13: 8954 bytes OK
+2026/02/15-11:04:39.565 18d8 Delete type=0 #10
+2026/02/15-11:30:57.391 18d8 Level-0 table #15: started
+2026/02/15-11:30:57.400 18d8 Level-0 table #15: 8749 bytes OK
+2026/02/15-11:30:57.403 18d8 Delete type=0 #12
+2026/02/15-11:30:57.403 18d8 Compacting 4@0 + 1@1 files
+2026/02/15-11:30:57.407 18d8 Generated table #16@0: 38 keys, 2559 bytes
+2026/02/15-11:30:57.407 18d8 Compacted 4@0 + 1@1 files => 2559 bytes
+2026/02/15-11:30:57.408 18d8 compacted to: files[ 0 1 1 0 0 0 0 ]
+2026/02/15-11:30:57.409 18d8 Delete type=2 #7
+2026/02/15-11:30:57.409 18d8 Delete type=2 #9
+2026/02/15-11:30:57.409 18d8 Delete type=2 #11
+2026/02/15-11:30:57.409 18d8 Delete type=2 #13
+2026/02/15-11:30:57.409 18d8 Delete type=2 #15
