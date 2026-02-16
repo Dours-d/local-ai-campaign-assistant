@@ -19,6 +19,10 @@
       "destination": "/onboarding/brain.html"
     },
     {
+      "source": "/onboarding/style.css",
+      "destination": "/onboarding/style.css"
+    },
+    {
       "source": "/onboarding/(.*\\..*)",
       "destination": "/onboarding/$1"
     },
