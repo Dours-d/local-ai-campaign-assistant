@@ -15,6 +15,10 @@
       "destination": "/onboarding/index.html"
     },
     {
+      "source": "/onboarding/style.css",
+      "destination": "/onboarding/style.css"
+    },
+    {
       "source": "/onboarding/(.*)",
       "destination": "/onboarding/index.html"
     }
