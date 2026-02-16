@@ -1,0 +1,7 @@
+# Ignore Jekyll-related files
+Gemfile
+Gemfile.lock
+_config.yml
+jekyll*
+*.gem
+vendor/
