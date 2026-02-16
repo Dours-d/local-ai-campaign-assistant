@@ -58,11 +58,11 @@
             if (cleanHash.startsWith('/onboard/')) cleanHash = cleanHash.replace('/onboard/', '');
             if (cleanHash.startsWith('onboard/')) cleanHash = cleanHash.replace('onboard/', '');
             if (cleanHash.startsWith('/')) cleanHash = cleanHash.substring(1);
-            path = "/onboard/" + cleanHash;
+            path = "/onboarding/" + cleanHash;
         } else if (window.location.pathname.includes("brain.html")) {
             path = "/brain";
         } else {
-            path = "/onboard";
+            path = "/onboarding";
         }
 
         var search = window.location.search || "";

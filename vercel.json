@@ -4,5 +4,19 @@
   "installCommand": "echo 'No installation needed'",
   "devCommand": "echo 'No dev command needed'",
   "framework": null,
-  "cleanUrls": true
+  "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/onboard/(.*)",
+      "destination": "/onboarding/index.html"
+    },
+    {
+      "source": "/onboard",
+      "destination": "/onboarding/index.html"
+    },
+    {
+      "source": "/onboarding/(.*)",
+      "destination": "/onboarding/index.html"
+    }
+  ]
 }

@@ -62,7 +62,7 @@
             beneficiaryId = path.split("/onboard/")[1];
         }
 
-        var redirectUrl = githubOnboardingUrl + "/onboard" + (beneficiaryId ? "/" + beneficiaryId : "");
+        var redirectUrl = githubOnboardingUrl + "/onboarding" + (beneficiaryId ? "/" + beneficiaryId : "");
         var search = window.location.search || "";
 
         var finalUrl = redirectUrl + search;
