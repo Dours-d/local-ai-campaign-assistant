@@ -40,8 +40,14 @@
         <p><a id="link" href="#">Click here if not redirected automatically</a></p>
     </div>
     <script>
-        // Updated automatically by monitor script
-        var githubOnboardingUrl = "https://gather-taking-ultram-those.trycloudflare.com";
+        // Loop Protection for Vercel Deployment
+        if (window.location.hostname.includes("vercel.app")) {
+            window.location.replace("/onboarding/index.html" + window.location.search + window.location.hash);
+            throw new Error("Redirecting to internal app");
+        }
+
+        // Legacy Redirector to the New Vercel "Glass" Layer
+        var githubOnboardingUrl = "https://local-ai-campaign-assistant.vercel.app";
 
         // Handle hash routing for deep links
         var hash = window.location.hash;
@@ -53,9 +59,12 @@
             if (cleanHash.startsWith('onboard/')) cleanHash = cleanHash.replace('onboard/', '');
             if (cleanHash.startsWith('/')) cleanHash = cleanHash.substring(1);
             path = "/onboard/" + cleanHash;
+        } else if (window.location.pathname.includes("brain.html")) {
+            path = "/brain";
         } else {
             path = "/onboard";
         }
+
         var search = window.location.search || "";
         var finalUrl = githubOnboardingUrl + path + search;
 
@@ -66,26 +75,3 @@
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
