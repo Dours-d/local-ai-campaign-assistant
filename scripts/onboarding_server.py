@@ -10,7 +10,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-app = Flask(__name__, static_folder="../onboarding", static_url_path="")
+app = Flask(__name__, static_folder="../onboarding", static_url_path="/onboarding")
 app.secret_key = os.getenv("ADMIN_SECRET_KEY", "sovereign_fallback_key_123")
 CORS(app)
 
