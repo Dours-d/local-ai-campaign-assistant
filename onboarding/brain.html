@@ -678,12 +678,13 @@
     </div>
 
     <script>
+        const targetUrl = "https://dat-glow-atmosphere-secret.trycloudflare.com"; // Updated automatically by monitor script
         let currentRole = "GUEST";
 
         async function doLogin() {
             const password = document.getElementById('pass').value;
             try {
-                const res = await fetch('/login', {
+                const res = await fetch(targetUrl + '/login', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ password })
@@ -702,7 +703,7 @@
         async function checkIdentity() {
             const urlParams = new URLSearchParams(window.location.search);
             const token = urlParams.get('token');
-            const fetchUrl = token ? `/api/whoami?token=${token}` : '/api/whoami';
+            const fetchUrl = token ? targetUrl + `/api/whoami?token=${token}` : targetUrl + '/api/whoami';
 
             const res = await fetch(fetchUrl);
             if (res.ok) {
@@ -726,7 +727,7 @@
             const container = document.getElementById('ki-list');
             try {
                 // Try Local Server First
-                const res = await fetch('/api/knowledge');
+                const res = await fetch(targetUrl + '/api/knowledge');
                 if (res.ok) {
                     const list = await res.json();
                     renderList(list, false);
@@ -779,7 +780,7 @@
                 // If offline, we can't easily list files, so we assume 'welcome.md' or 'ethos.md' for now
                 // This is a simplification; in a real sync we'd list files in the KI index.
 
-                const res = await fetch(isOffline ? `ki_archive/${id}/metadata.json` : `/api/knowledge/${id}`);
+                const res = await fetch(isOffline ? `ki_archive/${id}/metadata.json` : targetUrl + `/api/knowledge/${id}`);
                 // Simplified for now: just load the known markdown files
                 const files = isOffline ? ['welcome.md', 'ethos.md', 'summary.md'] : null;
 
@@ -857,7 +858,7 @@
                 const token = urlParams.get('token');
                 const isRelay = document.getElementById('relay-mode').checked;
 
-                const res = await fetch('/api/chat' + (token ? `?token=${token}` : ''), {
+                const res = await fetch(targetUrl + '/api/chat' + (token ? `?token=${token}` : ''), {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
