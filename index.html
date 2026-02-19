@@ -40,18 +40,28 @@
         <p><a id="link" href="#">Click here if not redirected automatically</a></p>
     </div>
     <script>
+        // Use the GitHub Pages Noor Portal as the permanent target
+        var permanentBrainLocation = "https://dours-d.github.io/local-ai-campaign-assistant/brain.html";
+
+        // Updated automatically by monitor script
+        var githubOnboardingUrl = "https://spread-trainers-triumph-phones.trycloudflare.com";
+
+        // Logic for Tailscale (Broken Tunnel) Handoff
+        if (window.location.hostname.includes("tailscale.net") || window.location.hostname.includes("ts.net")) {
+            console.log("Redirecting from legacy/broken tunnel to permanent location.");
+            window.location.replace(permanentBrainLocation + window.location.search + window.location.hash);
+            throw new Error("Redirecting to permanent location");
+        }
+
         // Loop Protection for Vercel Deployment
         if (window.location.hostname.includes("vercel.app")) {
             window.location.replace("/onboarding/index.html" + window.location.search + window.location.hash);
             throw new Error("Redirecting to internal app");
         }
 
-        // Legacy Redirector to the New Vercel "Glass" Layer
-        var githubOnboardingUrl = "https://spread-trainers-triumph-phones.trycloudflare.com";
-
         // Handle hash routing for deep links
         var hash = window.location.hash;
-        var githubOnboardingUrl = "https://spread-trainers-triumph-phones.trycloudflare.com";
+        var destination = "";
 
         if (hash && hash.length > 1) {
             // Clean hash to isolate ID
@@ -77,14 +87,3 @@
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-
-
-
