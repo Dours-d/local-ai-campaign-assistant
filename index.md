@@ -12,7 +12,7 @@ This portal ensures secure access to your local AI campaign assistant.
 
 <script>
   // Read the URL directly injected by the monitoring script
-  var githubOnboardingUrl = "https://sustained-discussion-prayers-allocated.trycloudflare.com";
+  var githubOnboardingUrl = "https://filled-dash-vocals-holiday.trycloudflare.com";
   
   // Handle Deep Linking via Hash (e.g. https://gd-pages/#/onboard/123 -> https://tunnel/onboard/123)
   var hash = window.location.hash;
