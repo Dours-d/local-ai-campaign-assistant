@@ -34,3 +34,9 @@ Thumbs.db
 
 # Executables
 cloudflared.exe
+
+# Browser Profiles
+edge_profile/
+chrome-profile/
+SCRIBE_VAULT/
+.gemini/
