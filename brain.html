@@ -38,26 +38,43 @@
 
 <body>
     <div class="box">
-        <p id="updated" style="font-size:0.8em; color:#64748b;">Last Updated: 2026-02-18 23:51:21 UTC</p>
-        <p id="msg">Connecting to Dunya Sovereign Intelligence...</p>
+        <div style="font-size: 2rem; margin-bottom: 20px;">✨</div>
+        <h1 style="font-size: 1.2rem; margin-bottom: 24px; letter-spacing: 4px; color: white;">DUNYA دنيا</h1>
+        <p id="msg">Establishing secure connection to Noor Sovereign Intelligence...</p>
+        <div style="margin: 24px 0;">
+            <div
+                style="height: 2px; width: 100px; background: rgba(212, 163, 115, 0.2); margin: 0 auto; overflow: hidden; position: relative;">
+                <div
+                    style="position: absolute; height: 100%; width: 30%; background: var(--primary); animation: move 1.5s infinite ease-in-out;">
+                </div>
+            </div>
+        </div>
         <p><a id="link" href="#">Click here if not redirected automatically</a></p>
+        <p id="updated" style="font-size:0.7em; color:#64748b; margin-top: 32px;">System Sync: 2026-02-18 23:51:21 UTC
+        </p>
     </div>
+    <style>
+        @keyframes move {
+            0% {
+                left: -30%;
+            }
+
+            100% {
+                left: 100%;
+            }
+        }
+    </style>
     <script>
         // Updated automatically by monitor script
         var githubOnboardingUrl = "https://spread-trainers-triumph-phones.trycloudflare.com";
         var finalUrl = githubOnboardingUrl + "/brain" + window.location.search + window.location.hash;
         document.getElementById("link").href = finalUrl;
-        setTimeout(() => { window.location.replace(finalUrl); }, 1000);
+
+        // Faster check/redirect
+        setTimeout(() => {
+            window.location.replace(finalUrl);
+        }, 800);
     </script>
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-

@@ -605,6 +605,23 @@
             color: var(--secondary);
             display: none;
         }
+
+        .back-link {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: var(--secondary);
+            text-decoration: none;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: var(--primary);
+        }
     </style>
 </head>
 
@@ -615,17 +632,19 @@
             <h1
                 style="font-size: 1rem; margin-bottom: 10px; background: none; -webkit-text-fill-color: initial; color: white; letter-spacing: 3px; font-weight: 700; text-transform: uppercase;">
                 DUNYA دنيا</h1>
-            <p style="color: #64748b; font-size: 0.75rem; line-height: 1.6; max-width: 250px; margin: 0 auto;">Enter the
+            <p style="color: #64748b; font-size: 0.75rem; line-height: 1.6; max-width: 250px; margin: 0 auto;"
+                data-i18n="enter_key">Enter the
                 Sovereign Access Key to establish a secure connection.
             </p>
             <input type="password" id="pass" placeholder="••••••••"
                 style="text-align: center; letter-spacing: 6px; font-size: 0.9rem; margin: 24px 0; padding: 12px; border-color: rgba(212, 163, 115, 0.1);">
-            <button onclick="doLogin()"
-                style="font-size: 0.75rem; padding: 12px 24px; letter-spacing: 2px;">Authenticate</button>
+            <button onclick="doLogin()" style="font-size: 0.75rem; padding: 12px 24px; letter-spacing: 2px;"
+                data-i18n="authenticate">Authenticate</button>
         </div>
     </div>
 
     <div class="container">
+        <a href="index.html" class="back-link">← <span data-i18n="back_to_portal">Return to Sovereign Portal</span></a>
         <header>
             <h1>DUNYA دنيا</h1>
             <p>Sovereign Collective Intelligence Layer</p>
@@ -634,9 +653,9 @@
 
         <div class="grid">
             <aside class="sidebar">
-                <h2 style="font-size: 1rem; margin-top: 0;">Knowledge Items</h2>
+                <h2 style="font-size: 1rem; margin-top: 0;" data-i18n="ki_title">Knowledge Items</h2>
                 <div id="ki-list" class="ki-list">
-                    <div class="loading">Discovering intelligence...</div>
+                    <div class="loading" data-i18n="discovering">Discovering intelligence...</div>
                 </div>
             </aside>
 
@@ -657,29 +676,95 @@
             </div>
             <div style="display: flex; align-items: center; gap: 12px;">
                 <div class="relay-toggle-container" onclick="event.stopPropagation()">
-                    <span>Relay</span>
+                    <span data-i18n="relay">Relay</span>
                     <label class="switch">
                         <input type="checkbox" id="relay-mode" onchange="updateModelLabel()">
                         <span class="slider"></span>
                     </label>
                 </div>
-                <span id="chat-status" style="font-size: 0.7rem; opacity: 0.7;">Online</span>
+                <span id="chat-status" style="font-size: 0.7rem; opacity: 0.7;" data-i18n="online">Online</span>
                 <div class="chat-close" onclick="minimizeChat(event)" title="Minimize">×</div>
             </div>
         </div>
         <div class="chat-messages" id="chat-msgs">
-            <div class="msg ai">I am Noor. How can I assist the mission today?</div>
+            <div class="msg ai" data-i18n="noor_intro">I am Noor. How can I assist the mission today?</div>
         </div>
         <div class="chat-input-area" onclick="event.stopPropagation()">
-            <input type="text" id="chat-in" class="chat-input" placeholder="Ask Australia.."
-                onkeypress="if(event.key==='Enter') sendPrompt()">
-            <button class="chat-send-btn" onclick="sendPrompt()">Send</button>
+            <input type="text" id="chat-in" class="chat-input" data-i18n-placeholder="ask_noor"
+                placeholder="Ask Noor..." onkeypress="if(event.key==='Enter') sendPrompt()">
+            <button class="chat-send-btn" onclick="sendPrompt()" data-i18n="send">Send</button>
         </div>
     </div>
 
     <script>
         const targetUrl = "https://spread-trainers-triumph-phones.trycloudflare.com"; // Updated automatically by monitor script
         let currentRole = "GUEST";
+        let currentLang = 'ar';
+
+        const translations = {
+            en: {
+                back_to_portal: "Return to Sovereign Portal",
+                ki_title: "Knowledge Items",
+                discovering: "Discovering intelligence...",
+                brain_dark: "Brain is currently fully dark.",
+                conn_lost: "Connection to the collective lost.",
+                retrieving: "Retrieving distilled artifacts...",
+                failed_item: "Failed to load this specific item.",
+                noor_intro: "I am Noor. How can I assist the mission today?",
+                processing: "Processing...",
+                unavailable: "The intelligence relay is currently unavailable. Please ensure the local model is heartbeat-active.",
+                conn_error: "Connection error to the local brain.",
+                online: "Online",
+                offline_mode: "Offline (Archive Mode)",
+                enter_key: "Enter the Sovereign Access Key to establish a secure connection.",
+                authenticate: "Authenticate",
+                relay: "Relay",
+                ask_noor: "Ask Noor...",
+                send: "Send"
+            },
+            ar: {
+                back_to_portal: "العودة إلى بوابة التمكين",
+                ki_title: "عناصر المعرفة",
+                discovering: "جاري اكتشاف البيانات...",
+                brain_dark: "الذاكرة حالياً في وضع السكون.",
+                conn_lost: "انقطع الاتصال بالشبكة الجماعية.",
+                retrieving: "جاري استرجاع البيانات المقطرة...",
+                failed_item: "فشل تحميل هذا العنصر.",
+                noor_intro: "أنا نور. كيف يمكنني مساعدة المهمة اليوم؟",
+                processing: "جاري المعالجة...",
+                unavailable: "محول الذكاء غير متاح حالياً. يرجى التأكد من أن النموذج المحلي نشط.",
+                conn_error: "خطأ في الاتصال بالذاكرة المحلية.",
+                online: "متصل",
+                offline_mode: "غير متصل (وضع الأرشيف)",
+                enter_key: "أدخل مفتاح الدخول السيادي لإنشاء اتصال آمن.",
+                authenticate: "توثيق",
+                relay: "مرحل",
+                ask_noor: "اسأل نور...",
+                send: "إرسال"
+            }
+        };
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            document.documentElement.lang = lang;
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+
+            // Update text
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+
+            // Update placeholders
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-i18n-placeholder');
+                if (translations[lang] && translations[lang][key]) {
+                    el.placeholder = translations[lang][key];
+                }
+            });
+        }
 
         async function doLogin() {
             const password = document.getElementById('pass').value;
@@ -703,21 +788,39 @@
         async function checkIdentity() {
             const urlParams = new URLSearchParams(window.location.search);
             const token = urlParams.get('token');
-            const fetchUrl = token ? targetUrl + `/api/whoami?token=${token}` : targetUrl + '/api/whoami';
+            // Try relative first, then fall back to absolute if needed (CORS safety)
+            const basePath = window.location.origin === targetUrl ? "" : targetUrl;
+            const fetchUrl = token ? `${basePath}/api/whoami?token=${token}` : `${basePath}/api/whoami`;
 
-            const res = await fetch(fetchUrl);
-            if (res.ok) {
-                const data = await res.json();
-                currentRole = data.role;
-
-                if (currentRole === "GUEST") {
-                    document.getElementById('role-display').textContent = "Public Access (Guest)";
-                    document.getElementById('role-display').style.background = "rgba(255, 255, 255, 0.1)";
-                } else {
-                    document.getElementById('role-display').textContent = `${data.role}: ${data.email || 'Cloudflare Verified'}`;
+            // Auto-hide overlay after 2 seconds as a fallback safety measure
+            setTimeout(() => {
+                const overlay = document.getElementById('login-overlay');
+                if (overlay && overlay.style.display !== 'none') {
+                    console.log("Noor: Identity check slow, proceeding with Guest access.");
+                    overlay.style.display = 'none';
+                    if (!document.querySelector('.ki-item')) loadKIList();
                 }
+            }, 2000);
 
-                document.getElementById('role-display').style.display = 'inline-block';
+            try {
+                const res = await fetch(fetchUrl);
+                if (res.ok) {
+                    const data = await res.json();
+                    currentRole = data.role;
+
+                    if (currentRole === "GUEST") {
+                        document.getElementById('role-display').textContent = "Public Access (Guest)";
+                        document.getElementById('role-display').style.background = "rgba(255, 255, 255, 0.1)";
+                    } else {
+                        document.getElementById('role-display').textContent = `${data.role}: ${data.email || 'Cloudflare Verified'}`;
+                    }
+
+                    document.getElementById('role-display').style.display = 'inline-block';
+                    document.getElementById('login-overlay').style.display = 'none';
+                    loadKIList();
+                }
+            } catch (e) {
+                console.log("Noor: Identity check failed, assuming offline/guest.");
                 document.getElementById('login-overlay').style.display = 'none';
                 loadKIList();
             }
@@ -726,8 +829,9 @@
         async function loadKIList() {
             const container = document.getElementById('ki-list');
             try {
-                // Try Local Server First
-                const res = await fetch(targetUrl + '/api/knowledge');
+                // Use relative path if already served from same origin
+                const basePath = window.location.origin === targetUrl ? "" : targetUrl;
+                const res = await fetch(basePath + '/api/knowledge');
                 if (res.ok) {
                     const list = await res.json();
                     renderList(list, false);
@@ -743,13 +847,14 @@
                 if (res.ok) {
                     const list = await res.json();
                     renderList(list, true);
-                    document.getElementById('chat-status').textContent = "Offline (Archive Mode)";
-                    document.getElementById('chat-status').style.color = "#ef4444";
+                    const status = document.getElementById('chat-status');
+                    status.textContent = translations[currentLang].offline_mode;
+                    status.style.color = "#ef4444";
                 } else {
-                    container.innerHTML = '<div class="loading">Brain is currently fully dark.</div>';
+                    container.innerHTML = `<div class="loading">${translations[currentLang].brain_dark}</div>`;
                 }
             } catch (e) {
-                container.innerHTML = '<div class="loading">Connection to the collective lost.</div>';
+                container.innerHTML = `<div class="loading">${translations[currentLang].conn_lost}</div>`;
             }
         }
 
@@ -773,14 +878,16 @@
             element.classList.add('active');
 
             const main = document.getElementById('main-content');
-            main.innerHTML = '<div class="loading">Retrieving distilled artifacts...</div>';
+            main.innerHTML = `<div class="loading">${translations[currentLang].retrieving}</div>`;
 
             try {
                 const url = isOffline ? `ki_archive/${id}/` : `/api/knowledge/${id}/`;
                 // If offline, we can't easily list files, so we assume 'welcome.md' or 'ethos.md' for now
                 // This is a simplification; in a real sync we'd list files in the KI index.
 
-                const res = await fetch(isOffline ? `ki_archive/${id}/metadata.json` : targetUrl + `/api/knowledge/${id}`);
+                const basePath = window.location.origin === targetUrl ? "" : targetUrl;
+                const finalApiUrl = isOffline ? `ki_archive/${id}/metadata.json` : `${basePath}/api/knowledge/${id}`;
+                const res = await fetch(finalApiUrl);
                 // Simplified for now: just load the known markdown files
                 const files = isOffline ? ['welcome.md', 'ethos.md', 'summary.md'] : null;
 
@@ -802,7 +909,7 @@
                     }
                 }
             } catch (e) {
-                main.innerHTML = '<div class="loading">Failed to load this specific item.</div>';
+                main.innerHTML = `<div class="loading">${translations[currentLang].failed_item}</div>`;
             }
         }
 
@@ -851,14 +958,17 @@
             input.value = '';
 
             const status = document.getElementById('chat-status');
-            status.textContent = "Processing...";
+            status.textContent = translations[currentLang].processing;
 
             try {
                 const urlParams = new URLSearchParams(window.location.search);
                 const token = urlParams.get('token');
                 const isRelay = document.getElementById('relay-mode').checked;
 
-                const res = await fetch(targetUrl + '/api/chat' + (token ? `?token=${token}` : ''), {
+                const basePath = window.location.origin === targetUrl ? "" : targetUrl;
+                const chatUrl = `${basePath}/api/chat${token ? `?token=${token}` : ''}`;
+
+                const res = await fetch(chatUrl, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -871,12 +981,12 @@
                     const data = await res.json();
                     addMsg(data.response, 'ai');
                 } else {
-                    addMsg("The intelligence relay is currently unavailable. Please ensure the local model is heartbeat-active.", 'ai');
+                    addMsg(translations[currentLang].unavailable, 'ai');
                 }
             } catch (e) {
-                addMsg("Connection error to the local brain.", 'ai');
+                addMsg(translations[currentLang].conn_error, 'ai');
             }
-            status.textContent = "Online";
+            status.textContent = translations[currentLang].online;
         }
 
         function addMsg(text, type) {
@@ -895,6 +1005,7 @@
         }
 
         // Initialize
+        setLanguage('ar');
         checkIdentity();
     </script>
 </body>
