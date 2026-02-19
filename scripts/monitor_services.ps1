@@ -7,6 +7,7 @@ $ServerScript = "scripts/onboarding_server.py"
 $VenvPython = "$WorkDir\.venv\Scripts\python.exe"
 
 function Write-Log($Message) {
+    if ($null -eq $Message) { return }
     $Timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
     $LogEntry = "[$Timestamp] $Message"
     Write-Host $LogEntry -ForegroundColor Cyan
@@ -29,7 +30,8 @@ while ($true) {
     if (-not $TunnelProcess) {
         Write-Log "Stable Tunnel (Cloudflare) NOT found. Restarting..."
         Start-Process pwsh -ArgumentList "-File", "$WorkDir\scripts\start_stable_tunnel.ps1" -WorkingDirectory $WorkDir -WindowStyle Hidden
-        Start-Sleep -Seconds 10
+        Start-Sleep -Seconds 15
+        $TunnelProcess = Get-Process -Name cloudflared -ErrorAction SilentlyContinue
     }
 
     # 3. GitHub Update logic
@@ -46,7 +48,6 @@ while ($true) {
                     $CurrentUrl = $AllMatches[$AllMatches.Count - 1].Value
                     
                     $TunnelTargets = @("onboarding/index.html", "onboarding/brain.html")
-                    $VercelUrl = "https://local-ai-campaign-assistant.vercel.app"
                     $RedirectorTargets = @("index.md", "index.html", "onboard.html", "brain.html", "docs/index.html", "docs/onboard.html", "docs/brain.html")
 
                     $FilesChangedCount = 0
@@ -96,25 +97,24 @@ while ($true) {
                             $InnerMatch = $Regex.Match($Content)
                             
                             if ($InnerMatch.Success) {
-                                if ($InnerMatch.Groups[3].Value -ne $VercelUrl) {
+                                if ($InnerMatch.Groups[3].Value -ne $CurrentUrl) {
                                     $VarKeyword = $InnerMatch.Groups[1].Value
                                     $VarName = $InnerMatch.Groups[2].Value
-                                    $NewContent = $Regex.Replace($NewContent, "$VarKeyword $VarName = `"$VercelUrl`";")
+                                    $NewContent = $Regex.Replace($NewContent, "$VarKeyword $VarName = `"$CurrentUrl`";")
                                     $Changed = $true
                                 }
                             }
                             
-                            # Also update timestamp for redirectors
-                            if ($NewContent -match '<p id="updated".*?>.*?</p>') {
+                            # Also update timestamp for redirectors ONLY if something else changed
+                            if ($Changed -and ($NewContent -match '<p id="updated".*?>.*?</p>')) {
                                 $NewContent = $NewContent -replace '<p id="updated".*?>.*?</p>', "<p id=`"updated`" style=`"font-size:0.8em; color:#64748b;`">Last Updated: $Timestamp</p>"
-                                $Changed = $true
                             }
 
                             if ($Changed) {
                                 $NewContent | Set-Content -Path $FilePath -Encoding UTF8 -NoNewline
                                 git add $FilePath
                                 $FilesChangedCount++
-                                Write-Log "Queued update for $Target -> $VercelUrl"
+                                Write-Log "Queued update for $Target -> $CurrentUrl"
                             }
                         }
                     }
@@ -124,11 +124,56 @@ while ($true) {
                         git commit -m "System Sync: Monitoring active at $Timestamp"
                         git push
                     }
+
+                    # 4. WinterHeartbite: Direct API Interrogation (The Biting Truth)
+                    try {
+                        $MissionPillars = @(
+                            "winter-relief-for-rana-and-her-seven-children-",
+                            "-urgent-winter-aid-for-mother-of-10"
+                        )
+                        
+                        Write-Log "WinterHeartbite: Interrogating Mission Pillars..."
+                        
+                        foreach ($Slug in $MissionPillars) {
+                            $ApiUrl = "https://fundraiser.whydonate.dev/fundraiser/get?slug=$Slug&language=en"
+                            try {
+                                $ApiResponse = Invoke-RestMethod -Uri $ApiUrl -Method Get -TimeoutSec 10 -ErrorAction Stop
+                                
+                                # WhyDonate API returns 200 OK even for errors, check the internal 'errors' field
+                                if ($null -ne $ApiResponse.data.errors) {
+                                    $ErrMsg = $ApiResponse.data.errors.message
+                                    throw "MISSION DECEPTION DETECTED on $Slug: $ErrMsg"
+                                }
+                                
+                                # Verify the result object exists and has content
+                                if ($null -eq $ApiResponse.data.result -or $null -eq $ApiResponse.data.result.id) {
+                                    throw "MISSION VOID DETECTED on $Slug: API returned empty result."
+                                }
+                                
+                                Write-Log "  Pillar $Slug is LIVE (ID: $($ApiResponse.data.result.id))"
+                            }
+                            catch {
+                                throw "Pillar Interrogation Failure ($Slug): $_"
+                            }
+                        }
+
+                        # Also check the local tunnel for basic connectivity
+                        Write-Log "WinterHeartbite: Verifying Local Tunnel..."
+                        $Response = Invoke-WebRequest -Uri $CurrentUrl -Method Get -TimeoutSec 10 -ErrorAction Stop
+                        Write-Log "WinterHeartbite Success: Mission and Tunnel are truthfully alive."
+                    }
+                    catch {
+                        Write-Log "WINTERHEARTBITE FAILURE: $_"
+                        Write-Log "Executing systemic interruption (Purging and Restarting)..."
+                        Stop-Process -Name "cloudflared" -Force -ErrorAction SilentlyContinue
+                        Stop-Process -Name "python" -Force -ErrorAction SilentlyContinue
+                        Start-Sleep -Seconds 5
+                    }
                 }
             }
         }
     }
-    catch { Write-Log "GitHub Update failure: $_" }
+    catch { Write-Log "Monitoring loop error: $_" }
 
     Start-Sleep -Seconds 60
 }
