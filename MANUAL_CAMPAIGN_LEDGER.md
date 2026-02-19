@@ -8,6 +8,11 @@ This ledger tracks the manual creation of 10 humanitarian campaigns, ensuring "T
 - **Staged:** 4
 - **Status:** Expanding (Batch 2)
 
+> [!WARNING]
+> **Umbrella Fund (Collective Shield) Status:** This initiative is currently in **Project Status (Staging)**. 
+> The accounting for the Collective Shield is **NOT yet reconciled** with reality. It should be treated as an experimental development project.
+
+
 ## 📝 Campaign Records
 
 | # | Beneficiary Name | ID (BID) | Platform | WhyDonate URL | Trust Status | Notes |
