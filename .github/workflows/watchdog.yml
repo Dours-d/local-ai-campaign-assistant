@@ -15,8 +15,8 @@ jobs:
       - name: Extract Tunnel URL and Pulse
         run: |
           # Extract URL from index.html (updated by local monitor)
-          TUNNEL_URL=$(grep -m 1 'githubOnboardingUrl =' index.html | sed -E 's/.*"(https:[^"]+)".*/\1/')
-          echo "Target Tunnel: $TUNNEL_URL"
+          TUNNEL_URL=$(grep 'githubOnboardingUrl =' index.html | grep -o 'https://[^"]*' | head -n 1)
+          echo "DEBUG: Raw Extracted Tunnel: '$TUNNEL_URL'"
 
           if [ -z "$TUNNEL_URL" ]; then
             echo "::error::Tunnel URL not found in index.html"
@@ -24,14 +24,18 @@ jobs:
           fi
 
           # Ping the health endpoint
-          RESPONSE=$(curl -s -f "$TUNNEL_URL/health" || echo '{"status":"dead"}')
-          echo "Response: $RESPONSE"
+          echo "Pinging: $TUNNEL_URL/health"
+          RESPONSE=$(curl -s -v "$TUNNEL_URL/health" -o response.json || echo 'FAILED')
+          if [ "$RESPONSE" = "FAILED" ]; then
+             echo "::error::Curl failed to reach $TUNNEL_URL"
+             exit 1
+          fi
 
-          STATUS=$(echo $RESPONSE | jq -r '.status' 2>/dev/null || echo "dead")
+          cat response.json
+          STATUS=$(jq -r '.status' response.json 2>/dev/null || echo "dead")
 
           if [ "$STATUS" != "healthy" ]; then
-            echo "::error::Portal is DOWN or UNRESPONSIVE at $TUNNEL_URL"
-            # Here we could trigger a notification web-hook (e.g. to a phone app)
+            echo "::error::Portal reported status: $STATUS"
             exit 1
           fi
 
