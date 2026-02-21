@@ -103,23 +103,41 @@ def admin_required(f):
 def load_valid_scopes():
     valid = set()
     try:
-        if os.path.exists('data/campaign_index.json'):
-            with open('data/campaign_index.json', 'r', encoding='utf-8') as f:
-                index_data = json.load(f)
-                for key in index_data.keys():
-                    clean_key = "".join([c for c in key if c.isdigit()])
-                    valid.add(clean_key)
+        # Priority 1: Main Registry
+        if os.path.exists('data/campaign_registry.json'):
+            with open('data/campaign_registry.json', 'r', encoding='utf-8') as f:
+                reg = json.load(f)
+                mappings = reg.get("mappings", {})
+                for bid in mappings.keys():
+                    clean_id = "".join([c for c in bid if c.isdigit()])
+                    if clean_id: valid.add(clean_id)
         
+        # Priority 2: Large Scanned List
+        if os.path.exists('data/new_whatsapp_onboarding_list_v2.json'):
+            with open('data/new_whatsapp_onboarding_list_v2.json', 'r', encoding='utf-8') as f:
+                large_list = json.load(f)
+                for p in large_list:
+                    name = p.get('name', '')
+                    clean_id = "".join([c for c in name if c.isdigit()])
+                    if clean_id: valid.add(clean_id)
+
+        # Priority 3: Potential list (legacy)
         if os.path.exists('data/potential_beneficiaries.json'):
             with open('data/potential_beneficiaries.json', 'r', encoding='utf-8') as f:
                 potential_data = json.load(f)
                 for p in potential_data:
-                    name = p.get('name', '')
-                    clean_name = "".join([c for c in name if c.isdigit()])
-                    if clean_name: valid.add(clean_name)
-                    pid = p.get('id', '')
+                    pid = p.get('name', p.get('id', ''))
                     clean_id = "".join([c for c in pid if c.isdigit()])
                     if clean_id: valid.add(clean_id)
+
+        # Priority 4: Existing submissions
+        if os.path.exists('data/onboarding_submissions'):
+            for f in os.listdir('data/onboarding_submissions'):
+                if f.endswith('_submission.json'):
+                    bid = f.replace('_submission.json', '')
+                    clean_id = "".join([c for c in bid if c.isdigit()])
+                    if clean_id: valid.add(clean_id)
+
     except Exception as e:
         print(f"Error loading scopes: {e}")
     return valid
@@ -129,7 +147,26 @@ VALID_SCOPES = load_valid_scopes()
 def is_in_scope(identifier):
     if not identifier: return False
     clean_id = "".join([c for c in str(identifier) if c.isdigit()])
-    return clean_id in VALID_SCOPES
+    
+    # Check if pre-registered
+    if clean_id in VALID_SCOPES:
+        return True
+        
+    # RELAXED CHECK: If it's a Palestinian/Gaza number (+970 or +972 5...) allow viral onboarding
+    if clean_id.startswith('970') or clean_id.startswith('972'):
+        if len(clean_id) >= 10: # Basic length check
+            return True
+            
+    return False
+
+@app.route('/health')
+def health_check():
+    """Lightweight endpoint for watchdog pings."""
+    return jsonify({
+        "status": "healthy",
+        "timestamp": datetime.datetime.now().isoformat(),
+        "tunnel_url": request.host_url
+    })
 
 # --- AUTH ROUTES ---
 @app.route('/login', methods=['POST'])
