@@ -1,6 +1,7 @@
 
 # Data & Logs
 data/
+!data/logs/watchdog_pulse.log
 logs/
 backups/
 temp_search_umm.txt

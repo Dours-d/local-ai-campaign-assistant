@@ -55,6 +55,6 @@ jobs:
         run: |
           git config --global user.name "Watchdog Bot"
           git config --global user.email "watchdog@sovereign-intelligence.org"
-          git add data/logs/watchdog_pulse.log
+          git add -f data/logs/watchdog_pulse.log
           git commit -m "Watchdog Pulse: Heartbeat Sync [$(date -u)]" || echo "No changes to commit"
           git push || echo "Push failed (possibly concurrent update)"
