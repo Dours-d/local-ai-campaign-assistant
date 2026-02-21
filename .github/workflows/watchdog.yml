@@ -2,7 +2,7 @@ name: Multi-Node Watchdog Pulse
 
 on:
   schedule:
-    - cron: '*/15 * * * *' # Run every 15 minutes
+    - cron: "*/15 * * * *" # Run every 15 minutes
   workflow_dispatch: # Allow manual trigger
 
 jobs:
@@ -15,9 +15,9 @@ jobs:
       - name: Extract Tunnel URL and Pulse
         run: |
           # Extract URL from index.html (updated by local monitor)
-          TUNNEL_URL=$(grep 'var githubOnboardingUrl =' index.html | sed -E 's/.*"(.*)".*/\1/')
+          TUNNEL_URL=$(grep -m 1 'githubOnboardingUrl =' index.html | sed -E 's/.*"(https:[^"]+)".*/\1/')
           echo "Target Tunnel: $TUNNEL_URL"
-          
+
           if [ -z "$TUNNEL_URL" ]; then
             echo "::error::Tunnel URL not found in index.html"
             exit 1
@@ -26,15 +26,15 @@ jobs:
           # Ping the health endpoint
           RESPONSE=$(curl -s -f "$TUNNEL_URL/health" || echo '{"status":"dead"}')
           echo "Response: $RESPONSE"
-          
+
           STATUS=$(echo $RESPONSE | jq -r '.status' 2>/dev/null || echo "dead")
-          
+
           if [ "$STATUS" != "healthy" ]; then
             echo "::error::Portal is DOWN or UNRESPONSIVE at $TUNNEL_URL"
             # Here we could trigger a notification web-hook (e.g. to a phone app)
             exit 1
           fi
-          
+
           echo "Portal is ALIVE and HEALTHY."
 
       - name: Log Pulse
@@ -42,11 +42,11 @@ jobs:
           TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
           mkdir -p data/logs
           echo "[$TIMESTAMP] Heartbeat: OK" >> data/logs/watchdog_pulse.log
-          
+
           # Only keep last 100 entries
           tail -n 100 data/logs/watchdog_pulse.log > data/logs/watchdog_pulse.log.tmp
           mv data/logs/watchdog_pulse.log.tmp data/logs/watchdog_pulse.log
-          
+
       - name: Commit Pulse (Status Badge Data)
         run: |
           git config --global user.name "Watchdog Bot"
