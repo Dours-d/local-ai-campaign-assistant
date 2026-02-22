@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAJR Content List | Sovereign Management</title>
+    <link rel="icon" type="image/svg+xml" href="images/logo.svg">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animation.css">
+
+    <style>
+        /* Management Specific Styles */
+        .editable {
+            cursor: pointer;
+            padding: 2px 5px;
+            border-radius: 4px;
+            transition: background 0.2s;
+            border: 1px solid transparent;
+            word-break: break-word;
+            max-width: 100%;
+            display: inline-block;
+        }
+
+        .editable:hover {
+            background: rgba(151, 134, 75, 0.1);
+            border-color: rgba(151, 134, 75, 0.3);
+        }
+
+        .editing {
+            background: #161B22 !important;
+            border-color: var(--color-primary) !important;
+            outline: none;
+            cursor: text;
+        }
+
+        .mgmt-card .description-preview {
+            font-size: 0.9rem;
+            color: var(--color-text-dim);
+            margin-top: 10px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            line-clamp: 2;
+            display: box;
+            overflow: hidden;
+        }
+
+        .mgmt-card .tags {
+            margin-top: 15px;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            background: rgba(151, 134, 75, 0.05);
+            border: 1px solid rgba(151, 134, 75, 0.2);
+            color: var(--color-primary);
+            border-radius: 4px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        /* Redundancy Highlight */
+        .card-redundant {
+            border-left: 5px solid #FF4B2B !important;
+            opacity: 0.7;
+        }
+
+        .redundant-badge {
+            background: rgba(255, 75, 43, 0.1);
+            color: #FF4B2B;
+            border: 1px solid rgba(255, 75, 43, 0.3);
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 800;
+            margin-left: 10px;
+        }
+
+        /* Floating Save Indicator */
+        #save-status {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            padding: 12px 25px;
+            background: var(--color-bg);
+            border: 1px solid var(--color-primary);
+            border-radius: 30px;
+            color: var(--color-primary);
+            font-weight: 600;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            display: none;
+            z-index: 2000;
+            backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+
+<body class="mgmt-body">
+
+    <header>
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="images/logo.svg" alt="FAJR Logo">
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Main Portal</a></li>
+                    <li><a href="#" class="active">Content Management</a></li>
+                    <li><button id="lang-toggle" onclick="i18n.toggle()">عربي</button></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="mgmt-container container">
+        <div class="mgmt-header">
+            <div>
+                <h1 style="color: var(--color-white);">Campaign Management</h1>
+                <p style="color: var(--color-text-dim);">Recovered Leads & Active Growth List</p>
+            </div>
+            <div style="display: flex; gap: 15px; align-items: center;">
+                <input type="text" id="search-input" class="search-bar"
+                    placeholder="Search by name, ID, or WhatsApp...">
+                <div class="filters">
+                    <select id="status-filter" class="search-bar" style="width: auto; padding: 0 15px;">
+                        <option value="all">All Campaigns</option>
+                        <option value="live">Live on WhyDonate</option>
+                        <option value="verified">Verified (Drafts)</option>
+                        <option value="pending">Pending</option>
+                        <option value="redundant">Hub Overlaps</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div id="content-list" class="content-grid">
+            <!-- Management Cards will be injected here -->
+            <div class="loading-state" style="text-align: center; padding: 50px;">
+                <p style="color: var(--color-primary);">Loading verified growth list...</p>
+            </div>
+        </div>
+    </main>
+
+    <div id="save-status">Saving changes...</div>
+
+    <!-- Scripts -->
+    <script src="js/i18n.js"></script>
+    <script src="js/content_list.js"></script>
+</body>
+
+</html>

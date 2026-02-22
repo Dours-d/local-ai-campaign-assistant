@@ -159,6 +159,34 @@ def is_in_scope(identifier):
             
     return False
 
+@app.route('/api/growth-list-save', methods=['POST'])
+def save_growth_list_v2():
+    try:
+        data = request.json
+        if not isinstance(data, list):
+            return jsonify({"error": "Data must be a list"}), 400
+        
+        save_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'data', 'UNIFIED_REGISTRY.json')
+        with open(save_path, 'w', encoding='utf-8') as f:
+            json.dump(data, f, indent=4, ensure_ascii=False)
+        return jsonify({"status": "success"})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+@app.route('/api/growth-list', methods=['GET'])
+def handle_growth_list():
+    """Gets or updates the verified unified growth list."""
+    try:
+        base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        registry_path = os.path.join(base_dir, 'data', 'UNIFIED_REGISTRY.json')
+        if os.path.exists(registry_path):
+            with open(registry_path, 'r', encoding='utf-8') as f:
+                campaigns = json.load(f)
+            return jsonify(campaigns)
+        return jsonify([])
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
 @app.route('/health')
 def health_check():
     """Lightweight endpoint for watchdog pings."""
@@ -358,6 +386,16 @@ def serve_portal(beneficiary_id=None):
 def serve_brain():
     return app.send_static_file('brain.html')
 
+@app.route('/mgmt')
+def mgmt_root():
+    from flask import redirect, url_for
+    return redirect('/mgmt/content_list.html')
+
+@app.route('/mgmt/<path:path>')
+def serve_mgmt(path):
+    from flask import send_from_directory
+    return send_from_directory('../frontend', path)
+
 @app.route('/api/check_scope/<beneficiary_id>')
 def check_scope(beneficiary_id):
     return jsonify({"in_scope": is_in_scope(beneficiary_id)})
@@ -427,5 +465,5 @@ def upload_file():
     return jsonify({"status": "success"}), 200
 
 if __name__ == '__main__':
-    print(f"DUNYA دنيا Sovereign Intelligence starting on http://0.0.0.0:5000")
-    app.run(host='0.0.0.0', port=5000)
+    print(f"DUNYA دنيا Sovereign Intelligence starting on http://0.0.0.0:5010")
+    app.run(host='0.0.0.0', port=5010)
