@@ -10,4 +10,4 @@ Write-Host "Requested URL: https://local-ai-onboarding-portal.trycloudflare.com"
 # Run Cloudflare Tunnel (Password-Free)
 # This will generate a random URL that is captured by monitor_services.ps1
 # and pushed to GitHub Pages for a stable redirect.
-.\cloudflared.exe tunnel --url http://127.0.0.1:5000 --logfile data/tunnel.log
+.\cloudflared.exe tunnel --url http://127.0.0.1:5010 --logfile data/tunnel.log

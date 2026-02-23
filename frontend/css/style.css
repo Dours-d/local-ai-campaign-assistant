@@ -1,5 +1,5 @@
 :root {
-    /* Visual Signals - Nocturnal "End of Night" Palette */
+    /* Visual Signals - Nocturnal "End of Night" Palette (Sovereign Identity) */
     --color-bg: #05070A;
     /* True Night */
     --color-primary: #97864B;
@@ -36,8 +36,6 @@ body {
     background-color: var(--color-bg);
     line-height: 1.6;
     overflow-x: hidden;
-    overflow-y: hidden;
-    /* Prevent scroll while loader is active */
 }
 
 h1,
@@ -97,19 +95,7 @@ h4,
 
 /* --- Core Structure (Emulating FIDF) --- */
 
-/* Alert Bar */
-.alert-bar {
-    background-color: var(--color-primary);
-    color: var(--color-white);
-    text-align: center;
-    padding: 10px 0;
-    font-size: 0.9rem;
-    font-weight: 600;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1001;
-}
+/* Alert Bar Removed for Identity */
 
 header {
     height: 100px;
@@ -133,19 +119,9 @@ header {
     /* Space for nav items above the line */
 }
 
-/* Alert Bar adjustment - moves header down if present, or we can make alert bar overlay */
-.alert-bar {
-    position: relative;
-    /* Changed from fixed to relative so it pushes content naturally */
-    z-index: 1002;
-    background-color: var(--color-primary);
-}
-
-/* Adjust header top based on alert bar presence if needed via JS, or keep simple stack */
-body:has(.alert-bar) header {
+/* Header adjustments */
+header {
     top: 0;
-    /* Header stays at top, alert bar is above it in markup flow? No, alert bar is usually top. */
-    /* Let's assume Alert Bar is Top, Header is below. */
     position: sticky;
 }
 
@@ -307,4 +283,319 @@ section {
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 1px;
+}
+
+/* --- Management UI (Content List) --- */
+.mgmt-container {
+    padding-top: 120px;
+    padding-bottom: 100px;
+}
+
+.mgmt-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.search-bar {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(151, 134, 75, 0.2);
+    border-radius: 8px;
+    padding: 12px 20px;
+    color: var(--color-white);
+    font-family: var(--font-body);
+    width: 100%;
+    max-width: 400px;
+    transition: var(--transition-smooth);
+}
+
+.search-bar:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    background: rgba(151, 134, 75, 0.05);
+}
+
+/* Fix for system-default 'white-on-white' select options in dark mode */
+select.search-bar option {
+    background-color: #161B22;
+    color: var(--color-white);
+}
+
+.content-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.mgmt-card {
+    background: #0D1117 !important;
+    border: 1px solid rgba(151, 134, 75, 0.1);
+    border-radius: 12px;
+    padding: 25px;
+    display: grid;
+    grid-template-columns: 80px 1fr 300px;
+    gap: 25px;
+    align-items: start;
+    transition: var(--transition-smooth);
+    text-align: left !important;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+@media (max-width: 900px) {
+    .mgmt-card {
+        grid-template-columns: 80px 1fr;
+    }
+
+    .mgmt-actions {
+        grid-column: span 2;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .mgmt-input-group {
+        flex: 1;
+        min-width: 200px;
+    }
+}
+
+@media (max-width: 600px) {
+    .mgmt-card {
+        grid-template-columns: 1fr;
+        text-align: center !important;
+    }
+
+    .mgmt-img {
+        margin: 0 auto;
+    }
+
+    .mgmt-actions {
+        grid-column: span 1;
+    }
+}
+
+.mgmt-card:hover {
+    border-color: var(--color-primary);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.mgmt-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    object-fit: cover;
+    border: 1px solid rgba(151, 134, 75, 0.2);
+}
+
+.mgmt-info h3 {
+    color: var(--color-primary);
+    margin-bottom: 5px;
+    font-size: 1.25rem;
+}
+
+.mgmt-info .bid {
+    font-family: monospace;
+    color: var(--color-text-dim);
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.mgmt-contact {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.wa-link {
+    color: #25D366;
+    text-decoration: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.95rem;
+}
+
+.wa-link:hover {
+    text-decoration: underline;
+}
+
+.mgmt-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.mgmt-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.mgmt-input-group label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.mgmt-input {
+    background: #161B22;
+    border: 1px solid rgba(139, 148, 158, 0.2);
+    border-radius: 6px;
+    padding: 10px 12px;
+    color: var(--color-white);
+    font-size: 0.9rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.mgmt-input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+}
+
+.copy-btn {
+    background: var(--color-secondary);
+    color: var(--color-white);
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    font-family: var(--font-heading);
+}
+
+.copy-btn:active {
+    transform: scale(0.98);
+}
+
+.field-copy {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(139, 148, 158, 0.2);
+    color: var(--color-primary);
+    padding: 2px 6px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 10px;
+    text-transform: uppercase;
+    transition: all 0.2s;
+    margin-left: 8px;
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
+}
+
+.field-copy:hover {
+    background: var(--color-primary);
+    color: #000;
+}
+
+.field-copy:active {
+    transform: scale(0.92);
+}
+
+.status-chip {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-right: 10px;
+}
+
+.status-verified {
+    background: rgba(74, 144, 226, 0.1);
+    color: #4A90E2;
+    border: 1px solid rgba(74, 144, 226, 0.3);
+}
+
+.status-pending {
+    background: rgba(245, 166, 35, 0.1);
+    color: #F5A623;
+    border: 1px solid rgba(245, 166, 35, 0.3);
+}
+
+.token-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.word-token {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.6);
+    padding: 2px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.2s ease;
+}
+
+.word-token:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--color-primary);
+}
+
+.word-token.selected {
+    background: var(--color-primary);
+    color: #000;
+    border-color: var(--color-primary);
+    font-weight: bold;
+}
+
+/* Character Counter Styles */
+.char-count {
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-left: 10px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.char-count.ok {
+    color: #32BF55;
+}
+
+.char-count.warning {
+    color: #F5A623;
+    background: rgba(245, 166, 35, 0.1);
+}
+
+.char-count.danger {
+    color: #FF4B2B;
+    background: rgba(255, 75, 43, 0.1);
+    animation: shake 0.3s ease-in-out;
+}
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-2px);
+    }
+
+    75% {
+        transform: translateX(2px);
+    }
 }

@@ -7,7 +7,9 @@ ONBOARDING_DIR = "data/onboarding_submissions"
 REGISTRY_FILE = "data/campaign_registry.json"
 UNIFIED_DB = "data/campaigns_unified.json"
 VAULT_MAPPING = "data/vault_mapping.json"
-LAUNCHGOOD_DEFAULT = "https://bit.ly/g-gz-resi-fund"
+LAUNCHGOOD_DEFAULT = "https://dours-d.github.io/local-ai-campaign-assistant/"
+NOOR_PORTAL_URL = "https://bit.ly/NoorAiPortal"
+DATA_DIR = "data"
 
 def load_json(path):
     if os.path.exists(path):

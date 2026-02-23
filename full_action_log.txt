@@ -1,0 +1,262 @@
+health-check	Set up job	﻿2026-02-21T14:06:55.7925490Z Current runner version: '2.331.0'
+health-check	Set up job	2026-02-21T14:06:55.7949731Z ##[group]Runner Image Provisioner
+health-check	Set up job	2026-02-21T14:06:55.7950899Z Hosted Compute Agent
+health-check	Set up job	2026-02-21T14:06:55.7951422Z Version: 20260123.484
+health-check	Set up job	2026-02-21T14:06:55.7951997Z Commit: 6bd6555ca37d84114959e1c76d2c01448ff61c5d
+health-check	Set up job	2026-02-21T14:06:55.7952746Z Build Date: 2026-01-23T19:41:17Z
+health-check	Set up job	2026-02-21T14:06:55.7953360Z Worker ID: {5eef32ab-ee16-4222-817c-27c2c96850dd}
+health-check	Set up job	2026-02-21T14:06:55.7954043Z Azure Region: westus
+health-check	Set up job	2026-02-21T14:06:55.7954596Z ##[endgroup]
+health-check	Set up job	2026-02-21T14:06:55.7955998Z ##[group]Operating System
+health-check	Set up job	2026-02-21T14:06:55.7956578Z Ubuntu
+health-check	Set up job	2026-02-21T14:06:55.7957123Z 24.04.3
+health-check	Set up job	2026-02-21T14:06:55.7957549Z LTS
+health-check	Set up job	2026-02-21T14:06:55.7958189Z ##[endgroup]
+health-check	Set up job	2026-02-21T14:06:55.7958702Z ##[group]Runner Image
+health-check	Set up job	2026-02-21T14:06:55.7959264Z Image: ubuntu-24.04
+health-check	Set up job	2026-02-21T14:06:55.7959761Z Version: 20260201.15.1
+health-check	Set up job	2026-02-21T14:06:55.7960726Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260201.15/images/ubuntu/Ubuntu2404-Readme.md
+health-check	Set up job	2026-02-21T14:06:55.7962371Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260201.15
+health-check	Set up job	2026-02-21T14:06:55.7963293Z ##[endgroup]
+health-check	Set up job	2026-02-21T14:06:55.7964321Z ##[group]GITHUB_TOKEN Permissions
+health-check	Set up job	2026-02-21T14:06:55.7966341Z Contents: read
+health-check	Set up job	2026-02-21T14:06:55.7966901Z Metadata: read
+health-check	Set up job	2026-02-21T14:06:55.7967402Z Packages: read
+health-check	Set up job	2026-02-21T14:06:55.7967844Z ##[endgroup]
+health-check	Set up job	2026-02-21T14:06:55.7970199Z Secret source: Actions
+health-check	Set up job	2026-02-21T14:06:55.7970879Z Prepare workflow directory
+health-check	Set up job	2026-02-21T14:06:55.8287717Z Prepare all required actions
+health-check	Set up job	2026-02-21T14:06:55.8330862Z Getting action download info
+health-check	Set up job	2026-02-21T14:06:56.2366083Z Download action repository 'actions/checkout@v4' (SHA:34e114876b0b11c390a56381ad16ebd13914f8d5)
+health-check	Set up job	2026-02-21T14:06:56.4271204Z Complete job name: health-check
+health-check	Checkout Repository	﻿2026-02-21T14:06:56.5065401Z ##[group]Run actions/checkout@v4
+health-check	Checkout Repository	2026-02-21T14:06:56.5066247Z with:
+health-check	Checkout Repository	2026-02-21T14:06:56.5066710Z   repository: Dours-d/local-ai-campaign-assistant
+health-check	Checkout Repository	2026-02-21T14:06:56.5067440Z   token: ***
+health-check	Checkout Repository	2026-02-21T14:06:56.5067835Z   ssh-strict: true
+health-check	Checkout Repository	2026-02-21T14:06:56.5068395Z   ssh-user: git
+health-check	Checkout Repository	2026-02-21T14:06:56.5068796Z   persist-credentials: true
+health-check	Checkout Repository	2026-02-21T14:06:56.5069232Z   clean: true
+health-check	Checkout Repository	2026-02-21T14:06:56.5069613Z   sparse-checkout-cone-mode: true
+health-check	Checkout Repository	2026-02-21T14:06:56.5070079Z   fetch-depth: 1
+health-check	Checkout Repository	2026-02-21T14:06:56.5070450Z   fetch-tags: false
+health-check	Checkout Repository	2026-02-21T14:06:56.5070838Z   show-progress: true
+health-check	Checkout Repository	2026-02-21T14:06:56.5071233Z   lfs: false
+health-check	Checkout Repository	2026-02-21T14:06:56.5071585Z   submodules: false
+health-check	Checkout Repository	2026-02-21T14:06:56.5071974Z   set-safe-directory: true
+health-check	Checkout Repository	2026-02-21T14:06:56.5072651Z ##[endgroup]
+health-check	Checkout Repository	2026-02-21T14:06:56.6132394Z Syncing repository: Dours-d/local-ai-campaign-assistant
+health-check	Checkout Repository	2026-02-21T14:06:56.6134236Z ##[group]Getting Git version info
+health-check	Checkout Repository	2026-02-21T14:06:56.6135137Z Working directory is '/home/runner/work/local-ai-campaign-assistant/local-ai-campaign-assistant'
+health-check	Checkout Repository	2026-02-21T14:06:56.6136357Z [command]/usr/bin/git version
+health-check	Checkout Repository	2026-02-21T14:06:56.6276902Z git version 2.52.0
+health-check	Checkout Repository	2026-02-21T14:06:56.6303368Z ##[endgroup]
+health-check	Checkout Repository	2026-02-21T14:06:56.6328718Z Temporarily overriding HOME='/home/runner/work/_temp/5814abf4-7382-41dc-af96-acf4df3634bd' before making global git config changes
+health-check	Checkout Repository	2026-02-21T14:06:56.6331070Z Adding repository directory to the temporary git global config as a safe directory
+health-check	Checkout Repository	2026-02-21T14:06:56.6335636Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/local-ai-campaign-assistant/local-ai-campaign-assistant
+health-check	Checkout Repository	2026-02-21T14:06:56.6378828Z Deleting the contents of '/home/runner/work/local-ai-campaign-assistant/local-ai-campaign-assistant'
+health-check	Checkout Repository	2026-02-21T14:06:56.6382142Z ##[group]Initializing the repository
+health-check	Checkout Repository	2026-02-21T14:06:56.6387522Z [command]/usr/bin/git init /home/runner/work/local-ai-campaign-assistant/local-ai-campaign-assistant
+health-check	Checkout Repository	2026-02-21T14:06:56.6546427Z hint: Using 'master' as the name for the initial branch. This default branch name
+health-check	Checkout Repository	2026-02-21T14:06:56.6548131Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+health-check	Checkout Repository	2026-02-21T14:06:56.6549291Z hint: to use in all of your new repositories, which will suppress this warning,
+health-check	Checkout Repository	2026-02-21T14:06:56.6550699Z hint: call:
+health-check	Checkout Repository	2026-02-21T14:06:56.6551098Z hint:
+health-check	Checkout Repository	2026-02-21T14:06:56.6551910Z hint: 	git config --global init.defaultBranch <name>
+health-check	Checkout Repository	2026-02-21T14:06:56.6552938Z hint:
+health-check	Checkout Repository	2026-02-21T14:06:56.6553906Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+health-check	Checkout Repository	2026-02-21T14:06:56.6555504Z hint: 'development'. The just-created branch can be renamed via this command:
+health-check	Checkout Repository	2026-02-21T14:06:56.6556763Z hint:
+health-check	Checkout Repository	2026-02-21T14:06:56.6557447Z hint: 	git branch -m <name>
+health-check	Checkout Repository	2026-02-21T14:06:56.6558416Z hint:
+health-check	Checkout Repository	2026-02-21T14:06:56.6559382Z hint: Disable this message with "git config set advice.defaultBranchName false"
+health-check	Checkout Repository	2026-02-21T14:06:56.6561437Z Initialized empty Git repository in /home/runner/work/local-ai-campaign-assistant/local-ai-campaign-assistant/.git/
+health-check	Checkout Repository	2026-02-21T14:06:56.6564865Z [command]/usr/bin/git remote add origin https://github.com/Dours-d/local-ai-campaign-assistant
+health-check	Checkout Repository	2026-02-21T14:06:56.6603613Z ##[endgroup]
+health-check	Checkout Repository	2026-02-21T14:06:56.6604805Z ##[group]Disabling automatic garbage collection
+health-check	Checkout Repository	2026-02-21T14:06:56.6608510Z [command]/usr/bin/git config --local gc.auto 0
+health-check	Checkout Repository	2026-02-21T14:06:56.6636961Z ##[endgroup]
+health-check	Checkout Repository	2026-02-21T14:06:56.6638328Z ##[group]Setting up auth
+health-check	Checkout Repository	2026-02-21T14:06:56.6644709Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+health-check	Checkout Repository	2026-02-21T14:06:56.6674215Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+health-check	Checkout Repository	2026-02-21T14:06:56.7039440Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+health-check	Checkout Repository	2026-02-21T14:06:56.7067562Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+health-check	Checkout Repository	2026-02-21T14:06:56.7284693Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+health-check	Checkout Repository	2026-02-21T14:06:56.7317898Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+health-check	Checkout Repository	2026-02-21T14:06:56.7539307Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+health-check	Checkout Repository	2026-02-21T14:06:56.7574233Z ##[endgroup]
+health-check	Checkout Repository	2026-02-21T14:06:56.7575487Z ##[group]Fetching the repository
+health-check	Checkout Repository	2026-02-21T14:06:56.7583944Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +900a985b9dcbc7a1e158960bf2ff68d292b6eb27:refs/remotes/origin/main
+health-check	Checkout Repository	2026-02-21T14:07:01.0328588Z From https://github.com/Dours-d/local-ai-campaign-assistant
+health-check	Checkout Repository	2026-02-21T14:07:01.0329809Z  * [new ref]         900a985b9dcbc7a1e158960bf2ff68d292b6eb27 -> origin/main
+health-check	Checkout Repository	2026-02-21T14:07:01.0359692Z ##[endgroup]
+health-check	Checkout Repository	2026-02-21T14:07:01.0361036Z ##[group]Determining the checkout info
+health-check	Checkout Repository	2026-02-21T14:07:01.0362535Z ##[endgroup]
+health-check	Checkout Repository	2026-02-21T14:07:01.0368594Z [command]/usr/bin/git sparse-checkout disable
+health-check	Checkout Repository	2026-02-21T14:07:01.0410172Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+health-check	Checkout Repository	2026-02-21T14:07:01.0439161Z ##[group]Checking out the ref
+health-check	Checkout Repository	2026-02-21T14:07:01.0441698Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+health-check	Checkout Repository	2026-02-21T14:07:02.0650579Z Updating files:  44% (1855/4192)
+health-check	Checkout Repository	2026-02-21T14:07:02.0760863Z Updating files:  45% (1887/4192)
+health-check	Checkout Repository	2026-02-21T14:07:02.0873340Z Updating files:  46% (1929/4192)
+health-check	Checkout Repository	2026-02-21T14:07:02.0977505Z Updating files:  47% (1971/4192)
+health-check	Checkout Repository	2026-02-21T14:07:02.1095621Z Updating files:  48% (2013/4192)
+health-check	Checkout Repository	2026-02-21T14:07:02.1171390Z Updating files:  49% (2055/4192)
+health-check	Checkout Repository	2026-02-21T14:07:02.1261935Z Updating files:  50% (2096/4192)
+health-check	Checkout Repository	2026-02-21T14:07:02.1411946Z Updating files:  51% (2138/4192)
+health-check	Checkout Repository	2026-02-21T14:07:02.1514988Z Updating files:  52% (2180/4192)
+health-check	Checkout Repository	2026-02-21T14:07:02.1734343Z Updating files:  53% (2222/4192)
+health-check	Checkout Repository	2026-02-21T14:07:02.1936504Z Updating files:  54% (2264/4192)
+health-check	Checkout Repository	2026-02-21T14:07:02.2095977Z Updating files:  55% (2306/4192)
+health-check	Checkout Repository	2026-02-21T14:07:02.2373954Z Updating files:  56% (2348/4192)
+health-check	Checkout Repository	2026-02-21T14:07:02.2621333Z Updating files:  57% (2390/4192)
+health-check	Checkout Repository	2026-02-21T14:07:02.3046703Z Updating files:  58% (2432/4192)
+health-check	Checkout Repository	2026-02-21T14:07:02.3110164Z Updating files:  59% (2474/4192)
+health-check	Checkout Repository	2026-02-21T14:07:02.3215025Z Updating files:  60% (2516/4192)
+health-check	Checkout Repository	2026-02-21T14:07:02.3387699Z Updating files:  61% (2558/4192)
+health-check	Checkout Repository	2026-02-21T14:07:02.3422450Z Updating files:  62% (2600/4192)
+health-check	Checkout Repository	2026-02-21T14:07:02.3456712Z Updating files:  63% (2641/4192)
+health-check	Checkout Repository	2026-02-21T14:07:02.3711312Z Updating files:  64% (2683/4192)
+health-check	Checkout Repository	2026-02-21T14:07:02.3740788Z Updating files:  65% (2725/4192)
+health-check	Checkout Repository	2026-02-21T14:07:02.3779353Z Updating files:  66% (2767/4192)
+health-check	Checkout Repository	2026-02-21T14:07:02.3878388Z Updating files:  67% (2809/4192)
+health-check	Checkout Repository	2026-02-21T14:07:02.4033182Z Updating files:  68% (2851/4192)
+health-check	Checkout Repository	2026-02-21T14:07:02.4246415Z Updating files:  69% (2893/4192)
+health-check	Checkout Repository	2026-02-21T14:07:02.4746710Z Updating files:  70% (2935/4192)
+health-check	Checkout Repository	2026-02-21T14:07:02.4798578Z Updating files:  71% (2977/4192)
+health-check	Checkout Repository	2026-02-21T14:07:02.4840180Z Updating files:  72% (3019/4192)
+health-check	Checkout Repository	2026-02-21T14:07:02.4931390Z Updating files:  73% (3061/4192)
+health-check	Checkout Repository	2026-02-21T14:07:02.4990750Z Updating files:  74% (3103/4192)
+health-check	Checkout Repository	2026-02-21T14:07:02.5316518Z Updating files:  75% (3144/4192)
+health-check	Checkout Repository	2026-02-21T14:07:02.5476417Z Updating files:  76% (3186/4192)
+health-check	Checkout Repository	2026-02-21T14:07:02.5540713Z Updating files:  77% (3228/4192)
+health-check	Checkout Repository	2026-02-21T14:07:02.5576082Z Updating files:  78% (3270/4192)
+health-check	Checkout Repository	2026-02-21T14:07:02.5669579Z Updating files:  79% (3312/4192)
+health-check	Checkout Repository	2026-02-21T14:07:02.5921153Z Updating files:  80% (3354/4192)
+health-check	Checkout Repository	2026-02-21T14:07:02.5952666Z Updating files:  81% (3396/4192)
+health-check	Checkout Repository	2026-02-21T14:07:02.6187781Z Updating files:  82% (3438/4192)
+health-check	Checkout Repository	2026-02-21T14:07:02.7294217Z Updating files:  83% (3480/4192)
+health-check	Checkout Repository	2026-02-21T14:07:02.7825841Z Updating files:  84% (3522/4192)
+health-check	Checkout Repository	2026-02-21T14:07:02.7918590Z Updating files:  85% (3564/4192)
+health-check	Checkout Repository	2026-02-21T14:07:02.8026572Z Updating files:  86% (3606/4192)
+health-check	Checkout Repository	2026-02-21T14:07:02.8066850Z Updating files:  87% (3648/4192)
+health-check	Checkout Repository	2026-02-21T14:07:02.8085291Z Updating files:  88% (3689/4192)
+health-check	Checkout Repository	2026-02-21T14:07:02.8104886Z Updating files:  89% (3731/4192)
+health-check	Checkout Repository	2026-02-21T14:07:02.8122625Z Updating files:  90% (3773/4192)
+health-check	Checkout Repository	2026-02-21T14:07:02.8141827Z Updating files:  91% (3815/4192)
+health-check	Checkout Repository	2026-02-21T14:07:02.8160535Z Updating files:  92% (3857/4192)
+health-check	Checkout Repository	2026-02-21T14:07:02.8182752Z Updating files:  93% (3899/4192)
+health-check	Checkout Repository	2026-02-21T14:07:02.8202820Z Updating files:  94% (3941/4192)
+health-check	Checkout Repository	2026-02-21T14:07:02.8222458Z Updating files:  95% (3983/4192)
+health-check	Checkout Repository	2026-02-21T14:07:02.8345735Z Updating files:  96% (4025/4192)
+health-check	Checkout Repository	2026-02-21T14:07:02.8551051Z Updating files:  97% (4067/4192)
+health-check	Checkout Repository	2026-02-21T14:07:02.8824424Z Updating files:  98% (4109/4192)
+health-check	Checkout Repository	2026-02-21T14:07:02.9514399Z Updating files:  99% (4151/4192)
+health-check	Checkout Repository	2026-02-21T14:07:02.9515180Z Updating files: 100% (4192/4192)
+health-check	Checkout Repository	2026-02-21T14:07:02.9515579Z Updating files: 100% (4192/4192), done.
+health-check	Checkout Repository	2026-02-21T14:07:02.9605104Z Switched to a new branch 'main'
+health-check	Checkout Repository	2026-02-21T14:07:02.9609040Z branch 'main' set up to track 'origin/main'.
+health-check	Checkout Repository	2026-02-21T14:07:02.9976640Z Encountered 56 files that should have been pointers, but weren't:
+health-check	Checkout Repository	2026-02-21T14:07:02.9978390Z 	antigravity-auto-accept/antigravity-auto-accept/icon.png
+health-check	Checkout Repository	2026-02-21T14:07:02.9978968Z 	antigravity-auto-accept/icon.png
+health-check	Checkout Repository	2026-02-21T14:07:02.9979399Z 	temp_daily/Thumbnails/thumbnail.png
+health-check	Checkout Repository	2026-02-21T14:07:02.9979886Z 	temp_total2/Pictures/1000000100000104000002A032610328.png
+health-check	Checkout Repository	2026-02-21T14:07:02.9980443Z 	temp_total2/Pictures/1000000100000110000001A486A215ED.png
+health-check	Checkout Repository	2026-02-21T14:07:02.9981008Z 	temp_total2/Pictures/10000001000001100000026ED3A5ECED.png
+health-check	Checkout Repository	2026-02-21T14:07:02.9981597Z 	temp_total2/Pictures/1000000100000116000002AFC629D1AD.png
+health-check	Checkout Repository	2026-02-21T14:07:02.9982145Z 	temp_total2/Pictures/1000000100000192000002B2146C41AD.png
+health-check	Checkout Repository	2026-02-21T14:07:02.9982721Z 	temp_total2/Pictures/10000001000001930000023C6BE540B0.png
+health-check	Checkout Repository	2026-02-21T14:07:02.9983292Z 	temp_total2/Pictures/1000000100000193000002CD6BB0C16A.png
+health-check	Checkout Repository	2026-02-21T14:07:02.9983901Z 	temp_total2/Pictures/1000000100000195000002AF3F378B18.png
+health-check	Checkout Repository	2026-02-21T14:07:02.9984476Z 	temp_total2/Pictures/100000010000019C000002914654E103.png
+health-check	Checkout Repository	2026-02-21T14:07:02.9985348Z 	temp_total2/Pictures/10000001000001AB000000FCD97C254B.png
+health-check	Checkout Repository	2026-02-21T14:07:02.9985908Z 	temp_total2/Pictures/100000010000028200000192178A94BB.png
+health-check	Checkout Repository	2026-02-21T14:07:02.9986462Z 	temp_total2/Pictures/1000000100000282000002B4B577DD50.png
+health-check	Checkout Repository	2026-02-21T14:07:02.9987015Z 	temp_total2/Pictures/100000010000028C0000028A72A46C8D.png
+health-check	Checkout Repository	2026-02-21T14:07:02.9987574Z 	temp_total2/Pictures/10000001000002E900000107C5487F8C.png
+health-check	Checkout Repository	2026-02-21T14:07:02.9988297Z 	temp_total2/Pictures/10000001000002EE000000AF68D77A78.png
+health-check	Checkout Repository	2026-02-21T14:07:02.9988880Z 	temp_total2/Pictures/10000001000002F1000001E78C3994FC.png
+health-check	Checkout Repository	2026-02-21T14:07:02.9989430Z 	temp_total2/Pictures/10000001000002F30000028D13BA4E2F.png
+health-check	Checkout Repository	2026-02-21T14:07:02.9989983Z 	temp_total2/Pictures/10000001000002F30000028F9C7F08B9.png
+health-check	Checkout Repository	2026-02-21T14:07:02.9990542Z 	temp_total2/Pictures/10000001000002F800000240ED8D766F.png
+health-check	Checkout Repository	2026-02-21T14:07:02.9991117Z 	temp_total2/Pictures/10000001000003180000005C986BAD3B.png
+health-check	Checkout Repository	2026-02-21T14:07:02.9991692Z 	temp_total2/Pictures/100000010000033600000291D33BB638.png
+health-check	Checkout Repository	2026-02-21T14:07:02.9992258Z 	temp_total2/Pictures/100000010000033F000000B001C23F0A.png
+health-check	Checkout Repository	2026-02-21T14:07:02.9992816Z 	temp_total2/Pictures/1000000100000345000002C842CFAC8D.png
+health-check	Checkout Repository	2026-02-21T14:07:02.9993204Z 	temp_total2/Pictures/10000001000003460000023A6E093E8C.png
+health-check	Checkout Repository	2026-02-21T14:07:02.9993564Z 	temp_total2/Pictures/1000000100000349000000DDF3AB3CAD.png
+health-check	Checkout Repository	2026-02-21T14:07:02.9993963Z 	temp_total2/Pictures/100000010000034A000002C8748D318D.png
+health-check	Checkout Repository	2026-02-21T14:07:02.9994522Z 	temp_total2/Pictures/100000010000034A000002F671B7FE33.png
+health-check	Checkout Repository	2026-02-21T14:07:02.9995080Z 	temp_total2/Pictures/100000010000034E000002C80A5EB120.png
+health-check	Checkout Repository	2026-02-21T14:07:02.9995628Z 	temp_total2/Pictures/100000010000034F00000109B21CD5A9.png
+health-check	Checkout Repository	2026-02-21T14:07:02.9996154Z 	temp_total2/Pictures/100000010000034F0000013169DF3811.png
+health-check	Checkout Repository	2026-02-21T14:07:02.9996923Z 	temp_total2/Pictures/10000001000003540000018FA762867C.png
+health-check	Checkout Repository	2026-02-21T14:07:02.9997481Z 	temp_total2/Pictures/1000000100000354000002C7EF652C03.png
+health-check	Checkout Repository	2026-02-21T14:07:02.9998209Z 	temp_total2/Pictures/1000000100000355000000B00620ADEA.png
+health-check	Checkout Repository	2026-02-21T14:07:02.9998773Z 	temp_total2/Pictures/10000001000003570000007A6408CC5C.png
+health-check	Checkout Repository	2026-02-21T14:07:02.9999320Z 	temp_total2/Pictures/1000000100000357000000DE63398F7A.png
+health-check	Checkout Repository	2026-02-21T14:07:02.9999879Z 	temp_total2/Pictures/100000010000035C0000002E738CBFC2.png
+health-check	Checkout Repository	2026-02-21T14:07:03.0000433Z 	temp_total2/Pictures/100000010000035D0000002FD8DBCEAB.png
+health-check	Checkout Repository	2026-02-21T14:07:03.0000992Z 	temp_total2/Pictures/1000000100000361000002A568649905.png
+health-check	Checkout Repository	2026-02-21T14:07:03.0001538Z 	temp_total2/Pictures/100000010000036300000057BAE464A6.png
+health-check	Checkout Repository	2026-02-21T14:07:03.0002097Z 	temp_total2/Pictures/1000000100000364000002F6E48187B5.png
+health-check	Checkout Repository	2026-02-21T14:07:03.0002653Z 	temp_total2/Pictures/100000010000037C00000057F8F2F11B.png
+health-check	Checkout Repository	2026-02-21T14:07:03.0003208Z 	temp_total2/Pictures/100000010000037D00000079AE95574A.png
+health-check	Checkout Repository	2026-02-21T14:07:03.0003774Z 	temp_total2/Pictures/10000001000003850000021E2F4FED8E.png
+health-check	Checkout Repository	2026-02-21T14:07:03.0004325Z 	temp_total2/Pictures/10000001000003D2000000672D92AD5E.png
+health-check	Checkout Repository	2026-02-21T14:07:03.0004889Z 	temp_total2/Pictures/100000010000042B00000093DD17A5EF.png
+health-check	Checkout Repository	2026-02-21T14:07:03.0005436Z 	temp_total2/Pictures/1000000100000430000000610ABC7048.png
+health-check	Checkout Repository	2026-02-21T14:07:03.0005990Z 	temp_total2/Pictures/10000001000004300000029FC1CB2812.png
+health-check	Checkout Repository	2026-02-21T14:07:03.0006542Z 	temp_total2/Pictures/100000010000043B000002A44EC25466.png
+health-check	Checkout Repository	2026-02-21T14:07:03.0007103Z 	temp_total2/Pictures/100000010000043E000001392A16DC27.png
+health-check	Checkout Repository	2026-02-21T14:07:03.0007700Z 	temp_total2/Pictures/100000010000043F0000013256303891.png
+health-check	Checkout Repository	2026-02-21T14:07:03.0008372Z 	temp_total2/Pictures/100000010000044900000138D7329E1D.png
+health-check	Checkout Repository	2026-02-21T14:07:03.0008934Z 	temp_total2/Pictures/100000010000044C000000DC1FFAC9F3.png
+health-check	Checkout Repository	2026-02-21T14:07:03.0009492Z 	temp_total2/Pictures/100000010000044E00000109665EADF3.png
+health-check	Checkout Repository	2026-02-21T14:07:03.0063757Z ##[endgroup]
+health-check	Checkout Repository	2026-02-21T14:07:03.0100793Z [command]/usr/bin/git log -1 --format=%H
+health-check	Checkout Repository	2026-02-21T14:07:03.0122385Z 900a985b9dcbc7a1e158960bf2ff68d292b6eb27
+health-check	Extract Tunnel URL and Pulse	﻿2026-02-21T14:07:03.0302357Z ##[group]Run # Extract URL from index.html (updated by local monitor)
+health-check	Extract Tunnel URL and Pulse	2026-02-21T14:07:03.0303079Z [36;1m# Extract URL from index.html (updated by local monitor)[0m
+health-check	Extract Tunnel URL and Pulse	2026-02-21T14:07:03.0303619Z [36;1mTUNNEL_URL=$(grep -m 1 'githubOnboardingUrl =' index.html | sed -E 's/.*"(https:[^"]+)".*/\1/')[0m
+health-check	Extract Tunnel URL and Pulse	2026-02-21T14:07:03.0304089Z [36;1mecho "Target Tunnel: $TUNNEL_URL"[0m
+health-check	Extract Tunnel URL and Pulse	2026-02-21T14:07:03.0304341Z [36;1m[0m
+health-check	Extract Tunnel URL and Pulse	2026-02-21T14:07:03.0304512Z [36;1mif [ -z "$TUNNEL_URL" ]; then[0m
+health-check	Extract Tunnel URL and Pulse	2026-02-21T14:07:03.0304812Z [36;1m  echo "::error::Tunnel URL not found in index.html"[0m
+health-check	Extract Tunnel URL and Pulse	2026-02-21T14:07:03.0305097Z [36;1m  exit 1[0m
+health-check	Extract Tunnel URL and Pulse	2026-02-21T14:07:03.0305268Z [36;1mfi[0m
+health-check	Extract Tunnel URL and Pulse	2026-02-21T14:07:03.0305419Z [36;1m[0m
+health-check	Extract Tunnel URL and Pulse	2026-02-21T14:07:03.0305591Z [36;1m# Ping the health endpoint[0m
+health-check	Extract Tunnel URL and Pulse	2026-02-21T14:07:03.0305947Z [36;1mRESPONSE=$(curl -s -f "$TUNNEL_URL/health" || echo '{"status":"dead"}')[0m
+health-check	Extract Tunnel URL and Pulse	2026-02-21T14:07:03.0306327Z [36;1mecho "Response: $RESPONSE"[0m
+health-check	Extract Tunnel URL and Pulse	2026-02-21T14:07:03.0306555Z [36;1m[0m
+health-check	Extract Tunnel URL and Pulse	2026-02-21T14:07:03.0306857Z [36;1mSTATUS=$(echo $RESPONSE | jq -r '.status' 2>/dev/null || echo "dead")[0m
+health-check	Extract Tunnel URL and Pulse	2026-02-21T14:07:03.0307217Z [36;1m[0m
+health-check	Extract Tunnel URL and Pulse	2026-02-21T14:07:03.0307397Z [36;1mif [ "$STATUS" != "healthy" ]; then[0m
+health-check	Extract Tunnel URL and Pulse	2026-02-21T14:07:03.0307740Z [36;1m  echo "::error::Portal is DOWN or UNRESPONSIVE at $TUNNEL_URL"[0m
+health-check	Extract Tunnel URL and Pulse	2026-02-21T14:07:03.0308406Z [36;1m  # Here we could trigger a notification web-hook (e.g. to a phone app)[0m
+health-check	Extract Tunnel URL and Pulse	2026-02-21T14:07:03.0308763Z [36;1m  exit 1[0m
+health-check	Extract Tunnel URL and Pulse	2026-02-21T14:07:03.0308925Z [36;1mfi[0m
+health-check	Extract Tunnel URL and Pulse	2026-02-21T14:07:03.0309077Z [36;1m[0m
+health-check	Extract Tunnel URL and Pulse	2026-02-21T14:07:03.0309255Z [36;1mecho "Portal is ALIVE and HEALTHY."[0m
+health-check	Extract Tunnel URL and Pulse	2026-02-21T14:07:03.0344414Z shell: /usr/bin/bash -e {0}
+health-check	Extract Tunnel URL and Pulse	2026-02-21T14:07:03.0344675Z ##[endgroup]
+health-check	Extract Tunnel URL and Pulse	2026-02-21T14:07:03.0434633Z Target Tunnel: https://kits-lottery-graduate-perspective.trycloudflare.com
+health-check	Extract Tunnel URL and Pulse	2026-02-21T14:07:03.4240699Z Response: {"status":"dead"}
+health-check	Extract Tunnel URL and Pulse	2026-02-21T14:07:03.4293418Z ##[error]Portal is DOWN or UNRESPONSIVE at https://kits-lottery-graduate-perspective.trycloudflare.com
+health-check	Extract Tunnel URL and Pulse	2026-02-21T14:07:03.4303775Z ##[error]Process completed with exit code 1.
+health-check	Post Checkout Repository	﻿2026-02-21T14:07:03.4408685Z Post job cleanup.
+health-check	Post Checkout Repository	2026-02-21T14:07:03.5327741Z [command]/usr/bin/git version
+health-check	Post Checkout Repository	2026-02-21T14:07:03.5363069Z git version 2.52.0
+health-check	Post Checkout Repository	2026-02-21T14:07:03.5406690Z Temporarily overriding HOME='/home/runner/work/_temp/a2f4b253-cc54-4122-8e6f-cc6fa756d265' before making global git config changes
+health-check	Post Checkout Repository	2026-02-21T14:07:03.5408225Z Adding repository directory to the temporary git global config as a safe directory
+health-check	Post Checkout Repository	2026-02-21T14:07:03.5413540Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/local-ai-campaign-assistant/local-ai-campaign-assistant
+health-check	Post Checkout Repository	2026-02-21T14:07:03.5448161Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+health-check	Post Checkout Repository	2026-02-21T14:07:03.5480586Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+health-check	Post Checkout Repository	2026-02-21T14:07:03.5720053Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+health-check	Post Checkout Repository	2026-02-21T14:07:03.5737271Z http.https://github.com/.extraheader
+health-check	Post Checkout Repository	2026-02-21T14:07:03.5754610Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+health-check	Post Checkout Repository	2026-02-21T14:07:03.5790517Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+health-check	Post Checkout Repository	2026-02-21T14:07:03.6045802Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+health-check	Post Checkout Repository	2026-02-21T14:07:03.6083130Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+health-check	Complete job	﻿2026-02-21T14:07:03.6461033Z Cleaning up orphan processes

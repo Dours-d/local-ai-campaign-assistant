@@ -1,3 +1,14 @@
+# Vault & Sensitive Data
+vault/
+data/UNIFIED_REGISTRY.json
+data/final_real_growth_list.json
+data/campaign_registry.json
+data/whydonate_creation_log.json
+data/whydonate_return_links.csv
+data/all_wd_links.txt
+data/access_tokens.json
+data/onboarding_submissions/
+data/onboarding_outbox/
 
 # Data & Logs
 data/

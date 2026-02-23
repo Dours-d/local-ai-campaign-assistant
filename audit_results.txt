@@ -1,8 +1,60 @@
-
---- AUDIT: Rania (AB164) ---
-Cell XML: <table:table-cell table:number-columns-repeated="3"/><table:table-cell office:value-type="float" office:value="200" calcext:value-type="float"><text:p>200.00</text:p></table:table-cell>
-Comment: No annotation
-Value: 200
-
---- AUDIT: Ibtisam (AB410) ---
-Cell AB410 in sheet Ibtisam not found (index logic issue?)
+Total submission files: 30
+--------------------------------------------------
+[High] PENDING | WA: +0599560696 | Name: 0599560696 | File: 0599560696_submission.json
+[Low] MISSING | WA: +967784681640 | Name: 967784681640 | File: 967784681640_submission.json
+[High] MISSING | WA: +972567243079 | Name: 972567243079 | File: 972567243079_submission.json
+[Low] MISSING | WA: +972592172016 | Name: جمال محمود حسين سمرة  | File: 972592172016_submission.json
+[High] MISSING | WA: +972592475288 | Name: 972592475288 | File: 972592475288_submission.json
+[Low] MISSING | WA: +972592566759 | Name: 972592566759 | File: 972592566759_submission.json
+[High] MISSING | WA: +972597341113 | Name: 972597341113 | File: 972597341113_submission.json
+[High] MISSING | WA: +972597662819 | Name: 972597662819 | File: 972597662819_submission.json
+[High] MISSING | WA: +972599904464 | Name: 972599904464 | File: 972599904464_submission.json
+[Low] PENDING | WA: +9720592566759 | Name: محمود زاهر راشد | File: viral_+9720592566759_submission.json
+[Low] PENDING | WA: +9720594025212 | Name: وسام جبريل نمر الصوير | File: viral_+9720594025212_submission.json
+[High] PENDING | WA: +9720595562213 | Name: محمود | File: viral_+9720595562213_submission.json
+[High] PENDING | WA: +972592645759 | Name: رنين القرعان | File: viral_+972592645759_submission.json
+[High] PENDING | WA: +972595038299 | Name: Salem | File: viral_+972595038299_submission.json
+[High] PENDING | WA: +972599197456 | Name: Rana Hani  | File: viral_+972599197456_submission.json
+[High] PENDING | WA: +00972597341113 | Name: تامر شراب | File: viral_00972597341113_submission.json
+[High] PENDING | WA: +0592115058 | Name: نهى | File: viral_0592115058_submission.json
+[Low] PENDING | WA: +0593622959 | Name: ندي ناهض الرقب | File: viral_0593622959_submission.json
+[High] PENDING | WA: +0597172654 | Name: زهير محمود هاشم ضبان  | File: viral_0597172654_submission.json
+[High] PENDING | WA: +0598289338 | Name: علي عياد | File: viral_0598289338_submission.json
+[Low] PENDING | WA: +0599283183 | Name: اسلام | File: viral_0599283183_submission.json
+[High] PENDING | WA: +0599560696 | Name: محمد | File: viral_0599560696_submission.json
+[Low] ANON/NO_WA | ID: viral_anon_3c60deb6 | Name:  | File: viral_anon_3c60deb6_submission.json
+[Low] ANON/NO_WA | ID: viral_anon_b598c157 | Name:  | File: viral_anon_b598c157_submission.json
+[Low] ANON/NO_WA | ID: viral_anon_ba9db621 | Name:  | File: viral_anon_ba9db621_submission.json
+[Low] ANON/NO_WA | ID: viral_anon_c3a16664 | Name:  | File: viral_anon_c3a16664_submission.json
+--------------------------------------------------
+Total pending to process (High Quality): 15
+Total submission files: 30
+--------------------------------------------------
+[High] PENDING | WA: +0599560696 | Name: 0599560696 | File: 0599560696_submission.json
+[Low] MISSING | WA: +967784681640 | Name: 967784681640 | File: 967784681640_submission.json
+[High] MISSING | WA: +972567243079 | Name: 972567243079 | File: 972567243079_submission.json
+[Low] MISSING | WA: +972592172016 | Name: جمال محمود حسين سمرة  | File: 972592172016_submission.json
+[High] MISSING | WA: +972592475288 | Name: 972592475288 | File: 972592475288_submission.json
+[Low] MISSING | WA: +972592566759 | Name: 972592566759 | File: 972592566759_submission.json
+[High] MISSING | WA: +972597341113 | Name: 972597341113 | File: 972597341113_submission.json
+[High] MISSING | WA: +972597662819 | Name: 972597662819 | File: 972597662819_submission.json
+[High] MISSING | WA: +972599904464 | Name: 972599904464 | File: 972599904464_submission.json
+[Low] PENDING | WA: +9720592566759 | Name: محمود زاهر راشد | File: viral_+9720592566759_submission.json
+[Low] PENDING | WA: +9720594025212 | Name: وسام جبريل نمر الصوير | File: viral_+9720594025212_submission.json
+[High] PENDING | WA: +9720595562213 | Name: محمود | File: viral_+9720595562213_submission.json
+[High] PENDING | WA: +972592645759 | Name: رنين القرعان | File: viral_+972592645759_submission.json
+[High] PENDING | WA: +972595038299 | Name: Salem | File: viral_+972595038299_submission.json
+[High] PENDING | WA: +972599197456 | Name: Rana Hani  | File: viral_+972599197456_submission.json
+[High] PENDING | WA: +00972597341113 | Name: تامر شراب | File: viral_00972597341113_submission.json
+[High] PENDING | WA: +0592115058 | Name: نهى | File: viral_0592115058_submission.json
+[Low] PENDING | WA: +0593622959 | Name: ندي ناهض الرقب | File: viral_0593622959_submission.json
+[High] PENDING | WA: +0597172654 | Name: زهير محمود هاشم ضبان  | File: viral_0597172654_submission.json
+[High] PENDING | WA: +0598289338 | Name: علي عياد | File: viral_0598289338_submission.json
+[Low] PENDING | WA: +0599283183 | Name: اسلام | File: viral_0599283183_submission.json
+[High] PENDING | WA: +0599560696 | Name: محمد | File: viral_0599560696_submission.json
+[Low] ANON/NO_WA | ID: viral_anon_3c60deb6 | Name:  | File: viral_anon_3c60deb6_submission.json
+[Low] ANON/NO_WA | ID: viral_anon_b598c157 | Name:  | File: viral_anon_b598c157_submission.json
+[Low] ANON/NO_WA | ID: viral_anon_ba9db621 | Name:  | File: viral_anon_ba9db621_submission.json
+[Low] ANON/NO_WA | ID: viral_anon_c3a16664 | Name:  | File: viral_anon_c3a16664_submission.json
+--------------------------------------------------
+Total pending to process (High Quality): 15

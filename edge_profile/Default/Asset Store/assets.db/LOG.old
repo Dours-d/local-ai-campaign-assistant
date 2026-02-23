@@ -1,5 +1,3 @@
-2026/02/15-09:15:37.419 4f30 Reusing MANIFEST C:\Users\gaelf\Documents\GitHub\local_ai_campaign_assistant\edge_profile\Default\Asset Store\assets.db/MANIFEST-000001
-2026/02/15-09:15:37.431 4f30 Recovering log #3
-2026/02/15-09:15:37.434 4f30 Level-0 table #3: started
-2026/02/15-09:15:37.447 4f30 Level-0 table #3: 339402 bytes OK
-2026/02/15-09:15:37.453 4f30 Delete type=0 #3
+2026/02/18-00:07:43.013 419c Reusing MANIFEST c:\Users\gaelf\Documents\GitHub\local_ai_campaign_assistant\edge_profile\Default\Asset Store\assets.db/MANIFEST-000001
+2026/02/18-00:07:43.017 419c Recovering log #4
+2026/02/18-00:07:43.023 419c Reusing old log c:\Users\gaelf\Documents\GitHub\local_ai_campaign_assistant\edge_profile\Default\Asset Store\assets.db/000004.log 

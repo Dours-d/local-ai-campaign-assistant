@@ -1,2 +1,6 @@
-2026/02/15-09:15:00.650 336c Creating DB C:\Users\gaelf\Documents\GitHub\local_ai_campaign_assistant\edge_profile\Default\Sync Data\LevelDB since it was missing.
-2026/02/15-09:15:00.655 336c Reusing MANIFEST C:\Users\gaelf\Documents\GitHub\local_ai_campaign_assistant\edge_profile\Default\Sync Data\LevelDB/MANIFEST-000001
+2026/02/17-20:07:36.189 63dc Reusing MANIFEST c:\Users\gaelf\Documents\GitHub\local_ai_campaign_assistant\edge_profile\Default\Sync Data\LevelDB/MANIFEST-000001
+2026/02/17-20:07:36.192 63dc Recovering log #6
+2026/02/17-20:07:36.197 63dc Reusing old log c:\Users\gaelf\Documents\GitHub\local_ai_campaign_assistant\edge_profile\Default\Sync Data\LevelDB/000006.log 
+2026/02/17-20:08:04.462 63dc Level-0 table #10: started
+2026/02/17-20:08:04.473 63dc Level-0 table #10: 121201 bytes OK
+2026/02/17-20:08:04.476 63dc Delete type=0 #6

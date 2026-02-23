@@ -7,7 +7,8 @@ from sovereign_vault import SovereignVault
 # SETTINGS FOR GROWTH BATCH
 DATA_FILE = "data/potential_growth_list_final.json"
 PORTAL_URL = "https://dours-d.github.io/local-ai-campaign-assistant/index.html#"
-VIRAL_URL = "https://bit.ly/g-gz-resi-fund"
+VIRAL_URL = "https://dours-d.github.io/local-ai-campaign-assistant/"
+NOOR_PORTAL_URL = "https://bit.ly/NoorAiPortal"
 OUTBOX_DIR = "data/onboarding_outbox"
 
 def generate_messages():
@@ -57,7 +58,9 @@ def generate_messages():
         msg_ar += f"هذه المحفظة خاصة بك وحدك. تصل التبرعات إليها مباشرة دون وسيط، مما يضمن وصول المساعدات إليكم فوراً.\n\n"
         msg_ar += f"🔗 **رابط الصندوق المظلة (Umbrella Fund)**:\n"
         msg_ar += f"{VIRAL_URL}\n"
-        msg_ar += f"يمكن للمتبرعين دعمكم عبر هذا الرابط الجماعي؛ فقط تأكد من تزويدهم بالـ ID الخاص بكم: {bid}\n"
+        msg_ar += f"يمكن للمتبرعين دعمكم عبر هذا الرابط الجماعي؛ فقط تأكد من تزويدهم بالـ ID الخاص بكم: {bid}\n\n"
+        msg_ar += f"🌍 **بوابة 'نور' المعرفية (Noor Portal)**:\n"
+        msg_ar += f"نحن نوثق تاريخكم الحي للأجيال القادمة لضمان بقاء الحقيقة في ذاكرة العالم: {NOOR_PORTAL_URL}"
 
         # --- ENGLISH MESSAGE ---
         msg_en = f"Salam Alaykum.\n\n"
@@ -70,7 +73,9 @@ def generate_messages():
         msg_en += f"This wallet is your own. Aid flows directly to you via blockchain, ensuring transparency and immediate access to support.\n\n"
         msg_en += f"🔗 **Umbrella Fund Link**:\n"
         msg_en += f"{VIRAL_URL}\n"
-        msg_en += f"Donors can support you through this collective link; ensure they include your unique ID: {bid}\n"
+        msg_en += f"Donors can support you through this collective link; ensure they include your unique ID: {bid}\n\n"
+        msg_en += f"🌍 **Noor Knowledge Portal**:\n"
+        msg_en += f"Your resilience is being preserved in our autonomous memory as a sacred record: {NOOR_PORTAL_URL}"
 
         # --- JOINT MESSAGE (Arabic + English) ---
         joint_msg = msg_ar.strip() + "\n\n" + ("="*30) + "\n\n" + msg_en.strip()

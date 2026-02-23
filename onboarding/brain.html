@@ -662,6 +662,58 @@
             <main class="content-area" id="main-content">
             </main>
         </div>
+
+        <!-- DOLÉANCES — Trust Complaint System -->
+        <section style="margin-top: 40px; background: rgba(26,22,18,0.6); backdrop-filter: blur(15px);
+                        border: 1px solid rgba(212,163,115,0.2); border-radius: 20px; padding: 32px;">
+            <h2
+                style="font-size: 1.1rem; color: var(--primary); margin: 0 0 6px 0; letter-spacing: 2px; text-transform: uppercase;">
+                📣 Doléances — شكاوى الأمانة
+            </h2>
+            <p style="color: var(--secondary); font-size: 0.8rem; margin: 0 0 24px 0; line-height: 1.7;">
+                Submit a complaint or concern about the Trust. Your identifier is optional —
+                you may choose to remain anonymous. If you provide a phone number, ID, or campaign link,
+                your complaint will be traceable and actionable.
+                <br><span dir="rtl" style="display:block; margin-top:6px;">قدّم شكوى أو قلقًا حول الأمانة. الهوية
+                    اختيارية — يمكنك البقاء مجهولًا. إذا أضفت رقم هاتف أو معرّف أو رابط حملة، ستكون شكواك قابلة للتتبع
+                    والمعالجة.</span>
+            </p>
+
+            <div id="dolance-success" style="display:none; background: rgba(50,191,85,0.1); border: 1px solid #32BF55;
+                    border-radius: 12px; padding: 16px; color: #32BF55; margin-bottom: 20px; font-size: 0.9rem;">
+                ✓ Your complaint has been recorded. جرى تسجيل شكواك.
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+                <textarea id="dolance-text" rows="4"
+                    placeholder="Describe your complaint or concern about the Trust... / اكتب شكواك أو قلقك هنا..."
+                    style="width: 100%; padding: 14px; background: rgba(0,0,0,0.3); border: 1px solid rgba(212,163,115,0.2);
+                           border-radius: 12px; color: var(--text-main); font-family: inherit; font-size: 0.9rem;
+                           resize: vertical; line-height: 1.6; box-sizing: border-box;"></textarea>
+
+                <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+                    <label
+                        style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 0.8rem; color: var(--secondary);">
+                        <input type="checkbox" id="dolance-anonymous" checked
+                            style="width:auto; margin:0; accent-color: var(--primary);">
+                        Submit anonymously / تقديم مجهول
+                    </label>
+                </div>
+
+                <div id="dolance-id-wrap" style="display: none;">
+                    <input type="text" id="dolance-identifier"
+                        placeholder="Phone number, beneficiary ID, or campaign link (optional) / رقم الهاتف أو المعرّف أو رابط الحملة"
+                        style="padding: 12px; background: rgba(0,0,0,0.2); border: 1px solid rgba(212,163,115,0.15);
+                               border-radius: 12px; color: white; box-sizing: border-box; font-size: 0.85rem; width:100%;">
+                </div>
+
+                <button onclick="submitDolance()" style="width: auto; align-self: flex-start; padding: 12px 28px; font-size: 0.85rem;
+                           letter-spacing: 1px; background: linear-gradient(145deg, #a98467, #8b6914);">
+                    📤 Submit Complaint — إرسال الشكوى
+                </button>
+            </div>
+        </section>
+
         <footer style="text-align: center; margin-top: 40px; color: var(--border); font-size: 0.8rem;">
             Dunya System v1.2
         </footer>
@@ -1002,6 +1054,39 @@
             const isRelay = document.getElementById('relay-mode').checked;
             const badge = document.getElementById('model-badge');
             badge.style.display = isRelay ? 'inline' : 'none';
+        }
+
+        // --- DOLÉANCES ---
+        document.getElementById('dolance-anonymous').addEventListener('change', function () {
+            document.getElementById('dolance-id-wrap').style.display = this.checked ? 'none' : 'block';
+        });
+
+        async function submitDolance() {
+            const text = document.getElementById('dolance-text').value.trim();
+            if (!text) { alert('Please describe your complaint first.'); return; }
+
+            const isAnon = document.getElementById('dolance-anonymous').checked;
+            const identifier = isAnon ? null : (document.getElementById('dolance-identifier').value.trim() || null);
+
+            const base = window.location.origin.includes('dours-d.github.io') ? targetUrl : '';
+            try {
+                const res = await fetch(base + '/api/dolances', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ text, identifier })
+                });
+                const result = await res.json();
+                if (res.ok) {
+                    document.getElementById('dolance-success').style.display = 'block';
+                    document.getElementById('dolance-text').value = '';
+                    document.getElementById('dolance-identifier').value = '';
+                    setTimeout(() => document.getElementById('dolance-success').style.display = 'none', 5000);
+                } else {
+                    alert('Error: ' + (result.error || 'Could not submit.'));
+                }
+            } catch (e) {
+                alert('Connection error. Please try again.');
+            }
         }
 
         // Initialize

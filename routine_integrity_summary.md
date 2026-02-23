@@ -1,28 +1,26 @@
 # Routine Integrity Check Report
 
-## Status: ✅ Success
-All routine integrity checks have been executed successfully.
+## Status: ✅ Success (Redirect Fixed & Stabilized)
+Last Run: 2026-02-17 19:15 UTC
 
 ## 1. System Integrity
-- **JSON Integrity**: Checked (Health: Good)
-- **Growth List Audit**: Completed
-- **Onboarding Validation**: 157 numbers found, 0 files modified (Clean)
-- **Financial Ledger**: Reconciled (Total Tracked: €140,908.47)
-- **WhatsApp Scan**: 1704 unique numbers found (156 new potential numbers)
+- **JSON Integrity**: ✅ PASS (Health: Good)
+- **Growth List Audit**: ✅ PASS (Rationality Check completed)
+- **Onboarding Validation**: ✅ PASS (302 beneficiaries tracked, consistent outbox)
+- **Financial Ledger**: ✅ PASS (Total Outstanding Debt: €140,908.47)
+- **Trust Health**: ✅ PASS (Report updated in `data/reports/trust_health_report.md`)
 
-## 2. Trust Health (from `trust_health_report.md`)
-- **Unified Pioneer Value**: €7,967.84
-- **Outstanding Liability**: €8,147.40
-- **Total Fundraising Flow**: €205,644.24
+## 2. Redirection & Deployment (Learned Experience Fix)
+The system was updated to bypass the broken Vercel deployment which was suffering from 404 errors and free-tier "Build Bomb" (quota exhaustion).
 
-## 3. Deployment & Redirection Verification
-The user requested a check on the new configuration with the permanent Vercel link.
-- **Historic Link**: `https://dours-d.github.io/local-ai-campaign-assistant/index.html`
+- **Historic/Redirector Link**: `https://dours-d.github.io/local-ai-campaign-assistant/`
   - **Status**: ✅ Online (200 OK)
-  - **Behavior**: Contains legacy redirector pointing to `githubOnboardingUrl` (Vercel).
-- **Permanent Vercel Link**: `https://local-ai-campaign-assistant.vercel.app`
-  - **Status**: ✅ Online (200 OK)
-  - **Accessibility**: Reachable and active.
+  - **Logic**: Points `githubOnboardingUrl` directly to the active Cloudflare Tunnel.
+- **Background Stabilizer**:
+  - **Monitoring Service**: ✅ ACTIVE (scripts/monitor_services.ps1)
+  - **Build Bomb Prevention**: ✅ FIXED (No longer pushes to GitHub unless the tunnel URL changes)
+- **Heartbeat & UI**:
+  - **Deep Link Check**: ✅ PASS (200 OK on historic deep links)
+  - **Direct Redirect**: ✅ VERIFIED (Browser subagent confirmed immediate redirect to active portal)
 
-The system is healthy and the redirection from historic links to the new permanent Vercel app is functioning correctly.
-
+The system is now healthy, decentralized from Vercel's build limitations, and serving the Sovereign Portal directly from the live node.

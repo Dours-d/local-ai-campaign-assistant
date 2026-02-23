@@ -29,13 +29,24 @@ def load_csv(path):
         return list(csv.DictReader(f))
 
 def unify():
-    # Data Sources
-    growth_list_path = r'c:\Users\gaelf\Documents\GitHub\local_ai_campaign_assistant\data\final_real_growth_list.json'
-    registry_path = r'c:\Users\gaelf\Documents\GitHub\local_ai_campaign_assistant\data\campaign_registry.json'
-    return_links_path = r'c:\Users\gaelf\Documents\GitHub\local_ai_campaign_assistant\data\whydonate_return_links.csv'
-    creation_log_path = r'c:\Users\gaelf\Documents\GitHub\local_ai_campaign_assistant\data\whydonate_creation_log.json'
-    wd_links_txt_path = r'c:\Users\gaelf\Documents\GitHub\local_ai_campaign_assistant\data\all_wd_links.txt'
-    output_path = r'c:\Users\gaelf\Documents\GitHub\local_ai_campaign_assistant\data\UNIFIED_REGISTRY.json'
+    # Detect Vault vs Public Data
+    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    vault_dir = os.path.join(base_dir, 'vault')
+    data_dir = os.path.join(base_dir, 'data')
+    
+    is_private = os.path.exists(vault_dir)
+    root_src = vault_dir if is_private else data_dir
+    
+    growth_list_path = os.path.join(root_src, 'final_real_growth_list.json')
+    registry_path = os.path.join(root_src, 'campaign_registry.json')
+    return_links_path = os.path.join(root_src, 'whydonate_return_links.csv')
+    creation_log_path = os.path.join(root_src, 'whydonate_creation_log.json')
+    wd_links_txt_path = os.path.join(root_src, 'all_wd_links.txt')
+    output_path = os.path.join(root_src, 'UNIFIED_REGISTRY.json')
+    
+    if not is_private:
+        print("!!! RUNNING IN PUBLIC DEMO MODE (VAULT MISSING) !!!")
+        print(f"Using source: {data_dir}")
 
     growth_data = load_json(growth_list_path)
     registry_data = load_json(registry_path)

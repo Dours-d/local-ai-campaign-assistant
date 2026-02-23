@@ -1,5 +1,6 @@
-2026/02/15-09:15:02.981 9c0 Creating DB C:\Users\gaelf\Documents\GitHub\local_ai_campaign_assistant\edge_profile\Default\EdgeCoupons/coupons_data.db since it was missing.
-2026/02/15-09:15:02.987 9c0 Reusing MANIFEST C:\Users\gaelf\Documents\GitHub\local_ai_campaign_assistant\edge_profile\Default\EdgeCoupons/coupons_data.db/MANIFEST-000001
-2026/02/15-09:15:19.433 1fc0 Level-0 table #5: started
-2026/02/15-09:15:19.436 1fc0 Level-0 table #5: 681504 bytes OK
-2026/02/15-09:15:19.438 1fc0 Delete type=0 #3
+2026/02/17-20:07:41.142 1e44 Reusing MANIFEST c:\Users\gaelf\Documents\GitHub\local_ai_campaign_assistant\edge_profile\Default\EdgeCoupons/coupons_data.db/MANIFEST-000001
+2026/02/17-20:07:41.144 1e44 Recovering log #7
+2026/02/17-20:07:41.146 1e44 Reusing old log c:\Users\gaelf\Documents\GitHub\local_ai_campaign_assistant\edge_profile\Default\EdgeCoupons/coupons_data.db/000007.log 
+2026/02/17-20:07:41.538 628 Level-0 table #11: started
+2026/02/17-20:07:41.544 628 Level-0 table #11: 681740 bytes OK
+2026/02/17-20:07:41.550 628 Delete type=0 #7

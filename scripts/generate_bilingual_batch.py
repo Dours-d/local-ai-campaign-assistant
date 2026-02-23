@@ -9,12 +9,12 @@ translations = {
         "en_story": "I hope you can stand with me in building a new home and extend a helping hand to me instead of the home that was bombed and destroyed because of the war. May God reward you with all goodness."
     },
     "972597341113": {
-        "en_title": "Emergency Aid for family in Khan Yunis",
-        "en_story": "I need financial help because I have not received anything from any party to support my family during this difficult time."
+        "en_title": "Emergency Aid: Near MSF Khan Yunis",
+        "en_story": "Akram and his family are currently navigating the extreme hardships of displacement in Khan Yunis. They are located in the As-Sadaa area, in close proximity to the MSF (Doctors Without Borders) facility and Al-Qudra Supermarket. Despite being near these known landmarks, they have yet to receive any direct assistance from any organization. Akram is reaching out for urgent financial support to provide basic necessities for his family during this critical time."
     },
     "972598827480": {
-        "en_title": "Help my family for a new beginning",
-        "en_story": "Magda and Mohammed's family. Our home was completely destroyed and we became homeless. Your support and contribution, even a little, gives us hope."
+        "en_title": "A New Beginning for Magda & Mohammed",
+        "en_story": "Magda and Mohammed's family have faced the ultimate hardship of war: the complete and total destruction of their family home. Now homeless, they are seeking to rebuild their lives from the ground up. This campaign is a call for a 'New Beginning'—to provide this family with the stability and security they lost. Your contribution, no matter how small, offers a path toward dignity and a safe place to call home again."
     },
     "972599904464": {
         "en_title": "Help me rebuild my home",
@@ -63,23 +63,30 @@ translations = {
 }
 
 def generate_bilingual_batch():
-    with open('data/detailed_submission_map.json', 'r', encoding='utf-8') as f:
+    # Detect Vault vs Public Data
+    base_dir = Path(__file__).parent.parent
+    vault_dir = base_dir / 'vault'
+    data_dir = base_dir / 'data'
+    is_private = vault_dir.exists()
+    root_src = vault_dir if is_private else data_dir
+    
+    submissions_map_path = root_src / 'detailed_submission_map.json'
+    if not submissions_map_path.exists():
+        submissions_map_path = data_dir / 'detailed_submission_map.json'
+
+    with open(submissions_map_path, 'r', encoding='utf-8') as f:
         mapped_data = json.load(f)
     
     batch = []
     
     # Try to find a good generic image to use as fallback
     fallback_image = None
-    # Look for fajr.jpg or any image from a successful mapping
-    for item in mapped_data:
-        if item['image'] and os.path.exists(item['image']):
-            if 'fajr.jpg' in item['image']:
-                fallback_image = item['image']
-                break
-            if not fallback_image:
-                fallback_image = item['image']
-
-    print(f"Using fallback image: {fallback_image}")
+    media_dir = root_src / 'onboarding_submissions' / 'media'
+    if media_dir.exists():
+        images = list(media_dir.glob('**/*.jpg')) + list(media_dir.glob('**/*.jpeg')) + list(media_dir.glob('**/*.png'))
+        if images:
+            fallback_image = str(images[0])
+            print(f"Using discovered fallback image: {fallback_image}")
 
     for item in mapped_data:
         bid = item['id']
@@ -90,20 +97,18 @@ def generate_bilingual_batch():
         if not (ar_title or ar_story) and bid not in translations:
             continue
             
-        # Get English translation if available
         trans = translations.get(bid) or translations.get(item['id'].replace('+', '')) or {}
         en_title = trans.get('en_title', '')
         en_story = trans.get('en_story', '')
         
-        # Create Bilingual Title
+        # Consistent Ordering: English | Arabic
         if ar_title and en_title:
-            final_title = f"{ar_title} | {en_title}"
+            final_title = f"{en_title} | {ar_title}"
         elif ar_title:
             final_title = ar_title
         else:
             final_title = en_title
             
-        # Create Bilingual Description
         if ar_story and en_story:
             final_story = f"{ar_story}\n\n---\n\n{en_story}"
         elif ar_story:
@@ -114,17 +119,24 @@ def generate_bilingual_batch():
         if not final_title or not final_story:
             continue
 
-        # Final cleanup of Title (WhyDonate title limit)
-        if len(final_title) > 80:
-            final_title = final_title[:77] + "..."
+        # Enforce 75 character limit
+        if len(final_title) > 75:
+            final_title = final_title[:72] + "..."
             
-        # Image Handling
-        image_path = item['image']
-        if not image_path or not os.path.exists(image_path):
+        # Image Handling with Vault-First redirection
+        image_path = item.get('image')
+        if image_path:
+            # If path in JSON contains 'data' but 'vault' exists, pivot to vault
+            if is_private and '\\data\\' in image_path:
+                image_path = image_path.replace('\\data\\', '\\vault\\')
+            
+            if not os.path.exists(image_path):
+                image_path = fallback_image
+        else:
             image_path = fallback_image
 
-        if not image_path:
-            print(f"Skipping {bid} - No image and no fallback available.")
+        if not image_path or not os.path.exists(image_path):
+            print(f"Skipping {bid} - No valid image found.")
             continue
 
         batch.append({
@@ -135,10 +147,11 @@ def generate_bilingual_batch():
             "image": str(Path(image_path).absolute())
         })
 
-    with open('data/new_trustees_bilingual_batch.json', 'w', encoding='utf-8') as f:
+    output_path = root_src / 'new_trustees_bilingual_batch.json'
+    with open(output_path, 'w', encoding='utf-8') as f:
         json.dump(batch, f, ensure_ascii=False, indent=2)
     
-    print(f"Generated bilingual batch with {len(batch)} campaigns in data/new_trustees_bilingual_batch.json")
+    print(f"Generated bilingual batch with {len(batch)} campaigns in {output_path}")
 
 if __name__ == "__main__":
     generate_bilingual_batch()

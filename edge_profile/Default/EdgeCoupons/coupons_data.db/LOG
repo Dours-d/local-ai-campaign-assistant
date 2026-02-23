@@ -1,6 +1,6 @@
-2026/02/15-09:15:37.403 540 Reusing MANIFEST C:\Users\gaelf\Documents\GitHub\local_ai_campaign_assistant\edge_profile\Default\EdgeCoupons/coupons_data.db/MANIFEST-000001
-2026/02/15-09:15:37.404 540 Recovering log #4
-2026/02/15-09:15:37.405 540 Reusing old log C:\Users\gaelf\Documents\GitHub\local_ai_campaign_assistant\edge_profile\Default\EdgeCoupons/coupons_data.db/000004.log 
-2026/02/15-09:15:37.613 de4 Level-0 table #8: started
-2026/02/15-09:15:37.618 de4 Level-0 table #8: 681746 bytes OK
-2026/02/15-09:15:37.620 de4 Delete type=0 #4
+2026/02/23-00:47:08.270 6fdc Reusing MANIFEST c:\Users\gaelf\Documents\GitHub\local_ai_campaign_assistant\edge_profile\Default\EdgeCoupons/coupons_data.db/MANIFEST-000001
+2026/02/23-00:47:08.272 6fdc Recovering log #10
+2026/02/23-00:47:08.274 6fdc Reusing old log c:\Users\gaelf\Documents\GitHub\local_ai_campaign_assistant\edge_profile\Default\EdgeCoupons/coupons_data.db/000010.log 
+2026/02/23-00:47:08.800 23e8 Level-0 table #14: started
+2026/02/23-00:47:08.804 23e8 Level-0 table #14: 681733 bytes OK
+2026/02/23-00:47:08.807 23e8 Delete type=0 #10
