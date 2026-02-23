@@ -1,3 +1,5 @@
+.env
+
 # Vault & Sensitive Data
 vault/
 data/UNIFIED_REGISTRY.json
