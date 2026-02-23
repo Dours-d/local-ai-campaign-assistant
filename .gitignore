@@ -54,3 +54,4 @@ edge_profile/
 chrome-profile/
 SCRIBE_VAULT/
 .gemini/
+*.local
