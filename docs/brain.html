@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -7,7 +7,7 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>Redirecting to Dunya Ø¯Ù†ÙŠØ§...</title>
+    <title>Redirecting to Dunya دنيا...</title>
     <style>
         body {
             font-family: 'Inter', 'Cairo', sans-serif;
@@ -38,13 +38,23 @@
 
 <body>
     <div class="box">
-        <p id="updated" style="font-size:0.8em; color:#64748b;">Last Updated: 2026-02-24 14:57:50 UTC</p>
-        <p id="msg">Connecting to Dunya Sovereign Intelligence...</p>
+        <div style="position: absolute; top: 15px; right: 15px; display: flex; gap: 8px;">
+            <button onclick="setLanguage('ar')"
+                style="padding: 4px 12px; font-size: 0.75rem; width: auto; background: rgba(212, 163, 115, 0.1); color: var(--primary, #d4a373); border: 1px solid var(--border, rgba(212,163,115,0.15)); border-radius: 8px; cursor: pointer; color: white;">🌐
+                العربية</button>
+            <button onclick="setLanguage('en')"
+                style="padding: 4px 12px; font-size: 0.75rem; width: auto; background: rgba(212, 163, 115, 0.1); color: var(--primary, #d4a373); border: 1px solid var(--border, rgba(212,163,115,0.15)); border-radius: 8px; cursor: pointer; color: white;">🌐
+                English</button>
+        </div>
+        <div style="font-size: 2rem; margin-bottom: 20px;">✨</div>
+        <h1 style="font-size: 1.2rem; margin-bottom: 24px; letter-spacing: 4px; color: white;" data-i18n="dunya_title">
+            DUNYA دنيا</h1>
+        <p id="msg" data-i18n="dunya_establishing">Establishing secure connection to Noor Sovereign Intelligence...</p>
         <p><a id="link" href="#">Click here if not redirected automatically</a></p>
     </div>
     <script>
         // Updated automatically by monitor script
-        var githubOnboardingUrl = "https://telecharger-education-marcus-perfectly.trycloudflare.com";
+        var githubOnboardingUrl = "https://jay-posted-related-tooth.trycloudflare.com";
         var finalUrl = githubOnboardingUrl + "/brain" + window.location.search + window.location.hash;
         document.getElementById("link").href = finalUrl;
         setTimeout(() => { window.location.replace(finalUrl); }, 1000);
@@ -52,12 +62,3 @@
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-
