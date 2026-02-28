@@ -84,7 +84,7 @@ syncRelayStatus();
  */
 async function openShahada() {
     try {
-        const response = await fetch('data/status.json');
+        const response = await fetch('data/status.json?t=' + Date.now());
         if (response.ok) {
             const status = await response.json();
             const url = status.services.onboarding_server.public_url;
