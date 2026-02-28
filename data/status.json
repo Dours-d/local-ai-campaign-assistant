@@ -1,16 +1,16 @@
 {
-  "last_updated": "2026-02-28 19:43:41 UTC",
+  "last_updated": "2026-02-28 20:10:22 UTC",
   "services": {
     "shahada_portal": {
       "status": "online",
-      "public_url": "https://sailing-guardian-paris-inclusive.trycloudflare.com/onboard"
+      "public_url": "/onboard"
     },
     "brain_portal": {
       "status": "online",
-      "public_url": "https://sailing-guardian-paris-inclusive.trycloudflare.com/brain"
+      "public_url": "/brain"
     },
     "onboarding_server": {
-      "public_url": "https://sailing-guardian-paris-inclusive.trycloudflare.com",
+      "public_url": null,
       "local_url": "http://127.0.0.1:5010",
       "status": "online"
     }
