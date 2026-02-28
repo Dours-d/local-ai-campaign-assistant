@@ -34,19 +34,6 @@ whydonate_network_fails.json
 dashboard_sample.html
 debug_html_dump.txt
 
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-.venv/
-.pytest_cache/
-.env
-
-# OS
-.DS_Store
-Thumbs.db
-
-# Executables
 cloudflared.exe
 
 # Browser Profiles
@@ -55,3 +42,4 @@ chrome-profile/
 SCRIBE_VAULT/
 .gemini/
 *.local
+.env.social

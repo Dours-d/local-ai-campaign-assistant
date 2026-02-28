@@ -1,0 +1,29 @@
+{
+    "HeartbeatTimeoutMin": 5,
+    "HeartbeatTimeoutMax": 15,
+    "MaxRetries": 3,
+    "RetryDelayMin": 2,
+    "RetryDelayMax": 6,
+    "CheckInterval": 60,
+    "SyncFiles": [
+        "index.html",
+        "onboard.html",
+        "brain.html"
+    ],
+    "LogLevel": "INFO",
+    "Alerting": {
+        "Enabled": false,
+        "Provider": "Webhook",
+        "Endpoints": {
+            "DiscordEnvVar": "MONITOR_DISCORD_WEBHOOK",
+            "SlackEnvVar": "MONITOR_SLACK_WEBHOOK"
+        },
+        "Triggers": {
+            "HeartbeatFail": true,
+            "RestartAttempt": true,
+            "RestartSuccess": true,
+            "RestartFailure": true,
+            "SyncFailure": true
+        }
+    }
+}

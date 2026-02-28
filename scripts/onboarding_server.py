@@ -37,8 +37,9 @@ DATA_ROOT = os.path.join(BASE_DIR, 'data')
 IS_PRIVATE = os.path.exists(VAULT_DIR)
 ACTIVE_ROOT = VAULT_DIR if IS_PRIVATE else DATA_ROOT
 
-DATA_DIR = os.path.join(ACTIVE_ROOT, "onboarding_submissions")
-UPLOAD_FOLDER = os.path.join(DATA_DIR, "media")
+# Strict Absolute Path Construction (as recommended in frc79280)
+DATA_DIR = os.path.abspath(os.path.join(ACTIVE_ROOT, "onboarding_submissions"))
+UPLOAD_FOLDER = os.path.abspath(os.path.join(DATA_DIR, "media"))
 
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -234,7 +235,7 @@ def save_growth_list_v2():
 
 def _regenerate_onboarding_messages(campaigns):
     import re as _re
-    PORTAL_URL = "https://dours-d.github.io/local-ai-campaign-assistant/index.html#"
+    PORTAL_URL = "https://dours-d.github.io/local-ai-campaign-assistant/onboarding/"
     VIRAL_URL  = "https://dours-d.github.io/local-ai-campaign-assistant/"
     NOOR_URL   = "https://dours-d.github.io/local-ai-campaign-assistant/brain.html"
 
@@ -498,10 +499,11 @@ def login():
         session["user_email"] = ADMIN_EMAIL
         session["logged_in"] = True
         print(f"Login Successful for {ADMIN_EMAIL}")
-        return jsonify({"status": "success", "role": "ADMIN"}), 200
+        # Return status and role for the injection script to verify
+        return jsonify({"status": "success", "role": "ADMIN", "user": ADMIN_EMAIL}), 200
     
     print(f"Login Failed. Received: {password}")
-    return jsonify({"error": "Invalid Credentials", "message": "The password provided does not match the Sovereign Vault admin key."}), 401
+    return jsonify({"error": "Invalid Credentials"}), 401
 
 @app.route('/logout', methods=['POST'])
 def logout():
@@ -800,7 +802,52 @@ def upload_file():
     with open(json_path, 'w', encoding='utf-8') as f:
         json.dump(submission_data, f, indent=2)
     
-    return jsonify({"status": "success"}), 200
+    return jsonify({"status": "success", "beneficiary_id": beneficiary_id}), 201
+
+@app.route('/api/publish-pulse', methods=['POST'])
+def publish_pulse():
+    """Admin Only: Inject a synthesized vertical pulse video into the portal assets."""
+    # Ensure admin role via identity/session
+    if get_user_role() != "ADMIN":
+        return jsonify({"error": "Unauthorized", "message": "Requires Admin protocol access."}), 403
+
+    if 'file' not in request.files:
+        return jsonify({"error": "Missing file"}), 400
+        
+    file = request.files['file']
+    if not file or not file.filename.endswith('.mp4'):
+        return jsonify({"error": "Invalid file type. Only .mp4 allowed."}), 400
+
+    # Public assets directory (serving from frontend/assets/pulses)
+    public_pulse_dir = os.path.join(BASE_DIR, 'frontend', 'assets', 'pulses')
+    os.makedirs(public_pulse_dir, exist_ok=True)
+    
+    filename = secure_filename(file.filename)
+    save_path = os.path.join(public_pulse_dir, filename)
+    file.save(save_path)
+    
+    # Track the pulse in a manifest for the UI to consumption
+    manifest_path = os.path.join(public_pulse_dir, 'manifest.json')
+    manifest = []
+    if os.path.exists(manifest_path):
+        try:
+            with open(manifest_path, 'r', encoding='utf-8') as f:
+                manifest = json.load(f)
+        except: manifest = []
+        
+    manifest.append({
+        "filename": filename,
+        "timestamp": datetime.datetime.now().isoformat(),
+        "url": f"/assets/pulses/{filename}"
+    })
+    
+    # Keep only the last 20 pulses to preserve bandwidth/storage
+    manifest = manifest[-20:]
+    
+    with open(manifest_path, 'w', encoding='utf-8') as f:
+        json.dump(manifest, f, indent=2)
+        
+    return jsonify({"status": "published", "url": f"/assets/pulses/{filename}"}), 201
 
 @app.route('/api/translate', methods=['POST'])
 def translate_arabic():

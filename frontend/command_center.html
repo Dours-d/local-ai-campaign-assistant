@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sovereign Command Center</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --panel-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --accent-green: #10b981;
+            --accent-green-hover: #059669;
+            --border: #334155;
+            --terminal-bg: #000000;
+            --terminal-text: #4ade80;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .dashboard-container {
+            width: 100%;
+            max-width: 1000px;
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 20px;
+        }
+
+        header {
+            width: 100%;
+            max-width: 1000px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 20px;
+            text-align: left;
+        }
+
+        h1 {
+            margin: 0 0 5px 0;
+            font-size: 2.2em;
+            letter-spacing: -0.5px;
+            background: linear-gradient(90deg, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        header p {
+            margin: 0;
+            color: var(--text-muted);
+            font-size: 1.1em;
+        }
+
+        .control-panel {
+            background-color: var(--panel-bg);
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid var(--border);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .control-panel h2 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+            color: var(--text-main);
+            border-bottom: 1px dashed var(--border);
+            padding-bottom: 10px;
+        }
+
+        button {
+            background-color: var(--panel-bg);
+            color: var(--text-main);
+            border: 1px solid var(--border);
+            padding: 14px 16px;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        button:hover {
+            border-color: var(--accent);
+            background-color: rgba(59, 130, 246, 0.1);
+            transform: translateY(-1px);
+        }
+
+        button:active {
+            transform: translateY(1px);
+        }
+
+        .btn-icon {
+            font-size: 1.2em;
+        }
+
+        .btn-launch {
+            background-color: rgba(16, 185, 129, 0.1);
+            border-color: var(--accent-green);
+        }
+
+        .btn-launch:hover {
+            background-color: rgba(16, 185, 129, 0.2);
+            border-color: var(--text-main);
+        }
+
+        .terminal-panel {
+            background-color: var(--terminal-bg);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+        }
+
+        .terminal-header {
+            background-color: var(--panel-bg);
+            padding: 12px 20px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9em;
+            color: var(--text-muted);
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .dot {
+            height: 10px;
+            width: 10px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .dot.idle {
+            background-color: var(--text-muted);
+        }
+
+        .dot.running {
+            background-color: var(--accent-green);
+            animation: pulse 1.5s infinite;
+        }
+
+        .dot.error {
+            background-color: #ef4444;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+            }
+
+            70% {
+                box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+            }
+        }
+
+        #terminal-output {
+            flex-grow: 1;
+            padding: 20px;
+            margin: 0;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            color: var(--terminal-text);
+            overflow-y: auto;
+            white-space: pre-wrap;
+            height: 500px;
+            word-break: break-all;
+        }
+
+        .sys-msg {
+            color: #facc15;
+        }
+
+        .success-msg {
+            color: #10b981;
+        }
+
+        .error-msg {
+            color: #ef4444;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Sovereign Command Center</h1>
+        <p>Local Operational Dashboard & Autonomous Workflow Automation</p>
+    </header>
+
+    <div class="dashboard-container">
+        <!-- Control Panel -->
+        <div class="control-panel">
+            <h2>Data Intake & Sync</h2>
+            <button onclick="runCommand('sync_submissions')">
+                <span class="btn-icon">📥</span> 1. Sync Vault Submissions to Queue
+            </button>
+            <button onclick="runCommand('generate_viewer')">
+                <span class="btn-icon">🗂️</span> 2. Compile Dashboard Viewer
+            </button>
+            <button class="btn-launch" onclick="runCommand('open_viewer')">
+                <span class="btn-icon">🚀</span> Launch Cards Viewer (Local)
+            </button>
+
+            <h2 style="margin-top: 15px;">WhyDonate Automation</h2>
+            <button onclick="runCommand('prepare_batch')">
+                <span class="btn-icon">⚙️</span> 1. Prepare Batch Array
+            </button>
+            <button onclick="runCommand('run_automater')">
+                <span class="btn-icon">🤖</span> 2. Run Headless Automater
+            </button>
+            <button onclick="runCommand('reconcile_ledger')">
+                <span class="btn-icon">🔗</span> 3. Reconcile Global Ledger
+            </button>
+            <button onclick="runCommand('generate_messages')">
+                <span class="btn-icon">📝</span> 4. Generate Welcome Messages
+            </button>
+
+            <h2 style="margin-top: 15px;">Amplification Engine</h2>
+            <button onclick="runCommand('generate_seo_nodes')">
+                <span class="btn-icon">🌐</span> 1. Generate SEO Nodes (Vec 3)
+            </button>
+            <button onclick="runCommand('generate_contextualizer')">
+                <span class="btn-icon">🧠</span> 2. Synthesize Narratives (Vec 6)
+            </button>
+            <button onclick="runCommand('generate_pulse_video')">
+                <span class="btn-icon">🎞️</span> 3. Render Vertical Video (Vec 9)
+            </button>
+            <button class="btn-launch" onclick="runCommand('publish_nostr')" style="margin-top: 5px;">
+                <span class="btn-icon">📡</span> Inject to Nostr (Autonomous)
+            </button>
+            <button class="btn-launch" onclick="runCommand('publish_upscrolled')">
+                <span class="btn-icon">📱</span> Upload to fajr.today (Autonomous)
+            </button>
+            <button onclick="runCommand('generate_longform')" style="margin-top: 15px;">
+                <span class="btn-icon">📜</span> 4. Synthesize Deep Essays (Vec 12)
+            </button>
+            <button class="btn-launch" onclick="runCommand('publish_medium')">
+                <span class="btn-icon">✒️</span> Inject to Medium (Autonomous)
+            </button>
+
+            <h2 style="margin-top: 15px;">Reporting</h2>
+            <button onclick="runCommand('monday_audit')">
+                <span class="btn-icon">📊</span> Run Monday Reality Audit
+            </button>
+        </div>
+
+        <!-- Terminal Output -->
+        <div class="terminal-panel">
+            <div class="terminal-header">
+                <span>Output Console</span>
+                <div class="status-indicator">
+                    <span id="status-text">SYSTEM IDLE</span>
+                    <span id="status-dot" class="dot idle"></span>
+                </div>
+            </div>
+            <pre id="terminal-output">Ready. Awaiting command parameters...</pre>
+        </div>
+    </div>
+
+    <script>
+        const terminal = document.getElementById('terminal-output');
+        const statusText = document.getElementById('status-text');
+        const statusDot = document.getElementById('status-dot');
+        let currentEventSource = null;
+
+        function appendLog(msg, type = "") {
+            const span = document.createElement("span");
+            if (type) span.className = type;
+            span.textContent = msg;
+            terminal.appendChild(span);
+            terminal.scrollTop = terminal.scrollHeight;
+        }
+
+        function setStatus(state) {
+            statusDot.className = 'dot';
+            if (state === 'running') {
+                statusText.innerText = 'EXECUTING SCRIPT...';
+                statusDot.classList.add('running');
+            } else if (state === 'idle') {
+                statusText.innerText = 'SYSTEM IDLE';
+                statusDot.classList.add('idle');
+            } else if (state === 'error') {
+                statusText.innerText = 'EXECUTION ERROR';
+                statusDot.classList.add('error');
+            }
+        }
+
+        async function runCommand(cmd_id) {
+            // Special Case: Local Viewer is instantaneous, just a shell execute
+            if (cmd_id === 'open_viewer') {
+                appendLog(`\n[SYSTEM] Launching Local Campaign Cards Viewer...\n`, "sys-msg");
+            } else {
+                appendLog(`\n[SYSTEM] Initializing protocol: ${cmd_id}...\n`, "sys-msg");
+            }
+            setStatus('running');
+
+            if (currentEventSource) {
+                currentEventSource.close();
+            }
+
+            try {
+                // Determine port dynamically if possible, or bind to the known port
+                const response = await fetch("http://127.0.0.1:4040/api/run", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ command_id: cmd_id })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    appendLog(`\n[!] Error starting command: ${data.error}\n`, "error-msg");
+                    setStatus('error');
+                    return;
+                }
+
+                if (cmd_id === 'open_viewer') {
+                    appendLog(`[SYSTEM] Target launched successfully.\n`, "success-msg");
+                    setStatus('idle');
+                    return;
+                }
+
+                // Connect to Server-Sent Events stream for live terminal output
+                currentEventSource = new EventSource(`http://127.0.0.1:4040/api/stream/${data.cmd_id}`);
+
+                currentEventSource.onmessage = function (event) {
+                    if (event.data.includes("[PROCESS_COMPLETE]")) {
+                        appendLog(`\n${event.data.replace('[PROCESS_COMPLETE]', '[SYSTEM] Terminated with')}\n`, "sys-msg");
+                        currentEventSource.close();
+                        setStatus('idle');
+                    } else {
+                        // Regular output line
+                        appendLog(event.data + "\n");
+                    }
+                };
+
+                currentEventSource.onerror = function (err) {
+                    appendLog("\n[!] Connection to stream lost or process failed unexpectedly.\n", "error-msg");
+                    currentEventSource.close();
+                    setStatus('error');
+                };
+
+            } catch (err) {
+                appendLog(`\n[!] Network Error: Command Center Server might be offline. Please run scripts/monitor_services.ps1\n`, "error-msg");
+                setStatus('error');
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+710aa3a 2026-02-23 05:32:30 +0000 System Sync: Monitoring active at 2026-02-23 05:32:30 UTC
+52779de 2026-02-23 01:20:50 +0000 Update .gitignore
+5fd627c 2026-02-23 01:17:16 +0000 Remove .env.local files from tracking
+260d364 2026-02-23 01:11:54 +0000 Stop tracking .env file
+a5ba3ee 2026-02-23 01:06:11 +0000 Stopped tracking env.
+86a0270 2026-02-23 00:55:28 +0000 sunny day commit
+b8419f8 2026-02-22 15:10:17 +0000 System Sync: Monitoring active at 2026-02-22 15:10:16 UTC
+ed9b888 2026-02-22 15:07:34 +0000 System Sync: Monitoring active at 2026-02-22 15:07:32 UTC
+1cc0adb 2026-02-22 15:06:19 +0000 System Sync: Monitoring active at 2026-02-22 15:06:18 UTC
+6f70030 2026-02-22 15:04:48 +0000 System Sync: Monitoring active at 2026-02-22 15:04:46 UTC
+c23d514 2026-02-22 03:10:08 +0000 System Sync: Monitoring active at 2026-02-22 03:10:08 UTC
+8f906ca 2026-02-22 03:08:43 +0000 System Sync: Monitoring active at 2026-02-22 03:08:42 UTC
+cf04959 2026-02-22 03:07:16 +0000 System Sync: Monitoring active at 2026-02-22 03:07:16 UTC
+28a17dd 2026-02-22 03:05:51 +0000 System Sync: Monitoring active at 2026-02-22 03:05:50 UTC
+6294406 2026-02-22 03:04:25 +0000 System Sync: Monitoring active at 2026-02-22 03:04:24 UTC
+81b5644 2026-02-22 03:02:59 +0000 System Sync: Monitoring active at 2026-02-22 03:02:58 UTC
+94a8afd 2026-02-22 03:01:33 +0000 System Sync: Monitoring active at 2026-02-22 03:01:32 UTC
+4d2055c 2026-02-22 02:58:46 +0000 System Sync: Monitoring active at 2026-02-22 02:58:46 UTC
+faa364e 2026-02-22 02:57:20 +0000 System Sync: Monitoring active at 2026-02-22 02:57:19 UTC
+ba4d519 2026-02-22 01:36:59 +0000 feat: Global Unification of Campaign Registry (Phase 2 complete) - Unified 80 campaigns around WhatsApp primary key - Identified 14 live WhyDonate links via log matching - Renamed 'ghost' terminology to 'rubble' - Added status filtering to Management Board - Fixed absolute paths in onboarding server
+8e9ef2f 2026-02-21 14:53:42 +0000 Fix: Allow portal pulse logging via git add -f
+83bafdc 2026-02-21 14:28:27 +0000 System Sync: Monitoring active at 2026-02-21 14:28:25 UTC
+5951b7e 2026-02-21 14:12:36 +0000 Debugging watchdog URL extraction
+900a985 2026-02-21 14:05:23 +0000 Fix URL extraction in watchdog.yml
+bdd96c9 2026-02-21 13:53:28 +0000 Implement Multi-Node Watchdog (API, GitHub Action, GAS Template)
+8823de9 2026-02-21 13:44:48 +0000 Manual System Sync: Update tunnel URL
+759a999 2026-02-21 06:29:44 +0000 System Sync: Monitoring active at 2026-02-21 06:29:43 UTC
+aa561d2 2026-02-20 18:18:01 +0000 System Sync: Monitoring active at 2026-02-20 18:18:00 UTC
+cd7de8e 2026-02-20 15:25:35 +0000 System Sync: Monitoring active at 2026-02-20 15:25:33 UTC
+14b6e0b 2026-02-19 23:49:17 +0000 Cleanup: Purging redundant outbox subdirectories to ensure unambiguous mission truth.
+f480940 2026-02-19 23:48:45 +0000 Versioning: Force-adding the individual message outbox for mission verification.
+a12a29c 2026-02-19 23:48:27 +0000 Reframing: Aligned Umbrella Fund with Project Status and updated all beneficiary messages.
+413186a 2026-02-19 23:39:14 +0000 Restoration: Healed Winter Relief links and weaponized Heartbite. Exploded messages into outbox.
+8d8bb6a 2026-02-19 22:33:32 +0000 System Sync: Monitoring active at 2026-02-19 22:33:29 UTC
+ce166c7 2026-02-19 22:33:08 +0000 System Sync: Monitoring active at 2026-02-19 22:33:05 UTC
+6cf2c23 2026-02-19 22:32:09 +0000 System Sync: Monitoring active at 2026-02-19 22:32:06 UTC
+6edd1d5 2026-02-19 22:30:58 +0000 System Sync: Monitoring active at 2026-02-19 22:30:56 UTC
+1345185 2026-02-19 22:30:34 +0000 System Sync: Monitoring active at 2026-02-19 22:30:32 UTC
+d09d370 2026-02-19 22:30:02 +0000 System Sync: Monitoring active at 2026-02-19 22:30:01 UTC
+52a0f6e 2026-02-19 22:29:37 +0000 System Sync: Monitoring active at 2026-02-19 22:29:35 UTC
+5f3a66e 2026-02-19 22:29:05 +0000 System Sync: Monitoring active at 2026-02-19 22:29:03 UTC
+fccaa0e 2026-02-19 22:28:24 +0000 System Sync: Monitoring active at 2026-02-19 22:28:22 UTC
+c5ef3d9 2026-02-19 22:27:57 +0000 System Sync: Monitoring active at 2026-02-19 22:27:55 UTC
+57e063a 2026-02-19 22:08:07 +0000 System Sync: Monitoring active at 2026-02-19 22:08:05 UTC
+3cd694a 2026-02-19 21:17:29 +0000 System Sync: Monitoring active at 2026-02-19 21:17:26 UTC
+d569646 2026-02-19 12:45:26 +0000 System Sync: Monitoring active at 2026-02-19 12:45:25 UTC
+65b4b28 2026-02-19 01:53:59 +0000 Fix: Redirect broken Tailscale tunnel to stable GitHub portal
+bc7a900 2026-02-19 01:39:51 +0000 Fix: Noor Portal accessibility and robustness
+057235b 2026-02-19 00:00:58 +0000 chore: extend gitignore for browser profiles
+41b6d84 2026-02-19 00:00:06 +0000 System maintenance: Reframing script, workflow update, and gitignore cleanup

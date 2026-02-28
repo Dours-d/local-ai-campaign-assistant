@@ -70,6 +70,6 @@ window.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
             loader.classList.add('fade-out');
             document.body.style.overflow = 'auto';
-        }, 5000);
+        }, 3000); // Reduced from 5s to 3s
     }
 });

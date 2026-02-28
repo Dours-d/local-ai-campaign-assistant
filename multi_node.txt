@@ -1,0 +1,217 @@
+commit bdd96c927d5e78e63416b85835b5b2ff94705275
+Author: dours-d <dours_d@protonmail.com>
+Date:   Sat Feb 21 13:53:28 2026 +0000
+
+    Implement Multi-Node Watchdog (API, GitHub Action, GAS Template)
+
+diff --git a/.github/workflows/watchdog.yml b/.github/workflows/watchdog.yml
+new file mode 100644
+index 0000000..73a4705
+--- /dev/null
++++ b/.github/workflows/watchdog.yml
+@@ -0,0 +1,56 @@
++name: Multi-Node Watchdog Pulse
++
++on:
++  schedule:
++    - cron: '*/15 * * * *' # Run every 15 minutes
++  workflow_dispatch: # Allow manual trigger
++
++jobs:
++  health-check:
++    runs-on: ubuntu-latest
++    steps:
++      - name: Checkout Repository
++        uses: actions/checkout@v4
++
++      - name: Extract Tunnel URL and Pulse
++        run: |
++          # Extract URL from index.html (updated by local monitor)
++          TUNNEL_URL=$(grep 'var githubOnboardingUrl =' index.html | sed -E 's/.*"(.*)".*/\1/')
++          echo "Target Tunnel: $TUNNEL_URL"
++          
++          if [ -z "$TUNNEL_URL" ]; then
++            echo "::error::Tunnel URL not found in index.html"
++            exit 1
++          fi
++
++          # Ping the health endpoint
++          RESPONSE=$(curl -s -f "$TUNNEL_URL/health" || echo '{"status":"dead"}')
++          echo "Response: $RESPONSE"
++          
++          STATUS=$(echo $RESPONSE | jq -r '.status' 2>/dev/null || echo "dead")
++          
++          if [ "$STATUS" != "healthy" ]; then
++            echo "::error::Portal is DOWN or UNRESPONSIVE at $TUNNEL_URL"
++            # Here we could trigger a notification web-hook (e.g. to a phone app)
++            exit 1
++          fi
++          
++          echo "Portal is ALIVE and HEALTHY."
++
++      - name: Log Pulse
++        run: |
++          TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
++          mkdir -p data/logs
++          echo "[$TIMESTAMP] Heartbeat: OK" >> data/logs/watchdog_pulse.log
++          
++          # Only keep last 100 entries
++          tail -n 100 data/logs/watchdog_pulse.log > data/logs/watchdog_pulse.log.tmp
++          mv data/logs/watchdog_pulse.log.tmp data/logs/watchdog_pulse.log
++          
++      - name: Commit Pulse (Status Badge Data)
++        run: |
++          git config --global user.name "Watchdog Bot"
++          git config --global user.email "watchdog@sovereign-intelligence.org"
++          git add data/logs/watchdog_pulse.log
++          git commit -m "Watchdog Pulse: Heartbeat Sync [$(date -u)]" || echo "No changes to commit"
++          git push || echo "Push failed (possibly concurrent update)"
+diff --git a/scripts/GoogleAppsScript_Auditor.js b/scripts/GoogleAppsScript_Auditor.js
+new file mode 100644
+index 0000000..839b4d5
+--- /dev/null
++++ b/scripts/GoogleAppsScript_Auditor.js
+@@ -0,0 +1,59 @@
++/**
++ * SOVEREIGN AUDITOR: Google Apps Script Watchdog
++ *
++ * PURPOSE: Independently verify if the GitHub Pages redirect matches the actual tunnel.
++ * HOW TO USE:
++ * 1. Go to script.google.com
++ * 2. Paste this code.
++ * 3. Set a Time-based trigger (every 30 mins).
++ */
++
++const GITHUB_PAGES_URL = "https://dours-d.github.io/local-ai-campaign-assistant/index.html";
++
++function auditPortal() {
++    try {
++        // 1. Fetch the GitHub redirector
++        const response = UrlFetchApp.fetch(GITHUB_PAGES_URL);
++        const html = response.getContentText();
++
++        // 2. Extract the current active tunnel URL
++        const match = /var githubOnboardingUrl = "(https:\/\/[^"]+)";/.exec(html);
++
++        if (!match) {
++            Logger.log("FAILURE: Could not find tunnel URL in GitHub Pages.");
++            sendSovereignEmail("CRITICAL: Redirector Logic Violation", "The githubOnboardingUrl variable is missing from index.html.");
++            return;
++        }
++
++        const tunnelUrl = match[1];
++        Logger.log("Active Tunnel: " + tunnelUrl);
++
++        // 3. Ping the tunnel health endpoint
++        const healthUrl = tunnelUrl + "/health";
++        const healthRes = UrlFetchApp.fetch(healthUrl, { muteHttpExceptions: true });
++
++        if (healthRes.getResponseCode() !== 200) {
++            Logger.log("FAILURE: Tunnel is unreachable or returned error " + healthRes.getResponseCode());
++            sendSovereignEmail("OUTAGE: Tunnel Down", "The portal at " + tunnelUrl + " is unreachable.");
++            return;
++        }
++
++        const healthData = JSON.parse(healthRes.getContentText());
++        if (healthData.status === "healthy") {
++            Logger.log("AUDIT SUCCESS: Portal is healthy and accurately mapped.");
++        } else {
++            Logger.log("FAILURE: Portal reported unhealthy state.");
++            sendSovereignEmail("INTEGRITY ISSUE: Substandard Health", "The portal responded but reported an unhealthy state.");
++        }
++
++    } catch (e) {
++        Logger.log("RUNTIME ERROR: " + e.toString());
++        sendSovereignEmail("SYSTEM ERROR: Auditor Failure", e.toString());
++    }
++}
++
++function sendSovereignEmail(subject, body) {
++    // Replace with your email or use a service
++    const recipient = "gaelf@example.com";
++    MailApp.sendEmail(recipient, "[Watchdog] " + subject, body);
++}
+diff --git a/scripts/onboarding_server.py b/scripts/onboarding_server.py
+index 1e77b28..2b3fde2 100644
+--- a/scripts/onboarding_server.py
++++ b/scripts/onboarding_server.py
+@@ -103,23 +103,41 @@ def admin_required(f):
+ def load_valid_scopes():
+     valid = set()
+     try:
+-        if os.path.exists('data/campaign_index.json'):
+-            with open('data/campaign_index.json', 'r', encoding='utf-8') as f:
+-                index_data = json.load(f)
+-                for key in index_data.keys():
+-                    clean_key = "".join([c for c in key if c.isdigit()])
+-                    valid.add(clean_key)
++        # Priority 1: Main Registry
++        if os.path.exists('data/campaign_registry.json'):
++            with open('data/campaign_registry.json', 'r', encoding='utf-8') as f:
++                reg = json.load(f)
++                mappings = reg.get("mappings", {})
++                for bid in mappings.keys():
++                    clean_id = "".join([c for c in bid if c.isdigit()])
++                    if clean_id: valid.add(clean_id)
++        
++        # Priority 2: Large Scanned List
++        if os.path.exists('data/new_whatsapp_onboarding_list_v2.json'):
++            with open('data/new_whatsapp_onboarding_list_v2.json', 'r', encoding='utf-8') as f:
++                large_list = json.load(f)
++                for p in large_list:
++                    name = p.get('name', '')
++                    clean_id = "".join([c for c in name if c.isdigit()])
++                    if clean_id: valid.add(clean_id)
+ 
++        # Priority 3: Potential list (legacy)
+         if os.path.exists('data/potential_beneficiaries.json'):
+             with open('data/potential_beneficiaries.json', 'r', encoding='utf-8') as f:
+                 potential_data = json.load(f)
+                 for p in potential_data:
+-                    name = p.get('name', '')
+-                    clean_name = "".join([c for c in name if c.isdigit()])
+-                    if clean_name: valid.add(clean_name)
+-                    pid = p.get('id', '')
++                    pid = p.get('name', p.get('id', ''))
+                     clean_id = "".join([c for c in pid if c.isdigit()])
+                     if clean_id: valid.add(clean_id)
++
++        # Priority 4: Existing submissions
++        if os.path.exists('data/onboarding_submissions'):
++            for f in os.listdir('data/onboarding_submissions'):
++                if f.endswith('_submission.json'):
++                    bid = f.replace('_submission.json', '')
++                    clean_id = "".join([c for c in bid if c.isdigit()])
++                    if clean_id: valid.add(clean_id)
++
+     except Exception as e:
+         print(f"Error loading scopes: {e}")
+     return valid
+@@ -129,7 +147,26 @@ VALID_SCOPES = load_valid_scopes()
+ def is_in_scope(identifier):
+     if not identifier: return False
+     clean_id = "".join([c for c in str(identifier) if c.isdigit()])
+-    return clean_id in VALID_SCOPES
++    
++    # Check if pre-registered
++    if clean_id in VALID_SCOPES:
++        return True
++        
++    # RELAXED CHECK: If it's a Palestinian/Gaza number (+970 or +972 5...) allow viral onboarding
++    if clean_id.startswith('970') or clean_id.startswith('972'):
++        if len(clean_id) >= 10: # Basic length check
++            return True
++            
++    return False
++
++@app.route('/health')
++def health_check():
++    """Lightweight endpoint for watchdog pings."""
++    return jsonify({
++        "status": "healthy",
++        "timestamp": datetime.datetime.now().isoformat(),
++        "tunnel_url": request.host_url
++    })
+ 
+ # --- AUTH ROUTES ---
+ @app.route('/login', methods=['POST'])

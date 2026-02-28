@@ -111,8 +111,6 @@ def main():
         json.dump(onboarding_list, f, indent=2)
     
     print(f"\nSaved v2 list to data/new_whatsapp_onboarding_list_v2.json")
-    if results:
-        print(f"Sample new numbers: {results[:10]}")
 
 if __name__ == "__main__":
     main()

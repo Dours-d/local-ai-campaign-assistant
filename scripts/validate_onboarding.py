@@ -40,9 +40,8 @@ def validate():
             missing.append(num)
     
     if missing:
-        print(f"WARNING: {len(missing)} numbers are missing from outbox:")
-        for m in missing:
-            print(f"  - {m}")
+        print(f"WARNING: {len(missing)} numbers are missing from outbox.")
+        # Removed individual number print for privacy
     else:
         print("SUCCESS: All campaignless numbers have an outbox file.")
 
@@ -84,7 +83,8 @@ def validate():
     if duplicates:
         print(f"ERROR: {len(duplicates)} duplicate USDT addresses found!")
         for addr, nums in duplicates.items():
-            print(f"  - {addr}: used by {nums}")
+            masked_addr = f"{addr[:6]}****{addr[-4:]}"
+            print(f"  - {masked_addr}: used by {len(nums)} numbers")
     else:
         print("SUCCESS: All USDT addresses are unique.")
 

@@ -1,0 +1,103 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Monitor Configuration Schema",
+    "version": "1.1.0",
+    "type": "object",
+    "properties": {
+        "SchemaVersion": {
+            "type": "string",
+            "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+            "description": "Semantic versioning of the schema to ensure compatibility."
+        },
+        "HeartbeatTimeoutMin": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 30
+        },
+        "HeartbeatTimeoutMax": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 60
+        },
+        "MaxRetries": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 10
+        },
+        "RetryDelayMin": {
+            "type": "integer",
+            "minimum": 1
+        },
+        "RetryDelayMax": {
+            "type": "integer",
+            "minimum": 1
+        },
+        "CheckInterval": {
+            "type": "integer",
+            "minimum": 10
+        },
+        "SyncFiles": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "LogLevel": {
+            "type": "string",
+            "enum": [
+                "DEBUG",
+                "INFO",
+                "WARN",
+                "ERROR"
+            ]
+        },
+        "Alerting": {
+            "type": "object",
+            "properties": {
+                "Enabled": {
+                    "type": "boolean"
+                },
+                "Provider": {
+                    "type": "string"
+                },
+                "Endpoints": {
+                    "type": "object",
+                    "properties": {
+                        "DiscordEnvVar": {
+                            "type": "string"
+                        },
+                        "SlackEnvVar": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "DiscordEnvVar",
+                        "SlackEnvVar"
+                    ]
+                },
+                "Triggers": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "boolean"
+                    }
+                },
+                "CooldownMinutes": {
+                    "type": "integer",
+                    "minimum": 1
+                }
+            },
+            "required": [
+                "Enabled",
+                "Endpoints"
+            ]
+        }
+    },
+    "required": [
+        "SchemaVersion",
+        "HeartbeatTimeoutMin",
+        "HeartbeatTimeoutMax",
+        "MaxRetries",
+        "CheckInterval",
+        "Alerting"
+    ]
+}

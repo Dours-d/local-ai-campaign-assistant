@@ -1,0 +1,12 @@
+🌀 Initiating Vector 12: The Master Weaver (Long-Form Synthesis)...
+Found 2 campaigns ready for deep rhetorical synthesis.
+Dialing Llama3 API for high-level rhetorical synthesis of Unknown Family...
+API Error during synthesis: 400 Client Error: Bad Request for url: https://api.groq.com/openai/v1/chat/completions
+Groq API Response: {"error":{"message":"The model `llama3-70b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.","type":"invalid_request_error","code":"model_decommissioned"}}
+
+Dialing Llama3 API for high-level rhetorical synthesis of Unknown Family...
+API Error during synthesis: 400 Client Error: Bad Request for url: https://api.groq.com/openai/v1/chat/completions
+Groq API Response: {"error":{"message":"The model `llama3-70b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.","type":"invalid_request_error","code":"model_decommissioned"}}
+
+
+Vector 12 Synthesis complete. Essays are available in the vault for Medium injection.

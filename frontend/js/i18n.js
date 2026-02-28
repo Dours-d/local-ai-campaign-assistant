@@ -5,7 +5,7 @@
  */
 
 const i18n = {
-    currentLang: localStorage.getItem('lang') || 'en',
+    currentLang: 'ar', // Forced Arabic-First direction
 
     translations: {
         en: {
@@ -17,40 +17,39 @@ const i18n = {
             nav_donate: 'Bear Witness',
 
             // Hero
-            hero_title: 'End of the [night]<br>Rise of the [Sovereign]',
-            hero_subtitle: 'Fajr is the clarity found at the threshold of the dawn. We do not "distribute aid"—we fulfill a collective Amanah. Rooted in the resilience of the olive tree, we reclaim our autonomy and support our people directly.',
+            hero_title: 'End of the [Night]<br>Begeting [Resilience]',
+            hero_subtitle: 'The night is over. The Sovereign rise. No programming. No gatekeepers. Just the direct witness of the field.',
             hero_cta: 'FULFILL THE AMANAH',
-            hero_secondary: 'Our Logic',
+            hero_secondary: 'The Logic',
 
-            // Impact section (Shahada)
-            impact_title: 'The Weight of Our Shahada',
-            impact_communities: 'Nodes of Autonomy',
-            impact_projects: 'Direct Interventions',
-            impact_lives: 'Sovereign Lives',
-            impact_transparency: '% Direct Flow',
+            // Impact section
+            impact_title: 'Evidence of Truth',
+            impact_communities: 'Days of Witness',
+            impact_projects: 'Proofs of Truth',
+            impact_lives: 'EUR Batch Honesty',
+            impact_transparency: 'Corporate Friction (Chuffed)',
 
             // About section
-            about_title: 'Fulfillment in Action',
-            about_text: 'Fajr.today is a sovereign bridge, not an NGO. We bypass the "Rockefeller" programming of global aid to ensure that resources reach the destination without being lost to corporate friction. Our €100 batching logic is a technical proof of our honesty, moving money only when it preserves its value.',
+            about_title: 'Trust in Action',
+            about_text: 'Fajr.today is a sovereign bridge, not an NGO. We bypass the "Rockefeller" programming of global aid to ensure that resources reach the destination without being lost to corporate friction.',
             about_cta: 'The Ledger Logic',
-
-            // Campaigns section
-            campaigns_title: 'Solidarity Tracks',
-            campaign_monthly_title: 'Constant Flow',
-            campaign_monthly_desc: 'Provide steady, reliable energy to our nodes through self-custodied monthly commitments.',
-            campaign_monthly_cta: 'COMMIT MONTHLY',
-            campaign_once_title: 'Single Strike',
-            campaign_once_desc: 'Immediate injection of resources for tactical, high-priority humanitarian needs.',
-            campaign_once_cta: 'STRIKE ONCE',
-            campaign_resilience_title: 'Sovereign Fund',
-            campaign_resilience_desc: 'Long-term community reconstruction and infrastructure for a life after the siege.',
-            campaign_resilience_cta: 'VIEW THE FIELD',
 
             // Footer
             footer_rights: '© 2026 Sovereign Fajr Network. No programming accepted.',
 
-            // Toggle
-            lang_toggle: 'عربي'
+            // Campaigns section
+            campaigns_title: 'Paths of the Amanah',
+            campaign_monthly_title: 'Sustained Autonomy',
+            campaign_monthly_desc: 'Provide predictable support to ensure the independence of the field.',
+            campaign_monthly_cta: 'SUSTAIN',
+            campaign_once_title: 'Direct Gift',
+            campaign_once_desc: 'Immediate intervention for the most urgent field requirements.',
+            campaign_once_cta: 'GIVE NOW',
+            campaign_resilience_cta: 'BECOME SOVEREIGN',
+
+            // Campaign List Page
+            campaigns_list_title: 'The Active Field',
+            campaigns_list_subtitle: 'Direct windows to those fulfilling the Amanah.'
         },
         ar: {
             // Navigation
@@ -61,76 +60,83 @@ const i18n = {
             nav_donate: 'كن شاهداً',
 
             // Hero
-            hero_title: 'نهاية الليل<br>وصعود السيادة',
-            hero_subtitle: 'الفجر هو الوضوح الموجود عند عتبة الفجر. نحن لا نوزع مساعدات، بل نؤدي أمانة جماعية. متجذرون في صمود شجرة الزيتون، نستعيد استقلاليتنا وندعم أهلنا مباشرة.',
+            hero_title: 'انقضاء [الليل]<br>بزوغ [الصمود]',
+            hero_subtitle: 'انتهى الليل. نهوض السيادة. لا برمجة. لا وسطاء. فقط الحقيقة المباشرة للأمانة في الميدان.',
             hero_cta: 'أدِّ الأمانة الآن',
             hero_secondary: 'منطقنا',
 
-            // Impact section (Shahada)
-            impact_title: 'ثقل شهادتنا',
-            impact_communities: 'عقد الحكم الذاتي',
-            impact_projects: 'تدخلات مباشرة',
-            impact_lives: 'أنفس حرة',
-            impact_transparency: '% تدفق مباشر',
+            // Impact section
+            impact_title: 'بينة الحق',
+            impact_communities: 'أيام الشهادة المباشرة',
+            impact_projects: 'براهين مسجلة للحق',
+            impact_lives: 'صدق تجميع (١٠٠) يورو',
+            impact_transparency: 'احتكاك الشركات (Chuffed)',
 
             // About section
             about_title: 'التنفيذ في العمل',
-            about_text: 'فجر.اليوم هو جسر سيادي، وليس منظمة غير حكومية. نحن نتجاوز "برمجيات روكفلر" للمساعدات العالمية لضمان وصول الموارد إلى وجهتها دون ضياع في الاحتكاك المؤسسي. منطق التجميع لمبلغ ١٠٠ يورو هو دليل تقني على صدقنا، حيث ننقل الأموال فقط عندما تحافظ على قيمتها.',
+            about_text: 'فجر.اليوم هو جسر سيادي، وليس منظمة غير حكومية. نحن نتجاوز "برمجيات روكفلر" للمساعدات العالمية لضمان وصول الموارد إلى وجهتها.',
             about_cta: 'منطق السجل',
-
-            // Campaigns section
-            campaigns_title: 'مسارات التضامن',
-            campaign_monthly_title: 'تدفق ثابت',
-            campaign_monthly_desc: 'قدم طاقة ثابتة وموثوقة لعقدنا من خلال التزامات شهرية ذاتية.',
-            campaign_monthly_cta: 'التزم شهرياً',
-            campaign_once_title: 'ضربة واحدة',
-            campaign_once_desc: 'حقن فوري للموارد للاحتياجات الإنسانية التكتيكية ذات الأولوية العالية.',
-            campaign_once_cta: 'تبرع فوراً',
-            campaign_resilience_title: 'الصندوق السيادي',
-            campaign_resilience_desc: 'إعادة بناء المجتمع على المدى الطويل وبناء البنية التحتية لحياة ما بعد الحصار.',
-            campaign_resilience_cta: 'عرض الميدان',
 
             // Footer
             footer_rights: '© ٢٠٢٦ شبكة فجر السيادية. لا نقبل البرمجة الخارجية.',
 
-            // Toggle
-            lang_toggle: 'English'
+            // Campaigns section
+            campaigns_title: 'مسارات الأمانة',
+            campaign_monthly_title: 'استدامة الحكم الذاتي',
+            campaign_monthly_desc: 'توفير دعم يمكن التنبؤ به لضمان استقلال الميدان.',
+            campaign_monthly_cta: 'استدامة الأمانة',
+            campaign_once_title: 'عطاء مباشر',
+            campaign_once_desc: 'تدخل فوري لأكثر متطلبات الميدان إلحاحاً.',
+            campaign_once_cta: 'أعطِ الآن',
+            campaign_resilience_cta: 'كن سيادياً',
+
+            // Campaign List Page
+            campaigns_list_title: 'الميدان الحي',
+            campaigns_list_subtitle: 'نوافذ مباشرة لأولئك الذين يؤدون الأمانة.'
         }
     },
 
-    t(key) {
-        return this.translations[this.currentLang][key] || key;
+    t(key, lang) {
+        return this.translations[lang][key] || key;
     },
 
+    // Toggle removed as per Pixel-Perfect bilingual spec
     setLang(lang) {
-        this.currentLang = lang;
-        localStorage.setItem('lang', lang);
-        document.documentElement.lang = lang;
-        document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-        this.updatePage();
+        // No-op to prevent breakage
     },
 
     toggle() {
-        this.setLang(this.currentLang === 'en' ? 'ar' : 'en');
+        // No-op to prevent breakage
     },
 
     updatePage() {
-        // Update all elements with data-i18n attribute
         document.querySelectorAll('[data-i18n]').forEach(el => {
             const key = el.getAttribute('data-i18n');
-            el.innerHTML = this.t(key);
-        });
+            const arText = this.t(key, 'ar');
+            const enText = this.t(key, 'en');
 
-        // Update toggle button text
-        const toggleBtn = document.getElementById('lang-toggle');
-        if (toggleBtn) {
-            toggleBtn.textContent = this.t('lang_toggle');
-        }
+            // Specialized injection for the Hero title to maintain colossal scale
+            if (key === 'hero_title') {
+                el.innerHTML = `
+                    <div class="lang-dual hero-title-bundle">
+                        <span class="ar-main">${arText}</span>
+                        <span class="en-sub">${enText}</span>
+                    </div>
+                `;
+            } else {
+                el.innerHTML = `
+                    <div class="lang-dual">
+                        <span class="ar-main">${arText}</span>
+                        <span class="en-sub">${enText}</span>
+                    </div>
+                `;
+            }
+        });
     },
 
     init() {
-        document.documentElement.lang = this.currentLang;
-        document.documentElement.dir = this.currentLang === 'ar' ? 'rtl' : 'ltr';
+        document.documentElement.lang = 'ar';
+        document.documentElement.dir = 'rtl';
         this.updatePage();
     }
 };

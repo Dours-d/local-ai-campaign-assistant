@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE FIELD | FAJR Campaigns</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@700;800&display=swap"
+        rel="stylesheet">
+    <!-- Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animation.css">
+    <!-- Relay System -->
+    <script src="js/relay.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="header-inner">
+            <div class="logo-horizon-wrap">
+                <a href="index.html">
+                    <img src="images/logo-transparency-enhanced2.png" alt="FAJR Logo" class="horizon-logo-img">
+                </a>
+            </div>
+            <div class="nav-container">
+                <nav>
+                    <ul>
+                        <li><a href="index.html#campaigns" class="lang-dual"><span class="ar-main">الأمانة</span><span
+                                    class="en-sub">Amanah</span></a></li>
+                        <li><a href="https://dours-d.github.io/local-ai-campaign-assistant/brain.html" target="_blank"
+                                class="lang-dual"><span class="ar-main">الشهادة</span><span
+                                    class="en-sub">Shahada</span></a></li>
+                        <li><a href="campaigns.html" class="lang-dual"><span class="ar-main">الميدان</span><span
+                                    class="en-sub">The Field</span></a></li>
+                        <li><a href="https://whydonate.com/fundraising/help-fajrtoday-the-first-crypto-utility-providing-critical-services"
+                                target="_blank" class="lang-dual"><span class="ar-main">الخط المباشر</span><span
+                                    class="en-sub">Direct
+                                    Line</span></a></li>
+                        <li><a href="javascript:void(0)" onclick="openShahada()" class="btn btn-primary"
+                                style="padding: 0.6rem 1.5rem;">I Bear Witness</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main style="padding-top: 157px;">
+        <section class="campaigns-list">
+            <div class="container">
+                <div class="section-title" data-aos="fade-up">
+                    <h2 class="lang-dual"><span class="ar-main">الميدان النشط</span><span class="en-sub">The Active
+                            Field</span></h2>
+                    <p style="margin-top: 20px; opacity: 0.8;">Direct windows to those fulfilling the Amanah on
+                        WhyDonate.</p>
+                </div>
+
+                <div class="cards-grid" id="campaign-list-container">
+                    <!-- Abdullah hoping -->
+                    <div class="card" data-aos="fade-up" data-aos-delay="0">
+                        <div class="card-status" data-campaign-id="abdullah_hoping"><span
+                                class="status-dot active"></span> TRUST VERIFIED</div>
+                        <img src="../data/onboarding_submissions/media/scraped_whydonate/help-abdullah-who-has-lost-hope-and-is-hoping-to-find-it-from-you.jpg"
+                            class="card-img" alt="Abdullah hoping">
+                        <h3 class="lang-dual"><span class="ar-main">ساعدوا عبد الله الذي يأمل في بناء مستقبل</span><span
+                                class="en-sub">Help Abdullah who is hoping to for a future</span></h3>
+                        <p></p>
+                        <a href="javascript:void(0)"
+                            onclick="initiateRelayGift('abdullah_hoping', 'https://whydonate.com/fundraising/help-abdullah-who-has-lost-hope-and-is-hoping-to-find-it-from-you', 'Help Abdullah who is hoping to for a future')"
+                            class="btn btn-primary">DIRECT GIFT</a>
+                    </div>
+
+                    <!-- Mohamed Ibrahim -->
+                    
+
+                    <div class="card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="card-status" data-campaign-id="hope"><span class="status-dot active"></span> TRUST
+                            VERIFIED</div>
+                        <img src="../data/onboarding_submissions/media/scraped_whydonate/-a-tent-of-hope-rebuilding-our-lives.jpg"
+                            class="card-img" alt="Hope">
+                        <h3 class="lang-dual"><span class="ar-main">خيمة أمل: إعادة بناء حياتنا</span><span
+                                class="en-sub">A Tent
+                                of Hope: Rebuilding our Lives</span></h3>
+                        <p>I wish you would stand with me in building a new home and lend me a helping hand to replace
+                            the house that was bombed and destroyed due to the war, ma...</p>
+                        <a href="javascript:void(0)"
+                            onclick="initiateRelayGift('hope', 'https://whydonate.com/fundraising/-a-tent-of-hope-rebuilding-our-lives', 'A Tent of Hope: Rebuilding our Lives')"
+                            class="btn btn-primary">DIRECT GIFT</a>
+                    </div>
+
+                    <!-- Amir Walk Again -->
+                    
+
+                    <div class="card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="card-status" data-campaign-id="ahmed_al_flit_pop"><span
+                                class="status-dot active"></span> TRUST VERIFIED</div>
+                        <img src="../data/onboarding_submissions/media/scraped_whydonate/help-ahmed-and-his-family-survive-the-genocide-of-gaza-palestine.jpg"
+                            class="card-img" alt="Ahmed Al-Flit">
+                        <h3 class="lang-dual"><span class="ar-main">ساعدوا أحمد وعائلته للنجاة من الإبادة في
+                                غزة</span><span class="en-sub">Help Ahmed and family survive genocide in Gaza</span>
+                        </h3>
+                        <p>Help Ahmed and his family survive the genocide of Gaza, Palestine.
+
+                            Please help us support this cause in Gaza. We are the natural owners of our time a...</p>
+                        <a href="javascript:void(0)"
+                            onclick="initiateRelayGift('ahmed_al_flit_pop', 'https://whydonate.com/fundraising/help-ahmed-and-his-family-survive-the-genocide-of-gaza-palestine', 'Help Ahmed and family survive genocide in Gaza')"
+                            class="btn btn-primary">DIRECT GIFT</a>
+                    </div>
+
+                    <!-- Ahmed -->
+                    
+
+                    <div class="card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="card-status" data-campaign-id="ahmed"><span class="status-dot active"></span> TRUST
+                            VERIFIED</div>
+                        <img src="../data/onboarding_submissions/media/scraped_whydonate/help-ahmed-and-his-family-rebuild-their-lives-out-of-gaza-palestine.jpg"
+                            class="card-img" alt="Ahmed">
+                        <h3 class="lang-dual"><span class="ar-main">ساعدوا أحمد وعائلته على إعادة بناء حياتهم خارج
+                                غزة</span><span class="en-sub">Help Ahmed
+                                and his family rebuild their lives out of Gaza</span></h3>
+                        <p>Help Ahmed and his family rebuild their lives out of Gaza, Palestine.
+
+                            Please help us support this cause in Gaza. We are the natural owners of our tim...</p>
+                        <a href="javascript:void(0)"
+                            onclick="initiateRelayGift('ahmed', 'https://whydonate.com/fundraising/help-ahmed-and-his-family-rebuild-their-lives-out-of-gaza-palestine', 'Help Ahmed and his family rebuild their lives out of Gaza')"
+                            class="btn btn-primary">DIRECT GIFT</a>
+                    </div>
+
+                    <!-- Marah -->
+                    
+
+                    <div class="card" data-aos="fade-up" data-aos-delay="0">
+                        <div class="card-status" data-campaign-id="marah"><span class="status-dot active"></span> TRUST
+                            VERIFIED</div>
+                        <img src="../data/onboarding_submissions/media/scraped_whydonate/help-marah-and-her-family-rebuild-their-lives-gaza.jpg"
+                            class="card-img" alt="Marah">
+                        <h3 class="lang-dual"><span class="ar-main">ساعدوا مراح وعائلتها على إعادة بناء حياتهم في
+                                غزة</span><span class="en-sub">Help
+                                Marah and her family rebuild their lives, Gaza</span></h3>
+                        <p>Help Marah and her family rebuild their lives, Gaza.
+
+                            Please help us support this cause in Gaza. We are the natural owners of our time and
+                            resources, ...</p>
+                        <a href="javascript:void(0)"
+                            onclick="initiateRelayGift('marah', 'https://whydonate.com/fundraising/help-marah-and-her-family-rebuild-their-lives-gaza', 'Help Marah and her family rebuild their lives, Gaza')"
+                            class="btn btn-primary">DIRECT GIFT</a>
+                    </div>
+
+                    <!-- Umm Iman -->
+                    
+
+                    <div class="card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="card-status" data-campaign-id="umm_iman"><span class="status-dot active"></span>
+                            TRUST VERIFIED</div>
+                        <img src="../data/onboarding_submissions/media/scraped_whydonate/help-umm-iman-and-her-family-survive-the-genocide-in-gaza-palestine.jpg"
+                            class="card-img" alt="Umm Iman">
+                        <h3 class="lang-dual"><span class="ar-main">ساعدوا أم إيمان وعائلتها للنجاة من
+                                الإبادة</span><span class="en-sub">Help
+                                Umm Iman and Her family survive the genocide</span></h3>
+                        <p>Help Umm Iman and Her family survive the genocide in Gaza, Palestine.
+
+                            Please help us support this cause in Gaza. We are the natural owners of our tim...</p>
+                        <a href="javascript:void(0)"
+                            onclick="initiateRelayGift('umm_iman', 'https://whydonate.com/fundraising/help-umm-iman-and-her-family-survive-the-genocide-in-gaza-palestine', 'Help Umm Iman and Her family survive the genocide')"
+                            class="btn btn-primary">DIRECT GIFT</a>
+                    </div>
+
+                    <!-- Yasmine -->
+                    
+
+                    <div class="card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="card-status" data-campaign-id="yasmine"><span class="status-dot active"></span>
+                            TRUST VERIFIED</div>
+                        <img src="../data/onboarding_submissions/media/scraped_whydonate/help-yasmine-and-her-family-to-rebuild-their-life-in-gaza-palestine.jpg"
+                            class="card-img" alt="Yasmine">
+                        <h3 class="lang-dual"><span class="ar-main">ساعدوا ياسمين وعائلتها على إعادة بناء
+                                حياتهم</span><span class="en-sub">Help
+                                Yasmine and Her family to rebuild their lives</span></h3>
+                        <p>Help Yasmine and Her family to rebuild their life in Gaza, Palestine.
+
+                            Please help us support this cause in Gaza. We are the natural owners of our tim...</p>
+                        <a href="javascript:void(0)"
+                            onclick="initiateRelayGift('yasmine', 'https://whydonate.com/fundraising/help-yasmine-and-her-family-to-rebuild-their-life-in-gaza-palestine', 'Help Yasmine and Her family to rebuild their lives')"
+                            class="btn btn-primary">DIRECT GIFT</a>
+                    </div>
+
+                    <!-- ام علوش Salman Al-Watts -->
+                    
+
+                    <div class="card" data-aos="fade-up" data-aos-delay="0">
+                        <div class="card-status" data-campaign-id="ام_علوش_salman_al_watts"><span
+                                class="status-dot active"></span> TRUST VERIFIED</div>
+                        <img src="../data/onboarding_submissions/media/scraped_whydonate/save-salman-ali-and-his-family-from-the-awful-destruction-palestine.jpg"
+                            class="card-img" alt="Salman Ali">
+                        <h3 class="lang-dual"><span class="ar-main">أنقذوا سلمان علي وعائلته من الدمار
+                                الرهيب</span><span class="en-sub">Save
+                                Salman Ali and his family from awful destruction</span></h3>
+                        <p>Save Salman Ali and his family from the awful destruction in Gaza, Palestine.
+
+                            Please help us support this cause in Gaza. We are the natural owners of...</p>
+                        <a href="javascript:void(0)"
+                            onclick="initiateRelayGift('ام_علوش_salman_al_watts', 'https://whydonate.com/fundraising/save-salman-ali-and-his-family-from-the-awful-destruction-palestine', 'Save Salman Ali and his family from awful destruction')"
+                            class="btn btn-primary">DIRECT GIFT</a>
+                    </div>
+
+                    <!-- Umm Masoud -->
+                    
+
+                    <div class="card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="card-status" data-campaign-id="umm_masoud"><span class="status-dot active"></span>
+                            TRUST VERIFIED</div>
+                        <img src="../data/onboarding_submissions/media/scraped_whydonate/help-umm-masoud-and-her-daughter-survivors-of-the-rubbles-of-gaza.jpg"
+                            class="card-img" alt="Umm Masoud">
+                        <h3 class="lang-dual"><span class="ar-main">ساعدوا أم مسعود وابنتها الناجيتين من تحت ركام
+                                غزة</span><span class="en-sub">Help Umm Masoud and
+                                her daughter, survivors in the rubbles of Gaza</span></h3>
+                        <p>Help Umm Masoud and her daughter, survivors of the rubbles of Gaza
+
+                            Please help us support this cause in Gaza. We are the natural owners of our time a...</p>
+                        <a href="javascript:void(0)"
+                            onclick="initiateRelayGift('umm_masoud', 'https://whydonate.com/fundraising/help-umm-masoud-and-her-daughter-survivors-of-the-rubbles-of-gaza', 'Help Umm Masoud and her daughter, survivors in the rubbles of Gaza')"
+                            class="btn btn-primary">DIRECT GIFT</a>
+                    </div>
+
+                    <!-- Mohammed -->
+                    
+
+                    <div class="card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="card-status" data-campaign-id="mohammed"><span class="status-dot active"></span>
+                            TRUST VERIFIED</div>
+                        <img src="../data/onboarding_submissions/media/scraped_whydonate/help-mohammeds-family-rebuild-their-future-and-safety.jpg"
+                            class="card-img" alt="Mohammed">
+                        <h3 class="lang-dual"><span class="ar-main">ساعدوا محمد وعائلته على إعادة بناء
+                                مستقبلهم</span><span class="en-sub">Help Mohammed & family rebuild their future</span>
+                        </h3>
+                        <p>"In the heart of Gaza, where the voice of steadfastness is louder, lives Mohammed with his
+                            wife and young daughter. This family struggles every day to...</p>
+                        <a href="javascript:void(0)"
+                            onclick="initiateRelayGift('mohammed', 'https://whydonate.com/fundraising/help-mohammeds-family-rebuild-their-future-and-safety', 'Help Mohammed & family rebuild their future')"
+                            class="btn btn-primary">DIRECT GIFT</a>
+                    </div>
+
+                    <!-- Abdullah Mohammed -->
+                    
+
+                    <div class="card" data-aos="fade-up" data-aos-delay="0">
+                        <div class="card-status" data-campaign-id="abdullah_mohammed"><span
+                                class="status-dot active"></span> TRUST VERIFIED</div>
+                        <img src="../data/onboarding_submissions/media/scraped_whydonate/help-abdullah-mohammed-support-his-7-sons-daughters-in-gaza.jpg"
+                            class="card-img" alt="Abdullah Mohammed">
+                        <h3 class="lang-dual"><span class="ar-main">ساعدوا عبد الله محمد في دعم أبنائه السبعة في
+                                غزة</span><span class="en-sub">Help Abdullah
+                                Mohammed support his 7 sons & daughters in Gaza</span></h3>
+                        <p>I am your brother Abdullah from Gaza. Please help us. We need help. I support my family. My
+                            family consists of 7 sons and daughters. My father is very...</p>
+                        <a href="javascript:void(0)"
+                            onclick="initiateRelayGift('abdullah_mohammed', 'https://whydonate.com/fundraising/help-abdullah-mohammed-support-his-7-sons-daughters-in-gaza', 'Help Abdullah Mohammed support his 7 sons & daughters in Gaza')"
+                            class="btn btn-primary">DIRECT GIFT</a>
+                    </div>
+
+                    <!-- Akram -->
+                    
+
+                    <div class="card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="card-status" data-campaign-id="akram"><span class="status-dot active"></span> TRUST
+                            VERIFIED</div>
+                        <img src="../data/onboarding_submissions/media/scraped_whydonate/help-akram-and-his-family-continue-despite-the-pain-in-gaza.jpg"
+                            class="card-img" alt="Akram">
+                        <h3 class="lang-dual"><span class="ar-main">ساعدوا أكرم وعائلته رغم الألم في غزة</span><span
+                                class="en-sub">Help
+                                Akram and his family despite the pain in Gaza</span></h3>
+                        <p>My name is Akram, I’m 18 years old and I live in Gaza. My father was martyred in 2014. My
+                            family consists of my mother my three sisters my little brot...</p>
+                        <a href="javascript:void(0)"
+                            onclick="initiateRelayGift('akram', 'https://whydonate.com/fundraising/help-akram-and-his-family-continue-despite-the-pain-in-gaza', 'Help Akram and his family despite the pain in Gaza')"
+                            class="btn btn-primary">DIRECT GIFT</a>
+                    </div>
+
+                    <!-- Abu Muhammad -->
+                    
+
+                    <div class="card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="card-status" data-campaign-id="abu_muhammad"><span class="status-dot active"></span>
+                            TRUST VERIFIED</div>
+                        <img src="../data/onboarding_submissions/media/scraped_whydonate/help-abu-muhammad-feed-his-nine-young-children-in-gaza.jpg"
+                            class="card-img" alt="Abu Muhammad">
+                        <h3 class="lang-dual"><span class="ar-main">ساعدوا أبو محمد في إطعام أطفاله التسعة في
+                                غزة</span><span class="en-sub">Help Abu
+                                Muhammad feed his nine young children in Gaza</span></h3>
+                        <p>I am Mohammed Alaa from Gaza. I want help.
+
+                            The situation is very difficult. Please help me.
+
+                            I am diabetic, please make me happy please
+
+                            Please mak...</p>
+                        <a href="javascript:void(0)"
+                            onclick="initiateRelayGift('abu_muhammad', 'https://whydonate.com/fundraising/help-abu-muhammad-feed-his-nine-young-children-in-gaza', 'Help Abu Muhammad feed his nine young children in Gaza')"
+                            class="btn btn-primary">DIRECT GIFT</a>
+                    </div>
+
+                    <!-- Heba -->
+                    
+
+                    <div class="card" data-aos="fade-up" data-aos-delay="0">
+                        <div class="card-status" data-campaign-id="heba"><span class="status-dot active"></span> TRUST
+                            VERIFIED</div>
+                        <img src="../data/onboarding_submissions/media/scraped_whydonate/help-hebas-family-survive-the-darkness-of-gaza.jpg"
+                            class="card-img" alt="Heba">
+                        <h3 class="lang-dual"><span class="ar-main">ساعدوا هبة وعائلتها للنجاة من ظلام غزة</span><span
+                                class="en-sub">Help Heba & Family Survive the Darkness of Gaza</span></h3>
+                        <p>My name is Abdul Haadi from Portugal,
+
+                            I’m writing to you on behalf of my sister Heba Mohammed, a brave mother of four soon to
+
+                            be five whose entire ...</p>
+                        <a href="javascript:void(0)"
+                            onclick="initiateRelayGift('heba', 'https://whydonate.com/fundraising/help-hebas-family-survive-the-darkness-of-gaza', 'Help Heba & Family Survive the Darkness of Gaza')"
+                            class="btn btn-primary">DIRECT GIFT</a>
+                    </div>
+
+                    <!-- Umm Sami -->
+                    
+
+                    <div class="card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="card-status" data-campaign-id="umm_sami"><span class="status-dot active"></span>
+                            TRUST VERIFIED</div>
+                        <img src="../data/onboarding_submissions/media/scraped_whydonate/help-umm-sami-and-her-family-surpass-the-winter-conditions-in-gaza.jpg"
+                            class="card-img" alt="Umm Sami">
+                        <h3 class="lang-dual"><span class="ar-main">ساعدوا أم سامي وعائلتها على تجاوز ظروف الشتاء في
+                                غزة</span><span class="en-sub">Help Umm Sami and her
+                                family surpass the winter conditions in Gaza</span></h3>
+                        <p>I live on the side of the camp on the street. I need food, drink, and a tent to protect me
+                            from the bitter cold. I have a child who has difficulty wal...</p>
+                        <a href="javascript:void(0)"
+                            onclick="initiateRelayGift('umm_sami', 'https://whydonate.com/fundraising/help-umm-sami-and-her-family-surpass-the-winter-conditions-in-gaza', 'Help Umm Sami and her family surpass the winter conditions in Gaza')"
+                            class="btn btn-primary">DIRECT GIFT</a>
+                    </div>
+
+                    <!-- Abu Haytham -->
+                    
+
+                    <div class="card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="card-status" data-campaign-id="abu_haytham"><span class="status-dot active"></span>
+                            TRUST VERIFIED</div>
+                        <img src="../data/onboarding_submissions/media/scraped_whydonate/help-abu-haytham-to-provide-his-four-children-in-gaza.jpg"
+                            class="card-img" alt="Abu Haytham">
+                        <h3 class="lang-dual"><span class="ar-main">ساعدوا أبو هيثم لتوفير احتياجات أطفاله الأربعة في
+                                غزة</span><span class="en-sub">Help Abu
+                                Haytham to provide his four children in Gaza</span></h3>
+                        <p>I am Abu Haitham from the Gaza Strip. I am 35 years old. I do not have a job. My situation is
+                            very difficult. I have four children and I am unable to ...</p>
+                        <a href="javascript:void(0)"
+                            onclick="initiateRelayGift('abu_haytham', 'https://whydonate.com/fundraising/help-abu-haytham-to-provide-his-four-children-in-gaza', 'Help Abu Haytham to provide his four children in Gaza')"
+                            class="btn btn-primary">DIRECT GIFT</a>
+                    </div>
+
+                    <!-- Aysha -->
+                    
+
+                    <div class="card" data-aos="fade-up" data-aos-delay="0">
+                        <div class="card-status" data-campaign-id="aysha"><span class="status-dot active"></span> TRUST
+                            VERIFIED</div>
+                        <img src="../data/onboarding_submissions/media/scraped_whydonate/help-aysha-provide-her-children-in-gaza-.jpg"
+                            class="card-img" alt="Aysha">
+                        <h3 class="lang-dual"><span class="ar-main">ساعد أيشة في توفير احتياجاتها في غزة</span><span
+                                class="en-sub">Help Aysha provide her self in Gaza</span></h3>
+                        <p>My name is Aysha from Gaza. I am 16 years old. I am trying to help and support my family.
+                            I don't have children and I'm not married, but I have a futu...</p>
+                        <a href="javascript:void(0)"
+                            onclick="initiateRelayGift('aysha', 'https://whydonate.com/fundraising/help-aysha-provide-her-children-in-gaza-', 'Help Aysha provide her self in Gaza')"
+                            class="btn btn-primary">DIRECT GIFT</a>
+                    </div>
+
+                    <!-- Abdel Rahim -->
+                    
+
+                    <div class="card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="card-status" data-campaign-id="abdel_rahim"><span class="status-dot active"></span>
+                            TRUST VERIFIED</div>
+                        <img src="../data/onboarding_submissions/media/scraped_whydonate/help-gaza-nurse-abdel-rahim-l-rebuild-his-home-they-are-living-in-a-tent.jpg"
+                            class="card-img" alt="Abdel Rahim">
+                        <h3 class="lang-dual"><span class="ar-main">إنهم يعيشون في خيمة! ساعدوا ممرض غزة!</span><span
+                                class="en-sub">They Are Living in a Tent! Help Gaza Nurse !</span></h3>
+                        <p>Hello I'm Abdul Haadi from Portugal. I'm opening this campaign on behalf of Nurse Abdel-Rahim
+                            and his family who live in Gaza. here is their presentat...</p>
+                        <a href="javascript:void(0)"
+                            onclick="initiateRelayGift('abdel_rahim', 'https://whydonate.com/fundraising/help-gaza-nurse-abdel-rahim-l-rebuild-his-home-they-are-living-in-a-tent', 'They Are Living in a Tent! Help Gaza Nurse !')"
+                            class="btn btn-primary">DIRECT GIFT</a>
+                    </div>
+
+                    <!-- Ahmed smile -->
+                    
+
+                    <div class="card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="card-status" data-campaign-id="ahmed_smile"><span class="status-dot active"></span>
+                            TRUST VERIFIED</div>
+                        <img src="../data/onboarding_submissions/media/scraped_whydonate/lets-draw-a-smile-together.jpg"
+                            class="card-img" alt="Ahmed smile">
+                        <h3 class="lang-dual"><span class="ar-main">لنرسم الابتسامة معًا</span><span
+                                class="en-sub">Let's draw a smile together</span></h3>
+                        <p>On the 7th of October, it was a tragic day when the occupation forces asked us to evacuate
+                            our house in Beit Hanoun, the northernmost part of the Gaza...</p>
+                        <a href="javascript:void(0)"
+                            onclick="initiateRelayGift('ahmed_smile', 'https://whydonate.com/fundraising/lets-draw-a-smile-together', 'Let\'s draw a smile together')"
+                            class="btn btn-primary">DIRECT GIFT</a>
+                    </div>
+
+                    <!-- Um Mohammeds children -->
+                    
+
+                    <div class="card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="card-status" data-campaign-id="mother10a"><span class="status-dot active"></span>
+                            TRUST VERIFIED</div>
+                        <img src="../data/onboarding_submissions/media/scraped_whydonate/-urgent-winter-aid-for-mother-of-10.jpg"
+                            class="card-img" alt="Mother 10">
+                        <h3 class="lang-dual"><span class="ar-main">أم (عشرة أطفال)</span><span
+                                class="en-sub">Mother10A</span>
+                        </h3>
+                        <p></p>
+                        <a href="javascript:void(0)"
+                            onclick="initiateRelayGift('mother10a', 'https://whydonate.com/fundraising/-urgent-winter-aid-for-mother-of-10', 'Mother10A')"
+                            class="btn btn-primary">DIRECT GIFT</a>
+                    </div>
+
+                    <!-- MedicalA -->
+                    
+
+                    <div class="card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="card-status" data-campaign-id="medicala"><span class="status-dot active"></span>
+                            TRUST VERIFIED</div>
+                        <img src="../data/onboarding_submissions/media/scraped_whydonate/urgent-medical-aid-for-my-child-and-husband.jpg"
+                            class="card-img" alt="Medical Aid">
+                        <h3 class="lang-dual"><span class="ar-main">مساعدة طبية عاجلة</span><span class="en-sub">Medical
+                                Aid</span>
+                        </h3>
+                        <p></p>
+                        <a href="javascript:void(0)"
+                            onclick="initiateRelayGift('medicala', 'https://whydonate.com/fundraising/urgent-medical-aid-for-my-child-and-husband', 'MedicalA')"
+                            class="btn btn-primary">DIRECT GIFT</a>
+                    </div>
+
+                    <!-- MohammedG -->
+                    
+
+                    <div class="card" data-aos="fade-up" data-aos-delay="0">
+                        <div class="card-status" data-campaign-id="mohammedg"><span class="status-dot active"></span>
+                            TRUST VERIFIED</div>
+                        <img src="../data/onboarding_submissions/media/scraped_whydonate/help-mohammed-pursue-dentistry-and-support-his-family.jpg"
+                            class="card-img" alt="MohammedG">
+                        <h3 class="lang-dual"><span class="ar-main">محمد جي</span><span class="en-sub">MohammedG</span>
+                        </h3>
+                        <p></p>
+                        <a href="javascript:void(0)"
+                            onclick="initiateRelayGift('mohammedg', 'https://whydonate.com/fundraising/help-mohammed-pursue-dentistry-and-support-his-family', 'MohammedG')"
+                            class="btn btn-primary">DIRECT GIFT</a>
+                    </div>
+
+                    <!-- Beneficiary -->
+                    
+
+                    <div class="card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="card-status" data-campaign-id="mohamed_ibrahim"><span
+                                class="status-dot active"></span> TRUST VERIFIED</div>
+                        <img src="images/replacement content/filling.jpeg" class="card-img" alt="Mohamed Ibrahim">
+                        <h3 class="lang-dual"><span class="ar-main">ساعدوا محمد إبراهيم في إكمال دراسته ودعم
+                                عائلته</span><span class="en-sub">Help Mohamed Ibrahim
+                                Complete His Studies and Support His Family</span></h3>
+                        <p>I am Mohamed Ibrahim Taha
+                            I am 20 years old and haven't applied to any university yet due to our dire financial
+                            circumstances. Our house was destroyed...</p>
+                        <a href="javascript:void(0)"
+                            onclick="initiateRelayGift('mohamed_ibrahim', 'https://whydonate.com/fundraising/help-mohamed-ibrahim-complete-his-studies-and-support-his-family-', 'Help Mohamed Ibrahim Complete His Studies and Support His Family')"
+                            class="btn btn-primary">DIRECT GIFT</a>
+                    </div>
+
+                    <!-- Hope -->
+                    
+
+                    <div class="card" data-aos="fade-up" data-aos-delay="0">
+                        <div class="card-status" data-campaign-id="amir_walk_again"><span
+                                class="status-dot active"></span> TRUST VERIFIED</div>
+                        <img src="images/replacement content/filling1.jpg" class="card-img" alt="Magda">
+                        <h3 class="lang-dual"><span class="ar-main">هل ستساعد أمير ليمشي من جديد؟</span><span
+                                class="en-sub">Will You Help Amir Walk Again</span></h3>
+                        <p>I needed surgery due to an injury to my left shoulder joint since 2014. To date, I have
+                            undergone surgery and it is now in good condition.</p>
+                        <a href="javascript:void(0)"
+                            onclick="initiateRelayGift('amir_walk_again', 'https://whydonate.com/fundraising/will-you-help-amir-walk-again-', 'Will You Help Amir Walk Again')"
+                            class="btn btn-primary">DIRECT GIFT</a>
+                    </div>
+
+                    <!-- Akram -->
+                    
+
+                    <div class="card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="card-status" data-campaign-id="akram"><span class="status-dot active"></span> TRUST
+                            VERIFIED</div>
+                        <img src="images/replacement content/filling2.jpg" class="card-img" alt="Salem">
+                        <h3 class="lang-dual"><span class="ar-main">ساعدوا أكرم وعائلته على البقاء وإيجاد الاستقرار في
+                                غزة</span><span class="en-sub">Help Akram and
+                                his family survive and find stability in Gaza</span></h3>
+                        <p>I need financial assistance as I haven't received anything from any source.</p>
+                        <a href="javascript:void(0)"
+                            onclick="initiateRelayGift('akram', 'https://whydonate.com/fundraising/help-akram-and-his-family-survive-and-find-stability-in-gaza', 'Help Akram and his family survive and find stability in Gaza')"
+                            class="btn btn-primary">DIRECT GIFT</a>
+                    </div>
+
+                    <!-- Fatima -->
+                    
+
+                    <div class="card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="card-status" data-campaign-id="fatima"><span class="status-dot active"></span> TRUST
+                            VERIFIED</div>
+                        <img src="images/replacement content/filling3.jpg" class="card-img" alt="Mother 10">
+                        <h3 class="lang-dual"><span class="ar-main">ساعدوا فاطمة وأطفالها للبقاء على قيد الحياة في
+                                غزة</span><span class="en-sub">Help Fatima and her children stay a live in gaza</span>
+                        </h3>
+                        <p>Hi, my name is Lenzi, from in London. I am fundraising on behalf of Fatima from Gaza. Every
+                            donation collected here will go directly to Her annd her t...</p>
+                        <a href="javascript:void(0)"
+                            onclick="initiateRelayGift('fatima', 'https://whydonate.com/fundraising/help-fatima-yasser-her-5-children-survive-starvation-in-gaza-palestine', 'Help Fatima and her children stay a live in gaza')"
+                            class="btn btn-primary">DIRECT GIFT</a>
+                    </div>
+
+                    <!-- Magda -->
+                    
+
+                    <div class="card" data-aos="fade-up" data-aos-delay="0">
+                        <div class="card-status" data-campaign-id="magda"><span class="status-dot active"></span> TRUST
+                            VERIFIED</div>
+                        <img src="images/replacement content/filling4.jpg" class="card-img" alt="young Ahmed">
+                        <h3 class="lang-dual"><span class="ar-main">ساعدوا ماجدة وعائلتها من أجل بداية جديدة</span><span
+                                class="en-sub">Help Magda & Family for a New Beginning</span></h3>
+                        <p>Majda and Muhammad's family: Our home was completely destroyed, we are now homeless. Your
+                            support and contribution, no matter how small, gives us hope...</p>
+                        <a href="javascript:void(0)"
+                            onclick="initiateRelayGift('magda', 'https://whydonate.com/fundraising/elp-magda-and-muhammad-rebuild-after-the-destruction-in-gaza', 'Help Magda & Family for a New Beginning')"
+                            class="btn btn-primary">DIRECT GIFT</a>
+                    </div>
+
+                    <!-- Rebuild -->
+                    
+
+                    <div class="card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="card-status" data-campaign-id="rebuild"><span class="status-dot active"></span>
+                            TRUST VERIFIED</div>
+                        <img src="images/replacement content/filling5.jpg" class="card-img" alt="our brother">
+                        <h3 class="lang-dual"><span class="ar-main">ساعدوني في اعادة بناء منزلي</span><span
+                                class="en-sub">Help Me Rebuild My Home</span></h3>
+                        <p>I'm the sole breadwinner for my family, and I have a heart condition. All my children are in
+                            school. We've lost our clothes, our sense of security, an...</p>
+                        <a href="javascript:void(0)"
+                            onclick="initiateRelayGift('rebuild', 'https://whydonate.com/fundraising/help-me-rebuild-my-home', 'Help Me Rebuild My Home')"
+                            class="btn btn-primary">DIRECT GIFT</a>
+                    </div>
+
+                    <!-- Raneen -->
+                    
+
+                    <div class="card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="card-status" data-campaign-id="raneen"><span class="status-dot active"></span> TRUST
+                            VERIFIED</div>
+                        <img src="images/replacement content/filling6.jpg" class="card-img" alt="Ahmed">
+                        <h3 class="lang-dual"><span class="ar-main">ساعدوا رنين وعائلتها في العثور على مأوى</span><span
+                                class="en-sub">Help Raneen
+                                Al-Quraan and her family find shelter in Gaza</span></h3>
+                        <p>I'm your sister Raneen from Gaza, a mother of two, pregnant in my fourth month. My house was
+                            destroyed in the war and I'm now living in a car garage w...</p>
+                        <a href="javascript:void(0)"
+                            onclick="initiateRelayGift('raneen', 'https://whydonate.com/fundraising/help-raneen-al-quraan-and-her-family-find-shelter-in-gaza', 'Help Raneen Al')"
+                            class="btn btn-primary">DIRECT GIFT</a>
+                    </div>
+
+                    <!-- Salem -->
+                    
+
+                    <div class="card" data-aos="fade-up" data-aos-delay="0">
+                        <div class="card-status" data-campaign-id="salem"><span class="status-dot active"></span> TRUST
+                            VERIFIED</div>
+                        <img src="images/replacement content/filling7.jpg" class="card-img" alt="Umm Iman">
+                        <h3 class="lang-dual"><span class="ar-main">دعم سالم وعائلته: إعادة بناء الحياة وسط
+                                النزوح</span><span class="en-sub">Support Salem &
+                                Family: Rebuilding Life Amidst Displacement</span></h3>
+                        <p>We are a family of six, my father is a heart patient, we lost our home in the war, my mother
+                            is elderly, we have no source of income, and we cannot re...</p>
+                        <a href="javascript:void(0)"
+                            onclick="initiateRelayGift('salem', 'https://whydonate.com/fundraising/support-salems-family-rebuilding-life-amidst-displacement', 'Support Salem & Family: Rebuilding Life Amidst Displacement')"
+                            class="btn btn-primary">DIRECT GIFT</a>
+                    </div>
+
+                    <!-- Rana Hanin -->
+                    
+
+                    <div class="card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="card-status" data-campaign-id="rana_hanin"><span class="status-dot active"></span>
+                            TRUST VERIFIED</div>
+                        <img src="images/replacement content/filling.jpeg" class="card-img" alt="Rana Hanin">
+                        <h3 class="lang-dual"><span class="ar-main">ساعدوا عائلة باعة في إعادة البناء</span><span
+                                class="en-sub">Help Rebuild Ba'aa Family</span></h3>
+                        <p>Hello dear, I'm Rana, I live in the Gaza Strip, and I'm a mother of seven children, the
+                            youngest of whom is two years old. I need winter clothes for m...</p>
+                        <a href="javascript:void(0)"
+                            onclick="initiateRelayGift('rana_hanin', 'https://whydonate.com/fundraising/winter-relief-for-rana-and-her-seven-children', 'Help Rebuild Ba\'aa Family')"
+                            class="btn btn-primary">DIRECT GIFT</a>
+                    </div>
+
+                    <!-- Mother 10 -->
+                    
+
+                    <div class="card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="card-status" data-campaign-id="mother_10"><span class="status-dot active"></span>
+                            TRUST VERIFIED</div>
+                        <img src="images/replacement content/filling1.jpg" class="card-img" alt="Mother 10">
+                        <h3 class="lang-dual"><span class="ar-main">مساعدات شتوية عاجلة لأم لأعشرة أطفال</span><span
+                                class="en-sub">Urgent
+                                Winter Aid for Mother of 10</span></h3>
+                        <p>I have 10 children with me and I need help, I beg of you to assist us. We are living a
+                            miserable life, with no food, no drink, and no winter clothes. ...</p>
+                        <a href="javascript:void(0)"
+                            onclick="initiateRelayGift('mother_10', 'https://whydonate.com/fundraising/-urgent-winter-aid-for-mother-of-10', 'Urgent Winter Aid for Mother of 10')"
+                            class="btn btn-primary">DIRECT GIFT</a>
+                    </div>
+
+                    <!-- young Ahmed -->
+                    
+
+                    <div class="card" data-aos="fade-up" data-aos-delay="0">
+                        <div class="card-status" data-campaign-id="young_ahmed"><span class="status-dot active"></span>
+                            TRUST VERIFIED</div>
+                        <img src="images/replacement content/filling2.jpg" class="card-img" alt="Yasmine">
+                        <h3 class="lang-dual"><span class="ar-main">ساعدوا أحمد الشاب على دعم عائلته في غزة</span><span
+                                class="en-sub">Help young Ahmed to support his family in Gaza</span></h3>
+                        <p>I am Ahmed, a 16-year-old young man from Gaza. I live with my family of 9, including 5 young
+                            children, in a life full of daily difficulties and challe...</p>
+                        <a href="javascript:void(0)"
+                            onclick="initiateRelayGift('young_ahmed', 'https://whydonate.com/fundraising/help-young-ahmed-to-support-his-family-in-gaza-', 'Help young Ahmed to support his family in Gaza')"
+                            class="btn btn-primary">DIRECT GIFT</a>
+                    </div>
+
+                    <!-- our brother -->
+                    
+
+                    <div class="card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="card-status" data-campaign-id="our_brother"><span class="status-dot active"></span>
+                            TRUST VERIFIED</div>
+                        <img src="images/replacement content/filling3.jpg" class="card-img" alt="our brother">
+                        <h3 class="lang-dual"><span class="ar-main">ساعدوا أخانا بالدعم المالي</span><span
+                                class="en-sub">Help our brother with financial support</span></h3>
+                        <p>Peace be upon you. I am reaching out to secure my family's survival and rebuild our lives.
+                            Your direct solidarity means everything to us.</p>
+                        <a href="javascript:void(0)"
+                            onclick="initiateRelayGift('our_brother', 'https://whydonate.com/fundraising/help-our-brother-with-financial-support-', 'Help our brother with financial support')"
+                            class="btn btn-primary">DIRECT GIFT</a>
+                    </div>
+
+                    <!-- Pregnant -->
+                    
+
+                    <div class="card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="card-status" data-campaign-id="pregnant"><span class="status-dot active"></span>
+                            TRUST VERIFIED</div>
+                        <img src="images/replacement content/filling4.jpg" class="card-img" alt="Salman Ali">
+                        <h3 class="lang-dual"><span class="ar-main">دعم عاجل لأم حامل وعائلتها</span><span
+                                class="en-sub">Urgent Support for pregnant mother and family</span></h3>
+                        <p>We need financial, food, clothing, housing, diapers, and milk assistance. My wife is pregnant
+                            and at risk, our situation is very difficult.
+                            ID: 80210...</p>
+                        <a href="javascript:void(0)"
+                            onclick="initiateRelayGift('pregnant', 'https://whydonate.com/fundraising/urgent-support-for-pregnant-mother-and-family', 'Urgent Support for pregnant mother and family')"
+                            class="btn btn-primary">DIRECT GIFT</a>
+                    </div>
+
+                    <!-- Matar -->
+                    
+
+                    <div class="card" data-aos="fade-up" data-aos-delay="0">
+                        <div class="card-status" data-campaign-id="matar"><span class="status-dot active"></span> TRUST
+                            VERIFIED</div>
+                        <img src="images/replacement content/filling3.jpg" class="card-img" alt="Matar">
+                        <h3 class="lang-dual"><span class="ar-main">رؤية لمطر: استعادة البصر والأمل</span><span
+                                class="en-sub">A
+                                Vision for Matar : Restoring Sight and Hope</span></h3>
+                        <p>"My brother's name is Matar (Rain), but lately, the only rain we see is the tears in our
+                            mother's eyes."
+
+                            My brother, Matar, was always the light of o...</p>
+                        <a href="javascript:void(0)"
+                            onclick="initiateRelayGift('matar', 'https://whydonate.com/fundraising/a-vision-for-matar-restoring-sight-and-hope-atar-', 'A Vision for Matar : Restoring Sight and Hope')"
+                            class="btn btn-primary">DIRECT GIFT</a>
+                    </div>
+
+                    <!-- Ahmed Al-Flit pop -->
+                    
+
+                    <div class="card" data-aos="fade-up" data-aos-delay="0">
+                        <div class="card-status" data-campaign-id="um_mohammeds_children"><span
+                                class="status-dot active"></span> TRUST VERIFIED</div>
+                        <h3 class="lang-dual"><span class="ar-main">أنقذوا أطفال أم محمد</span><span class="en-sub">Save
+                                Um Mohammed's children</span></h3>
+                        <p>Peace be upon you. I am reaching out to secure my family's survival and rebuild our lives.
+                            Your direct solidarity means everything to us.</p>
+                        <a href="javascript:void(0)"
+                            onclick="initiateRelayGift('um_mohammeds_children', 'https://whydonate.com/fundraising/save-um-mohammeds-children-', 'Save Um Mohammed\'s children')"
+                            class="btn btn-primary">DIRECT GIFT</a>
+                    </div>
+
+                    <!-- Mother10A -->
+                    
+
+                    <div class="card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="card-status" data-campaign-id="beneficiary"><span class="status-dot active"></span>
+                            TRUST VERIFIED</div>
+                        <img src="images/replacement content/filling4.jpg" class="card-img" alt="Beneficiary">
+                        <h3 class="lang-dual"><span class="ar-main">المستفيد</span><span
+                                class="en-sub">Beneficiary</span></h3>
+                        <p></p>
+                        <a href="javascript:void(0)"
+                            onclick="initiateRelayGift('beneficiary', 'https://whydonate.com/fundraising/emergency-relief-for-tamers-family-in-khan-yunis', 'Beneficiary')"
+                            class="btn btn-primary">DIRECT GIFT</a>
+                    </div>
+                </div>
+            </div>
+        
+                </section>
+    </main>
+
+    <footer style="background-color: var(--color-secondary); color: white; padding: 50px 0; text-align: center;">
+        <div class="container">
+            <a href="index.html" class="logo"
+                style="color: white; margin-bottom: 20px; display: inline-block;">fajr<span
+                    style="color: var(--color-primary);">.today</span></a>
+            <p style="opacity: 0.6;" data-i18n="footer_rights">© 2026 Sovereign Fajr Network. No programming accepted.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Shahada Modal -->
+    <div id="shahadaModal" class="modal">
+        <div class="modal-content" data-aos="zoom-in">
+            <div class="modal-header">
+                <span style="font-family: 'Outfit'; letter-spacing: 2px;">BEAR WITNESS</span>
+                <span class="close" onclick="closeShahada()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <img src="images/Shahada.png" alt="Shahada" class="shahada-img">
+                <div class="shahada-text">لَا إِلٰهَ إِلَّا الله مُحَمَّدٌ رَسُولُ الله</div>
+                <div class="shahada-phonetic">Lā ilāha illā l-Lāh, Muḥammadur rasūlu l-Lāh</div>
+                <div style="margin-top: 30px;">
+                    <a href="https://whydonate.com/fundraising/help-fajrtoday-the-first-crypto-utility-providing-critical-services"
+                        target="_blank" class="btn btn-primary" style="letter-spacing: 2px;">DIRECT DONATION</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/i18n.js"></script>
+    <script>
+        AOS.init({ duration: 1000, once: true });
+
+        function openShahada() {
+            document.getElementById('shahadaModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeShahada() {
+            document.getElementById('shahadaModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        window.onclick = function (event) {
+            if (event.target == document.getElementById('shahadaModal')) {
+                closeShahada();
+            }
+        }
+    </script>
+</body>
+
+</html>

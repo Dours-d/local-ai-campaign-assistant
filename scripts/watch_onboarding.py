@@ -64,14 +64,15 @@ def process_new_submission(file_path):
         }
         
         # 1. Create on Whydonate if not exists
+        masked_wa = f"{whatsapp[:4]}****{whatsapp[-4:]}"
         if 'whydonate' not in entry:
-            logging.info(f"Triggering Whydonate creation for {whatsapp}")
+            logging.info(f"Triggering Whydonate creation for {masked_wa}")
             success = create_single_whydonate(campaign_data)
             if success:
                 entry['whydonate'] = {"status": "created", "timestamp": datetime.now().isoformat()}
-                logging.info(f"SUCCESS: Whydonate created for {whatsapp}")
+                logging.info(f"SUCCESS: Whydonate created for {masked_wa}")
             else:
-                logging.error(f"FAILURE: Whydonate creation failed for {whatsapp}")
+                logging.error(f"FAILURE: Whydonate creation failed for {masked_wa}")
         
         save_index(index)
         
@@ -92,7 +93,8 @@ def main():
                     data = json.load(sf)
                 whatsapp = format_whatsapp(data.get('whatsapp_number'))
                 if whatsapp and whatsapp not in index:
-                    logging.info(f"Unindexed file found in initial scan: {f}")
+                    masked_wa = f"{whatsapp[:4]}****{whatsapp[-4:]}"
+                    logging.info(f"Unindexed file found in initial scan (ID: {f}, WA: {masked_wa})")
                     process_new_submission(file_path)
                     index = load_index() # Refresh index
             except: pass
