@@ -235,9 +235,28 @@ def save_growth_list_v2():
 
 def _regenerate_onboarding_messages(campaigns):
     import re as _re
+    import json
+    
+    # Default fallbacks
     PORTAL_URL = "https://dours-d.github.io/local-ai-campaign-assistant/onboarding/"
     VIRAL_URL  = "https://dours-d.github.io/local-ai-campaign-assistant/"
     NOOR_URL   = "https://dours-d.github.io/local-ai-campaign-assistant/brain.html"
+
+    # Dynamic resolve from status.json (Priority)
+    try:
+        status_path = os.path.join(BASE_DIR, 'data', 'status.json')
+        if os.path.exists(status_path):
+            with open(status_path, 'r') as f:
+                status_data = json.load(f)
+                server_url = status_data.get('services', {}).get('onboarding_server', {}).get('public_url')
+                if server_url:
+                    server_url = server_url.rstrip('/')
+                    PORTAL_URL = f"{server_url}"
+                    VIRAL_URL  = f"{server_url}/"
+                    NOOR_URL   = f"{server_url}/brain"
+                    print(f"[AUTO] Using dynamic tunnel URL for messages: {server_url}")
+    except Exception as e:
+        print(f"[WARN] Failed to resolve dynamic tunnel URL: {e}")
 
     # Load USDT addresses from vault
     vault_addresses = {}
