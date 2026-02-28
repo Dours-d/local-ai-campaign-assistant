@@ -1,23 +1,23 @@
 {
-  "meta": {
-    "tunnel_id": "ephemeral-quick-tunnel",
-    "failover_active": false,
-    "provider": "cloudflare"
-  },
-  "last_updated": "2026-02-28 19:36:53 UTC",
+  "last_updated": "2026-02-28 19:43:41 UTC",
   "services": {
+    "shahada_portal": {
+      "status": "online",
+      "public_url": "https://sailing-guardian-paris-inclusive.trycloudflare.com/onboard"
+    },
     "brain_portal": {
       "status": "online",
       "public_url": "https://sailing-guardian-paris-inclusive.trycloudflare.com/brain"
     },
     "onboarding_server": {
+      "public_url": "https://sailing-guardian-paris-inclusive.trycloudflare.com",
       "local_url": "http://127.0.0.1:5010",
-      "status": "online",
-      "public_url": "https://sailing-guardian-paris-inclusive.trycloudflare.com"
-    },
-    "shahada_portal": {
-      "status": "online",
-      "public_url": "https://sailing-guardian-paris-inclusive.trycloudflare.com/onboard"
+      "status": "online"
     }
+  },
+  "meta": {
+    "failover_active": false,
+    "tunnel_id": "ephemeral-quick-tunnel",
+    "provider": "cloudflare"
   }
 }
