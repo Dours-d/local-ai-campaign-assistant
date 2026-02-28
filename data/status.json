@@ -1,24 +1,23 @@
 {
-    "last_updated": "2026-02-28T03:44:20.897719Z",
-    "services": {
-        "onboarding_server": {
-            "status": "online",
-            "local_url": "http://127.0.0.1:5010",
-            "public_url": "https://bless-clean-possession-sole.trycloudflare.com"
-        },
-        "shahada_portal": {
-            "status": "online",
-            "public_url": "https://bless-clean-possession-sole.trycloudflare.com/onboard"
-        },
-        "brain_portal": {
-            "status": "online",
-            "public_url": "https://bless-clean-possession-sole.trycloudflare.com/brain"
-        }
+  "services": {
+    "onboarding_server": {
+      "local_url": "http://127.0.0.1:5010",
+      "status": "online",
+      "public_url": "https://local-ai-onboarding-portal.loca.lt"
     },
-    "meta": {
-        "provider": "cloudflare",
-        "tunnel_id": "ephemeral-quick-tunnel",
-        "failover_active": false,
-        "warden_version": "1.0.0"
+    "brain_portal": {
+      "public_url": "https://local-ai-onboarding-portal.loca.lt/brain",
+      "status": "online"
+    },
+    "shahada_portal": {
+      "public_url": "https://local-ai-onboarding-portal.loca.lt/onboard",
+      "status": "online"
     }
+  },
+  "meta": {
+    "provider": "localtunnel",
+    "tunnel_id": "manual-fallback",
+    "failover_active": true
+  },
+  "last_updated": null
 }
