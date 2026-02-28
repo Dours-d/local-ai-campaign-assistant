@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-02-28 17:44:54 UTC",
+  "last_updated": "2026-02-28 17:46:29 UTC",
   "services": {
     "shahada_portal": {
       "status": "online",
@@ -18,6 +18,6 @@
   "meta": {
     "failover_active": true,
     "tunnel_id": "ephemeral-quick-tunnel",
-    "provider": "localtunnel"
+    "provider": "ngrok"
   }
 }
