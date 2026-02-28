@@ -1,86 +1,337 @@
 # Robust Monitor for Onboarding Server and Cloudflare Tunnel
 # This script ensures both the intake server and the tunnel stay running all day.
 
-$LogFile = "data/monitoring.log"
-$WorkDir = Get-Location
-$ServerScript = "scripts/onboarding_server.py"
-$VenvPython = "$WorkDir\.venv\Scripts\python.exe"
+param(
+    [int]$HeartbeatTimeoutMin,
+    [int]$HeartbeatTimeoutMax,
+    [int]$MaxRetries,
+    [int]$RetryDelayMin,
+    [int]$RetryDelayMax,
+    [int]$CheckInterval,
+    [string[]]$SyncFiles
+)
 
-function Write-Log($Message) {
-    if ($null -eq $Message) { return }
-    $Timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
-    $LogEntry = "[$Timestamp] $Message"
-    Write-Host $LogEntry -ForegroundColor Cyan
-    if (-not (Test-Path "data")) { New-Item -ItemType Directory -Path "data" -Force }
-    $LogEntry | Out-File -FilePath $LogFile -Append
+# 1. Environment & Paths
+$WorkDir = "c:\Users\gaelf\Documents\GitHub\local_ai_campaign_assistant"
+$VenvPython = "$WorkDir\.venv\Scripts\python.exe"
+$ServerScript = "$WorkDir\scripts\onboarding_server.py"
+$LogFile = "$WorkDir\data\monitoring.log"
+$ConfigFile = "$WorkDir\scripts\monitor_config.json"
+$IntegrityScript = "$WorkDir\scripts\verify_visual_integrity.py"
+$SnapshotScript = "$WorkDir\scripts\generate_health_snapshots.py"
+
+# 2. Defaults and Config Loading
+$Config = @{
+    HeartbeatTimeoutMin = 5
+    HeartbeatTimeoutMax = 15
+    MaxRetries          = 3
+    RetryDelayMin       = 2
+    RetryDelayMax       = 6
+    CheckInterval       = 60
+    SyncFiles           = @("index.html", "onboard.html", "brain.html")
+    LogLevel            = "INFO"
+    Alerting            = @{
+        Enabled         = $false
+        CooldownMinutes = 5
+        LastSent        = @{}
+    }
 }
 
-Write-Log "Starting Final Monitor Service v4..."
+# Load secrets
+Import-Env "$WorkDir\.env.monitoring"
+
+if (Test-Path $ConfigFile) {
+    try {
+        $RawConfig = Get-Content $ConfigFile -Raw
+        $FileConfig = $RawConfig | ConvertFrom-Json
+        
+        if (Test-ConfigAgainstSchema $FileConfig) {
+            foreach ($Key in @($Config.Keys)) {
+                if ($null -ne $FileConfig.$Key) { 
+                    $Config[$Key] = $FileConfig.$Key 
+                    Write-Log "  [CONFIG] Merged $Key" "DEBUG"
+                }
+            }
+            Write-Log "Configuration validated and loaded from $ConfigFile" "DEBUG"
+        }
+        else {
+            Write-Log "Configuration in $ConfigFile failed schema validation. Using defaults." "WARN"
+        }
+    }
+    catch { 
+        Write-Log "Failed to parse ${ConfigFile}: $($_.Exception.Message)" "WARN" 
+        Write-Log "Raw Content Snippet: $($RawConfig.Substring(0, [Math]::Min(50, $RawConfig.Length)))" "DEBUG"
+    }
+}
+
+# 3. CLI Overrides
+if ($PSBoundParameters.ContainsKey('HeartbeatTimeoutMin')) { $Config['HeartbeatTimeoutMin'] = $HeartbeatTimeoutMin }
+if ($PSBoundParameters.ContainsKey('HeartbeatTimeoutMax')) { $Config['HeartbeatTimeoutMax'] = $HeartbeatTimeoutMax }
+if ($PSBoundParameters.ContainsKey('MaxRetries')) { $Config['MaxRetries'] = $MaxRetries }
+if ($PSBoundParameters.ContainsKey('RetryDelayMin')) { $Config['RetryDelayMin'] = $RetryDelayMin }
+if ($PSBoundParameters.ContainsKey('RetryDelayMax')) { $Config['RetryDelayMax'] = $RetryDelayMax }
+if ($PSBoundParameters.ContainsKey('CheckInterval')) { $Config['CheckInterval'] = $CheckInterval }
+if ($PSBoundParameters.ContainsKey('SyncFiles')) { $Config['SyncFiles'] = $SyncFiles }
+
+Write-Host "VenvPython Path: $VenvPython"
+Write-Host "ServerScript Path: $ServerScript"
+
+function Write-Log($Message, $Level = "INFO") {
+    if ($null -eq $Message) { return }
+    # Simple level filtering
+    if ($Config.LogLevel -eq "INFO" -and $Level -eq "DEBUG") { return }
+    
+    $Timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+    $LogLine = "[$Timestamp] [$Level] $Message"
+    Write-Host $LogLine
+    try {
+        if (-not (Test-Path (Split-Path $LogFile -Parent))) { New-Item -ItemType Directory -Path (Split-Path $LogFile -Parent) -Force | Out-Null }
+        $LogLine | Out-File -FilePath $LogFile -Append -Encoding UTF8
+    }
+    catch {}
+}
+
+function Import-Env($Path) {
+    if (Test-Path $Path) {
+        Write-Log "Loading environment from $Path" "DEBUG"
+        Get-Content $Path | ForEach-Object {
+            if ($_ -match '^([^#=]+)\s*=\s*"?([^#"]*)"?') {
+                [Environment]::SetEnvironmentVariable($Matches[1].Trim(), $Matches[2].Trim())
+            }
+        }
+    }
+}
+
+function Send-Alert($Type, $Message) {
+    if (-not $Config.Alerting.Enabled) { return }
+    
+    $DiscordUrl = [Environment]::GetEnvironmentVariable("MONITOR_DISCORD_WEBHOOK")
+    $SlackUrl = [Environment]::GetEnvironmentVariable("MONITOR_SLACK_WEBHOOK")
+
+    if (-not ($DiscordUrl -or $SlackUrl)) { return }
+
+    # Initialize internal state if missing
+    if ($null -eq $Config.Alerting.LastSent) {
+        if ($Config.Alerting -is [System.Management.Automation.PSCustomObject]) { $Config.Alerting | Add-Member -MemberType NoteProperty -Name "LastSent" -Value @{} -Force }
+        else { $Config.Alerting["LastSent"] = @{} }
+    }
+    
+    # Cooldown check
+    $LastSent = $Config.Alerting.LastSent[$Type]
+    if ($null -ne $LastSent) {
+        if ((Get-Date) -lt $LastSent.AddMinutes($Config.Alerting.CooldownMinutes)) {
+            Write-Log "Alert '$Type' skipped (Cooldown active)." "DEBUG"
+            return
+        }
+    }
+
+    # Severity Coloring & Meta
+    $Color = 3066993 # Default Green
+    $SlackColor = "#36a64f"
+    if ($Type -match "FAILURE|ERROR") { $Color = 15158332; $SlackColor = "#ff0000" }
+    elseif ($Type -match "ATTEMPT|RESTART") { $Color = 16776960; $SlackColor = "#eed202" }
+
+    # 1. Discord Embed Payload
+    $DiscordBody = @{
+        embeds = @(@{
+                title       = "Monitor Alert: $Type"
+                description = $Message
+                color       = $Color
+                timestamp   = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
+                footer      = @{ text = "Local AI Campaign Assistant | Final Monitor v5.5" }
+            })
+    } | ConvertTo-Json -Depth 5
+
+    # 2. Slack Block Payload
+    $SlackBody = @{
+        attachments = @(@{
+                color  = $SlackColor
+                blocks = @(
+                    @{
+                        type = "section"
+                        text = @{ type = "mrkdwn"; text = "*Monitor Alert: $Type*`n$Message" }
+                    },
+                    @{
+                        type     = "context"
+                        elements = @(@{ type = "mrkdwn"; text = "Time: $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')" })
+                    }
+                )
+            })
+    } | ConvertTo-Json -Depth 5
+
+    if ($DiscordUrl) {
+        try {
+            Invoke-RestMethod -Uri $DiscordUrl -Method Post -ContentType "application/json" -Body $DiscordBody -ErrorAction Stop
+            Write-Log "Rich Alert sent to Discord: $Type" "DEBUG"
+        }
+        catch { Write-Log "Failed to send Discord alert: $($_.Exception.Message)" "WARN" }
+    }
+    
+    if ($SlackUrl) {
+        try {
+            Invoke-RestMethod -Uri $SlackUrl -Method Post -ContentType "application/json" -Body $SlackBody -ErrorAction Stop
+            Write-Log "Rich Alert sent to Slack: $Type" "DEBUG"
+        }
+        catch { Write-Log "Failed to send Slack alert: $($_.Exception.Message)" "WARN" }
+    }
+
+    $Config.Alerting.LastSent[$Type] = Get-Date
+}
+
+function Test-ConfigAgainstSchema($Cfg) {
+    if ($null -eq $Cfg) { return $false }
+
+    $Required = @("HeartbeatTimeoutMin", "HeartbeatTimeoutMax", "MaxRetries", "CheckInterval", "Alerting")
+    foreach ($Prop in $Required) {
+        if ($null -eq $Cfg.$Prop) { Write-Log "Schema Error: Missing required property '$Prop'" "WARN"; return $false }
+    }
+
+    # Range and Type Checks
+    if ($Cfg.HeartbeatTimeoutMin -lt 1 -or $Cfg.HeartbeatTimeoutMin -gt 30) { Write-Log "Schema Error: HeartbeatTimeoutMin must be 1-30" "WARN"; return $false }
+    # Handle both PSCustomObject and Hashtable (ConvertFrom-Json -AsHashtable vs default)
+    $Max = $Cfg.HeartbeatTimeoutMax
+    $Min = $Cfg.HeartbeatTimeoutMin
+    if ($Max -le $Min) { Write-Log "Schema Error: HeartbeatTimeoutMax must be greater than Min" "WARN"; return $false }
+    if ($Cfg.MaxRetries -lt 1 -or $Cfg.MaxRetries -gt 10) { Write-Log "Schema Error: MaxRetries must be 1-10" "WARN"; return $false }
+    if ($Cfg.CheckInterval -lt 10) { Write-Log "Schema Error: CheckInterval must be >= 10s" "WARN"; return $false }
+    
+    if ($null -eq $Cfg.Alerting.Enabled -or $null -eq $Cfg.Alerting.Endpoints) {
+        Write-Log "Schema Error: Invalid Alerting configuration" "WARN"; return $false
+    }
+    
+    return $true
+}
+function Get-ServiceHeartbeat($Url, $Name) {
+    $MaxRetries = $Config['MaxRetries']
+    for ($Attempt = 1; $Attempt -le $MaxRetries; $Attempt++) {
+        $Timeout = Get-Random -Minimum $Config['HeartbeatTimeoutMin'] -Maximum ($Config['HeartbeatTimeoutMax'] + 1)
+        Write-Log "Checking heartbeat for $($Name) at $Url (Attempt $Attempt/$MaxRetries, Timeout: ${Timeout}s)..."
+        try {
+            $Response = Invoke-WebRequest -Uri $Url -Method Get -TimeoutSec $Timeout -ErrorAction Stop
+            Write-Log "  [OK] $($Name) responded (Status: $($Response.StatusCode))"
+            try {
+                $Data = $Response.Content | ConvertFrom-Json
+                if ($null -ne $Data.status) { Write-Log "  [SERVICE STATUS] $($Data.status)" "DEBUG" }
+            }
+            catch {
+                Write-Log "  [WARN] Failed to parse JSON response from $($Name). Content: $($Response.Content.Substring(0, [Math]::Min(100, $Response.Content.Length)))" "WARN"
+                return $false
+            }
+            return $true
+        }
+        catch {
+            Write-Log "  [WARN] Attempt $Attempt failed for $($Name): $($_.Exception.Message)"
+            if ($Attempt -lt $MaxRetries) {
+                $Delay = Get-Random -Minimum $Config['RetryDelayMin'] -Maximum ($Config['RetryDelayMax'] + 1)
+                Start-Sleep -Seconds $Delay
+            }
+        }
+    }
+    Write-Log "  [CRITICAL] All $MaxRetries heartbeat attempts FAILED for $($Name)." "WARN"
+    Send-Alert "HEARTBEAT_FAILURE" "Service: $Name`nEndpoint: $Url`nStatus: FAILED after $MaxRetries attempts."
+    return $false
+}
+
+Write-Log "Starting Final Monitor Service v5.4 (Alerting & Configuration Edition)..."
+Write-Log "Config in use: $($Config | ConvertTo-Json -Compress)" "DEBUG"
 
 while ($true) {
-    # 1. Check Onboarding Server
+    # 1. Check Onboarding Server (Process + Heartbeat)
     $ServerProcess = Get-Process -Name python -ErrorAction SilentlyContinue | Where-Object { $_.CommandLine -like "*onboarding_server.py*" }
-    if (-not $ServerProcess) {
-        Write-Log "Onboarding Server NOT found. Restarting..."
-        Start-Process $VenvPython -ArgumentList "$ServerScript" -WorkingDirectory $WorkDir -WindowStyle Hidden
+    $ServerAlive = $false
+    if ($ServerProcess) {
+        if (Get-ServiceHeartbeat -Url "http://127.0.0.1:5010/health" -Name "Onboarding Server (Local)") {
+            $ServerAlive = $true
+        }
     }
 
-    # 2. Check Stable Tunnel (Cloudflare)
+    if (-not $ServerAlive) {
+        Write-Log "Onboarding Server NOT responsive or NOT found. Attempting controlled restart..." "WARN"
+        $Cmd = "$VenvPython $ServerScript"
+        Write-Log "  [RESTART] Initializing restart: $Cmd" "INFO"
+        Send-Alert "RESTART_ATTEMPT" "Service: Onboarding Server`nAction: Initiating restart via $VenvPython."
+        
+        try {
+            if ($ServerProcess) { 
+                Write-Log "  Stopping existing unresponsive process ID: $($ServerProcess.Id)" "DEBUG"
+                Stop-Process -Id $ServerProcess.Id -Force -ErrorAction SilentlyContinue 
+            }
+            Start-Process $VenvPython -ArgumentList "$ServerScript" -WorkingDirectory $WorkDir -WindowStyle Hidden -ErrorAction Stop
+            Write-Log "  [SUCCESS] Restart command executed successfully at $(Get-Date)." "INFO"
+            Send-Alert "RESTART_SUCCESS" "Service: Onboarding Server`nStatus: Restart command issued successfully."
+        }
+        catch {
+            Write-Log "  [ERROR] Failed to execute restart: $($_.Exception.Message)" "ERROR"
+            Send-Alert "RESTART_FAILURE" "Service: Onboarding Server`nError: $($_.Exception.Message)"
+        }
+        Start-Sleep -Seconds 5
+    }
+
+    # 2. Check Stable Tunnel (Cloudfare)
     $TunnelProcess = Get-Process -Name cloudflared -ErrorAction SilentlyContinue
     if (-not $TunnelProcess) {
-        Write-Log "Stable Tunnel (Cloudflare) NOT found. Restarting..."
+        Write-Log "Stable Tunnel (Cloudflare) NOT found. Restarting..." "WARN"
+        Send-Alert "TUNNEL_RESTART" "Cloudflare tunnel process not found. Restarting..."
         Start-Process pwsh -ArgumentList "-File", "$WorkDir\scripts\start_stable_tunnel.ps1" -WorkingDirectory $WorkDir -WindowStyle Hidden
         Start-Sleep -Seconds 15
-        $TunnelProcess = Get-Process -Name cloudflared -ErrorAction SilentlyContinue
     }
 
-    # 3. GitHub Update logic
+    # 3. Phase 6: Visual Integrity & Snapshot Generation
+    Write-Log "Running Visual Integrity Check..." "DEBUG"
+    & $VenvPython $IntegrityScript | Out-Null
+    
+    Write-Log "Generating Health Snapshot..." "DEBUG"
+    & $VenvPython $SnapshotScript | Out-Null
+
+    # 3. GitHub Update logic & Public Heartbeat
     try {
         if (Test-Path "data/tunnel.log") {
-            # Use -Tail 200 and then join to avoid -Raw conflict
             $Lines = Get-Content "data/tunnel.log" -Tail 200 -ErrorAction SilentlyContinue
             if ($Lines) {
                 $TunnelLog = $Lines -join "`n"
                 $Match = [regex]::Match($TunnelLog, "https://[a-z0-9-]+\.trycloudflare\.com")
                 if ($Match.Success) {
-                    # Get the LAST match in case multiple tunnels appear in the tail
                     $AllMatches = [regex]::Matches($TunnelLog, "https://[a-z0-9-]+\.trycloudflare\.com")
                     $CurrentUrl = $AllMatches[$AllMatches.Count - 1].Value
                     
-                    $TunnelTargets = @("onboarding/index.html", "onboarding/brain.html")
-                    $RedirectorTargets = @("index.md", "index.html", "onboard.html", "brain.html", "docs/index.html", "docs/onboard.html", "docs/brain.html")
+                    # Public Heartbeat (verifies tunnel + server chain)
+                    Get-ServiceHeartbeat -Url "$CurrentUrl/health" -Name "Public Tunnel Gateway" | Out-Null
+
+                    # 4. Update status.json (Dynamic Resolver)
+                    $StatusPath = "$WorkDir\data\status.json"
+                    $StatusData = @{
+                        last_updated = $Timestamp
+                        services     = @{
+                            onboarding_server = @{
+                                status     = "online"
+                                local_url  = "http://127.0.0.1:5010"
+                                public_url = $CurrentUrl
+                            }
+                            shahada_portal    = @{
+                                status     = "online"
+                                public_url = "$CurrentUrl/onboard"
+                            }
+                            brain_portal      = @{
+                                status     = "online"
+                                public_url = "$CurrentUrl/brain"
+                            }
+                        }
+                        meta         = @{
+                            provider        = "cloudflare"
+                            tunnel_id       = "ephemeral-quick-tunnel"
+                            failover_active = $false
+                        }
+                    }
+                    $StatusData | ConvertTo-Json -Depth 5 | Set-Content -Path $StatusPath -Encoding UTF8
+                    git add $StatusPath
+                    $FilesChangedCount++
+
+                    $RedirectorTargets = $Config['SyncFiles']
 
                     $FilesChangedCount = 0
                     $Timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss UTC"
 
-                    # Update Tunnel Targets (point to Cloudflare)
-                    foreach ($Target in $TunnelTargets) {
-                        $FilePath = "$WorkDir\$Target"
-                        if (Test-Path $FilePath) {
-                            $Content = Get-Content $FilePath -Raw -ErrorAction SilentlyContinue
-                            if ([string]::IsNullOrWhiteSpace($Content)) {
-                                $Content = (Get-Content $FilePath) -join "`r`n"
-                            }
-                            
-                            $Pattern = '(var|const|let)\s+(githubOnboardingUrl|destination|targetUrl)\s*=\s*"([^"]*)";'
-                            $Regex = [regex]$Pattern
-                            $InnerMatch = $Regex.Match($Content)
-                            
-                            if ($InnerMatch.Success) {
-                                if ($InnerMatch.Groups[3].Value -ne $CurrentUrl) {
-                                    $VarKeyword = $InnerMatch.Groups[1].Value
-                                    $VarName = $InnerMatch.Groups[2].Value
-                                    $NewContent = $Regex.Replace($Content, "$VarKeyword $VarName = `"$CurrentUrl`";")
-                                    $NewContent | Set-Content -Path $FilePath -Encoding UTF8 -NoNewline
-                                    git add $FilePath
-                                    $FilesChangedCount++
-                                    Write-Log "Queued update for $Target -> $CurrentUrl"
-                                }
-                            }
-                        }
-                    }
-
-                    # Update Redirector Targets (point to Vercel)
+                    # Update Redirector Targets (point to Vercel/GitHub Pages redirector)
                     foreach ($Target in $RedirectorTargets) {
                         $FilePath = "$WorkDir\$Target"
                         if (Test-Path $FilePath) {
@@ -105,7 +356,6 @@ while ($true) {
                                 }
                             }
                             
-                            # Also update timestamp for redirectors ONLY if something else changed
                             if ($Changed -and ($NewContent -match '<p id="updated".*?>.*?</p>')) {
                                 $NewContent = $NewContent -replace '<p id="updated".*?>.*?</p>', "<p id=`"updated`" style=`"font-size:0.8em; color:#64748b;`">Last Updated: $Timestamp</p>"
                             }
@@ -114,66 +364,31 @@ while ($true) {
                                 $NewContent | Set-Content -Path $FilePath -Encoding UTF8 -NoNewline
                                 git add $FilePath
                                 $FilesChangedCount++
-                                Write-Log "Queued update for $Target -> $CurrentUrl"
+                                Write-Log "Queued sync for $Target -> $CurrentUrl" "INFO"
                             }
                         }
                     }
 
                     if ($FilesChangedCount -gt 0) {
-                        Write-Log "Pushing $FilesChangedCount updates to GitHub..."
-                        git commit -m "System Sync: Monitoring active at $Timestamp"
-                        git push
-                    }
-
-                    # 4. WinterHeartbite: Direct API Interrogation (The Biting Truth)
-                    try {
-                        $MissionPillars = @(
-                            "winter-relief-for-rana-and-her-seven-children-",
-                            "-urgent-winter-aid-for-mother-of-10"
-                        )
-                        
-                        Write-Log "WinterHeartbite: Interrogating Mission Pillars..."
-                        
-                        foreach ($Slug in $MissionPillars) {
-                            $ApiUrl = "https://fundraiser.whydonate.dev/fundraiser/get?slug=$Slug&language=en"
-                            try {
-                                $ApiResponse = Invoke-RestMethod -Uri $ApiUrl -Method Get -TimeoutSec 10 -ErrorAction Stop
-                                
-                                # WhyDonate API returns 200 OK even for errors, check the internal 'errors' field
-                                if ($null -ne $ApiResponse.data.errors) {
-                                    $ErrMsg = $ApiResponse.data.errors.message
-                                    throw "MISSION DECEPTION DETECTED on $($Slug): $ErrMsg"
-                                }
-                                
-                                # Verify the result object exists and has content
-                                if ($null -eq $ApiResponse.data.result -or $null -eq $ApiResponse.data.result.id) {
-                                    throw "MISSION VOID DETECTED on $($Slug): API returned empty result."
-                                }
-                                
-                                Write-Log "  Pillar $Slug is LIVE (ID: $($ApiResponse.data.result.id))"
-                            }
-                            catch {
-                                throw "Pillar Interrogation Failure ($Slug): $_"
-                            }
+                        Write-Log "Pushing $FilesChangedCount critical updates to GitHub..." "INFO"
+                        try {
+                            git commit -m "System Sync: Persistent gateway at $Timestamp"
+                            git push
+                            Send-Alert "SYNC_SUCCESS" "Status: Pushed $FilesChangedCount updates to GitHub Pages."
                         }
-
-                        # Also check the local tunnel for basic connectivity
-                        Write-Log "WinterHeartbite: Verifying Local Tunnel..."
-                        $Response = Invoke-WebRequest -Uri $CurrentUrl -Method Get -TimeoutSec 10 -ErrorAction Stop
-                        Write-Log "WinterHeartbite Success: Mission and Tunnel are truthfully alive."
-                    }
-                    catch {
-                        Write-Log "WINTERHEARTBITE FAILURE: $_"
-                        Write-Log "Executing systemic interruption (Purging and Restarting)..."
-                        Stop-Process -Name "cloudflared" -Force -ErrorAction SilentlyContinue
-                        Stop-Process -Name "python" -Force -ErrorAction SilentlyContinue
-                        Start-Sleep -Seconds 5
+                        catch {
+                            Write-Log "Git push failed: $($_.Exception.Message)" "ERROR"
+                            Send-Alert "SYNC_FAILURE" "Error: Git push failed. Manual intervention required."
+                        }
                     }
                 }
             }
         }
     }
-    catch { Write-Log "Monitoring loop error: $_" }
+    catch {
+        Write-Log "  [ERROR] Sync Logic Failure: $($_.Exception.Message)" "ERROR"
+        Send-Alert "SYSTEM_ERROR" "Monitor experienced a loop error: $($_.Exception.Message)"
+    }
 
-    Start-Sleep -Seconds 60
+    Start-Sleep -Seconds $Config['CheckInterval']
 }

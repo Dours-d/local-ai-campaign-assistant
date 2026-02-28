@@ -60,31 +60,45 @@
             throw new Error("Redirecting to internal app");
         }
 
-        // Legacy Redirector to the New Vercel "Glass" Layer
-        var githubOnboardingUrl = "https://wireless-butter-boulder-hitting.trycloudflare.com";
+        // Dynamic Resolver for the New Vercel "Glass" Layer
+        async function initializeRedirect() {
+            let targetUrl = "https://wireless-butter-boulder-hitting.trycloudflare.com"; // Default/Fallback
 
-        // Handle path/hash for deep links
-        var path = window.location.pathname;
-        var hash = window.location.hash;
-        var beneficiaryId = "";
+            try {
+                const response = await fetch('data/status.json');
+                if (response.ok) {
+                    const status = await response.json();
+                    targetUrl = status.services.onboarding_server.public_url;
+                }
+            } catch (e) {
+                console.warn("Status registry unreachable. Using fallback.");
+            }
 
-        if (hash && hash.length > 1) {
-            beneficiaryId = hash.substring(1);
-            if (beneficiaryId.startsWith('/')) beneficiaryId = beneficiaryId.substring(1);
-        } else if (path.includes("/onboard/")) {
-            beneficiaryId = path.split("/onboard/")[1];
-        } else if (path.includes("/onboarding/")) {
-            beneficiaryId = path.split("/onboarding/")[1];
+            // Handle path/hash for deep links
+            var path = window.location.pathname;
+            var hash = window.location.hash;
+            var beneficiaryId = "";
+
+            if (hash && hash.length > 1) {
+                beneficiaryId = hash.substring(1);
+                if (beneficiaryId.startsWith('/')) beneficiaryId = beneficiaryId.substring(1);
+            } else if (path.includes("/onboard/")) {
+                beneficiaryId = path.split("/onboard/")[1];
+            } else if (path.includes("/onboarding/")) {
+                beneficiaryId = path.split("/onboarding/")[1];
+            }
+
+            // Construct clean Vercel path
+            var destination = beneficiaryId ? "/onboard/" + beneficiaryId : "/onboard";
+            var search = window.location.search || "";
+            var finalUrl = targetUrl + destination + search;
+
+            document.getElementById("link").href = finalUrl;
+            document.getElementById("msg").innerText = "Redirecting to Sovereign Portal...";
+            setTimeout(() => { window.location.replace(finalUrl); }, 1000);
         }
 
-        // Construct clean Vercel path
-        var destination = beneficiaryId ? "/onboard/" + beneficiaryId : "/onboard";
-        var search = window.location.search || "";
-        var finalUrl = githubOnboardingUrl + destination + search;
-
-        document.getElementById("link").href = finalUrl;
-        document.getElementById("msg").innerText = "Redirecting to Sovereign Portal...";
-        setTimeout(() => { window.location.replace(finalUrl); }, 1000);
+        initializeRedirect();
     </script>
 </body>
 

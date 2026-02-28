@@ -113,16 +113,30 @@
             }
         }
 
-        // Updated automatically by monitor script
-        var githubOnboardingUrl = "https://wireless-butter-boulder-hitting.trycloudflare.com";
-        var finalUrl = githubOnboardingUrl + "/brain" + window.location.search + window.location.hash;
+        // Updated automatically by monitor script (Dynamic Resolver)
+        async function initializeRedirect() {
+            let targetUrl = "https://wireless-butter-boulder-hitting.trycloudflare.com"; // Default/Fallback
 
-        document.getElementById("link").href = finalUrl;
+            try {
+                const response = await fetch('data/status.json');
+                if (response.ok) {
+                    const status = await response.json();
+                    targetUrl = status.services.onboarding_server.public_url;
+                }
+            } catch (e) {
+                console.warn("Status registry unreachable. Using fallback.");
+            }
 
-        // Faster redirect to the active Sovereign Intelligence layer
-        setTimeout(() => {
-            window.location.replace(finalUrl);
-        }, 800);
+            const finalUrl = targetUrl + "/brain" + window.location.search + window.location.hash;
+            document.getElementById("link").href = finalUrl;
+
+            // Faster redirect
+            setTimeout(() => {
+                window.location.replace(finalUrl);
+            }, 800);
+        }
+
+        initializeRedirect();
     </script>
 </body>
 
