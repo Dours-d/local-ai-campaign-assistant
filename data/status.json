@@ -1,23 +1,23 @@
 {
-  "last_updated": "2026-02-28 17:46:29 UTC",
   "services": {
-    "shahada_portal": {
+    "onboarding_server": {
+      "local_url": "http://127.0.0.1:5010",
       "status": "online",
-      "public_url": "/onboard"
+      "public_url": "https://unmotionable-altha-unhanging.ngrok-free.dev"
     },
     "brain_portal": {
-      "status": "online",
-      "public_url": "/brain"
+      "public_url": "https://unmotionable-altha-unhanging.ngrok-free.dev/brain",
+      "status": "online"
     },
-    "onboarding_server": {
-      "public_url": null,
-      "local_url": "http://127.0.0.1:5010",
+    "shahada_portal": {
+      "public_url": "https://unmotionable-altha-unhanging.ngrok-free.dev/onboard",
       "status": "online"
     }
   },
   "meta": {
-    "failover_active": true,
-    "tunnel_id": "ephemeral-quick-tunnel",
-    "provider": "ngrok"
-  }
+    "provider": "ngrok",
+    "tunnel_id": "manual-failover-restoration",
+    "failover_active": true
+  },
+  "last_updated": "2026-02-28 19:35:00 UTC"
 }
