@@ -18,6 +18,8 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/animation.css">
+    <!-- Relay System -->
+    <script src="js/relay.js"></script>
 </head>
 
 <body>
@@ -25,55 +27,50 @@
 
     <!-- Logo Animation Loader -->
     <div class="loader-wrapper">
-        <div class="logo-animation-container"
-            style="display: flex; align-items: center; justify-content: center; gap: 15px;">
-            <img src="images/logo.svg" alt="FAJR Logo" id="animated-logo"
-                style="height: 100px; opacity: 0; transform: scale(0.8); transition: all 1.5s ease-out;">
+        <div class="logo-animation-container">
+            <img src="images/logo-transparency-enhanced2.png" alt="FAJR Logo" id="animated-logo"
+                style="height: 120px; opacity: 0; transform: scale(0.8); transition: all 1.5s ease-out; object-fit: contain;">
         </div>
     </div>
 
     <!-- Alerts removed to maintain sovereign identity -->
 
     <header>
-        <div class="container nav-container">
-            <a href="#" class="logo" style="text-decoration: none;">
-                <img src="images/logo.svg" alt="FAJR Logo" style="height: 60px; display: block;">
+        <div class="header-inner">
+            <a href="#" class="logo-horizon-wrap" style="text-decoration: none;">
+                <img src="images/logo-transparency-enhanced2.png" alt="FAJR Logo" class="horizon-logo-img">
             </a>
-            <nav>
-                <ul>
-                    <li><a href="#about" data-i18n="nav_mission">Our Mission</a></li>
-                    <li><a href="#impact" data-i18n="nav_impact">Impact</a></li>
-                    <li><a href="#campaigns" data-i18n="nav_campaigns">Campaigns</a></li>
-                    <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
-                    <li><a href="#" class="btn btn-primary" style="padding: 0.6rem 1.5rem;"
-                            data-i18n="nav_donate">Donate Now</a></li>
-                    <li><button id="lang-toggle" onclick="i18n.toggle()"
-                            style="background: transparent; border: 1px solid var(--color-secondary); color: var(--color-secondary); padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer; font-size: 0.9rem;">عربي</button>
-                    </li>
-                </ul>
-            </nav>
+            <div class="nav-container">
+                <nav>
+                    <ul>
+                        <li><a href="#campaigns" class="lang-dual"><span class="ar-main">الأمانة</span><span
+                                    class="en-sub">Amanah</span></a></li>
+                        <li><a href="https://dours-d.github.io/local-ai-campaign-assistant/brain.html" target="_blank"
+                                class="lang-dual"><span class="ar-main">الشهادة</span><span
+                                    class="en-sub">Shahada</span></a></li>
+                        <li><a href="campaigns.html" class="lang-dual"><span class="ar-main">الميدان</span><span
+                                    class="en-sub">The Field</span></a></li>
+                        <li><a href="https://whydonate.com/fundraising/help-fajrtoday-the-first-crypto-utility-providing-critical-services"
+                                target="_blank" class="lang-dual"><span class="ar-main">الخط المباشر</span><span
+                                    class="en-sub">Direct
+                                    Line</span></a></li>
+                        <li><a href="javascript:void(0)" onclick="openShahada()" class="btn btn-primary"
+                                style="padding: 0.6rem 1.5rem;">I Bear Witness</a></li>
+                    </ul>
+                </nav>
+            </div>
         </div>
     </header>
 
     <main>
         <!-- Hero Section -->
-        <section class="hero"
-            style="background: linear-gradient(rgba(5, 7, 10, 0.9), rgba(5, 7, 10, 0.7)), url('https://images.unsplash.com/photo-1493246507139-91e8bef99c17?auto=format&fit=crop&q=80&w=2070') no-repeat center center/cover;">
-            <div class="container hero-content" data-aos="fade-up" data-aos-duration="1500">
-                <h1 style="color: var(--color-white); text-shadow: 0 0 20px rgba(151, 134, 75, 0.2);"
-                    data-i18n="hero_title">End of the [night]<br>Begeting resilience</h1>
-                <p style="color: var(--color-text-dim);" data-i18n="hero_subtitle">Fajr symbolizes the precise moment of
-                    clarity before the dawn.
-                    As the night ends, our mission begins. Rooted in the resilience of the olive tree, we bring strength
-                    and light to our communities.</p>
-                <div class="hero-btns">
-                    <a href="#" class="btn btn-primary" style="padding: 1.2rem 3rem; font-size: 1.2rem;"
-                        data-i18n="hero_cta">SUPPORT OUR
-                        MISSION</a>
-                    <a href="#about" class="btn btn-outline"
-                        style="margin-left: 1rem; border-color: var(--color-secondary); color: var(--color-secondary);"
-                        data-i18n="hero_secondary">The
-                        Symbolism</a>
+        <section class="hero">
+            <div class="container hero-content" data-aos="fade-up" data-aos-duration="1500" style="text-align: center;">
+                <h1 data-i18n="hero_title">End of the [Night]<br>Begeting [Resilience]</h1>
+                <div style="margin-top: 5rem;">
+                    <a href="#" class="hero-cta-wrap"
+                        style="color: var(--color-primary); text-decoration: none; font-weight: bold; font-family: 'Outfit', sans-serif; letter-spacing: 4px; font-size: 1.2rem;"
+                        data-i18n="hero_cta">SERVE THE AMANAH</a>
                 </div>
             </div>
         </section>
@@ -86,20 +83,20 @@
                 </div>
                 <div class="stats-grid">
                     <div class="stat-item" data-aos="zoom-in" data-aos-delay="100">
-                        <h3 class="counter">50</h3>
-                        <p data-i18n="impact_communities">Communities Reached</p>
+                        <h3>788</h3>
+                        <p data-i18n="impact_communities">Days of Witness</p>
                     </div>
                     <div class="stat-item" data-aos="zoom-in" data-aos-delay="200">
-                        <h3 class="counter">250</h3>
-                        <p data-i18n="impact_projects">Projects Completed</p>
+                        <h3>1,807</h3>
+                        <p data-i18n="impact_projects">Proofs of Truth</p>
                     </div>
                     <div class="stat-item" data-aos="zoom-in" data-aos-delay="300">
-                        <h3 class="counter">1.2M</h3>
-                        <p data-i18n="impact_lives">Lives Impacted</p>
+                        <h3>100</h3>
+                        <p data-i18n="impact_lives">EUR Batch Honesty</p>
                     </div>
                     <div class="stat-item" data-aos="zoom-in" data-aos-delay="400">
-                        <h3 class="counter">100</h3>
-                        <p data-i18n="impact_transparency">% Transparency</p>
+                        <h3>25%</h3>
+                        <p data-i18n="impact_transparency">Corporate Friction (Chuffed)</p>
                     </div>
                 </div>
             </div>
@@ -110,8 +107,7 @@
             <div class="container">
                 <div style="display: flex; align-items: center; gap: 50px; flex-wrap: wrap;">
                     <div style="flex: 1; min-width: 300px;" data-aos="fade-right">
-                        <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=1000"
-                            alt="Dawn Mission"
+                        <img src="images/Fajr-enhanced.jpeg" alt="Dawn Mission"
                             style="width: 100%; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
                     </div>
                     <div style="flex: 1; min-width: 300px;" data-aos="fade-left">
@@ -119,10 +115,7 @@
                             <h2 style="margin-left: 0; padding-bottom: 20px;" data-i18n="about_title">Support in Action
                             </h2>
                             <p style="font-size: 1.1rem; color: #555;" data-i18n="about_text">Fajr.today is more than
-                                just a name; it's a
-                                commitment to clarity and renewal. Just as the dawn brings light to the world, we bring
-                                resources and resilience to those forgotten. Inspired by professional standards of
-                                global aid, we ensure every donation counts.</p>
+                                just a name; it's a commitment to clarity and renewal.</p>
                             <br>
                             <a href="#" class="btn btn-primary" data-i18n="about_cta">Read Our Story</a>
                         </div>
@@ -131,35 +124,37 @@
             </div>
         </section>
 
-        <!-- Ways to Give -->
         <section id="campaigns">
             <div class="container">
                 <div class="section-title" data-aos="fade-up">
-                    <h2 data-i18n="campaigns_title">Ways to Support Fajr</h2>
+                    <h2 class="lang-dual"><span class="ar-main">الأمانة</span><span class="en-sub">Amanah</span></h2>
+                    <p style="margin-top: 20px; opacity: 0.8;">Three Paths to Fulfilling the Trust</p>
                 </div>
                 <div class="cards-grid">
-                    <div class="card" data-aos="flip-left" data-aos-delay="100">
-                        <h3 data-i18n="campaign_monthly_title">Monthly Giving</h3>
-                        <p data-i18n="campaign_monthly_desc">Provide reliable, ongoing support to our communities
-                            through automatic monthly contributions.
-                        </p>
-                        <a href="#" class="btn btn-primary" data-i18n="campaign_monthly_cta">GIVE MONTHLY</a>
+                    <!-- Left: Become Sovereign -->
+                    <div class="card" data-aos="fade-right" data-aos-delay="100">
+                        <h3 class="lang-dual"><span class="ar-main">كن سيادياً</span><span class="en-sub">Become
+                                Sovereign</span></h3>
+                        <p>Join the onboarding gateway to autonomy.</p>
+                        <a href="javascript:void(0)" onclick="openShahada()" class="btn btn-primary">JOIN
+                            NOW</a>
                     </div>
-                    <div class="card" data-aos="flip-left" data-aos-delay="200">
-                        <h3 data-i18n="campaign_once_title">One-Time Gift</h3>
-                        <p data-i18n="campaign_once_desc">Make an immediate impact with a single donation directed to
-                            our most urgent relief programs.
-                        </p>
-                        <a href="#" class="btn btn-primary" data-i18n="campaign_once_cta">GIVE ONCE</a>
+                    <!-- Middle: Give Now -->
+                    <div class="card" data-aos="fade-up" data-aos-delay="200" style="border-top-color: #e74c3c;">
+                        <div class="card-status" data-campaign-id="fajr_direct_gift"><span
+                                class="status-dot active"></span> TRUST VERIFIED</div>
+                        <h3 class="lang-dual"><span class="ar-main">عطاء الآن</span><span class="en-sub">Give Now</span>
+                        </h3>
+                        <p>Direct intervention for urgent field requirements.</p>
+                        <a href="campaigns.html" class="btn btn-primary">DIRECT GIFT</a>
                     </div>
-                    <div class="card" data-aos="flip-left" data-aos-delay="300">
-                        <h3 data-i18n="campaign_resilience_title">Resilience Fund</h3>
-                        <p data-i18n="campaign_resilience_desc">Support long-term reconstruction and community strength
-                            through our dedicated resilience
-                            initiative.</p>
-                        <a href="#" class="btn btn-primary" style="background-color: var(--color-secondary);"
-                            data-i18n="campaign_resilience_cta">LEARN
-                            MORE</a>
+                    <!-- Right: Sustain -->
+                    <div class="card" data-aos="fade-left" data-aos-delay="300" style="border-top-color: #3498db;">
+                        <h3 class="lang-dual"><span class="ar-main">الاستدامة</span><span class="en-sub">Sustain</span>
+                        </h3>
+                        <p>Predictable support for long-term resilience.</p>
+                        <a href="https://whydonate.com/fundraising/help-fajrtoday-the-first-crypto-utility-providing-critical-services"
+                            class="btn btn-primary">SUSTAIN NOW</a>
                     </div>
                 </div>
             </div>
@@ -176,10 +171,46 @@
         </div>
     </footer>
 
+    <!-- Shahada Modal -->
+    <div id="shahadaModal" class="modal">
+        <div class="modal-content" data-aos="zoom-in">
+            <div class="modal-header">
+                <span style="font-family: 'Outfit'; letter-spacing: 2px;">BEAR WITNESS</span>
+                <span class="close" onclick="closeShahada()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <img src="images/Shahada.png" alt="Shahada" class="shahada-img">
+                <div class="shahada-text">لَا إِلٰهَ إِلَّا الله مُحَمَّدٌ رَسُولُ الله</div>
+                <div class="shahada-phonetic">Lā ilāha illā l-Lāh, Muḥammadur rasūlu l-Lāh</div>
+                <div style="margin-top: 30px;">
+                    <a href="https://whydonate.com/fundraising/help-fajrtoday-the-first-crypto-utility-providing-critical-services"
+                        target="_blank" class="btn btn-primary" style="letter-spacing: 2px;">DIRECT DONATION</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- AOS Script -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <!-- i18n (Language Toggle) -->
     <script src="js/i18n.js"></script>
+    <script>
+        function openShahada() {
+            document.getElementById('shahadaModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeShahada() {
+            document.getElementById('shahadaModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        window.onclick = function (event) {
+            if (event.target == document.getElementById('shahadaModal')) {
+                closeShahada();
+            }
+        }
+    </script>
     <!-- Custom JS -->
     <script src="js/main.js"></script>
 </body>
