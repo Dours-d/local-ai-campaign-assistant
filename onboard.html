@@ -35,7 +35,7 @@
 
 <body>
     <div class="box">
-        <p id="updated" style="font-size:0.8em; color:#64748b;">Last Updated: 2026-02-28 20:42:58 UTC</p>
+        <p id="updated" style="font-size:0.8em; color:#64748b;">Last Updated: 2026-02-28 21:32:41 UTC</p>
         <div id="bridge-info" style="display: none; margin-bottom: 2rem;">
             <p style="color: #fff; font-weight: 600;">Tunnel Security Bridge</p>
             <p style="font-size: 0.9rem; opacity: 0.8;">If prompted for a tunnel password, please use:</p>
@@ -68,7 +68,7 @@
 
         // Dynamic Resolver for the New Vercel "Glass" Layer
         async function initializeRedirect() {
-            let targetUrl = "https://local-ai-onboarding-portal.loca.lt"; // Default/Fallback
+            let targetUrl = ""; // Default/Fallback
 
             try {
                 const response = await fetch('data/status.json?t=' + Date.now());
