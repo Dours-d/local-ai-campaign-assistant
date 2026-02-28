@@ -1,23 +1,23 @@
 {
+  "meta": {
+    "tunnel_id": "ephemeral-quick-tunnel",
+    "failover_active": false,
+    "provider": "cloudflare"
+  },
+  "last_updated": "2026-02-28 19:36:53 UTC",
   "services": {
+    "brain_portal": {
+      "status": "online",
+      "public_url": "https://sailing-guardian-paris-inclusive.trycloudflare.com/brain"
+    },
     "onboarding_server": {
       "local_url": "http://127.0.0.1:5010",
       "status": "online",
-      "public_url": "https://unmotionable-altha-unhanging.ngrok-free.dev"
-    },
-    "brain_portal": {
-      "public_url": "https://unmotionable-altha-unhanging.ngrok-free.dev/brain",
-      "status": "online"
+      "public_url": "https://sailing-guardian-paris-inclusive.trycloudflare.com"
     },
     "shahada_portal": {
-      "public_url": "https://unmotionable-altha-unhanging.ngrok-free.dev/onboard",
-      "status": "online"
+      "status": "online",
+      "public_url": "https://sailing-guardian-paris-inclusive.trycloudflare.com/onboard"
     }
-  },
-  "meta": {
-    "provider": "ngrok",
-    "tunnel_id": "manual-failover-restoration",
-    "failover_active": true
-  },
-  "last_updated": "2026-02-28 19:35:00 UTC"
+  }
 }
