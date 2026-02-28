@@ -35,7 +35,15 @@
 
 <body>
     <div class="box">
-        <p id="updated" style="font-size:0.8em; color:#64748b;">Last Updated: 2026-02-27 14:40:16 UTC</p>
+        <p id="updated" style="font-size:0.8em; color:#64748b;">Last Updated: 2026-02-28 17:29:55 UTC</p>
+        <div id="bridge-info" style="display: none; margin-bottom: 2rem;">
+            <p style="color: #fff; font-weight: 600;">Tunnel Security Bridge</p>
+            <p style="font-size: 0.9rem; opacity: 0.8;">If prompted for a tunnel password, please use:</p>
+            <div
+                style="background: rgba(212, 163, 115, 0.1); padding: 1rem; border-radius: 10px; margin: 1rem 0; font-family: monospace; font-size: 1.2rem; border: 1px dashed rgba(212, 163, 115, 0.3);">
+                87.196.81.20
+            </div>
+        </div>
         <p id="msg">Connecting to Sovereign Portal...</p>
         <p><a id="link" href="#">Click here if not redirected automatically</a></p>
     </div>
@@ -54,15 +62,13 @@
 
         // Loop Protection for Vercel Deployment
         if (window.location.hostname.includes("vercel.app")) {
-            // We are on Vercel but served the root redirector instead of the app.
-            // Redirect explicitly to the app location.
             window.location.replace("/onboarding/index.html" + window.location.search + window.location.hash);
             throw new Error("Redirecting to internal app");
         }
 
         // Dynamic Resolver for the New Vercel "Glass" Layer
         async function initializeRedirect() {
-            let targetUrl = "https://wireless-butter-boulder-hitting.trycloudflare.com"; // Default/Fallback
+            let targetUrl = ""; // Default/Fallback
 
             try {
                 const response = await fetch('data/status.json?t=' + Date.now());
@@ -74,6 +80,12 @@
                 console.warn("Status registry unreachable. Using fallback.");
             }
 
+            // Detect Localtunnel to show bridge info
+            if (targetUrl.includes("loca.lt")) {
+                document.getElementById('bridge-info').style.display = 'block';
+                document.getElementById('msg').innerText = "Preparing secure tunnel access...";
+            }
+
             // Handle path/hash for deep links
             var path = window.location.pathname;
             var hash = window.location.hash;
@@ -82,20 +94,21 @@
             if (hash && hash.length > 1) {
                 beneficiaryId = hash.substring(1);
                 if (beneficiaryId.startsWith('/')) beneficiaryId = beneficiaryId.substring(1);
-            } else if (path.includes("/onboard/")) {
-                beneficiaryId = path.split("/onboard/")[1];
-            } else if (path.includes("/onboarding/")) {
-                beneficiaryId = path.split("/onboarding/")[1];
             }
 
-            // Construct clean Vercel path
+            // Construct clean path
             var destination = beneficiaryId ? "/onboard/" + beneficiaryId : "/onboard";
             var search = window.location.search || "";
             var finalUrl = targetUrl + destination + search;
 
             document.getElementById("link").href = finalUrl;
-            document.getElementById("msg").innerText = "Redirecting to Sovereign Portal...";
-            setTimeout(() => { window.location.replace(finalUrl); }, 1000);
+
+            // Wait 3 seconds for Localtunnel to let user read the password
+            const waitTime = targetUrl.includes("loca.lt") ? 3500 : 1000;
+            setTimeout(() => {
+                document.getElementById('msg').innerText = "Redirecting now...";
+                window.location.replace(finalUrl);
+            }, waitTime);
         }
 
         initializeRedirect();
