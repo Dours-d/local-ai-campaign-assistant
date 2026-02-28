@@ -1,23 +1,24 @@
 {
-    "last_updated": "2026-02-28T02:37:00Z",
+    "last_updated": "2026-02-28T02:54:24.126692Z",
     "services": {
         "onboarding_server": {
             "status": "online",
             "local_url": "http://127.0.0.1:5010",
-            "public_url": "https://wireless-butter-boulder-hitting.trycloudflare.com"
+            "public_url": "https://bless-clean-possession-sole.trycloudflare.com"
         },
         "shahada_portal": {
             "status": "online",
-            "public_url": "https://wireless-butter-boulder-hitting.trycloudflare.com/onboard"
+            "public_url": "https://bless-clean-possession-sole.trycloudflare.com/onboard"
         },
         "brain_portal": {
             "status": "online",
-            "public_url": "https://wireless-butter-boulder-hitting.trycloudflare.com/brain"
+            "public_url": "https://bless-clean-possession-sole.trycloudflare.com/brain"
         }
     },
     "meta": {
         "provider": "cloudflare",
         "tunnel_id": "ephemeral-quick-tunnel",
-        "failover_active": false
+        "failover_active": false,
+        "warden_version": "1.0.0"
     }
 }
