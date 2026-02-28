@@ -1,23 +1,23 @@
 {
-  "last_updated": "2026-02-28 20:16:51 UTC",
+  "last_updated": "2026-02-28 20:40:57 UTC",
   "services": {
     "shahada_portal": {
       "status": "online",
-      "public_url": "https://local-ai-onboarding-portal.loca.lt/onboard"
+      "public_url": "/onboard"
     },
     "brain_portal": {
       "status": "online",
-      "public_url": "https://local-ai-onboarding-portal.loca.lt/brain"
+      "public_url": "/brain"
     },
     "onboarding_server": {
-      "public_url": "https://local-ai-onboarding-portal.loca.lt",
+      "public_url": null,
       "local_url": "http://127.0.0.1:5010",
       "status": "online"
     }
   },
   "meta": {
     "failover_active": false,
-    "tunnel_id": "manual-fallback",
+    "tunnel_id": "ephemeral-quick-tunnel",
     "provider": "cloudflare"
   }
 }
