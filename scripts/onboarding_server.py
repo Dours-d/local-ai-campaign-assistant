@@ -670,6 +670,7 @@ def chat_with_brain():
 
 # --- INTAKE ROUTES ---
 @app.route('/')
+@app.route('/index.html')
 @app.route('/onboard')
 @app.route('/onboard/<beneficiary_id>')
 def serve_portal(beneficiary_id=None):

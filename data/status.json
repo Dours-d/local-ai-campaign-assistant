@@ -1,23 +1,23 @@
 {
-  "last_updated": "2026-02-28 20:41:40 UTC",
   "meta": {
-    "provider": "cloudflare",
     "tunnel_id": "manual-fallback",
-    "failover_active": false
+    "failover_active": true,
+    "provider": "localtunnel"
   },
+  "last_updated": "2026-02-28 21:03:06 UTC",
   "services": {
-    "shahada_portal": {
-      "status": "online",
-      "public_url": "https://local-ai-onboarding-portal.loca.lt/onboard"
-    },
-    "onboarding_server": {
-      "status": "online",
-      "public_url": "https://local-ai-onboarding-portal.loca.lt",
-      "local_url": "http://127.0.0.1:5010"
-    },
     "brain_portal": {
       "status": "online",
       "public_url": "https://local-ai-onboarding-portal.loca.lt/brain"
+    },
+    "onboarding_server": {
+      "local_url": "http://127.0.0.1:5010",
+      "status": "online",
+      "public_url": "https://local-ai-onboarding-portal.loca.lt"
+    },
+    "shahada_portal": {
+      "status": "online",
+      "public_url": "https://local-ai-onboarding-portal.loca.lt/onboard"
     }
   }
 }
