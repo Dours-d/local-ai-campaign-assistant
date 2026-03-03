@@ -79,10 +79,41 @@ function updateUIBadges() {
 syncRelayStatus();
 
 /**
- * Opens the Sovereign onboarding portal via the bridge page.
+ * Opens the Noor AI tunnel (brain.html).
+ * Uses the dynamic status.json resolver for resilience.
  */
-function openSovereignPortal() {
-    // If we are in the frontend/ subdirectory, go up one level. Otherwise, stay at root.
-    const path = window.location.pathname.includes('/frontend/') ? '../onboard.html' : './onboard.html';
-    window.location.href = path;
+async function openShahada() {
+    try {
+        const response = await fetch('https://dours-d.github.io/local-ai-campaign-assistant/data/status.json?t=' + Date.now());
+        if (response.ok) {
+            const status = await response.json();
+            // The "I Bear Witness" button goes to the AI tunnel (Dunya/Noor)
+            const url = status.services.brain_portal.public_url;
+            window.open(url, '_blank');
+            return;
+        }
+    } catch (e) {
+        console.warn("Dynamic resolver failed, falling back to cached URL.");
+    }
+    window.open('https://dours-d.github.io/local-ai-campaign-assistant/brain.html', '_blank');
+}
+
+/**
+ * Opens the Onboarding Form.
+ * Uses the dynamic status.json resolver for resilience.
+ */
+async function openOnboarding() {
+    try {
+        const response = await fetch('https://dours-d.github.io/local-ai-campaign-assistant/data/status.json?t=' + Date.now());
+        if (response.ok) {
+            const status = await response.json();
+            // The "Become Sovereign" button goes to the Onboarding Server
+            const url = status.services.shahada_portal.public_url;
+            window.open(url, '_blank');
+            return;
+        }
+    } catch (e) {
+        console.warn("Dynamic resolver failed for onboarding, falling back to cached URL.");
+    }
+    window.open('https://dours-d.github.io/local-ai-campaign-assistant/onboard.html', '_blank');
 }
