@@ -171,46 +171,7 @@
         </div>
     </footer>
 
-    <!-- Shahada Modal -->
-    <div id="shahadaModal" class="modal">
-        <div class="modal-content" data-aos="zoom-in">
-            <div class="modal-header">
-                <span style="font-family: 'Outfit'; letter-spacing: 2px;">BEAR WITNESS</span>
-                <span class="close" onclick="closeShahada()">&times;</span>
-            </div>
-            <div class="modal-body">
-                <img src="images/Shahada.png" alt="Shahada" class="shahada-img">
-                <div class="shahada-text">لَا إِلٰهَ إِلَّا الله مُحَمَّدٌ رَسُولُ الله</div>
-                <div class="shahada-phonetic">Lā ilāha illā l-Lāh, Muḥammadur rasūlu l-Lāh</div>
-                <div style="margin-top: 30px;">
-                    <a href="https://whydonate.com/fundraising/help-fajrtoday-the-first-crypto-utility-providing-critical-services"
-                        target="_blank" class="btn btn-primary" style="letter-spacing: 2px;">DIRECT DONATION</a>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <!-- AOS Script -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <!-- i18n (Language Toggle) -->
-    <script src="js/i18n.js"></script>
-    <script>
-        function openShahada() {
-            document.getElementById('shahadaModal').style.display = 'block';
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeShahada() {
-            document.getElementById('shahadaModal').style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-
-        window.onclick = function (event) {
-            if (event.target == document.getElementById('shahadaModal')) {
-                closeShahada();
-            }
-        }
-    </script>
     <!-- Custom JS -->
     <script src="js/main.js"></script>
 </body>
