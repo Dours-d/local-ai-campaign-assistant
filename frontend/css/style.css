@@ -54,6 +54,16 @@ h4,
     padding: 0 2rem;
 }
 
+/* --- Campaign Card Images --- */
+.card-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    border-radius: 8px 8px 0 0;
+}
+
 /* --- Dual Language Typography --- */
 .lang-dual {
     display: flex;
