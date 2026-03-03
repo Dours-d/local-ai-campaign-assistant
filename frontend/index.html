@@ -172,6 +172,15 @@
     </footer>
 
 
+    <!-- AOS Script -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- i18n (Language Toggle) -->
+    <script src="js/i18n.js"></script>
+    <script>
+        AOS.init({ duration: 1000, once: true });
+        if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
+        window.scrollTo(0, 0);
+    </script>
     <!-- Custom JS -->
     <script src="js/main.js"></script>
 </body>
