@@ -72,24 +72,4 @@ window.addEventListener('DOMContentLoaded', () => {
             document.body.style.overflow = 'auto';
         }, 3000); // Reduced from 5s to 3s
     }
-
-    // Mobile Navigation Toggle Logic
-    const navToggle = document.getElementById('nav-toggle');
-    const navContainer = document.querySelector('.nav-container');
-
-    if (navToggle && navContainer) {
-        navToggle.addEventListener('click', (e) => {
-            e.stopPropagation();
-            navContainer.classList.toggle('active');
-            navToggle.classList.toggle('active');
-        });
-
-        // Close menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (navContainer.classList.contains('active') && !navContainer.contains(e.target) && e.target !== navToggle) {
-                navContainer.classList.remove('active');
-                navToggle.classList.remove('active');
-            }
-        });
-    }
 });
