@@ -12,7 +12,7 @@ OUTPUT_FILE = os.path.join(OUTPUT_DIR, 'index.html')
 # New Frontend Sync Paths
 FRONTEND_DIR = os.path.join(ACTIVE_ROOT, 'frontend')
 FRONTEND_ASSETS_DIR = os.path.abspath(os.path.join(FRONTEND_DIR, 'assets', 'campaigns'))
-FRONTEND_DATA_FILE = os.path.abspath(os.path.join(FRONTEND_DIR, 'data', 'registry.json'))
+FRONTEND_DATA_FILE = os.path.abspath(os.path.join(FRONTEND_DIR, 'assets', 'data', 'registry.json'))
 
 
 

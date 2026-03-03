@@ -410,6 +410,11 @@ section {
     text-shadow: 0 0 15px rgba(151, 134, 75, 0.5);
 }
 
+/* Ensure header logo doesn't grow too much on desktop either */
+.horizon-logo-img {
+    max-height: 100px;
+}
+
 .section-title h2 .en-sub {
     font-size: 0.8rem;
     letter-spacing: 2px;
@@ -1156,17 +1161,22 @@ select.search-bar option {
     }
 
     .horizon-logo-img {
-        height: 70px; /* Scaled down logo for mobile */
+        height: 50px;
+        /* Reduced further from 70px to avoid overlap */
+        width: auto;
     }
 
     .nav-toggle {
         display: flex;
+        margin-left: auto;
+        /* Position toggle at the right */
     }
 
     .nav-container {
         position: fixed;
         top: 0;
-        right: -105%; /* Slight extra for shadow safety */
+        right: -105%;
+        /* Slight extra for shadow safety */
         width: 85%;
         height: 100vh;
         background-color: var(--color-bg);
@@ -1195,7 +1205,8 @@ select.search-bar option {
     }
 
     .hero-title-bundle .ar-main {
-        font-size: 3.8rem; /* Drastic scale down for mobile */
+        font-size: 3.8rem;
+        /* Drastic scale down for mobile */
     }
 
     .hero-title-bundle .en-sub {
@@ -1257,7 +1268,8 @@ select.search-bar option {
     .btn {
         padding: 0.9rem 1.8rem;
         font-size: 0.95rem;
-        width: 100%; /* Full width buttons on very small screens */
+        width: 100%;
+        /* Full width buttons on very small screens */
         text-align: center;
     }
 

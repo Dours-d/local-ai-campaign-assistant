@@ -5,7 +5,7 @@
 class CampaignRenderer {
     constructor(containerId) {
         this.container = document.getElementById(containerId);
-        this.registryPath = 'data/registry.json';
+        this.registryPath = 'assets/data/registry.json';
         this.assetsPath = 'assets/campaigns/';
     }
 
