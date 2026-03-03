@@ -1,8 +1,8 @@
 ﻿{
     "meta":  {
-                 "provider":  "ngrok",
+                 "provider":  "cloudflare",
                  "tunnel_id":  "ephemeral-quick-tunnel",
-                 "failover_active":  true
+                 "failover_active":  false
              },
     "services":  {
                      "shahada_portal":  {
@@ -19,5 +19,5 @@
                                           "public_url":  "/brain"
                                       }
                  },
-    "last_updated":  "2026-03-03 02:01:52 UTC"
+    "last_updated":  "2026-03-03 02:06:27 UTC"
 }

@@ -1,3 +1,4 @@
+// Cache-Buster 2026-03-03_01:50
 /**
  * Simple Campaign Renderer for Fajr Today
  * Fetches registry.json and renders campaign cards dynamically.
