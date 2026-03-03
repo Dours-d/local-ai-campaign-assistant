@@ -27,6 +27,11 @@
                     <img src="images/logo-transparency-enhanced2.png" alt="FAJR Logo" class="horizon-logo-img">
                 </a>
             </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
             <div class="nav-container">
                 <nav>
                     <ul>
@@ -64,109 +69,7 @@
                     <!-- Campaigns will be dynamically loaded here by campaign_renderer.js -->
                 </div>
 
-                <!-- Aysha -->
-                <div class="card" data-aos="fade-up" data-aos-delay="0">
-                    <div class="card-status" data-campaign-id="aysha"><span class="status-dot active"></span> TRUST
-                        VERIFIED</div>
-                    <img src="../data/onboarding_submissions/media/scraped_whydonate/help-aysha-provide-her-children-in-gaza-.jpg"
-                        class="card-img" alt="Help Aysha provide her self in Gaza">
-                    <h3 class="lang-dual"><span class="ar-main">ساعد أيشة في توفير احتياجاتها في غزة</span><span
-                            class="en-sub">Help Aysha provide her self in Gaza</span></h3>
-                    <p>My name is Aysha from Gaza. I am 16 years old. I am trying to help and support my family.
-                        I don't have children and I'm not married, but I have a future to build, Please help my
-                        situation.
-                        May Allah rewards you gratioustly</p>
-                    <a href="javascript:void(0)"
-                        onclick="initiateRelayGift('aysha', 'https://whydonate.com/fundraising/help-aysha-provide-her-children-in-gaza-', 'Help Aysha provide her self in Gaza')"
-                        class="btn btn-primary">DIRECT GIFT</a>
-                </div>
 
-                <!-- Heba -->
-                <div class="card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="card-status" data-campaign-id="heba"><span class="status-dot active"></span> TRUST
-                        VERIFIED</div>
-                    <img src="../data/onboarding_submissions/media/scraped_whydonate/help-hebas-family-survive-the-darkness-of-gaza.jpg"
-                        class="card-img" alt="Help Heba & Family Survive the Darkness of Gaza">
-                    <h3 class="lang-dual"><span class="ar-main">ساعد هيبة و عائلتها عل...</span><span
-                            class="en-sub">Help Heba & Family Survive the Darkness of Gaza</span></h3>
-                    <p>My name is Abdul Haadi from Portugal,
-
-                        I’m writing to you on behalf of my sister Heba Mohammed, a brave mother of four soon to
-
-                        be five whose entire world has been shattered by war.
-
-                        For two long years, Heba and her children have lived through fear, hunger, and endless
-
-                        displacement. Their once beautiful home was reduced to dust. They’ve been forced to flee
-
-                        more than 30 times, sleeping in cold tents, praying each night for safety. Her husband was
-
-                        shot while trying to bring home food, leaving him unable to work or walk properly.
-
-                        Now, Heba is pregnant and exhausted, struggling to protect her children as winter
-
-                        approaches. She has no milk, no baby clothes, no blankets and often no food to quiet her
-
-                        children’s cries at night.
-
-                        Why your help means everything:
-
-                        Your donation isn’t just money it’s warmth for freezing hands, food for hungry children, and
-
-                        hope for a mother who refuses to give up. Every act of kindness can restore a piece of her
-
-                        broken world.
-
-                        If help doesn’t come:
-
-                        This family will face another cruel winter in the cold hungry, sick, and forgotten. Without
-
-                        your compassion, their suffering will deepen, and Heba will bring her baby into a world
-
-                        without shelter or safety.
-
-                        If we reach our goal:
-
-                        Heba’s family will finally have a safe place to live, medical care for her husband, warmth
-                        for
-
-                        her children, and the chance to start rebuilding their lives. Her children will return to
-                        school
-
-                        and believe in a future again.
-
-                        Please, if you’re reading this, take a moment to donate or share.
-
-                        Even the smallest gift can change everything for this family turning despair into hope and
-
-                        fear into peace.
-
-                        With heartfelt gratitude,
-
-                        Abdul Haadi</p>
-                    <a href="javascript:void(0)"
-                        onclick="initiateRelayGift('heba', 'https://whydonate.com/fundraising/help-hebas-family-survive-the-darkness-of-gaza', 'Help Heba & Family Survive the Darkness of Gaza')"
-                        class="btn btn-primary">DIRECT GIFT</a>
-                </div>
-
-                <!-- Marah -->
-                <div class="card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="card-status" data-campaign-id="marah"><span class="status-dot active"></span> TRUST
-                        VERIFIED</div>
-                    <img src="../data/onboarding_submissions/media/scraped_whydonate/help-marah-and-her-family-rebuild-their-lives-gaza.jpg"
-                        class="card-img" alt="Help Marah and her family rebuild their lives, Gaza">
-                    <h3 class="lang-dual"><span class="ar-main">ساعدوا مراح وأسرته...</span><span class="en-sub">Help
-                            Marah and her family rebuild their lives, Gaza</span></h3>
-                    <p>Help Marah and her family rebuild their lives, Gaza.
-
-                        Please help us support this cause in Gaza. We are the natural owners of our time and
-                        resources, and we allocate them here to preserve life and dignity.
-
-                        Beneficiary ID: Marah</p>
-                    <a href="javascript:void(0)"
-                        onclick="initiateRelayGift('marah', 'https://whydonate.com/fundraising/help-marah-and-her-family-rebuild-their-lives-gaza', 'Help Marah and her family rebuild their lives, Gaza')"
-                        class="btn btn-primary">DIRECT GIFT</a>
-                </div>
                 <!-- END CAMPAIGNS -->
             </div>
 
@@ -205,6 +108,7 @@
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="js/i18n.js"></script>
+    <script src="js/navigation.js"></script>
     <script src="js/campaign_renderer.js"></script>
     <script>
         AOS.init({ duration: 1000, once: true });
