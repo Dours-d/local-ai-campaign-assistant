@@ -1153,7 +1153,11 @@ select.search-bar option {
     }
 
     .header-inner {
-        padding: 0 1.5rem;
+        padding: 0 1rem;
+        justify-content: space-between;
+        gap: 10px;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     .logo-horizon-wrap {
@@ -1162,17 +1166,20 @@ select.search-bar option {
     }
 
     .horizon-logo-img {
-        height: 50px !important; /* Forces mobile height */
-        max-width: 200px !important; /* Prevents overflow */
-        width: auto;
+        height: 40px !important;
+        /* Slightly smaller to be safe */
+        width: auto !important;
+        max-width: 60% !important;
+        object-fit: contain !important;
     }
 
     .nav-toggle {
         display: flex !important;
         width: 30px !important;
-        height: 21px !important;
-        margin-left: auto;
-        /* Position toggle at the right */
+        height: 20px !important;
+        position: relative !important;
+        z-index: 9999 !important;
+        flex-shrink: 0;
     }
 
     .nav-container {
@@ -1197,6 +1204,13 @@ select.search-bar option {
         flex-direction: column;
         align-items: flex-start;
         gap: 2.5rem;
+        display: none;
+        /* Hide default menu list */
+    }
+
+    .nav-container.active nav ul {
+        display: flex;
+        /* Show only when container is active */
     }
 
     nav .ar-main {

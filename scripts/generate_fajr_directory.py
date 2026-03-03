@@ -312,9 +312,19 @@ def generate_fajr_directory():
     print(f"✅ Generated Master Directory Page: {OUTPUT_FILE}")
     print(f"   Indexed {len(valid_campaigns)} campaigns.")
 
+    # Update campaign images to be relative paths for the frontend
+    frontend_registry = []
+    for camp in valid_campaigns:
+        camp_copy = camp.copy()
+        if camp_copy.get('image'):
+            # Just store the filename, the renderer will prepend the assets path
+            img_filename = os.path.basename(str(camp_copy['image']).replace('\\', '/'))
+            camp_copy['image'] = img_filename
+        frontend_registry.append(camp_copy)
+
     # Export to Frontend Registry
     with open(FRONTEND_DATA_FILE, 'w', encoding='utf-8') as f:
-        json.dump(valid_campaigns, f, indent=2, ensure_ascii=False)
+        json.dump(frontend_registry, f, indent=2, ensure_ascii=False)
     print(f"✅ Exported Frontend Registry: {FRONTEND_DATA_FILE}")
 
     # Copy images to frontend assets
@@ -328,13 +338,13 @@ def generate_fajr_directory():
     ]
     
     for camp in valid_campaigns:
-        raw_img_src = camp.get('image', '')
+        # Robust path handling for Windows absolute paths
+        raw_img_src = str(camp.get('image', '')).replace('\\', '/')
         img_src = raw_img_src.strip()
         if not img_src:
             continue
             
-        abs_img_src = os.path.abspath(img_src)
-        img_filename = os.path.basename(abs_img_src)
+        img_filename = os.path.basename(img_src)
         abs_img_dst = os.path.join(FRONTEND_ASSETS_DIR, img_filename)
         
         found_path = None
