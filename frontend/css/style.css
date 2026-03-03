@@ -137,6 +137,14 @@ h4,
     /* Increased base scale */
 }
 
+.lang-dual {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2px;
+}
+
 .en-sub {
     font-family: 'Outfit', sans-serif;
     font-size: 0.5rem;
@@ -241,6 +249,8 @@ header {
     margin: 0 auto;
     position: relative;
     padding: 0 2rem;
+    direction: ltr !important;
+    /* Keep Logo Left / Nav Right regardless of language */
 }
 
 
@@ -1158,6 +1168,7 @@ select.search-bar option {
         gap: 10px;
         width: 100%;
         box-sizing: border-box;
+        direction: ltr !important;
     }
 
     .logo-horizon-wrap {
