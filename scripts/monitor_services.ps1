@@ -413,7 +413,7 @@ while ($true) {
                 Write-Log "Pushing $FilesChangedCount critical updates to GitHub..." "INFO"
                 try {
                     git commit -m "System Sync: Persistent gateway at $Timestamp"
-                    git push
+                    git push origin HEAD:main
                     Send-Alert "SYNC_SUCCESS" "Status: Pushed $FilesChangedCount updates to GitHub Pages."
                 }
                 catch {

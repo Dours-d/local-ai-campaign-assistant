@@ -1,23 +1,23 @@
 {
-  "last_updated": "2026-02-28 21:50:42 UTC",
-  "services": {
-    "shahada_portal": {
-      "status": "online",
-      "public_url": "https://local-ai-onboarding-portal.loca.lt/onboard"
-    },
-    "brain_portal": {
-      "status": "online",
-      "public_url": "https://local-ai-onboarding-portal.loca.lt/brain"
-    },
-    "onboarding_server": {
-      "public_url": "https://local-ai-onboarding-portal.loca.lt",
-      "local_url": "http://127.0.0.1:5010",
-      "status": "online"
-    }
-  },
+  "last_updated": "2026-03-03 18:46:40 UTC",
   "meta": {
     "failover_active": false,
-    "tunnel_id": "manual-fallback",
-    "provider": "cloudflare"
+    "provider": "cloudflare",
+    "tunnel_id": "ephemeral-quick-tunnel"
+  },
+  "services": {
+    "onboarding_server": {
+      "public_url": "https://permit-tamil-facing-patent.trycloudflare.com",
+      "local_url": "http://127.0.0.1:5010",
+      "status": "online"
+    },
+    "brain_portal": {
+      "public_url": "https://permit-tamil-facing-patent.trycloudflare.com/brain",
+      "status": "online"
+    },
+    "shahada_portal": {
+      "public_url": "https://permit-tamil-facing-patent.trycloudflare.com/onboard",
+      "status": "online"
+    }
   }
 }
