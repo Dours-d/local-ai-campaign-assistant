@@ -30,11 +30,6 @@ $Config = @{
     CheckInterval        = 60
     SyncFiles            = @("index.html", "onboard.html", "brain.html")
     LogLevel             = "INFO"
-    Alerting             = @{
-        Enabled         = $false
-        CooldownMinutes = 5
-        LastSent        = @{}
-    }
     ProviderStack        = @("cloudflare", "localtunnel", "ngrok")
     CurrentProviderIndex = 0
 }
@@ -105,85 +100,14 @@ function Import-Env($Path) {
 }
 
 function Send-Alert($Type, $Message) {
-    if (-not $Config.Alerting.Enabled) { return }
-    
-    $DiscordUrl = [Environment]::GetEnvironmentVariable("MONITOR_DISCORD_WEBHOOK")
-    $SlackUrl = [Environment]::GetEnvironmentVariable("MONITOR_SLACK_WEBHOOK")
-
-    if (-not ($DiscordUrl -or $SlackUrl)) { return }
-
-    # Initialize internal state if missing
-    if ($null -eq $Config.Alerting.LastSent) {
-        if ($Config.Alerting -is [System.Management.Automation.PSCustomObject]) { $Config.Alerting | Add-Member -MemberType NoteProperty -Name "LastSent" -Value @{} -Force }
-        else { $Config.Alerting["LastSent"] = @{} }
-    }
-    
-    # Cooldown check
-    $LastSent = $Config.Alerting.LastSent[$Type]
-    if ($null -ne $LastSent) {
-        if ((Get-Date) -lt $LastSent.AddMinutes($Config.Alerting.CooldownMinutes)) {
-            Write-Log "Alert '$Type' skipped (Cooldown active)." "DEBUG"
-            return
-        }
-    }
-
-    # Severity Coloring & Meta
-    $Color = 3066993 # Default Green
-    $SlackColor = "#36a64f"
-    if ($Type -match "FAILURE|ERROR") { $Color = 15158332; $SlackColor = "#ff0000" }
-    elseif ($Type -match "ATTEMPT|RESTART") { $Color = 16776960; $SlackColor = "#eed202" }
-
-    # 1. Discord Embed Payload
-    $DiscordBody = @{
-        embeds = @(@{
-                title       = "Monitor Alert: $Type"
-                description = $Message
-                color       = $Color
-                timestamp   = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
-                footer      = @{ text = "Local AI Campaign Assistant | Final Monitor v5.5" }
-            })
-    } | ConvertTo-Json -Depth 5
-
-    # 2. Slack Block Payload
-    $SlackBody = @{
-        attachments = @(@{
-                color  = $SlackColor
-                blocks = @(
-                    @{
-                        type = "section"
-                        text = @{ type = "mrkdwn"; text = "*Monitor Alert: $Type*`n$Message" }
-                    },
-                    @{
-                        type     = "context"
-                        elements = @(@{ type = "mrkdwn"; text = "Time: $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')" })
-                    }
-                )
-            })
-    } | ConvertTo-Json -Depth 5
-
-    if ($DiscordUrl) {
-        try {
-            Invoke-RestMethod -Uri $DiscordUrl -Method Post -ContentType "application/json" -Body $DiscordBody -ErrorAction Stop
-            Write-Log "Rich Alert sent to Discord: $Type" "DEBUG"
-        }
-        catch { Write-Log "Failed to send Discord alert: $($_.Exception.Message)" "WARN" }
-    }
-    
-    if ($SlackUrl) {
-        try {
-            Invoke-RestMethod -Uri $SlackUrl -Method Post -ContentType "application/json" -Body $SlackBody -ErrorAction Stop
-            Write-Log "Rich Alert sent to Slack: $Type" "DEBUG"
-        }
-        catch { Write-Log "Failed to send Slack alert: $($_.Exception.Message)" "WARN" }
-    }
-
-    $Config.Alerting.LastSent[$Type] = Get-Date
+    # Social alerting removed (Discord/Slack discarded).
+    Write-Log "[ALERT] $Type — $Message" "INFO"
 }
 
 function Test-ConfigAgainstSchema($Cfg) {
     if ($null -eq $Cfg) { return $false }
 
-    $Required = @("HeartbeatTimeoutMin", "HeartbeatTimeoutMax", "MaxRetries", "CheckInterval", "Alerting")
+    $Required = @("HeartbeatTimeoutMin", "HeartbeatTimeoutMax", "MaxRetries", "CheckInterval")
     foreach ($Prop in $Required) {
         if ($null -eq $Cfg.$Prop) { Write-Log "Schema Error: Missing required property '$Prop'" "WARN"; return $false }
     }
@@ -196,10 +120,6 @@ function Test-ConfigAgainstSchema($Cfg) {
     if ($Max -le $Min) { Write-Log "Schema Error: HeartbeatTimeoutMax must be greater than Min" "WARN"; return $false }
     if ($Cfg.MaxRetries -lt 1 -or $Cfg.MaxRetries -gt 10) { Write-Log "Schema Error: MaxRetries must be 1-10" "WARN"; return $false }
     if ($Cfg.CheckInterval -lt 10) { Write-Log "Schema Error: CheckInterval must be >= 10s" "WARN"; return $false }
-    
-    if ($null -eq $Cfg.Alerting.Enabled -or $null -eq $Cfg.Alerting.Endpoints) {
-        Write-Log "Schema Error: Invalid Alerting configuration" "WARN"; return $false
-    }
     
     return $true
 }
@@ -363,13 +283,14 @@ while ($true) {
                 }
             }
             $StatusData | ConvertTo-Json -Depth 5 | Set-Content -Path $StatusPath -Encoding UTF8
-            git add $StatusPath
-            $FilesChangedCount++
-
-            $RedirectorTargets = $Config['SyncFiles']
 
             $FilesChangedCount = 0
             $Timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss UTC"
+
+            git add -f $StatusPath
+            $FilesChangedCount++
+
+            $RedirectorTargets = $Config['SyncFiles']
 
             # Update Redirector Targets (point to Vercel/GitHub Pages redirector)
             foreach ($Target in $RedirectorTargets) {
