@@ -79,21 +79,41 @@ function updateUIBadges() {
 syncRelayStatus();
 
 /**
- * Opens the Shahada onboarding portal in a new tab.
+ * Opens the Noor AI tunnel (brain.html).
  * Uses the dynamic status.json resolver for resilience.
  */
 async function openShahada() {
     try {
-        const response = await fetch('data/status.json?t=' + Date.now());
+        const response = await fetch('https://dours-d.github.io/local-ai-campaign-assistant/data/status.json?t=' + Date.now());
         if (response.ok) {
             const status = await response.json();
-            const url = status.services.onboarding_server.public_url;
+            // The "I Bear Witness" button goes to the AI tunnel (Dunya/Noor)
+            const url = status.services.brain_portal.public_url;
             window.open(url, '_blank');
             return;
         }
     } catch (e) {
         console.warn("Dynamic resolver failed, falling back to cached URL.");
     }
-    // Fallback if registry fetch fails
-    window.open('https://wireless-butter-boulder-hitting.trycloudflare.com', '_blank');
+    window.open('https://dours-d.github.io/local-ai-campaign-assistant/brain.html', '_blank');
+}
+
+/**
+ * Opens the Onboarding Form.
+ * Uses the dynamic status.json resolver for resilience.
+ */
+async function openOnboarding() {
+    try {
+        const response = await fetch('https://dours-d.github.io/local-ai-campaign-assistant/data/status.json?t=' + Date.now());
+        if (response.ok) {
+            const status = await response.json();
+            // The "Become Sovereign" button goes to the Onboarding Server
+            const url = status.services.shahada_portal.public_url;
+            window.open(url, '_blank');
+            return;
+        }
+    } catch (e) {
+        console.warn("Dynamic resolver failed for onboarding, falling back to cached URL.");
+    }
+    window.open('https://dours-d.github.io/local-ai-campaign-assistant/onboard.html', '_blank');
 }

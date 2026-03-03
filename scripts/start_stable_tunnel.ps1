@@ -1,13 +1,20 @@
-# Robust Stable Tunnel Setup (Localtunnel)
-# This script uses Localtunnel with a fixed subdomain for a persistent URL.
+param(
+    [string]$Provider = "cloudflare"
+)
 
 $WorkDir = Get-Location
 $LogFile = "$WorkDir\data\tunnel.log"
 
-Write-Host "Starting Stable Tunnel (Cloudflare) for Onboarding Portal..." -ForegroundColor Green
-Write-Host "Requested URL: https://local-ai-onboarding-portal.trycloudflare.com" -ForegroundColor Yellow
+Remove-Item -Path $LogFile -ErrorAction SilentlyContinue
 
-# Run Cloudflare Tunnel (Password-Free)
-# This will generate a random URL that is captured by monitor_services.ps1
-# and pushed to GitHub Pages for a stable redirect.
-.\cloudflared.exe tunnel --url http://127.0.0.1:5010 --logfile data/tunnel.log
+Write-Host "Starting Stable Tunnel for Onboarding Portal using $Provider..." -ForegroundColor Green
+
+if ($Provider -eq "cloudflare") {
+    .\cloudflared.exe tunnel --url http://127.0.0.1:5010 --logfile $LogFile
+}
+elseif ($Provider -eq "localtunnel") {
+    npx localtunnel --port 5010 --subdomain local-ai-onboarding-portal > $LogFile
+}
+elseif ($Provider -eq "ngrok") {
+    ngrok http 5010 --log $LogFile
+}

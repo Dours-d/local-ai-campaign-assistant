@@ -24,14 +24,14 @@ def scrape_images():
         registry = json.load(f)
 
     updated_count = 0
-    total_missing = sum(1 for c in registry if c.get('whydonate_url') and not c.get('image'))
+    total_missing = sum(1 for c in registry if c.get('whydonate_url') and (not c.get('image') or not os.path.exists(c.get('image'))))
     print(f"Starting scrape for {total_missing} campaigns...")
 
     for i, campaign in enumerate(registry):
         url = campaign.get('whydonate_url')
         image = campaign.get('image')
 
-        if url and not image:
+        if url and (not image or not os.path.exists(image)):
             print(f"[{i+1}/{len(registry)}] Processing: {url}")
             try:
                 resp = requests.get(url, headers=HEADERS, timeout=15)
