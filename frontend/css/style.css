@@ -1,22 +1,39 @@
 :root {
     /* Visual Signals - Nocturnal "End of Night" Palette (Sovereign Identity) */
     --color-bg: #05070A;
-    /* True Night */
     --color-primary: #97864B;
-    /* Olive Gold Square */
     --color-secondary: #3D5174;
-    /* Nocturnal Blue from FAJR Text */
     --color-accent: #6B8E23;
-    /* Brighter Olive for glow */
     --color-text-light: #E2E8F0;
-    /* Off-white for dark bg */
     --color-text-dim: #94A3B8;
-    /* Muted gray */
     --color-white: #FFFFFF;
 
     /* Typography */
     --font-heading: 'Outfit', sans-serif;
     --font-body: 'Inter', sans-serif;
+
+    /* ─── Bilingual Typography Scale ───────────────────────────────
+       English is always ~0.67 of Arabic (the sovereign ratio).
+       To resize: change the Arabic value → English follows.
+    ─────────────────────────────────────────────────────────────── */
+
+    /* Section titles (الميدان النشط / THE ACTIVE FIELD) */
+    --ar-section: 6rem;
+    --en-section: 4rem;
+    /* ~0.67 × ar-section */
+
+    /* Campaign card titles */
+    --ar-card: 1.5rem;
+    --en-card: 1rem;
+    /* ~0.67 × ar-card */
+
+    /* Nav items */
+    --ar-nav: 1.5rem;
+    --en-nav: 0.7rem;
+
+    /* Hero title */
+    --ar-hero: 7.5rem;
+    --en-hero: 1.5rem;
 
     /* Layout */
     --container-max-width: 1200px;
@@ -94,7 +111,7 @@ h4,
 }
 
 .card h3 {
-    font-size: 1.5rem;
+    font-size: var(--ar-card);
     padding: 1rem 1rem 0.5rem;
     line-height: 1.35;
 }
@@ -138,7 +155,7 @@ h4,
 
 .en-sub {
     font-family: 'Outfit', sans-serif;
-    font-size: 0.75rem;
+    font-size: var(--en-card);
     text-transform: uppercase;
     letter-spacing: 0.5px;
     opacity: 0.6;
@@ -148,12 +165,12 @@ h4,
 
 /* --- Card-specific title scaling --- */
 .card .ar-main {
-    font-size: 1.5rem;
+    font-size: var(--ar-card);
     line-height: 1.35;
 }
 
 .card .en-sub {
-    font-size: 1rem;
+    font-size: var(--en-card);
     opacity: 0.75;
     letter-spacing: 1px;
 }
@@ -164,13 +181,11 @@ nav .lang-dual {
 }
 
 nav .ar-main {
-    font-size: 1.5rem;
-    /* Magnified Nav Arabic */
+    font-size: var(--ar-nav);
 }
 
 nav .en-sub {
-    font-size: 0.7rem;
-    /* Magnified Nav English */
+    font-size: var(--en-nav);
     opacity: 0.6;
 }
 
@@ -369,14 +384,14 @@ section {
 }
 
 .section-title h2 {
-    font-size: 5.5rem;
+    font-size: var(--en-section);
     color: var(--color-secondary);
     position: relative;
     padding-bottom: 15px;
 }
 
 .section-title h2 .ar-main {
-    font-size: 6rem;
+    font-size: var(--ar-section);
 }
 
 /* Specific Hero CTA override */
@@ -393,7 +408,7 @@ section {
 }
 
 .section-title h2 .en-sub {
-    font-size: 0.8rem;
+    font-size: calc(var(--en-section) * 0.2);
     letter-spacing: 2px;
 }
 
