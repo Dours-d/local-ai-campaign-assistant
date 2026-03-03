@@ -9,11 +9,12 @@ data/whydonate_creation_log.json
 data/whydonate_return_links.csv
 data/all_wd_links.txt
 data/access_tokens.json
-data/onboarding_submissions/
 data/onboarding_outbox/
 
 # Data & Logs
 data/
+!data/status.json
+!data/onboarding_submissions/media/
 !data/logs/watchdog_pulse.log
 logs/
 backups/
