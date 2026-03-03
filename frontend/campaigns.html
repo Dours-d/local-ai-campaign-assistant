@@ -766,6 +766,9 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="js/i18n.js"></script>
     <script>
+        // Always start at top on load/refresh
+        if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
+        window.scrollTo(0, 0);
         AOS.init({ duration: 1000, once: true });
     </script>
 </body>
