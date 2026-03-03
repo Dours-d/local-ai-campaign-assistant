@@ -1,0 +1,2 @@
+usage: publish_to_socials.py [-h] [--check] [--platform PLATFORM]
+publish_to_socials.py: error: unrecognized arguments: --check-x

@@ -1,0 +1,33 @@
+≡ƒîÇ Upscrolled WordPress Injection Engine Initiating...
+Found 25 pulses ready for injection.
+≡ƒöì CHECK ONLY ΓÇö Testing login and listing pulses...
+  ΓåÆ A_Abu_Haytham_A_vertical.mp4 | Help Abu Haytham to provide his four children in Gaza | ╪│╪º╪╣╪»
+  ΓåÆ A_Abu_Muhammad_A_vertical.mp4 | Help Abu Muhammad feed his nine young children in Gaza | ╪│╪º╪╣
+  ΓåÆ A_Hope_A_vertical.mp4 | A Tent of Hope : Rebuilding our Lives | ╪«┘è┘à╪⌐ ╪º┘ä╪ú┘à┘ä: ╪Ñ╪╣╪º╪»╪⌐ ╪¿┘å
+  ΓåÆ A_PregnantA_A_vertical.mp4 | Urgent Support for pregnant mother and family | ╪»╪╣┘à ╪╣╪º╪¼┘ä ┘ä╪ú┘à
+  ΓåÆ A_Umm_Sami_A_vertical.mp4 | Help Umm Sami and her family surpass the winter conditions i
+  ΓåÆ B_Heba_B_vertical.mp4 | Help Heba & Family Survive the Darkness of Gaza | ╪│╪º╪╣╪» ┘ç┘è╪¿╪⌐ 
+  ΓåÆ B_Yasmine_B_vertical.mp4 | Help Yasmine and Her family to rebuild their lives | ╪│╪º╪╣╪» ┘è╪º
+  ΓåÆ C_Ahmed_AlFlit_pop_vertical.mp4 | C Ahmed AlFlit pop
+  ΓåÆ D1_Gaza_Family_vertical.mp4 | D1 Gaza Family
+  ΓåÆ D_Akram_D_vertical.mp4 | Help Akram and his family despite the pain in Gaza | ╪│╪º╪╣╪» ╪ú┘â
+  ΓåÆ D_Help_Ahmed_D_vertical.mp4 | Help Ahmed and his family survive the genocide of Gaza | ╪│╪º╪╣
+  ΓåÆ F_Mohammed_F_vertical.mp4 | Help Abdullah Mohammed support his 7 sons & daughters in Gaz
+  ΓåÆ X_Help_Mohammed_vertical.mp4 | Help Mohammed Pursue Dentistry and Support His Family | ╪│╪º╪╣╪»
+  ΓåÆ X_Urgent_Medical_vertical.mp4 | Urgent Medical Aid for My Child and Husband | ┘à╪│╪º╪╣╪»╪⌐ ╪╖╪¿┘è╪⌐ ╪╣╪º
+  ΓåÆ _Abdel_Rahim_vertical.mp4 | They Are Living in a Tent! Help Gaza Nurse ! | ┘ç┘à ┘è╪╣┘è╪┤┘ê┘å ┘ü┘è 
+  ΓåÆ _Abdullah_hoping_vertical.mp4 | Help Abdullah who is hoping for a future | ╪│╪º╪╣╪» ╪╣╪¿╪» ╪º┘ä┘ä┘ç ╪º┘ä╪░
+  ΓåÆ _Ahmed_smile_vertical.mp4 | Let's draw a smile together | ┘ä┘å╪▒╪│┘à ╪º┘ä╪º╪¿╪¬╪│╪º┘à╪⌐ ┘à╪╣┘ï╪º
+  ΓåÆ _Aysha_vertical.mp4 | Help Aysha provide her self in Gaza | ╪│╪º╪╣╪» ╪ú┘è╪┤╪⌐ ┘ü┘è ╪¬┘ê┘ü┘è╪▒ ╪º╪¡╪¬
+  ΓåÆ _Marah_vertical.mp4 | Help Marah and her family rebuild their lives, Gaza | ╪│╪º╪╣╪»┘ê╪º
+  ΓåÆ _Mother_10_vertical.mp4 | Urgent Winter Aid for Mother of 10 | ┘à╪│╪º╪╣╪»╪⌐ ╪┤╪¬┘ê┘è╪⌐ ╪╣╪º╪¼┘ä╪⌐ ┘ä╪ú┘à 
+  ΓåÆ _our_brother_vertical.mp4 | Help our brother with financial support | ╪│╪º╪╣╪»┘ê┘å┘è ╪¿┘à╪│╪º╪╣╪»╪⌐ ┘à╪º
+  ΓåÆ _Umm_Iman_vertical.mp4 | Help Umm Iman and Her family survive the genocide | ╪│╪º╪╣╪»┘ê╪º ╪ú
+  ΓåÆ _Umm_Masoud_vertical.mp4 | Help Umm Masoud and her daughter, survivors in the rubbles o
+  ΓåÆ _Um_Mohammeds_children_vertical.mp4 | Save Um Mohammed's children | ╪ú┘å┘é╪░┘ê╪º ╪ú╪╖┘ü╪º┘ä ╪ú┘à ┘à╪¡┘à╪»
+  ΓåÆ _╪º┘à_╪╣┘ä┘ê╪┤_Salman_AlWatts_vertical.mp4 | ╪º┘à ╪╣┘ä┘ê╪┤ Salman AlWatts
+≡ƒöæ Navigating to Upscrolled WordPress admin: https://upscrolled.com/wp-login.php
+Clicking 'Log in with username and password'...
+Post-login URL: https://upscrolled.com/wp-login.php
+Γ¥î WordPress login failed: Unknown email address. Check again or try your username.
+Γ¥î Cannot proceed without WordPress access.

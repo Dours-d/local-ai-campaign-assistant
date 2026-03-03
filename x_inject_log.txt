@@ -1,0 +1,774 @@
+≡ƒîÇ X.com Injection Engine ΓÇö @Upscrolledai
+==================================================
+Found 25 pulse files.
+
+Preparing to inject 25 pulses:
+  ≡ƒô╣ A_Abu_Haytham_A_vertical.mp4             ΓåÆ PregnantA
+       ≡ƒÆ░ https://whydonate.com/fundraising/urgent...
+  ≡ƒô╣ A_Abu_Muhammad_A_vertical.mp4            ΓåÆ PregnantA
+       ≡ƒÆ░ https://whydonate.com/fundraising/urgent...
+  ≡ƒô╣ A_Hope_A_vertical.mp4                    ΓåÆ PregnantA
+       ≡ƒÆ░ https://whydonate.com/fundraising/urgent...
+  ≡ƒô╣ A_PregnantA_A_vertical.mp4               ΓåÆ PregnantA
+       ≡ƒÆ░ https://whydonate.com/fundraising/urgent...
+  ≡ƒô╣ A_Umm_Sami_A_vertical.mp4                ΓåÆ PregnantA
+       ≡ƒÆ░ https://whydonate.com/fundraising/urgent...
+  ≡ƒô╣ B_Heba_B_vertical.mp4                    ΓåÆ Beneficiary
+       ≡ƒÆ░ https://whydonate.com/fundraising/emerge...
+  ≡ƒô╣ B_Yasmine_B_vertical.mp4                 ΓåÆ Beneficiary
+       ≡ƒÆ░ https://whydonate.com/fundraising/emerge...
+  ≡ƒô╣ C_Ahmed_AlFlit_pop_vertical.mp4          ΓåÆ Help Ahmed and family survive genocide in Gaza
+       ≡ƒÆ░ https://whydonate.com/fundraising/help-a...
+  ≡ƒô╣ D1_Gaza_Family_vertical.mp4              ΓåÆ D1 Gaza Family
+  ≡ƒô╣ D_Akram_D_vertical.mp4                   ΓåÆ Help Akram and his family despite the pain in Gaza
+       ≡ƒÆ░ https://whydonate.com/fundraising/help-a...
+  ≡ƒô╣ D_Help_Ahmed_D_vertical.mp4              ΓåÆ Help Akram and his family despite the pain in Gaza
+       ≡ƒÆ░ https://whydonate.com/fundraising/help-a...
+  ≡ƒô╣ F_Mohammed_F_vertical.mp4                ΓåÆ Help Abdullah Mohammed support his 7 sons & daughters in Gaz
+       ≡ƒÆ░ https://whydonate.com/fundraising/help-a...
+  ≡ƒô╣ X_Help_Mohammed_vertical.mp4             ΓåÆ Help Mohammed Pursue Dentistry and Support His Family
+       ≡ƒÆ░ https://whydonate.com/fundraising/help-m...
+  ≡ƒô╣ X_Urgent_Medical_vertical.mp4            ΓåÆ Urgent Medical Aid for My Child and Husband
+       ≡ƒÆ░ https://whydonate.com/fundraising/urgent...
+  ≡ƒô╣ _Abdel_Rahim_vertical.mp4                ΓåÆ They Are Living in a Tent! Help Gaza Nurse !
+       ≡ƒÆ░ https://whydonate.com/fundraising/help-g...
+  ≡ƒô╣ _Abdullah_hoping_vertical.mp4            ΓåÆ Help Abdullah who is hoping for a future
+       ≡ƒÆ░ https://whydonate.com/fundraising/help-a...
+  ≡ƒô╣ _Ahmed_smile_vertical.mp4                ΓåÆ Let's draw a smile together
+       ≡ƒÆ░ https://whydonate.com/fundraising/lets-d...
+  ≡ƒô╣ _Aysha_vertical.mp4                      ΓåÆ  Aysha
+  ≡ƒô╣ _Marah_vertical.mp4                      ΓåÆ  Marah
+  ≡ƒô╣ _Mother_10_vertical.mp4                  ΓåÆ Urgent Winter Aid for Mother of 10
+       ≡ƒÆ░ https://whydonate.com/fundraising/-urgen...
+  ≡ƒô╣ _Um_Mohammeds_children_vertical.mp4      ΓåÆ Save Um Mohammed's children
+       ≡ƒÆ░ https://whydonate.com/fundraising/save-u...
+  ≡ƒô╣ _Umm_Iman_vertical.mp4                   ΓåÆ Help Umm Iman and Her family survive the genocide
+       ≡ƒÆ░ https://whydonate.com/fundraising/help-u...
+  ≡ƒô╣ _Umm_Masoud_vertical.mp4                 ΓåÆ Help Umm Masoud and her daughter, survivors in the rubbles o
+       ≡ƒÆ░ https://whydonate.com/fundraising/help-u...
+  ≡ƒô╣ _our_brother_vertical.mp4                ΓåÆ Help our brother with financial support
+       ≡ƒÆ░ https://whydonate.com/fundraising/help-o...
+  ≡ƒô╣ _╪º┘à_╪╣┘ä┘ê╪┤_Salman_AlWatts_vertical.mp4     ΓåÆ Save Salman Ali and his family from awful destruction
+       ≡ƒÆ░ https://whydonate.com/fundraising/save-s...
+
+Launching injection...
+
+≡ƒÉª Launching X.com injection context (@Upscrolledai)...
+Verifying X session...
+Γ£à Session valid. Injecting 25 pulses...
+≡ƒôñ Posting pulse 1/25: PregnantA A...
+Γ¥î Failed to post PregnantA A: Locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("[data-testid=\"SideNav_NewTweet_Button\"]")
+    - locator resolved to <a role="link" aria-label="Post" href="/compose/post" data-testid="SideNav_NewTweet_Button" class="css-175oi2r r-sdzlij r-1phboty r-rs99b7 r-lrvibr r-19yznuf r-64el8z r-o7ynqc r-6416eg r-1ny4l3l r-1loqt21">ΓÇª</a>
+  - attempting click action
+    2 ├ù waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+    - retrying click action
+    - waiting 20ms
+    2 ├ù waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+    - retrying click action
+      - waiting 100ms
+    51 ├ù waiting for element to be visible, enabled and stable
+       - element is visible, enabled and stable
+       - scrolling into view if needed
+       - done scrolling
+       - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+     - retrying click action
+       - waiting 500ms
+
+≡ƒôñ Posting pulse 2/25: PregnantA A...
+Γ¥î Failed to post PregnantA A: Locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("[data-testid=\"SideNav_NewTweet_Button\"]")
+    - locator resolved to <a role="link" aria-label="Post" href="/compose/post" data-testid="SideNav_NewTweet_Button" class="css-175oi2r r-sdzlij r-1phboty r-rs99b7 r-lrvibr r-19yznuf r-64el8z r-o7ynqc r-6416eg r-1ny4l3l r-1loqt21">ΓÇª</a>
+  - attempting click action
+    2 ├ù waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+    - retrying click action
+    - waiting 20ms
+    2 ├ù waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+    - retrying click action
+      - waiting 100ms
+    11 ├ù waiting for element to be visible, enabled and stable
+       - element is visible, enabled and stable
+       - scrolling into view if needed
+       - done scrolling
+       - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+     - retrying click action
+       - waiting 500ms
+
+≡ƒôñ Posting pulse 3/25: PregnantA A...
+Γ¥î Failed to post PregnantA A: Locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("[data-testid=\"SideNav_NewTweet_Button\"]")
+    - locator resolved to <a role="link" aria-label="Post" href="/compose/post" data-testid="SideNav_NewTweet_Button" class="css-175oi2r r-sdzlij r-1phboty r-rs99b7 r-lrvibr r-19yznuf r-64el8z r-o7ynqc r-6416eg r-1ny4l3l r-1loqt21">ΓÇª</a>
+  - attempting click action
+    2 ├ù waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+    - retrying click action
+    - waiting 20ms
+    2 ├ù waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+    - retrying click action
+      - waiting 100ms
+    11 ├ù waiting for element to be visible, enabled and stable
+       - element is visible, enabled and stable
+       - scrolling into view if needed
+       - done scrolling
+       - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+     - retrying click action
+       - waiting 500ms
+
+≡ƒôñ Posting pulse 4/25: PregnantA A...
+Γ¥î Failed to post PregnantA A: Locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("[data-testid=\"SideNav_NewTweet_Button\"]")
+    - locator resolved to <a role="link" aria-label="Post" href="/compose/post" data-testid="SideNav_NewTweet_Button" class="css-175oi2r r-sdzlij r-1phboty r-rs99b7 r-lrvibr r-19yznuf r-64el8z r-o7ynqc r-6416eg r-1ny4l3l r-1loqt21">ΓÇª</a>
+  - attempting click action
+    2 ├ù waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+    - retrying click action
+    - waiting 20ms
+    2 ├ù waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+    - retrying click action
+      - waiting 100ms
+    11 ├ù waiting for element to be visible, enabled and stable
+       - element is visible, enabled and stable
+       - scrolling into view if needed
+       - done scrolling
+       - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+     - retrying click action
+       - waiting 500ms
+    - waiting for element to be visible, enabled and stable
+
+≡ƒôñ Posting pulse 5/25: PregnantA A...
+Γ¥î Failed to post PregnantA A: Locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("[data-testid=\"SideNav_NewTweet_Button\"]")
+    - locator resolved to <a role="link" aria-label="Post" href="/compose/post" data-testid="SideNav_NewTweet_Button" class="css-175oi2r r-sdzlij r-1phboty r-rs99b7 r-lrvibr r-19yznuf r-64el8z r-o7ynqc r-6416eg r-1ny4l3l r-1loqt21">ΓÇª</a>
+  - attempting click action
+    2 ├ù waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+    - retrying click action
+    - waiting 20ms
+    2 ├ù waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+    - retrying click action
+      - waiting 100ms
+    10 ├ù waiting for element to be visible, enabled and stable
+       - element is visible, enabled and stable
+       - scrolling into view if needed
+       - done scrolling
+       - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+     - retrying click action
+       - waiting 500ms
+    - waiting for element to be visible, enabled and stable
+    - element is visible, enabled and stable
+    - scrolling into view if needed
+
+≡ƒôñ Posting pulse 6/25: Beneficiary B...
+Γ¥î Failed to post Beneficiary B: Locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("[data-testid=\"SideNav_NewTweet_Button\"]")
+    - locator resolved to <a role="link" aria-label="Post" href="/compose/post" data-testid="SideNav_NewTweet_Button" class="css-175oi2r r-sdzlij r-1phboty r-rs99b7 r-lrvibr r-19yznuf r-64el8z r-o7ynqc r-6416eg r-1ny4l3l r-1loqt21">ΓÇª</a>
+  - attempting click action
+    2 ├ù waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+    - retrying click action
+    - waiting 20ms
+    2 ├ù waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+    - retrying click action
+      - waiting 100ms
+    11 ├ù waiting for element to be visible, enabled and stable
+       - element is visible, enabled and stable
+       - scrolling into view if needed
+       - done scrolling
+       - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+     - retrying click action
+       - waiting 500ms
+
+≡ƒôñ Posting pulse 7/25: Beneficiary B...
+Γ¥î Failed to post Beneficiary B: Locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("[data-testid=\"SideNav_NewTweet_Button\"]")
+    - locator resolved to <a role="link" aria-label="Post" href="/compose/post" data-testid="SideNav_NewTweet_Button" class="css-175oi2r r-sdzlij r-1phboty r-rs99b7 r-lrvibr r-19yznuf r-64el8z r-o7ynqc r-6416eg r-1ny4l3l r-1loqt21">ΓÇª</a>
+  - attempting click action
+    2 ├ù waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+    - retrying click action
+    - waiting 20ms
+    2 ├ù waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+    - retrying click action
+      - waiting 100ms
+    11 ├ù waiting for element to be visible, enabled and stable
+       - element is visible, enabled and stable
+       - scrolling into view if needed
+       - done scrolling
+       - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+     - retrying click action
+       - waiting 500ms
+
+≡ƒôñ Posting pulse 8/25: Ahmed Al-Flit pop...
+Γ¥î Failed to post Ahmed Al-Flit pop: Locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("[data-testid=\"SideNav_NewTweet_Button\"]")
+    - locator resolved to <a role="link" aria-label="Post" href="/compose/post" data-testid="SideNav_NewTweet_Button" class="css-175oi2r r-sdzlij r-1phboty r-rs99b7 r-lrvibr r-19yznuf r-64el8z r-o7ynqc r-6416eg r-1ny4l3l r-1loqt21">ΓÇª</a>
+  - attempting click action
+    2 ├ù waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+    - retrying click action
+    - waiting 20ms
+    2 ├ù waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+    - retrying click action
+      - waiting 100ms
+    11 ├ù waiting for element to be visible, enabled and stable
+       - element is visible, enabled and stable
+       - scrolling into view if needed
+       - done scrolling
+       - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+     - retrying click action
+       - waiting 500ms
+    - waiting for element to be visible, enabled and stable
+
+≡ƒôñ Posting pulse 9/25: D1 Gaza Family...
+Γ¥î Failed to post D1 Gaza Family: Locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("[data-testid=\"SideNav_NewTweet_Button\"]")
+    - locator resolved to <a role="link" aria-label="Post" href="/compose/post" data-testid="SideNav_NewTweet_Button" class="css-175oi2r r-sdzlij r-1phboty r-rs99b7 r-lrvibr r-19yznuf r-64el8z r-o7ynqc r-6416eg r-1ny4l3l r-1loqt21">ΓÇª</a>
+  - attempting click action
+    2 ├ù waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+    - retrying click action
+    - waiting 20ms
+    2 ├ù waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+    - retrying click action
+      - waiting 100ms
+    11 ├ù waiting for element to be visible, enabled and stable
+       - element is visible, enabled and stable
+       - scrolling into view if needed
+       - done scrolling
+       - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+     - retrying click action
+       - waiting 500ms
+
+≡ƒôñ Posting pulse 10/25: Akram D...
+Γ¥î Failed to post Akram D: Locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("[data-testid=\"SideNav_NewTweet_Button\"]")
+    - locator resolved to <a role="link" aria-label="Post" href="/compose/post" data-testid="SideNav_NewTweet_Button" class="css-175oi2r r-sdzlij r-1phboty r-rs99b7 r-lrvibr r-19yznuf r-64el8z r-o7ynqc r-6416eg r-1ny4l3l r-1loqt21">ΓÇª</a>
+  - attempting click action
+    2 ├ù waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+    - retrying click action
+    - waiting 20ms
+    2 ├ù waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+    - retrying click action
+      - waiting 100ms
+    10 ├ù waiting for element to be visible, enabled and stable
+       - element is visible, enabled and stable
+       - scrolling into view if needed
+       - done scrolling
+       - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+     - retrying click action
+       - waiting 500ms
+
+≡ƒôñ Posting pulse 11/25: Akram D...
+Γ¥î Failed to post Akram D: Locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("[data-testid=\"SideNav_NewTweet_Button\"]")
+    - locator resolved to <a role="link" aria-label="Post" href="/compose/post" data-testid="SideNav_NewTweet_Button" class="css-175oi2r r-sdzlij r-1phboty r-rs99b7 r-lrvibr r-19yznuf r-64el8z r-o7ynqc r-6416eg r-1ny4l3l r-1loqt21">ΓÇª</a>
+  - attempting click action
+    2 ├ù waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+    - retrying click action
+    - waiting 20ms
+    2 ├ù waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+    - retrying click action
+      - waiting 100ms
+    11 ├ù waiting for element to be visible, enabled and stable
+       - element is visible, enabled and stable
+       - scrolling into view if needed
+       - done scrolling
+       - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+     - retrying click action
+       - waiting 500ms
+
+≡ƒôñ Posting pulse 12/25: Mohammed F...
+Γ¥î Failed to post Mohammed F: Locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("[data-testid=\"SideNav_NewTweet_Button\"]")
+    - locator resolved to <a role="link" aria-label="Post" href="/compose/post" data-testid="SideNav_NewTweet_Button" class="css-175oi2r r-sdzlij r-1phboty r-rs99b7 r-lrvibr r-19yznuf r-64el8z r-o7ynqc r-6416eg r-1ny4l3l r-1loqt21">ΓÇª</a>
+  - attempting click action
+    2 ├ù waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+    - retrying click action
+    - waiting 20ms
+    2 ├ù waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+    - retrying click action
+      - waiting 100ms
+    11 ├ù waiting for element to be visible, enabled and stable
+       - element is visible, enabled and stable
+       - scrolling into view if needed
+       - done scrolling
+       - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+     - retrying click action
+       - waiting 500ms
+
+≡ƒôñ Posting pulse 13/25: Help Mohammed...
+Γ¥î Failed to post Help Mohammed: Locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("[data-testid=\"SideNav_NewTweet_Button\"]")
+    - locator resolved to <a role="link" aria-label="Post" href="/compose/post" data-testid="SideNav_NewTweet_Button" class="css-175oi2r r-sdzlij r-1phboty r-rs99b7 r-lrvibr r-19yznuf r-64el8z r-o7ynqc r-6416eg r-1ny4l3l r-1loqt21">ΓÇª</a>
+  - attempting click action
+    2 ├ù waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+    - retrying click action
+    - waiting 20ms
+    2 ├ù waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+    - retrying click action
+      - waiting 100ms
+    10 ├ù waiting for element to be visible, enabled and stable
+       - element is visible, enabled and stable
+       - scrolling into view if needed
+       - done scrolling
+       - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+     - retrying click action
+       - waiting 500ms
+    - waiting for element to be visible, enabled and stable
+
+≡ƒôñ Posting pulse 14/25: Urgent Medical...
+Γ¥î Failed to post Urgent Medical: Locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("[data-testid=\"SideNav_NewTweet_Button\"]")
+    - locator resolved to <a role="link" aria-label="Post" href="/compose/post" data-testid="SideNav_NewTweet_Button" class="css-175oi2r r-sdzlij r-1phboty r-rs99b7 r-lrvibr r-19yznuf r-64el8z r-o7ynqc r-6416eg r-1ny4l3l r-1loqt21">ΓÇª</a>
+  - attempting click action
+    2 ├ù waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+    - retrying click action
+    - waiting 20ms
+    2 ├ù waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+    - retrying click action
+      - waiting 100ms
+    11 ├ù waiting for element to be visible, enabled and stable
+       - element is visible, enabled and stable
+       - scrolling into view if needed
+       - done scrolling
+       - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+     - retrying click action
+       - waiting 500ms
+
+≡ƒôñ Posting pulse 15/25: Abdel Rahim...
+Γ¥î Failed to post Abdel Rahim: Locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("[data-testid=\"SideNav_NewTweet_Button\"]")
+    - locator resolved to <a role="link" aria-label="Post" href="/compose/post" data-testid="SideNav_NewTweet_Button" class="css-175oi2r r-sdzlij r-1phboty r-rs99b7 r-lrvibr r-19yznuf r-64el8z r-o7ynqc r-6416eg r-1ny4l3l r-1loqt21">ΓÇª</a>
+  - attempting click action
+    2 ├ù waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+    - retrying click action
+    - waiting 20ms
+    2 ├ù waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+    - retrying click action
+      - waiting 100ms
+    52 ├ù waiting for element to be visible, enabled and stable
+       - element is visible, enabled and stable
+       - scrolling into view if needed
+       - done scrolling
+       - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+     - retrying click action
+       - waiting 500ms
+
+≡ƒôñ Posting pulse 16/25: Abdullah hoping...
+Γ¥î Failed to post Abdullah hoping: Locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("[data-testid=\"SideNav_NewTweet_Button\"]")
+    - locator resolved to <a role="link" aria-label="Post" href="/compose/post" data-testid="SideNav_NewTweet_Button" class="css-175oi2r r-sdzlij r-1phboty r-rs99b7 r-lrvibr r-19yznuf r-64el8z r-o7ynqc r-6416eg r-1ny4l3l r-1loqt21">ΓÇª</a>
+  - attempting click action
+    2 ├ù waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+    - retrying click action
+    - waiting 20ms
+    2 ├ù waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+    - retrying click action
+      - waiting 100ms
+    55 ├ù waiting for element to be visible, enabled and stable
+       - element is visible, enabled and stable
+       - scrolling into view if needed
+       - done scrolling
+       - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+     - retrying click action
+       - waiting 500ms
+    - waiting for element to be visible, enabled and stable
+
+≡ƒôñ Posting pulse 17/25: Ahmed smile...
+Γ¥î Failed to post Ahmed smile: Locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("[data-testid=\"SideNav_NewTweet_Button\"]")
+    - locator resolved to <a role="link" aria-label="Post" href="/compose/post" data-testid="SideNav_NewTweet_Button" class="css-175oi2r r-sdzlij r-1phboty r-rs99b7 r-lrvibr r-19yznuf r-64el8z r-o7ynqc r-6416eg r-1ny4l3l r-1loqt21">ΓÇª</a>
+  - attempting click action
+    2 ├ù waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+    - retrying click action
+    - waiting 20ms
+    2 ├ù waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+    - retrying click action
+      - waiting 100ms
+    54 ├ù waiting for element to be visible, enabled and stable
+       - element is visible, enabled and stable
+       - scrolling into view if needed
+       - done scrolling
+       - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+     - retrying click action
+       - waiting 500ms
+    - waiting for element to be visible, enabled and stable
+
+≡ƒôñ Posting pulse 18/25:  Aysha...
+Γ¥î Failed to post  Aysha: Locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("[data-testid=\"SideNav_NewTweet_Button\"]")
+    - locator resolved to <a role="link" aria-label="Post" href="/compose/post" data-testid="SideNav_NewTweet_Button" class="css-175oi2r r-sdzlij r-1phboty r-rs99b7 r-lrvibr r-19yznuf r-64el8z r-o7ynqc r-6416eg r-1ny4l3l r-1loqt21">ΓÇª</a>
+  - attempting click action
+    2 ├ù waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+    - retrying click action
+    - waiting 20ms
+    2 ├ù waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+    - retrying click action
+      - waiting 100ms
+    56 ├ù waiting for element to be visible, enabled and stable
+       - element is visible, enabled and stable
+       - scrolling into view if needed
+       - done scrolling
+       - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+     - retrying click action
+       - waiting 500ms
+
+≡ƒôñ Posting pulse 19/25:  Marah...
+Γ¥î Failed to post  Marah: Locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("[data-testid=\"SideNav_NewTweet_Button\"]")
+    - locator resolved to <a role="link" aria-label="Post" href="/compose/post" data-testid="SideNav_NewTweet_Button" class="css-175oi2r r-sdzlij r-1phboty r-rs99b7 r-lrvibr r-19yznuf r-64el8z r-o7ynqc r-6416eg r-1ny4l3l r-1loqt21">ΓÇª</a>
+  - attempting click action
+    2 ├ù waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+    - retrying click action
+    - waiting 20ms
+    2 ├ù waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+    - retrying click action
+      - waiting 100ms
+    11 ├ù waiting for element to be visible, enabled and stable
+       - element is visible, enabled and stable
+       - scrolling into view if needed
+       - done scrolling
+       - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+     - retrying click action
+       - waiting 500ms
+
+≡ƒôñ Posting pulse 20/25: Mother 10...
+Γ¥î Failed to post Mother 10: Locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("[data-testid=\"SideNav_NewTweet_Button\"]")
+    - locator resolved to <a role="link" aria-label="Post" href="/compose/post" data-testid="SideNav_NewTweet_Button" class="css-175oi2r r-sdzlij r-1phboty r-rs99b7 r-lrvibr r-19yznuf r-64el8z r-o7ynqc r-6416eg r-1ny4l3l r-1loqt21">ΓÇª</a>
+  - attempting click action
+    2 ├ù waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+    - retrying click action
+    - waiting 20ms
+    2 ├ù waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+    - retrying click action
+      - waiting 100ms
+    11 ├ù waiting for element to be visible, enabled and stable
+       - element is visible, enabled and stable
+       - scrolling into view if needed
+       - done scrolling
+       - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+     - retrying click action
+       - waiting 500ms
+    - waiting for element to be visible, enabled and stable
+
+≡ƒôñ Posting pulse 21/25: Um Mohammeds children...
+Γ¥î Failed to post Um Mohammeds children: Locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("[data-testid=\"SideNav_NewTweet_Button\"]")
+    - locator resolved to <a role="link" aria-label="Post" href="/compose/post" data-testid="SideNav_NewTweet_Button" class="css-175oi2r r-sdzlij r-1phboty r-rs99b7 r-lrvibr r-19yznuf r-64el8z r-o7ynqc r-6416eg r-1ny4l3l r-1loqt21">ΓÇª</a>
+  - attempting click action
+    2 ├ù waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+    - retrying click action
+    - waiting 20ms
+    2 ├ù waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+    - retrying click action
+      - waiting 100ms
+    11 ├ù waiting for element to be visible, enabled and stable
+       - element is visible, enabled and stable
+       - scrolling into view if needed
+       - done scrolling
+       - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+     - retrying click action
+       - waiting 500ms
+    - waiting for element to be visible, enabled and stable
+
+≡ƒôñ Posting pulse 22/25: Umm Iman...
+Γ¥î Failed to post Umm Iman: Locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("[data-testid=\"SideNav_NewTweet_Button\"]")
+    - locator resolved to <a role="link" aria-label="Post" href="/compose/post" data-testid="SideNav_NewTweet_Button" class="css-175oi2r r-sdzlij r-1phboty r-rs99b7 r-lrvibr r-19yznuf r-64el8z r-o7ynqc r-6416eg r-1ny4l3l r-1loqt21">ΓÇª</a>
+  - attempting click action
+    2 ├ù waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+    - retrying click action
+    - waiting 20ms
+    2 ├ù waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+    - retrying click action
+      - waiting 100ms
+    11 ├ù waiting for element to be visible, enabled and stable
+       - element is visible, enabled and stable
+       - scrolling into view if needed
+       - done scrolling
+       - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+     - retrying click action
+       - waiting 500ms
+    - waiting for element to be visible, enabled and stable
+
+≡ƒôñ Posting pulse 23/25: Umm Masoud...
+Γ¥î Failed to post Umm Masoud: Locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("[data-testid=\"SideNav_NewTweet_Button\"]")
+    - locator resolved to <a role="link" aria-label="Post" href="/compose/post" data-testid="SideNav_NewTweet_Button" class="css-175oi2r r-sdzlij r-1phboty r-rs99b7 r-lrvibr r-19yznuf r-64el8z r-o7ynqc r-6416eg r-1ny4l3l r-1loqt21">ΓÇª</a>
+  - attempting click action
+    2 ├ù waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+    - retrying click action
+    - waiting 20ms
+    2 ├ù waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+    - retrying click action
+      - waiting 100ms
+    11 ├ù waiting for element to be visible, enabled and stable
+       - element is visible, enabled and stable
+       - scrolling into view if needed
+       - done scrolling
+       - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+     - retrying click action
+       - waiting 500ms
+    - waiting for element to be visible, enabled and stable
+
+≡ƒôñ Posting pulse 24/25: our brother...
+Γ¥î Failed to post our brother: Locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("[data-testid=\"SideNav_NewTweet_Button\"]")
+    - locator resolved to <a role="link" aria-label="Post" href="/compose/post" data-testid="SideNav_NewTweet_Button" class="css-175oi2r r-sdzlij r-1phboty r-rs99b7 r-lrvibr r-19yznuf r-64el8z r-o7ynqc r-6416eg r-1ny4l3l r-1loqt21">ΓÇª</a>
+  - attempting click action
+    2 ├ù waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+    - retrying click action
+    - waiting 20ms
+    2 ├ù waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+    - retrying click action
+      - waiting 100ms
+    11 ├ù waiting for element to be visible, enabled and stable
+       - element is visible, enabled and stable
+       - scrolling into view if needed
+       - done scrolling
+       - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+     - retrying click action
+       - waiting 500ms
+
+≡ƒôñ Posting pulse 25/25: ╪º┘à ╪╣┘ä┘ê╪┤ Salman Al-Watts...
+Γ¥î Failed to post ╪º┘à ╪╣┘ä┘ê╪┤ Salman Al-Watts: Locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("[data-testid=\"SideNav_NewTweet_Button\"]")
+    - locator resolved to <a role="link" aria-label="Post" href="/compose/post" data-testid="SideNav_NewTweet_Button" class="css-175oi2r r-sdzlij r-1phboty r-rs99b7 r-lrvibr r-19yznuf r-64el8z r-o7ynqc r-6416eg r-1ny4l3l r-1loqt21">ΓÇª</a>
+  - attempting click action
+    2 ├ù waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+    - retrying click action
+    - waiting 20ms
+    2 ├ù waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+    - retrying click action
+      - waiting 100ms
+    11 ├ù waiting for element to be visible, enabled and stable
+       - element is visible, enabled and stable
+       - scrolling into view if needed
+       - done scrolling
+       - <div class="css-175oi2r r-1awozwy r-1m3jxhj r-9hvr93 r-18u37iz r-1d7fvdj r-1mmae3n r-3pj75a r-13qz1uu">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+     - retrying click action
+       - waiting 500ms
+    - waiting for element to be visible, enabled and stable
+
+≡ƒîÇ X.com injection complete.
+
+Γ£à Done.

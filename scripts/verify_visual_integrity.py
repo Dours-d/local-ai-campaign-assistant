@@ -12,7 +12,7 @@ INTEGRITY_SUMMARY = os.path.join(BASE_DIR, 'data', 'integrity_summary.json')
 LOG_FILE = os.path.join(BASE_DIR, 'data', 'integrity_checks.log')
 
 # Critical Service Endpoints
-SHAHADA_TUNNEL_URL = "https://wireless-butter-boulder-hitting.trycloudflare.com"
+SHAHADA_TUNNEL_URL = "https://local-ai-onboarding-portal.loca.lt"
 
 # Simplified Configuration: Core Pulse Assets
 CRITICAL_ASSETS = [
@@ -61,6 +61,7 @@ def verify_assets():
     logger.info(f"Checking Shahada Tunnel: {SHAHADA_TUNNEL_URL}")
     try:
         req = urllib.request.Request(SHAHADA_TUNNEL_URL, method='HEAD')
+        req.add_header("bypass-tunnel-reminder", "1")
         with urllib.request.urlopen(req, timeout=10) as response:
             if response.status == 200:
                 results["service_status"]["shahada_tunnel"] = "healthy"

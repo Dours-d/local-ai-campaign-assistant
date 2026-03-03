@@ -79,21 +79,10 @@ function updateUIBadges() {
 syncRelayStatus();
 
 /**
- * Opens the Shahada onboarding portal in a new tab.
- * Uses the dynamic status.json resolver for resilience.
+ * Opens the Sovereign onboarding portal via the bridge page.
  */
-async function openShahada() {
-    try {
-        const response = await fetch('data/status.json?t=' + Date.now());
-        if (response.ok) {
-            const status = await response.json();
-            const url = status.services.onboarding_server.public_url;
-            window.open(url, '_blank');
-            return;
-        }
-    } catch (e) {
-        console.warn("Dynamic resolver failed, falling back to cached URL.");
-    }
-    // Fallback if registry fetch fails
-    window.open('https://wireless-butter-boulder-hitting.trycloudflare.com', '_blank');
+function openSovereignPortal() {
+    // If we are in the frontend/ subdirectory, go up one level. Otherwise, stay at root.
+    const path = window.location.pathname.includes('/frontend/') ? '../onboard.html' : './onboard.html';
+    window.location.href = path;
 }

@@ -1,0 +1,192 @@
+{
+  "result": {
+    "id": "181863f8-33da-43e9-9e34-36fb74d752cc",
+    "name": "fajr-today",
+    "subdomain": "fajr-today.pages.dev",
+    "domains": [
+      "fajr-today.pages.dev"
+    ],
+    "build_config": {
+      "web_analytics_tag": null,
+      "web_analytics_token": null
+    },
+    "deployment_configs": {
+      "preview": {
+        "env_vars": null,
+        "fail_open": true,
+        "always_use_latest_compatibility_date": false,
+        "compatibility_date": "2026-02-25",
+        "compatibility_flags": [],
+        "build_image_major_version": 3,
+        "usage_model": "standard"
+      },
+      "production": {
+        "env_vars": null,
+        "fail_open": true,
+        "always_use_latest_compatibility_date": false,
+        "compatibility_date": "2026-02-25",
+        "compatibility_flags": [],
+        "build_image_major_version": 3,
+        "usage_model": "standard"
+      }
+    },
+    "latest_deployment": {
+      "id": "697269a9-6f65-4081-bf92-4ed2271294bc",
+      "short_id": "697269a9",
+      "project_id": "181863f8-33da-43e9-9e34-36fb74d752cc",
+      "project_name": "fajr-today",
+      "environment": "production",
+      "url": "https://697269a9.fajr-today.pages.dev",
+      "created_on": "2026-02-25T22:21:09.737097Z",
+      "modified_on": "2026-02-25T22:21:13.085909Z",
+      "latest_stage": {
+        "name": "deploy",
+        "started_on": null,
+        "ended_on": "2026-02-25T22:21:13.085909Z",
+        "status": "success"
+      },
+      "deployment_trigger": {
+        "type": "ad_hoc",
+        "metadata": {
+          "branch": "main",
+          "commit_hash": "0ce63c462e98fb8847baa80e1becca68d9f56f9e",
+          "commit_message": "System Sync: Monitoring active at 2026-02-24 14:57:50 UTC",
+          "commit_dirty": true
+        }
+      },
+      "stages": [
+        {
+          "name": "queued",
+          "started_on": "2026-02-25T22:21:09.737097Z",
+          "ended_on": null,
+          "status": "active"
+        },
+        {
+          "name": "initialize",
+          "started_on": null,
+          "ended_on": null,
+          "status": "idle"
+        },
+        {
+          "name": "clone_repo",
+          "started_on": null,
+          "ended_on": null,
+          "status": "idle"
+        },
+        {
+          "name": "build",
+          "started_on": null,
+          "ended_on": null,
+          "status": "idle"
+        },
+        {
+          "name": "deploy",
+          "started_on": null,
+          "ended_on": "2026-02-25T22:21:13.085909Z",
+          "status": "success"
+        }
+      ],
+      "build_config": {
+        "build_command": null,
+        "destination_dir": null,
+        "build_caching": null,
+        "root_dir": null,
+        "web_analytics_tag": null,
+        "web_analytics_token": null
+      },
+      "env_vars": {},
+      "compatibility_date": "2026-02-25",
+      "compatibility_flags": [],
+      "build_image_major_version": 3,
+      "usage_model": null,
+      "aliases": null,
+      "is_skipped": false,
+      "production_branch": "main",
+      "uses_functions": false
+    },
+    "canonical_deployment": {
+      "id": "697269a9-6f65-4081-bf92-4ed2271294bc",
+      "short_id": "697269a9",
+      "project_id": "181863f8-33da-43e9-9e34-36fb74d752cc",
+      "project_name": "fajr-today",
+      "environment": "production",
+      "url": "https://697269a9.fajr-today.pages.dev",
+      "created_on": "2026-02-25T22:21:09.737097Z",
+      "modified_on": "2026-02-25T22:21:13.085909Z",
+      "latest_stage": {
+        "name": "deploy",
+        "started_on": null,
+        "ended_on": "2026-02-25T22:21:13.085909Z",
+        "status": "success"
+      },
+      "deployment_trigger": {
+        "type": "ad_hoc",
+        "metadata": {
+          "branch": "main",
+          "commit_hash": "0ce63c462e98fb8847baa80e1becca68d9f56f9e",
+          "commit_message": "System Sync: Monitoring active at 2026-02-24 14:57:50 UTC",
+          "commit_dirty": true
+        }
+      },
+      "stages": [
+        {
+          "name": "queued",
+          "started_on": "2026-02-25T22:21:09.737097Z",
+          "ended_on": null,
+          "status": "active"
+        },
+        {
+          "name": "initialize",
+          "started_on": null,
+          "ended_on": null,
+          "status": "idle"
+        },
+        {
+          "name": "clone_repo",
+          "started_on": null,
+          "ended_on": null,
+          "status": "idle"
+        },
+        {
+          "name": "build",
+          "started_on": null,
+          "ended_on": null,
+          "status": "idle"
+        },
+        {
+          "name": "deploy",
+          "started_on": null,
+          "ended_on": "2026-02-25T22:21:13.085909Z",
+          "status": "success"
+        }
+      ],
+      "build_config": {
+        "build_command": null,
+        "destination_dir": null,
+        "build_caching": null,
+        "root_dir": null,
+        "web_analytics_tag": null,
+        "web_analytics_token": null
+      },
+      "env_vars": {},
+      "compatibility_date": "2026-02-25",
+      "compatibility_flags": [],
+      "build_image_major_version": 3,
+      "usage_model": null,
+      "aliases": null,
+      "is_skipped": false,
+      "production_branch": "main",
+      "uses_functions": false
+    },
+    "created_on": "2026-02-25T21:15:33.414549Z",
+    "production_branch": "main",
+    "production_script_name": "pages-worker--11294339-production",
+    "preview_script_name": "pages-worker--11294339-preview",
+    "uses_functions": false,
+    "framework": "",
+    "framework_version": ""
+  },
+  "success": true,
+  "errors": [],
+  "messages": []
+}

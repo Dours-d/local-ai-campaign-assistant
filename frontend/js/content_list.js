@@ -22,7 +22,8 @@ const ContentManager = {
     async fetchTemplate() {
         try {
             console.log('Fetching onboarding template with cache-buster...');
-            const resp = await fetch('/api/onboarding-template?v=' + Date.now());
+            const apiBase = window.location.port === '4040' ? 'http://127.0.0.1:5010' : '';
+            const resp = await fetch(`${apiBase}/api/onboarding-template?v=${Date.now()}`);
             if (resp.ok) {
                 this.onboardingTemplate = await resp.text();
                 console.log('✅ Onboarding template loaded successfully. Length:', this.onboardingTemplate.length);
@@ -108,8 +109,9 @@ const ContentManager = {
         if (!camp) return;
 
         const text = camp[field] || '';
+        const apiBase = window.location.port === '4040' ? 'http://127.0.0.1:5010' : '';
         try {
-            const resp = await fetch('/api/translate', {
+            const resp = await fetch(`${apiBase}/api/translate`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ text: text, mode: field })
@@ -152,7 +154,8 @@ const ContentManager = {
 
     async fetchData() {
         const isLocalFile = window.location.protocol === 'file:';
-        const apiUrl = isLocalFile ? '../data/final_real_growth_list.json' : '/api/growth-list';
+        const apiBase = window.location.port === '4040' ? 'http://127.0.0.1:5010' : '';
+        const apiUrl = isLocalFile ? '../data/final_real_growth_list.json' : `${apiBase}/api/growth-list`;
 
         try {
             const response = await fetch(apiUrl);
@@ -191,6 +194,7 @@ const ContentManager = {
         }
         return ids;
     },
+
 
     getCharClass(len) {
         if (len > 75) return 'danger';
@@ -239,10 +243,6 @@ const ContentManager = {
         const isNamed = this.isNamedIdentity(camp);
         const ishmaelBadge = isNamed ? `
                 <div class="ishmael-badge" data-key="${campKey}" title="Trustee Letter Code"
-                     style="display:inline-flex; align-items:center; gap:4px; padding:3px 10px; border-radius:6px;
-                            border:1.5px solid var(--color-primary); background:rgba(151,134,75,0.1);
-                            cursor:pointer; font-weight:800; font-size:1rem; color:var(--color-primary);
-                            min-width:42px; justify-content:center; transition: all 0.2s;"
                      onclick="ContentManager.cycleIshmaelID('${campKey}')">
                     ${letterCode}
                 </div>
@@ -256,7 +256,7 @@ const ContentManager = {
     },
 
     toggleWord(bid, idx) {
-        const camp = this.campaigns.find(c => (c.norm_whatsapp || c.bids?.[0]) === bid);
+        const camp = this.campaigns.find(c => (c.norm_whatsapp || c.bid || c.bids?.[0]) === bid);
         if (!camp) return;
 
         if (!camp.identity_indices) camp.identity_indices = [0, 1];
@@ -269,23 +269,10 @@ const ContentManager = {
         }
         camp.identity_indices.sort((a, b) => a - b);
 
-        // Auto-assign or Reuse Ishmael ID if none set — named identities only
-        if (!camp.ishmael_id && camp.identity_indices.length > 0 && this.isNamedIdentity(camp)) {
-            const myName = this.getIdentityName(camp);
-            // 1. Can we find another campaign with the same identity that already has an ID?
-            const peer = this.campaigns.find(c => c !== camp && this.getIdentityName(c) === myName && c.ishmael_id);
-            if (peer) {
-                camp.ishmael_id = peer.ishmael_id;
-            } else {
-                // 2. Otherwise pick next available globally
-                const usedIDs = new Set(this.campaigns.map(c => c.ishmael_id).filter(Boolean));
-                const next = this.getIshmaelIDs().find(i => !usedIDs.has(i.id));
-                if (next) camp.ishmael_id = next.id;
-            }
-            this.refreshAllIshmaelSelects();
-        }
+        // Manual Override: Ishmael ID is a manual discriminator chosen by the user.
+        // It should NOT be automatically edited or calculated by the code.
 
-        // Surgical patch — update just this card's token+badge area
+        // Surgical patch — update just this card's token area
         const card = document.querySelector(`.mgmt-card[data-id="${CSS.escape(bid)}"]`);
         if (card) {
             const tokenContainer = card.querySelector('.token-container');
@@ -299,20 +286,15 @@ const ContentManager = {
     },
 
     cycleIshmaelID(bid) {
-        const camp = this.campaigns.find(c => (c.norm_whatsapp || c.bids?.[0]) === bid);
+        const camp = this.campaigns.find(c => (c.norm_whatsapp || c.bid || c.bids?.[0]) === bid);
         if (!camp) return;
 
         const allIDs = this.getIshmaelIDs();
-        const usedIDs = new Set(this.campaigns.map(c => c.ishmael_id).filter(Boolean));
-        usedIDs.delete(camp.ishmael_id); // Allow re-selecting current
-
         const currentIdx = allIDs.findIndex(i => i.id === camp.ishmael_id);
-        // Find next unassigned after current position
-        let next = null;
-        for (let offset = 1; offset <= allIDs.length; offset++) {
-            const candidate = allIDs[(currentIdx + offset) % allIDs.length];
-            if (!usedIDs.has(candidate.id)) { next = candidate; break; }
-        }
+
+        // Purely local cycle: Just move to the next ID in the sequence.
+        const nextIdx = (currentIdx + 1) % allIDs.length;
+        const next = allIDs[nextIdx];
         if (!next) return;
 
         camp.ishmael_id = next.id;
@@ -323,6 +305,8 @@ const ContentManager = {
         if (card) {
             const tokenContainer = card.querySelector('.token-container');
             if (tokenContainer) tokenContainer.innerHTML = this.renderTitleTokens(camp, bid);
+            const identityLabel = card.querySelector('[data-identity-label]');
+            if (identityLabel) identityLabel.textContent = this.getDisplayName(camp);
         }
 
         this.saveToServer();
@@ -332,56 +316,32 @@ const ContentManager = {
         const camp = this.campaigns.find(c => (c.norm_whatsapp || c.bid || c.bids?.[0]) === bid);
         if (!camp) return;
 
-        const myName = this.getIdentityName(camp);
-        newId = newId || null;
+        // Manual Selection: Update ONLY this specific campaign.
+        // NO propagation to other homonymous cards.
+        camp.ishmael_id = newId || null;
 
-        // Propagate to ALL cards sharing this identity (set of tokens)
-        this.campaigns.forEach(c => {
-            if (this.getIdentityName(c) === myName) {
-                c.ishmael_id = newId;
-            }
-        });
-
-        this.refreshAllIshmaelSelects();
-
-        // Refresh badges/tokens for all affected
-        this.campaigns.forEach(c => {
-            if (this.getIdentityName(c) === myName) {
-                const cKey = c.norm_whatsapp || c.bid || c.bids?.[0];
-                const card = document.querySelector(`.mgmt-card[data-id="${CSS.escape(cKey)}"]`);
-                if (card) {
-                    const tokenContainer = card.querySelector('.token-container');
-                    if (tokenContainer) tokenContainer.innerHTML = this.renderTitleTokens(c, cKey);
-                }
-            }
-        });
+        // Refresh badge/tokens for this card
+        const card = document.querySelector(`.mgmt-card[data-id="${CSS.escape(bid)}"]`);
+        if (card) {
+            const tokenContainer = card.querySelector('.token-container');
+            if (tokenContainer) tokenContainer.innerHTML = this.renderTitleTokens(camp, bid);
+            const select = card.querySelector('[data-ishmael-select]');
+            if (select) select.value = camp.ishmael_id || '';
+            const identityLabel = card.querySelector('[data-identity-label]');
+            if (identityLabel) identityLabel.textContent = this.getDisplayName(camp);
+        }
 
         this.saveToServer();
     },
 
     renderIshmaelOptions(camp) {
-        const used = {}; // ID -> IdentityName who uses it
-        this.campaigns.forEach(c => {
-            if (c.ishmael_id) {
-                used[c.ishmael_id] = this.getDisplayName(c);
-            }
-        });
-
         const allIDs = this.getIshmaelIDs();
-        const myName = this.getDisplayName(camp);
         const current = camp.ishmael_id || '';
 
         let html = '<option value="">-- Unassigned --</option>';
         allIDs.forEach(i => {
-            const holder = used[i.id];
-            // EXCEPTION: Shared Identity. If same name, it's not "Taken".
-            const isTaken = holder && holder !== myName && current !== i.id;
-
-            if (!isTaken) {
-                html += `<option value="${i.id}" ${current === i.id ? 'selected' : ''}>${i.id}</option>`;
-            } else {
-                html += `<option value="${i.id}" disabled>${i.id} (Taken by ${holder})</option>`;
-            }
+            // Pure manual selection: No more "Taken by" or disabling.
+            html += `<option value="${i.id}" ${current === i.id ? 'selected' : ''}>${i.id}</option>`;
         });
         return html;
     },
@@ -398,29 +358,41 @@ const ContentManager = {
     },
 
     getIdentityName(camp) {
-        if (!camp.title) return camp.registry_name || camp.norm_whatsapp || camp.bid || null;
-
-        // Split and identify parts
-        const parts = camp.title.split('|').map(p => p.trim());
-        const englishPart = parts[0];
-
-        // If the English part looks like a URL, resolve its slug
-        if (englishPart.toLowerCase().startsWith('http')) {
-            const slug = englishPart.split('/').pop().split('?')[0].replace(/[-_]/g, ' ');
-            if (slug && isNaN(slug)) {
-                return slug.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
-            }
-            return englishPart;
+        // Priority 1: User Manual Override (highest precedence)
+        // If the user manually typed an identity, it overrides EVERYTHING (tokens and letter)
+        if (camp.manual_identity && camp.manual_identity.trim().length > 0) {
+            return camp.manual_identity.trim();
         }
 
-        const words = englishPart.split(/\s+/).filter(w => w.length > 0);
-        const indices = camp.identity_indices || (words.length >= 2 ? [0, 1] : (words.length > 0 ? [0] : []));
+        // Priority 2: Calculated Identity (Tokens or Phone) + Letter
+        // If the manual field is virgin, we edit with token and letters
+        let basePart = "";
+        if (camp.title) {
+            const parts = camp.title.split('|').map(p => p.trim());
+            const englishPart = parts[0];
 
-        const identity = indices.map(i => words[i]).filter(Boolean).join(' ').replace(/[^\w\s\u0600-\u06FF]/g, '').trim();
-        if (identity) return identity;
+            // Handle URLs in title
+            if (englishPart.toLowerCase().startsWith('http')) {
+                const slug = englishPart.split('/').pop().split('?')[0].replace(/[-_]/g, ' ');
+                if (slug && isNaN(slug)) {
+                    basePart = slug.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+                } else {
+                    basePart = englishPart;
+                }
+            } else {
+                const words = englishPart.split(/\s+/).filter(w => w.length > 0);
+                const indices = camp.identity_indices || (words.length >= 2 ? [0, 1] : (words.length > 0 ? [0] : []));
+                basePart = indices.map(i => words[i]).filter(Boolean).join(' ').replace(/[^\w\s\u0600-\u06FF]/g, '').trim();
+            }
+        }
 
-        // Fallback to registry or specific identifiers
-        return (camp.registry_name || camp.norm_whatsapp || camp.bid || camp.whatsapp || null);
+        // Fallback: use phone if token-based calculation failed
+        if (!basePart) {
+            basePart = camp.norm_whatsapp || camp.bid || camp.whatsapp || "";
+        }
+
+        const letter = camp.ishmael_id || "";
+        return `${basePart}${letter ? ' ' + letter : ''}`.trim();
     },
 
     getDisplayName(camp) {
@@ -451,13 +423,15 @@ const ContentManager = {
         const campKey = camp.norm_whatsapp || camp.bid || camp.bids?.[0] || 'unknown';
         const primaryBid = camp.bids?.[0] || campKey;
         const isRedundant = camp.whatsapp === "972592640875";
-        const cardClass = isRedundant ? 'mgmt-card card-redundant' : 'mgmt-card';
+        const identityName = this.getDisplayName(camp);
+        const isTrust = identityName === 'Help fajrtoday';
+        const cardClass = `mgmt-card ${isRedundant ? 'card-redundant' : ''} ${isTrust ? 'card-trust' : ''}`.trim();
         const redundantBadge = isRedundant ? '<span class="redundant-badge">HUB OVERLAP</span>' : '';
+        const sovereignBadge = isTrust ? '<span class="special-badge">SOVEREIGN</span>' : '';
+
         const ishmaelIDs = this.getIshmaelIDs();
         const activeTrustee = ishmaelIDs.find(i => i.id === camp.ishmael_id);
         const trusteeLabel = activeTrustee ? activeTrustee.id : null;
-
-        const identityName = this.getDisplayName(camp);
         const contactName = camp.registry_name;
         const isRegistryLinked = !!contactName;
 
@@ -482,6 +456,15 @@ const ContentManager = {
                                 <button class="field-copy" onclick="ContentManager.copyField('${campKey}', 'identity', this)">Copy</button>
                                 ${statusBadge}
                                 ${unassessedBadge}
+                                ${sovereignBadge}
+                            </div>
+                            <div style="margin-bottom: 12px;">
+                                <label style="font-size: 0.7rem; color: #666; text-transform: uppercase;">Manual Identity Override (Overrides Tokens + Letter)</label>
+                                <input type="text" class="mgmt-input" 
+                                       style="padding: 4px 8px; font-size: 0.85rem;"
+                                       value="${camp.manual_identity || ''}" 
+                                       data-field="manual_identity"
+                                       placeholder="Start typing to override Tokens and Letter...">
                             </div>
                             
                             <div style="margin-bottom: 12px;">
@@ -502,6 +485,7 @@ const ContentManager = {
                                        value="${camp.title || ''}" 
                                        data-field="title"
                                        data-bid="${campKey}"
+                                       maxlength="75"
                                        oninput="ContentManager.handleTitleInput(this)"
                                        placeholder="English Title | Arabic Title">
                             </div>
@@ -632,7 +616,7 @@ const ContentManager = {
     },
 
     resolveImagePath(path, bid) {
-        if (!path) return 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&q=80&w=200';
+        if (!path || path.trim() === "") return '../assets/to_be_collected.png';
         return path.replace(/.*local_ai_campaign_assistant/, '..').replace(/\\/g, '/');
     },
 
@@ -664,17 +648,34 @@ const ContentManager = {
         const status = document.getElementById('status-filter').value;
         const cards = document.querySelectorAll('.mgmt-card');
 
+        console.log(`Filtering: Query="${query}", Status="${status}"`);
+
         cards.forEach(card => {
             const id = card.dataset.id;
-            const camp = this.campaigns.find(c => (c.norm_whatsapp || c.bid || c.bids?.[0]) === id);
-            if (!camp) return;
+            const camp = this.campaigns.find(c => (c.norm_whatsapp || c.bid || (c.bids && c.bids[0])) === id);
 
-            const textMatch = card.innerText.toLowerCase().includes(query);
-            const statusMatch = (status === 'all') ||
-                (status === 'live' && (camp.status === 'live' || !!camp.whydonate_url)) ||
-                (status === camp.status);
+            // If we can't find the campaign data, rely on card text for search, but status might be tricky
+            const cardText = card.innerText.toLowerCase();
+            const textMatch = !query || cardText.includes(query);
 
-            card.style.display = (textMatch && statusMatch) ? 'grid' : 'none';
+            let statusMatch = (status === 'all');
+            if (camp) {
+                statusMatch = statusMatch ||
+                    (status === 'live' && (camp.status === 'live' || !!camp.whydonate_url)) ||
+                    (status === 'redundant' && (camp.status === 'redundant' || camp.whatsapp === "972592640875")) ||
+                    (status === 'verified' && camp.status === 'verified') ||
+                    (status === 'pending' && camp.status === 'pending');
+            } else {
+                // Fallback for status if campaign data missing
+                if (status === 'live') statusMatch = card.innerText.includes('LIVE ON WHYDONATE');
+                if (status === 'redundant') statusMatch = card.innerText.includes('HUB OVERLAP');
+            }
+
+            if (textMatch && statusMatch) {
+                card.style.display = 'grid';
+            } else {
+                card.style.display = 'none';
+            }
         });
     },
 
@@ -697,11 +698,11 @@ const ContentManager = {
             }
 
             // Re-render only important parts if needed (skipping full render for titles to avoid button flickering)
-            if (field === 'title' || field === 'identity_indices') {
+            if (field === 'title' || field === 'identity_indices' || field === 'manual_identity') {
                 const cardEl = document.querySelector(`.mgmt-card[data-id="${CSS.escape(id)}"]`);
                 if (cardEl) {
                     const identitySpan = cardEl.querySelector('[data-identity-label]');
-                    if (identitySpan) identitySpan.textContent = this.getIdentityName(camp);
+                    if (identitySpan) identitySpan.textContent = this.getDisplayName(camp);
                     const tc = cardEl.querySelector('.token-container');
                     if (tc) tc.innerHTML = this.renderTitleTokens(camp, id);
                 }
@@ -786,7 +787,8 @@ const ContentManager = {
         btn.disabled = true;
 
         try {
-            const resp = await fetch('/api/translate', {
+            const apiBase = window.location.port === '4040' ? 'http://127.0.0.1:5010' : '';
+            const resp = await fetch(`${apiBase}/api/translate`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ text: arabicText, mode: field })
@@ -875,9 +877,12 @@ const ContentManager = {
         if (!camp) return;
 
         let text = "";
-        if (field === 'identity') text = this.getIdentityName(camp);
+        const identity = this.getDisplayName(camp);
+        const beneficiaryLine = `Beneficiary: ${identity}, Gaza`;
+
+        if (field === 'identity') text = beneficiaryLine;
         else if (field === 'title') text = camp.title;
-        else if (field === 'description') text = camp.description;
+        else if (field === 'description') text = `${beneficiaryLine}\n\n${camp.description}`;
         else if (field === 'goal') text = camp.goal || "5000";
 
         navigator.clipboard.writeText(text).then(() => {
@@ -1221,5 +1226,8 @@ const ContentManager = {
         }
     }
 };
+
+// Expose to window for inline onclick handlers
+window.ContentManager = ContentManager;
 
 document.addEventListener('DOMContentLoaded', () => ContentManager.init());

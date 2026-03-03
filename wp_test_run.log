@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "C:\Users\gaelf\Documents\GitHub\local_ai_campaign_assistant\scripts\wp_upscrolled.py", line 213, in <module>
+    run_wp_injection(check_only=args.check, limit=args.limit)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gaelf\Documents\GitHub\local_ai_campaign_assistant\scripts\wp_upscrolled.py", line 178, in run_wp_injection
+    print("\U0001f300 Upscrolled WordPress Injection Engine")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gaelf\miniconda3\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\U0001f300' in position 0: character maps to <undefined>

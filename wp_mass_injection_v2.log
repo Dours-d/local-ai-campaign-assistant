@@ -1,0 +1,124 @@
+≡ƒîÇ Upscrolled WordPress Injection Engine
+==================================================
+ΓÜá∩╕Å Limiting to 25 pulses.
+Found 25 pulses ready.
+≡ƒöæ Launching persistent WordPress context: C:\Users\gaelf\Documents\GitHub\local_ai_campaign_assistant\scripts\data\wp_profile
+≡ƒöæ Navigating to Upscrolled WordPress admin: https://upscrolled.com/wp-login.php
+Clicking 'Log in with username and password'...
+≡ƒô¥ Credentials filled. PLEASE SOLVE CAPTCHA IF VISIBLE AND CLICK LOG IN.
+ΓÅ│ Waiting up to 60 seconds for login successful (detected via #wpadminbar)...
+Γ¥î Timeout waiting for WordPress dashboard. Please ensure you are logged in.
+≡ƒÜÇ Injecting 25 pulses into WordPress...
+≡ƒöä Processing WP pulse 1/25: PregnantA A
+≡ƒôñ Creating post for: PregnantA A...
+≡ƒôé Navigating to New Post page...
+ΓÜá∩╕Å Could not find publish button or confirmation.
+ΓÜá∩╕Å Failed to publish pulse 1
+≡ƒöä Processing WP pulse 2/25: PregnantA A
+≡ƒôñ Creating post for: PregnantA A...
+≡ƒôé Navigating to New Post page...
+ΓÜá∩╕Å Could not find publish button or confirmation.
+ΓÜá∩╕Å Failed to publish pulse 2
+≡ƒöä Processing WP pulse 3/25: PregnantA A
+≡ƒôñ Creating post for: PregnantA A...
+≡ƒôé Navigating to New Post page...
+ΓÜá∩╕Å Could not find publish button or confirmation.
+ΓÜá∩╕Å Failed to publish pulse 3
+≡ƒöä Processing WP pulse 4/25: PregnantA A
+≡ƒôñ Creating post for: PregnantA A...
+≡ƒôé Navigating to New Post page...
+ΓÜá∩╕Å Could not find publish button or confirmation.
+ΓÜá∩╕Å Failed to publish pulse 4
+≡ƒöä Processing WP pulse 5/25: PregnantA A
+≡ƒôñ Creating post for: PregnantA A...
+≡ƒôé Navigating to New Post page...
+ΓÜá∩╕Å Could not find publish button or confirmation.
+ΓÜá∩╕Å Failed to publish pulse 5
+≡ƒöä Processing WP pulse 6/25: Beneficiary B
+≡ƒôñ Creating post for: Beneficiary B...
+≡ƒôé Navigating to New Post page...
+ΓÜá∩╕Å Could not find publish button or confirmation.
+ΓÜá∩╕Å Failed to publish pulse 6
+≡ƒöä Processing WP pulse 7/25: Beneficiary B
+≡ƒôñ Creating post for: Beneficiary B...
+≡ƒôé Navigating to New Post page...
+ΓÜá∩╕Å Could not find publish button or confirmation.
+ΓÜá∩╕Å Failed to publish pulse 7
+≡ƒöä Processing WP pulse 8/25: Ahmed Al-Flit pop
+≡ƒôñ Creating post for: Ahmed Al-Flit pop...
+≡ƒôé Navigating to New Post page...
+ΓÜá∩╕Å Could not find publish button or confirmation.
+ΓÜá∩╕Å Failed to publish pulse 8
+≡ƒöä Processing WP pulse 9/25: D1_Gaza_Family
+≡ƒôñ Creating post for: D1_Gaza_Family...
+≡ƒôé Navigating to New Post page...
+ΓÜá∩╕Å Could not find publish button or confirmation.
+ΓÜá∩╕Å Failed to publish pulse 9
+≡ƒöä Processing WP pulse 10/25: Akram D
+≡ƒôñ Creating post for: Akram D...
+≡ƒôé Navigating to New Post page...
+ΓÜá∩╕Å Could not find publish button or confirmation.
+ΓÜá∩╕Å Failed to publish pulse 10
+≡ƒöä Processing WP pulse 11/25: Akram D
+≡ƒôñ Creating post for: Akram D...
+≡ƒôé Navigating to New Post page...
+ΓÜá∩╕Å Could not find publish button or confirmation.
+ΓÜá∩╕Å Failed to publish pulse 11
+≡ƒöä Processing WP pulse 12/25: Mohammed F
+≡ƒôñ Creating post for: Mohammed F...
+≡ƒôé Navigating to New Post page...
+ΓÜá∩╕Å Could not find publish button or confirmation.
+ΓÜá∩╕Å Failed to publish pulse 12
+≡ƒöä Processing WP pulse 13/25: Help Mohammed
+≡ƒôñ Creating post for: Help Mohammed...
+≡ƒôé Navigating to New Post page...
+ΓÜá∩╕Å Could not find publish button or confirmation.
+ΓÜá∩╕Å Failed to publish pulse 13
+≡ƒöä Processing WP pulse 14/25: Urgent Medical
+≡ƒôñ Creating post for: Urgent Medical...
+≡ƒôé Navigating to New Post page...
+ΓÜá∩╕Å Could not find publish button or confirmation.
+ΓÜá∩╕Å Failed to publish pulse 14
+≡ƒöä Processing WP pulse 15/25: Abdel Rahim
+≡ƒôñ Creating post for: Abdel Rahim...
+≡ƒôé Navigating to New Post page...
+Γ¥î WP post error: Page.goto: Target page, context or browser has been closed
+Traceback (most recent call last):
+  File "C:\Users\gaelf\Documents\GitHub\local_ai_campaign_assistant\scripts\wp_upscrolled.py", line 279, in <module>
+    run_wp_injection(check_only=args.check, limit=args.limit)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gaelf\Documents\GitHub\local_ai_campaign_assistant\scripts\wp_upscrolled.py", line 254, in run_wp_injection
+    if publish_video_to_wp(page, pulse):
+       ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\gaelf\Documents\GitHub\local_ai_campaign_assistant\scripts\wp_upscrolled.py", line 221, in publish_video_to_wp
+    page.screenshot(path="wp_post_error.png")
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gaelf\miniconda3\Lib\site-packages\playwright\sync_api\_generated.py", line 9819, in screenshot
+    self._sync(
+    ~~~~~~~~~~^
+        self._impl_obj.screenshot(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<13 lines>...
+        )
+        ^
+    )
+    ^
+  File "C:\Users\gaelf\miniconda3\Lib\site-packages\playwright\_impl\_sync_base.py", line 115, in _sync
+    return task.result()
+           ~~~~~~~~~~~^^
+  File "C:\Users\gaelf\miniconda3\Lib\site-packages\playwright\_impl\_page.py", line 814, in screenshot
+    encoded_binary = await self._channel.send(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^
+        "screenshot", self._timeout_settings.timeout, params
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\gaelf\miniconda3\Lib\site-packages\playwright\_impl\_connection.py", line 69, in send
+    return await self._connection.wrap_api_call(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\gaelf\miniconda3\Lib\site-packages\playwright\_impl\_connection.py", line 559, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.TargetClosedError: Page.screenshot: Target page, context or browser has been closed

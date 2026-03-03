@@ -45,8 +45,9 @@
                     <ul>
                         <li><a href="#campaigns" class="lang-dual"><span class="ar-main">الأمانة</span><span
                                     class="en-sub">Amanah</span></a></li>
-                        <li><a href="https://dours-d.github.io/local-ai-campaign-assistant/brain.html" target="_blank"
-                                class="lang-dual"><span class="ar-main">الشهادة</span><span
+                        <li><a href="dropoff.html" class="lang-dual"><span class="ar-main">المعرض</span><span
+                                    class="en-sub">Showcase</span></a></li>
+                        <li><a href="../onboard.html" class="lang-dual"><span class="ar-main">الشهادة</span><span
                                     class="en-sub">Shahada</span></a></li>
                         <li><a href="campaigns.html" class="lang-dual"><span class="ar-main">الميدان</span><span
                                     class="en-sub">The Field</span></a></li>
@@ -54,7 +55,7 @@
                                 target="_blank" class="lang-dual"><span class="ar-main">الخط المباشر</span><span
                                     class="en-sub">Direct
                                     Line</span></a></li>
-                        <li><a href="javascript:void(0)" onclick="openShahada()" class="btn btn-primary"
+                        <li><a href="javascript:void(0)" onclick="showShahadaModal()" class="btn btn-primary"
                                 style="padding: 0.6rem 1.5rem;">I Bear Witness</a></li>
                     </ul>
                 </nav>
@@ -136,7 +137,7 @@
                         <h3 class="lang-dual"><span class="ar-main">كن سيادياً</span><span class="en-sub">Become
                                 Sovereign</span></h3>
                         <p>Join the onboarding gateway to autonomy.</p>
-                        <a href="javascript:void(0)" onclick="openShahada()" class="btn btn-primary">JOIN
+                        <a href="javascript:void(0)" onclick="openSovereignPortal()" class="btn btn-primary">JOIN
                             NOW</a>
                     </div>
                     <!-- Middle: Give Now -->
@@ -176,7 +177,7 @@
         <div class="modal-content" data-aos="zoom-in">
             <div class="modal-header">
                 <span style="font-family: 'Outfit'; letter-spacing: 2px;">BEAR WITNESS</span>
-                <span class="close" onclick="closeShahada()">&times;</span>
+                <span class="close" onclick="closeShahadaModal()">&times;</span>
             </div>
             <div class="modal-body">
                 <img src="images/Shahada.png" alt="Shahada" class="shahada-img">
@@ -195,19 +196,19 @@
     <!-- i18n (Language Toggle) -->
     <script src="js/i18n.js"></script>
     <script>
-        function openShahada() {
+        function showShahadaModal() {
             document.getElementById('shahadaModal').style.display = 'block';
             document.body.style.overflow = 'hidden';
         }
 
-        function closeShahada() {
+        function closeShahadaModal() {
             document.getElementById('shahadaModal').style.display = 'none';
             document.body.style.overflow = 'auto';
         }
 
         window.onclick = function (event) {
             if (event.target == document.getElementById('shahadaModal')) {
-                closeShahada();
+                closeShahadaModal();
             }
         }
     </script>
