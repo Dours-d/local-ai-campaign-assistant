@@ -261,11 +261,12 @@ header {
 }
 
 .horizon-logo-img {
-    height: 120px;
-    /* Standardize size for consistent spacing */
+    height: 100px;
     width: auto;
     display: block;
     filter: brightness(1.1);
+    max-width: 100%;
+    object-fit: contain;
 }
 
 
@@ -1161,13 +1162,15 @@ select.search-bar option {
     }
 
     .horizon-logo-img {
-        height: 50px;
-        /* Reduced further from 70px to avoid overlap */
+        height: 50px !important; /* Forces mobile height */
+        max-width: 200px !important; /* Prevents overflow */
         width: auto;
     }
 
     .nav-toggle {
-        display: flex;
+        display: flex !important;
+        width: 30px !important;
+        height: 21px !important;
         margin-left: auto;
         /* Position toggle at the right */
     }
