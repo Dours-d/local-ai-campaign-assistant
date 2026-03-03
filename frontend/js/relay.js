@@ -84,7 +84,7 @@ syncRelayStatus();
  */
 async function openShahada() {
     try {
-        const response = await fetch('https://dours-d.github.io/local-ai-campaign-assistant/data/status.json?t=' + Date.now());
+        const response = await fetch('https://fajr.today/data/status.json?t=' + Date.now());
         if (response.ok) {
             const status = await response.json();
             // The "I Bear Witness" button goes to the AI tunnel (Dunya/Noor)
@@ -104,7 +104,7 @@ async function openShahada() {
  */
 async function openOnboarding() {
     try {
-        const response = await fetch('https://dours-d.github.io/local-ai-campaign-assistant/data/status.json?t=' + Date.now());
+        const response = await fetch('https://fajr.today/data/status.json?t=' + Date.now());
         if (response.ok) {
             const status = await response.json();
             // The "Become Sovereign" button goes to the Onboarding Server
