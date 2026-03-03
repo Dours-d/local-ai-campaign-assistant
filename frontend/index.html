@@ -225,6 +225,12 @@
     <script src="js/navigation.js"></script>
     <!-- Custom JS -->
     <script src="js/main.js"></script>
+    <script>
+        // Force i18n update after everything is loaded to resolve visual stagnation
+        if (typeof i18n !== 'undefined') {
+            i18n.init();
+        }
+    </script>
 </body>
 
 </html>

@@ -415,6 +415,11 @@
                 closeSovereignModal();
             }
         }
+
+        // Force i18n update
+        if (typeof i18n !== 'undefined') {
+            i18n.init();
+        }
     </script>
 
 </body>
