@@ -9,9 +9,19 @@ OUTPUT_DIR = os.path.join(ACTIVE_ROOT, 'vault', 'amplification')
 MEDIA_OUTPUT_DIR = os.path.join(OUTPUT_DIR, 'media')
 OUTPUT_FILE = os.path.join(OUTPUT_DIR, 'index.html')
 
+# New Frontend Sync Paths
+FRONTEND_DIR = os.path.join(ACTIVE_ROOT, 'frontend')
+FRONTEND_ASSETS_DIR = os.path.abspath(os.path.join(FRONTEND_DIR, 'assets', 'campaigns'))
+FRONTEND_DATA_FILE = os.path.abspath(os.path.join(FRONTEND_DIR, 'assets', 'registry.json'))
+
+
+
 def generate_fajr_directory():
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     os.makedirs(MEDIA_OUTPUT_DIR, exist_ok=True)
+    os.makedirs(FRONTEND_ASSETS_DIR, exist_ok=True)
+    os.makedirs(os.path.dirname(FRONTEND_DATA_FILE), exist_ok=True)
+
     
     if not os.path.exists(REGISTRY_PATH):
         print(f"ERROR: Cannot find {REGISTRY_PATH}")
@@ -301,6 +311,65 @@ def generate_fajr_directory():
 
     print(f"✅ Generated Master Directory Page: {OUTPUT_FILE}")
     print(f"   Indexed {len(valid_campaigns)} campaigns.")
+
+    # Update campaign images to be relative paths for the frontend
+    frontend_registry = []
+    for camp in valid_campaigns:
+        camp_copy = camp.copy()
+        if camp_copy.get('image'):
+            # Just store the filename, the renderer will prepend the assets path
+            img_filename = os.path.basename(str(camp_copy['image']).replace('\\', '/'))
+            camp_copy['image'] = img_filename
+        frontend_registry.append(camp_copy)
+
+    # Export to Frontend Registry
+    with open(FRONTEND_DATA_FILE, 'w', encoding='utf-8') as f:
+        json.dump(frontend_registry, f, indent=2, ensure_ascii=False)
+    print(f"✅ Exported Frontend Registry: {FRONTEND_DATA_FILE}")
+
+    # Copy images to frontend assets
+    print(f"Syncing assets to: {FRONTEND_ASSETS_DIR}")
+    os.makedirs(FRONTEND_ASSETS_DIR, exist_ok=True)
+    
+    # Potential base directories for recursive search
+    base_search_dirs = [
+        os.path.abspath(os.path.join(ACTIVE_ROOT, 'vault')),
+        os.path.abspath(os.path.join(ACTIVE_ROOT, 'data')),
+    ]
+    
+    for camp in valid_campaigns:
+        # Robust path handling for Windows absolute paths
+        raw_img_src = str(camp.get('image', '')).replace('\\', '/')
+        img_src = raw_img_src.strip()
+        if not img_src:
+            continue
+            
+        img_filename = os.path.basename(img_src)
+        abs_img_dst = os.path.join(FRONTEND_ASSETS_DIR, img_filename)
+        
+        found_path = None
+        if os.path.exists(abs_img_src):
+            found_path = abs_img_src
+        else:
+            # Recursive search in base directories
+            for bdir in base_search_dirs:
+                for root, dirs, files in os.walk(bdir):
+                    if img_filename in files:
+                        found_path = os.path.join(root, img_filename)
+                        break
+                if found_path:
+                    break
+        
+        if found_path:
+            # print(f"  COPYING: {found_path} -> {abs_img_dst}")
+            shutil.copy2(found_path, abs_img_dst)
+        else:
+            print(f"  MISSING: {img_filename} (searched all data/vault)")
+
+
+
+
+
 
 if __name__ == "__main__":
     generate_fajr_directory()

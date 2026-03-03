@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fajr.today | Sovereign Product Feed</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- AOS Library for Scroll Effects -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css?v=3.2">
+    <link rel="stylesheet" href="css/animation.css?v=3.2">
+
+    <!-- Relay System -->
+    <script src="js/relay.js?v=3.2"></script>
+
+    <style>
+        /* Specific enhancements for the Dropoff Feed */
+        .product-hero {
+            padding-top: calc(var(--header-height) + 120px);
+            background: linear-gradient(to bottom, #05070A, #0D1117);
+            text-align: center;
+            padding-bottom: 80px;
+            border-bottom: 1px solid rgba(151, 134, 75, 0.1);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+            padding: 50px 0;
+        }
+
+        .card-trust {
+            position: relative;
+            background: #0D1117;
+            border: 1px solid rgba(151, 134, 75, 0.1);
+            border-radius: 4px;
+            padding: 30px;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        .card-trust::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .card-trust:hover::before {
+            transform: translateX(100%);
+        }
+
+        .card-trust:hover {
+            border-color: var(--color-primary);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            transform: translateY(-5px);
+        }
+
+        .trust-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.7rem;
+            color: var(--color-primary);
+            margin-bottom: 15px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .trust-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--color-primary);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--color-primary);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                opacity: 0.4;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0.4;
+            }
+        }
+
+        .product-price {
+            font-size: 1.8rem;
+            color: var(--color-white);
+            font-family: 'Outfit', sans-serif;
+            margin: 20px 0;
+            display: flex;
+            align-items: baseline;
+            gap: 5px;
+        }
+
+        .product-price small {
+            font-size: 0.9rem;
+            color: var(--color-text-dim);
+        }
+
+        /* Sovereign Modal Layout */
+        .settlement-form {
+            display: grid;
+            gap: 20px;
+            text-align: left;
+            margin-top: 25px;
+        }
+
+        .settlement-input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .settlement-input-group label {
+            font-size: 0.75rem;
+            color: var(--color-primary);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .settlement-readonly {
+            background: #161B22;
+            border: 1px solid rgba(151, 134, 75, 0.2);
+            padding: 12px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            word-break: break-all;
+        }
+
+        .copy-trigger {
+            cursor: pointer;
+            color: var(--color-primary);
+            font-size: 0.8rem;
+            text-decoration: underline;
+            margin-left: 10px;
+            white-space: nowrap;
+        }
+
+        .impact-ledger {
+            background: #05070A;
+            padding: 100px 0;
+            border-top: 1px solid rgba(151, 134, 75, 0.05);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Logo Animation Loader -->
+    <div class="loader-wrapper">
+        <div class="logo-animation-container">
+            <img src="images/logo-transparency-enhanced2.png" alt="FAJR Logo" id="animated-logo"
+                style="height: 120px; opacity: 0; transform: scale(0.8); transition: all 1.5s ease-out; object-fit: contain;">
+        </div>
+    </div>
+
+    <header>
+        <div class="header-inner">
+            <a href="index.html" class="logo-horizon-wrap" style="text-decoration: none;">
+                <img src="images/logo-transparency-enhanced2.png" alt="FAJR Logo" class="horizon-logo-img">
+            </a>
+            <div class="nav-container">
+                <nav>
+                    <ul>
+                        <li><a href="index.html#about" data-i18n="nav_mission">Our Mission</a></li>
+                        <li><a href="index.html#impact" data-i18n="nav_impact">Impact</a></li>
+                        <li><a href="dropoff.html" class="lang-dual active"><span class="ar-main">المعرض</span><span
+                                    class="en-sub">Showcase</span></a></li>
+                        <li><a href="index.html#campaigns" data-i18n="nav_campaigns">Campaigns</a></li>
+                        <li><a href="https://whydonate.com/fundraising/help-fajrtoday-the-first-crypto-utility-providing-critical-services"
+                                target="_blank" data-i18n="nav_contact">Contact</a></li>
+                        <li><a href="javascript:void(0)" onclick="showShahadaModal()" class="btn btn-primary"
+                                style="padding: 0.6rem 1.5rem;">I Bear Witness</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Showcase Hero -->
+        <section class="product-hero">
+            <div class="container" data-aos="fade-up">
+                <h1 class="lang-dual" style="justify-content: center;"><span class="ar-main">سوق الصمود
+                        المباشر</span><span class="en-sub">Direct Resilience Market</span></h1>
+                <p
+                    style="margin-top: 30px; max-width: 800px; margin-left: auto; margin-right: auto; opacity: 0.7; font-size: 1.1rem; line-height: 1.8;">
+                    No business entities. No platform fees. Each transaction is a direct human-to-human relationship
+                    (Amanah). Supporting Palestinian artisans and farmers through sovereign settlement channels.
+                </p>
+            </div>
+        </section>
+
+        <!-- Product Grid -->
+        <section id="products">
+            <div class="container">
+                <div id="product-grid" class="product-grid">
+                    <!-- Dynamic Products Injected Here -->
+                    <div class="loading-state" style="text-align: center; padding: 100px; grid-column: 1 / -1;">
+                        <p style="color: var(--color-primary); font-family: 'Outfit', sans-serif; letter-spacing: 2px;">
+                            SYNCHRONIZING SOVEREIGN INVENTORY...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Impact/Ledger Section -->
+        <section class="impact-ledger">
+            <div class="container">
+                <div class="section-title" data-aos="fade-up">
+                    <h2 class="lang-dual" style="justify-content: center;"><span class="ar-main">سجل الصمود
+                            الاقتصادي</span><span class="en-sub">Economic Resilience Ledger</span></h2>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-item" data-aos="zoom-in" data-aos-delay="100">
+                        <h3 id="stat-settlements">152</h3>
+                        <p>Direct Settlements Verified</p>
+                    </div>
+                    <div class="stat-item" data-aos="zoom-in" data-aos-delay="200">
+                        <h3 id="stat-volume">$8,420</h3>
+                        <p>Total Capital Relayed</p>
+                    </div>
+                    <div class="stat-item" data-aos="zoom-in" data-aos-delay="300">
+                        <h3 id="stat-friction">0%</h3>
+                        <p>Platform Extraction</p>
+                    </div>
+                    <div class="stat-item" data-aos="zoom-in" data-aos-delay="400">
+                        <h3 id="stat-trust">100%</h3>
+                        <p>Amanah Integrity</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer
+        style="background-color: var(--color-secondary); color: white; padding: 80px 0; border-top: 1px solid rgba(151, 134, 75, 0.1);">
+        <div class="container" style="text-align: center;">
+            <a href="index.html" class="logo"
+                style="color: white; margin-bottom: 30px; display: inline-block;">fajr<span
+                    style="color: var(--color-primary);">.today</span></a>
+            <p style="opacity: 0.5; font-size: 0.9rem; letter-spacing: 1px;">SOVEREIGN NETWORK • UNPROXIED SUPPORT •
+                TRUE RESILIENCE</p>
+            <div style="margin-top: 40px; opacity: 0.3;">
+                <p>© 2026 Sovereign Fajr Network. All Human Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Sovereign Settlement Modal -->
+    <div id="sovereignModal" class="modal">
+        <div class="modal-content" data-aos="zoom-in">
+            <div class="modal-header">
+                <h2 class="lang-dual"><span class="ar-main">تسوية سيادية</span><span class="en-sub">Sovereign
+                        Settlement</span></h2>
+                <span class="close" onclick="closeSovereignModal()">&times;</span>
+            </div>
+            <div class="modal-body" style="text-align: left;">
+                <p style="margin-bottom: 25px; opacity: 0.8; font-size: 0.95rem;">
+                    You are initiating a direct settlement for: <strong id="modal-product-name"
+                        style="color: var(--color-primary);">[Product]</strong>
+                    <br>Total Amount: <strong id="modal-product-price"
+                        style="color: var(--color-white);">[Amount]</strong>
+                </p>
+
+                <div class="settlement-form">
+                    <div class="sovereign-form-field">
+                        <label class="sovereign-form-label">TRON Network (USDT-TRC20)</label>
+                        <div class="sovereign-form-value">
+                            <span id="label-tron">TJMnPF3C4r3nE3vbcn3D9xpJtMaHJLTqyL</span>
+                            <span class="copy-trigger"
+                                onclick="copyToClipboard('TJMnPF3C4r3nE3vbcn3D9xpJtMaHJLTqyL', this)">Copy</span>
+                        </div>
+                    </div>
+
+                    <div class="sovereign-form-field">
+                        <label class="sovereign-form-label">SOLANA Network (USDC/USDT)</label>
+                        <div class="sovereign-form-value">
+                            <span id="label-solana">DFfUe9f4GHCXYR8WgCGrcxM3XGbFaCwez6cszN2PfkvD</span>
+                            <span class="copy-trigger"
+                                onclick="copyToClipboard('DFfUe9f4GHCXYR8WgCGrcxM3XGbFaCwez6cszN2PfkvD', this)">Copy</span>
+                        </div>
+                    </div>
+
+                    <div class="sovereign-form-field">
+                        <label class="sovereign-form-label">MB WAY / REVOLUT (Global)</label>
+                        <div class="sovereign-form-value">
+                            <span id="label-mbway">+351 937 063 222</span>
+                            <span class="copy-trigger" onclick="copyToClipboard('+351937063222', this)">Copy</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    style="margin-top: 40px; padding: 20px; background: rgba(151, 134, 75, 0.05); border-radius: 4px; border-left: 2px solid var(--color-primary);">
+                    <p style="font-size: 0.85rem; font-weight: bold; color: var(--color-primary); margin-bottom: 10px;">
+                        AMANAH INSTRUCTIONS:</p>
+                    <ul style="font-size: 0.8rem; line-height: 1.6; opacity: 0.8;">
+                        <li>Send the exact amount. Check network fees before sending.</li>
+                        <li>Take a screenshot of your transaction confirmation.</li>
+                        <li>Send the confirmation to <a href="https://signal.me/#p/+351937063222" target="_blank"
+                                style="color: var(--color-primary);">Sovereign Relay on Signal (+351 937 063 222)</a> to
+                            coordinate fulfillment.</li>
+                    </ul>
+                </div>
+
+                <div style="margin-top: 30px;">
+                    <button class="btn btn-primary w-full" onclick="closeSovereignModal()">I HAVE SENT THE
+                        SETTLEMENT</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/i18n.js?v=3.1"></script>
+    <script src="js/navigation.js?v=3.1"></script>
+    <script src="js/dropoff.js?v=3.1"></script>
+    <script>
+        // AOS Initialization
+        AOS.init({
+            duration: 1000,
+            easing: 'ease-out-cubic',
+            once: true
+        });
+
+        // Initialize Product Feed
+        document.addEventListener('DOMContentLoaded', () => {
+            initProductFeed();
+        });
+
+        // Loader Logic
+        window.addEventListener('load', () => {
+            const loader = document.querySelector('.loader-wrapper');
+            const logo = document.getElementById('animated-logo');
+
+            setTimeout(() => {
+                logo.style.opacity = '1';
+                logo.style.transform = 'scale(1)';
+            }, 500);
+
+            setTimeout(() => {
+                loader.classList.add('fade-out');
+            }, 2500);
+        });
+
+        // Modal Logic
+        function showSovereignModal(name, price) {
+            document.getElementById('modal-product-name').innerText = name;
+            document.getElementById('modal-product-price').innerText = price;
+            document.getElementById('sovereignModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSovereignModal() {
+            document.getElementById('sovereignModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function copyToClipboard(text, el) {
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = el.innerText;
+                el.innerText = 'COPIED!';
+                el.style.color = '#fff';
+                setTimeout(() => {
+                    el.innerText = originalText;
+                    el.style.color = 'var(--color-primary)';
+                }, 2000);
+            });
+        }
+
+        window.onclick = function (event) {
+            const modal = document.getElementById('sovereignModal');
+            if (event.target == modal) {
+                closeSovereignModal();
+            }
+        }
+    </script>
+
+</body>
+
+</html>

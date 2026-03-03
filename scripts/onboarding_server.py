@@ -418,7 +418,13 @@ DB_PATH = os.path.join(ACTIVE_ROOT, 'submissions.db')
 def get_submissions(phone_id):
     """Return all submission data for a campaign from the local formal database."""
     import re as _re
+    if not phone_id or phone_id.strip() == "":
+        return jsonify([])
+
     lookup_digits = _re.sub(r'\D', '', phone_id)
+    if not lookup_digits:
+        return jsonify([])
+        
     l9 = lookup_digits[-9:] if len(lookup_digits) >= 9 else lookup_digits
 
     results = []
@@ -943,8 +949,8 @@ def translate_arabic():
             english = text if not has_arabic else translation
             arabic = translation if not has_arabic else text
             combined = f"{english} | {arabic}"
-            if len(combined) > 75:
-                combined = combined[:72] + "..."
+            if len(combined) > 160:
+                combined = combined[:157] + "..."
             return jsonify({'translation': translation, 'bilingual': combined, 'detected': 'ar' if has_arabic else 'en'})
         else:
             arabic = text if has_arabic else translation
@@ -952,7 +958,13 @@ def translate_arabic():
             combined = f"{english}\n\n---\n\n{arabic}"
             return jsonify({'translation': translation, 'bilingual': combined, 'detected': 'ar' if has_arabic else 'en'})
             
+    except requests.exceptions.HTTPError as http_err:
+        status_code = http_err.response.status_code
+        err_msg = f"Groq API Error ({status_code}): {http_err.response.text}"
+        print(f"[ERR] {err_msg}")
+        return jsonify({'error': err_msg}), status_code
     except Exception as e:
+        print(f"[ERR] Translation unexpected error: {e}")
         return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':

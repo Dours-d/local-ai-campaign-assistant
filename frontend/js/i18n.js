@@ -42,14 +42,12 @@ const i18n = {
             campaign_monthly_title: 'Sustained Autonomy',
             campaign_monthly_desc: 'Provide predictable support to ensure the independence of the field.',
             campaign_monthly_cta: 'SUSTAIN',
-            campaign_once_title: 'Direct Gift',
+            campaign_once_title: 'Direct Strike',
             campaign_once_desc: 'Immediate intervention for the most urgent field requirements.',
-            campaign_once_cta: 'GIVE NOW',
-            campaign_resilience_cta: 'BECOME SOVEREIGN',
-
-            // Campaign List Page
-            campaigns_list_title: 'The Active Field',
-            campaigns_list_subtitle: 'Direct windows to those fulfilling the Amanah.'
+            campaign_once_cta: 'STRIKE NOW',
+            campaign_resilience_title: 'Sovereign Fund',
+            campaign_resilience_desc: 'Building autonomous infrastructure to bypass all external programming.',
+            campaign_resilience_cta: 'BECOME SOVEREIGN'
         },
         ar: {
             // Navigation
@@ -60,7 +58,7 @@ const i18n = {
             nav_donate: 'كن شاهداً',
 
             // Hero
-            hero_title: 'انقضاء [الليل]<br>بزوغ [الصمود]',
+            hero_title: 'انقضاء [الليل]<br>بزوغ [الفجر]',
             hero_subtitle: 'انتهى الليل. نهوض السيادة. لا برمجة. لا وسطاء. فقط الحقيقة المباشرة للأمانة في الميدان.',
             hero_cta: 'أدِّ الأمانة الآن',
             hero_secondary: 'منطقنا',
@@ -85,14 +83,12 @@ const i18n = {
             campaign_monthly_title: 'استدامة الحكم الذاتي',
             campaign_monthly_desc: 'توفير دعم يمكن التنبؤ به لضمان استقلال الميدان.',
             campaign_monthly_cta: 'استدامة الأمانة',
-            campaign_once_title: 'عطاء مباشر',
+            campaign_once_title: 'ضربة مباشرة',
             campaign_once_desc: 'تدخل فوري لأكثر متطلبات الميدان إلحاحاً.',
-            campaign_once_cta: 'أعطِ الآن',
-            campaign_resilience_cta: 'كن سيادياً',
-
-            // Campaign List Page
-            campaigns_list_title: 'الميدان الحي',
-            campaigns_list_subtitle: 'نوافذ مباشرة لأولئك الذين يؤدون الأمانة.'
+            campaign_once_cta: 'اضرب الآن',
+            campaign_resilience_title: 'صندوق السيادة',
+            campaign_resilience_desc: 'بناء بنية تحتية مستقلة لتجاوز كافة البرمجيات الخارجية.',
+            campaign_resilience_cta: 'كن سيادياً'
         }
     },
 

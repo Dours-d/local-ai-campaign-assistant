@@ -116,8 +116,8 @@ def generate_pulse_manifestations():
         
     print(f"Found {len(valid_campaigns)} campaigns ready for visual synthesis.")
     
-    # Process just the first 3 to prevent taking 10 minutes on the first run
-    for camp in valid_campaigns[:3]:
+    # Process all valid campaigns for the mass amplification phase
+    for camp in valid_campaigns:
         identity = camp.get('custom_identity_name') or camp.get('identity_name') or camp.get('registry_name') or "Gaza Family"
         ishmael_id = camp.get('ishmael_id', 'X')
         img_url = camp.get('image')

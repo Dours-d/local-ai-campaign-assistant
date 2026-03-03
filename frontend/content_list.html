@@ -244,22 +244,27 @@
 <body class="mgmt-body">
 
     <header>
-        <div class="container nav-container">
-            <a href="index.html" class="logo">
-                <img src="images/logo.svg" alt="FAJR Logo">
+        <div class="header-inner">
+            <a href="index.html" class="logo-horizon-wrap" style="text-decoration: none;">
+                <img src="images/logo-transparency-enhanced2.png" alt="FAJR Logo" class="horizon-logo-img">
             </a>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Main Portal</a></li>
-                    <li><a href="#" class="active">Content Management</a></li>
-                    <li><button id="lang-toggle" onclick="i18n.toggle()">عربي</button></li>
-                </ul>
-            </nav>
+            <div class="nav-container">
+                <nav>
+                    <ul>
+                        <li><a href="index.html" class="lang-dual"><span class="ar-main">الرئيسية</span><span
+                                    class="en-sub">Main Portal</span></a></li>
+                        <li><a href="#" class="active lang-dual"><span class="ar-main">الإدارة</span><span
+                                    class="en-sub">Management</span></a></li>
+                        <li><button id="lang-toggle" onclick="i18n.toggle()" class="btn btn-outline"
+                                style="padding: 0.5rem 1rem; font-size: 0.8rem;">عربي</button></li>
+                    </ul>
+                </nav>
+            </div>
         </div>
     </header>
 
-    <main class="mgmt-container container">
-        <div class="mgmt-header">
+    <main class="mgmt-container container" style="margin-top: 151px;">
+        <div class="mgmt-header" style="direction: ltr;">
             <div>
                 <h1 style="color: var(--color-white);">Campaign Management</h1>
                 <p style="color: var(--color-text-dim);">Recovered Leads & Active Growth List</p>

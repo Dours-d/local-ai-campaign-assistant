@@ -14,7 +14,6 @@ active_processes = {}
 
 COMMAND_MAP = {
     "sync_submissions": ["python", "scripts/sync_submissions.py"],
-    "generate_viewer": ["python", "tmp_build_interactive_viewer_v5.py"],
     "prepare_batch": ["python", "scripts/prepare_whydonate_batch.py"],
     "run_automater": ["python", "scripts/whydonate_batch_automater.py"],
     "reconcile_ledger": ["python", "scripts/whydonate_reconcile_all.py"],
@@ -26,8 +25,7 @@ COMMAND_MAP = {
     "publish_nostr": ["python", "scripts/publish_to_nostr.py"],
     "publish_upscrolled": ["python", "scripts/publish_to_socials.py"],
     "generate_longform": ["python", "scripts/generate_longform_essay.py"],
-    "publish_medium": ["python", "scripts/publish_to_medium.py"],
-    "open_viewer": ["cmd", "/c", "start", "campaign_cards_viewer.html"]  # Windows specific open
+    "publish_medium": ["python", "scripts/publish_to_medium.py"]
 }
 
 @app.route("/")

@@ -1,0 +1,184 @@
+≡ƒîÇ X.com Injection Engine ΓÇö @Upscrolledai
+==================================================
+Found 25 pulse files.
+
+Preparing to inject 25 pulses:
+  ≡ƒô╣ A_Abu_Haytham_A_vertical.mp4             ΓåÆ PregnantA
+       ≡ƒÆ░ https://whydonate.com/fundraising/urgent...
+  ≡ƒô╣ A_Abu_Muhammad_A_vertical.mp4            ΓåÆ PregnantA
+       ≡ƒÆ░ https://whydonate.com/fundraising/urgent...
+  ≡ƒô╣ A_Hope_A_vertical.mp4                    ΓåÆ PregnantA
+       ≡ƒÆ░ https://whydonate.com/fundraising/urgent...
+  ≡ƒô╣ A_PregnantA_A_vertical.mp4               ΓåÆ PregnantA
+       ≡ƒÆ░ https://whydonate.com/fundraising/urgent...
+  ≡ƒô╣ A_Umm_Sami_A_vertical.mp4                ΓåÆ PregnantA
+       ≡ƒÆ░ https://whydonate.com/fundraising/urgent...
+  ≡ƒô╣ B_Heba_B_vertical.mp4                    ΓåÆ Beneficiary
+       ≡ƒÆ░ https://whydonate.com/fundraising/emerge...
+  ≡ƒô╣ B_Yasmine_B_vertical.mp4                 ΓåÆ Beneficiary
+       ≡ƒÆ░ https://whydonate.com/fundraising/emerge...
+  ≡ƒô╣ C_Ahmed_AlFlit_pop_vertical.mp4          ΓåÆ Help Ahmed and family survive genocide in Gaza
+       ≡ƒÆ░ https://whydonate.com/fundraising/help-a...
+  ≡ƒô╣ D1_Gaza_Family_vertical.mp4              ΓåÆ D1 Gaza Family
+  ≡ƒô╣ D_Akram_D_vertical.mp4                   ΓåÆ Help Akram and his family despite the pain in Gaza
+       ≡ƒÆ░ https://whydonate.com/fundraising/help-a...
+  ≡ƒô╣ D_Help_Ahmed_D_vertical.mp4              ΓåÆ Help Akram and his family despite the pain in Gaza
+       ≡ƒÆ░ https://whydonate.com/fundraising/help-a...
+  ≡ƒô╣ F_Mohammed_F_vertical.mp4                ΓåÆ Help Abdullah Mohammed support his 7 sons & daughters in Gaz
+       ≡ƒÆ░ https://whydonate.com/fundraising/help-a...
+  ≡ƒô╣ X_Help_Mohammed_vertical.mp4             ΓåÆ Help Mohammed Pursue Dentistry and Support His Family
+       ≡ƒÆ░ https://whydonate.com/fundraising/help-m...
+  ≡ƒô╣ X_Urgent_Medical_vertical.mp4            ΓåÆ Urgent Medical Aid for My Child and Husband
+       ≡ƒÆ░ https://whydonate.com/fundraising/urgent...
+  ≡ƒô╣ _Abdel_Rahim_vertical.mp4                ΓåÆ They Are Living in a Tent! Help Gaza Nurse !
+       ≡ƒÆ░ https://whydonate.com/fundraising/help-g...
+  ≡ƒô╣ _Abdullah_hoping_vertical.mp4            ΓåÆ Help Abdullah who is hoping for a future
+       ≡ƒÆ░ https://whydonate.com/fundraising/help-a...
+  ≡ƒô╣ _Ahmed_smile_vertical.mp4                ΓåÆ Let's draw a smile together
+       ≡ƒÆ░ https://whydonate.com/fundraising/lets-d...
+  ≡ƒô╣ _Aysha_vertical.mp4                      ΓåÆ  Aysha
+  ≡ƒô╣ _Marah_vertical.mp4                      ΓåÆ  Marah
+  ≡ƒô╣ _Mother_10_vertical.mp4                  ΓåÆ Urgent Winter Aid for Mother of 10
+       ≡ƒÆ░ https://whydonate.com/fundraising/-urgen...
+  ≡ƒô╣ _Um_Mohammeds_children_vertical.mp4      ΓåÆ Save Um Mohammed's children
+       ≡ƒÆ░ https://whydonate.com/fundraising/save-u...
+  ≡ƒô╣ _Umm_Iman_vertical.mp4                   ΓåÆ Help Umm Iman and Her family survive the genocide
+       ≡ƒÆ░ https://whydonate.com/fundraising/help-u...
+  ≡ƒô╣ _Umm_Masoud_vertical.mp4                 ΓåÆ Help Umm Masoud and her daughter, survivors in the rubbles o
+       ≡ƒÆ░ https://whydonate.com/fundraising/help-u...
+  ≡ƒô╣ _our_brother_vertical.mp4                ΓåÆ Help our brother with financial support
+       ≡ƒÆ░ https://whydonate.com/fundraising/help-o...
+  ≡ƒô╣ _╪º┘à_╪╣┘ä┘ê╪┤_Salman_AlWatts_vertical.mp4     ΓåÆ Save Salman Ali and his family from awful destruction
+       ≡ƒÆ░ https://whydonate.com/fundraising/save-s...
+
+Launching injection...
+
+≡ƒÉª Launching X.com injection context (@Upscrolledai)...
+Verifying X session...
+Γ£à Session valid. Injecting 25 pulses...
+≡ƒôñ Posting pulse 1/25: PregnantA A...
+Γ¥î Failed to post PregnantA A: Locator.wait_for: Error: strict mode violation: locator("[data-testid=\"tweetTextarea_0\"]") resolved to 2 elements:
+    1) <div tabindex="0" role="textbox" spellcheck="true" aria-multiline="true" aria-label="Post text" contenteditable="true" aria-autocomplete="list" data-testid="tweetTextarea_0" no-focustrapview-refocus="true" aria-describedby="placeholder-9f9n3" aria-controls="typeaheadDropdownWrapped-5" class="notranslate public-DraftEditor-content" aria-activedescendant="typeaheadFocus-0.8299629730845025">ΓÇª</div> aka get_by_role("textbox", name="Post text")
+    2) <div tabindex="0" role="textbox" spellcheck="true" aria-multiline="true" aria-label="Post text" contenteditable="true" aria-autocomplete="list" data-testid="tweetTextarea_0" no-focustrapview-refocus="true" aria-describedby="placeholder-a7rs9" aria-controls="typeaheadDropdownWrapped-7" class="notranslate public-DraftEditor-content" aria-activedescendant="typeaheadFocus-0.35452662831675497">ΓÇª</div> aka get_by_test_id("primaryColumn").get_by_test_id("tweetTextarea_0")
+
+Call log:
+  - waiting for locator("[data-testid=\"tweetTextarea_0\"]") to be visible
+
+≡ƒôñ Posting pulse 2/25: PregnantA A...
+Γ¥î Failed to post PregnantA A: Locator.wait_for: Error: strict mode violation: locator("[data-testid=\"tweetTextarea_0\"]") resolved to 2 elements:
+    1) <div tabindex="0" role="textbox" spellcheck="true" aria-multiline="true" aria-label="Post text" contenteditable="true" aria-autocomplete="list" data-testid="tweetTextarea_0" no-focustrapview-refocus="true" aria-describedby="placeholder-553f" aria-controls="typeaheadDropdownWrapped-2" class="notranslate public-DraftEditor-content" aria-activedescendant="typeaheadFocus-0.5992031183502801">ΓÇª</div> aka get_by_role("textbox", name="Post text")
+    2) <div tabindex="0" role="textbox" spellcheck="true" aria-multiline="true" aria-label="Post text" contenteditable="true" aria-autocomplete="list" data-testid="tweetTextarea_0" no-focustrapview-refocus="true" aria-describedby="placeholder-agvfq" aria-controls="typeaheadDropdownWrapped-1" class="notranslate public-DraftEditor-content" aria-activedescendant="typeaheadFocus-0.7535590450686571">ΓÇª</div> aka get_by_test_id("primaryColumn").get_by_test_id("tweetTextarea_0")
+
+Call log:
+  - waiting for locator("[data-testid=\"tweetTextarea_0\"]") to be visible
+
+≡ƒôñ Posting pulse 3/25: PregnantA A...
+Γ¥î Failed to post PregnantA A: Locator.wait_for: Error: strict mode violation: locator("[data-testid=\"tweetTextarea_0\"]") resolved to 2 elements:
+    1) <div tabindex="0" role="textbox" spellcheck="true" aria-multiline="true" aria-label="Post text" contenteditable="true" aria-autocomplete="list" data-testid="tweetTextarea_0" no-focustrapview-refocus="true" aria-describedby="placeholder-e0qti" aria-controls="typeaheadDropdownWrapped-0" class="notranslate public-DraftEditor-content" aria-activedescendant="typeaheadFocus-0.8992549490959547">ΓÇª</div> aka get_by_role("textbox", name="Post text")
+    2) <div tabindex="0" role="textbox" spellcheck="true" aria-multiline="true" aria-label="Post text" contenteditable="true" aria-autocomplete="list" data-testid="tweetTextarea_0" no-focustrapview-refocus="true" aria-describedby="placeholder-350a7" aria-controls="typeaheadDropdownWrapped-11" class="notranslate public-DraftEditor-content" aria-activedescendant="typeaheadFocus-0.5056077696920264">ΓÇª</div> aka get_by_test_id("primaryColumn").get_by_test_id("tweetTextarea_0")
+
+Call log:
+  - waiting for locator("[data-testid=\"tweetTextarea_0\"]") to be visible
+
+≡ƒôñ Posting pulse 4/25: PregnantA A...
+Γ¥î Failed to post PregnantA A: Locator.wait_for: Error: strict mode violation: locator("[data-testid=\"tweetTextarea_0\"]") resolved to 2 elements:
+    1) <div tabindex="0" role="textbox" spellcheck="true" aria-multiline="true" aria-label="Post text" contenteditable="true" aria-autocomplete="list" data-testid="tweetTextarea_0" no-focustrapview-refocus="true" aria-describedby="placeholder-ctptf" aria-controls="typeaheadDropdownWrapped-8" class="notranslate public-DraftEditor-content" aria-activedescendant="typeaheadFocus-0.08644824960221065">ΓÇª</div> aka get_by_role("textbox", name="Post text")
+    2) <div tabindex="0" role="textbox" spellcheck="true" aria-multiline="true" aria-label="Post text" contenteditable="true" aria-autocomplete="list" data-testid="tweetTextarea_0" no-focustrapview-refocus="true" aria-describedby="placeholder-8s49r" aria-controls="typeaheadDropdownWrapped-7" class="notranslate public-DraftEditor-content" aria-activedescendant="typeaheadFocus-0.020675626271911995">ΓÇª</div> aka get_by_test_id("primaryColumn").get_by_test_id("tweetTextarea_0")
+
+Call log:
+  - waiting for locator("[data-testid=\"tweetTextarea_0\"]") to be visible
+
+≡ƒôñ Posting pulse 5/25: PregnantA A...
+Γ¥î Failed to post PregnantA A: Locator.wait_for: Error: strict mode violation: locator("[data-testid=\"tweetTextarea_0\"]") resolved to 2 elements:
+    1) <div tabindex="0" role="textbox" spellcheck="true" aria-multiline="true" aria-label="Post text" contenteditable="true" aria-autocomplete="list" data-testid="tweetTextarea_0" no-focustrapview-refocus="true" aria-describedby="placeholder-3t8o3" aria-controls="typeaheadDropdownWrapped-2" class="notranslate public-DraftEditor-content" aria-activedescendant="typeaheadFocus-0.5137026300496045">ΓÇª</div> aka get_by_role("textbox", name="Post text")
+    2) <div tabindex="0" role="textbox" spellcheck="true" aria-multiline="true" aria-label="Post text" contenteditable="true" aria-autocomplete="list" data-testid="tweetTextarea_0" no-focustrapview-refocus="true" aria-describedby="placeholder-1j8a7" aria-controls="typeaheadDropdownWrapped-1" class="notranslate public-DraftEditor-content" aria-activedescendant="typeaheadFocus-0.8349946592772016">ΓÇª</div> aka get_by_test_id("primaryColumn").get_by_test_id("tweetTextarea_0")
+
+Call log:
+  - waiting for locator("[data-testid=\"tweetTextarea_0\"]") to be visible
+
+≡ƒôñ Posting pulse 6/25: Beneficiary B...
+Γ¥î Failed to post Beneficiary B: Locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("[data-testid=\"tweetTextarea_0\"]")
+    - locator resolved to <div tabindex="0" role="textbox" spellcheck="true" aria-multiline="true" aria-label="Post text" contenteditable="true" aria-autocomplete="list" data-testid="tweetTextarea_0" no-focustrapview-refocus="true" aria-describedby="placeholder-9h9uf" aria-controls="typeaheadDropdownWrapped-1" class="notranslate public-DraftEditor-content" aria-activedescendant="typeaheadFocus-0.5079825947332868">ΓÇª</div>
+  - attempting click action
+    2 ├ù waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1h8ys4a r-slzeqm r-ly4kne">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+    - retrying click action
+    - waiting 20ms
+    - waiting for element to be visible, enabled and stable
+    - element is visible, enabled and stable
+    - scrolling into view if needed
+    - done scrolling
+    - <div class="css-175oi2r r-1h8ys4a r-slzeqm r-ly4kne">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+  2 ├ù retrying click action
+      - waiting 100ms
+      - waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div data-testid="twc-cc-mask" class="css-175oi2r r-1pi2tsx r-1d2f490 r-1xcajam r-ipm5af r-13qz1uu"></div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+  2 ├ù retrying click action
+      - waiting 500ms
+      - waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1h8ys4a r-slzeqm r-ly4kne">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+    - retrying click action
+      - waiting 500ms
+      - waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1h8ys4a r-slzeqm r-ly4kne">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+    - retrying click action
+      - waiting 500ms
+      - waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div data-testid="twc-cc-mask" class="css-175oi2r r-1pi2tsx r-1d2f490 r-1xcajam r-ipm5af r-13qz1uu"></div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+    - retrying click action
+      - waiting 500ms
+      - waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div data-testid="twc-cc-mask" class="css-175oi2r r-1pi2tsx r-1d2f490 r-1xcajam r-ipm5af r-13qz1uu"></div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+  - retrying click action
+    - waiting 500ms
+    - waiting for element to be visible, enabled and stable
+    - element is visible, enabled and stable
+    - scrolling into view if needed
+    - done scrolling
+    - <div class="css-175oi2r r-1h8ys4a r-slzeqm r-ly4kne">ΓÇª</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">ΓÇª</div> subtree intercepts pointer events
+  - retrying click action
+    - waiting 500ms
+    - waiting for element to be visible, enabled and stable
+
+≡ƒôñ Posting pulse 7/25: Beneficiary B...
+Γ¥î Failed to post Beneficiary B: Locator.wait_for: Timeout 10000ms exceeded.
+Call log:
+  - waiting for locator("[data-testid=\"tweetTextarea_0\"]") to be visible
+
+≡ƒôñ Posting pulse 8/25: Ahmed Al-Flit pop...
+Γ¥î Failed to post Ahmed Al-Flit pop: Locator.wait_for: Error: strict mode violation: locator("[data-testid=\"tweetTextarea_0\"]") resolved to 2 elements:
+    1) <div tabindex="0" role="textbox" spellcheck="true" aria-multiline="true" aria-label="Post text" contenteditable="true" aria-autocomplete="list" data-testid="tweetTextarea_0" no-focustrapview-refocus="true" aria-describedby="placeholder-bbfkl" aria-controls="typeaheadDropdownWrapped-13" class="notranslate public-DraftEditor-content" aria-activedescendant="typeaheadFocus-0.41257102917796173">ΓÇª</div> aka get_by_role("textbox", name="Post text")
+    2) <div tabindex="0" role="textbox" spellcheck="true" aria-multiline="true" aria-label="Post text" contenteditable="true" aria-autocomplete="list" data-testid="tweetTextarea_0" no-focustrapview-refocus="true" aria-describedby="placeholder-4lbt2" aria-controls="typeaheadDropdownWrapped-14" class="notranslate public-DraftEditor-content" aria-activedescendant="typeaheadFocus-0.9492697112927142">ΓÇª</div> aka get_by_test_id("primaryColumn").get_by_test_id("tweetTextarea_0")
+
+Call log:
+  - waiting for locator("[data-testid=\"tweetTextarea_0\"]") to be visible
+
+Γ¥î X injection error: Page.screenshot: Target page, context or browser has been closed
+Call log:
+  - taking page screenshot
+  - waiting for fonts to load...
+  - fonts loaded
+
+≡ƒîÇ X.com injection complete.
+
+Γ£à Done.

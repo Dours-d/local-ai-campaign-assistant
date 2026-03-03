@@ -1,0 +1,269 @@
+🌀 X.com Injection Engine — @Upscrolledai
+==================================================
+Found 25 pulse files.
+
+Preparing to inject 25 pulses:
+  📹 A_Abu_Haytham_A_vertical.mp4             → PregnantA
+       💰 https://whydonate.com/fundraising/urgent...
+  📹 A_Abu_Muhammad_A_vertical.mp4            → PregnantA
+       💰 https://whydonate.com/fundraising/urgent...
+  📹 A_Hope_A_vertical.mp4                    → PregnantA
+       💰 https://whydonate.com/fundraising/urgent...
+  📹 A_PregnantA_A_vertical.mp4               → PregnantA
+       💰 https://whydonate.com/fundraising/urgent...
+  📹 A_Umm_Sami_A_vertical.mp4                → PregnantA
+       💰 https://whydonate.com/fundraising/urgent...
+  📹 B_Heba_B_vertical.mp4                    → Beneficiary
+       💰 https://whydonate.com/fundraising/emerge...
+  📹 B_Yasmine_B_vertical.mp4                 → Beneficiary
+       💰 https://whydonate.com/fundraising/emerge...
+  📹 C_Ahmed_AlFlit_pop_vertical.mp4          → Help Ahmed and family survive genocide in Gaza
+       💰 https://whydonate.com/fundraising/help-a...
+  📹 D1_Gaza_Family_vertical.mp4              → D1 Gaza Family
+  📹 D_Akram_D_vertical.mp4                   → Help Akram and his family despite the pain in Gaza
+       💰 https://whydonate.com/fundraising/help-a...
+  📹 D_Help_Ahmed_D_vertical.mp4              → Help Akram and his family despite the pain in Gaza
+       💰 https://whydonate.com/fundraising/help-a...
+  📹 F_Mohammed_F_vertical.mp4                → Help Abdullah Mohammed support his 7 sons & daughters in Gaz
+       💰 https://whydonate.com/fundraising/help-a...
+  📹 X_Help_Mohammed_vertical.mp4             → Help Mohammed Pursue Dentistry and Support His Family
+       💰 https://whydonate.com/fundraising/help-m...
+  📹 X_Urgent_Medical_vertical.mp4            → Urgent Medical Aid for My Child and Husband
+       💰 https://whydonate.com/fundraising/urgent...
+  📹 _Abdel_Rahim_vertical.mp4                → They Are Living in a Tent! Help Gaza Nurse !
+       💰 https://whydonate.com/fundraising/help-g...
+  📹 _Abdullah_hoping_vertical.mp4            → Help Abdullah who is hoping for a future
+       💰 https://whydonate.com/fundraising/help-a...
+  📹 _Ahmed_smile_vertical.mp4                → Let's draw a smile together
+       💰 https://whydonate.com/fundraising/lets-d...
+  📹 _Aysha_vertical.mp4                      →  Aysha
+  📹 _Marah_vertical.mp4                      →  Marah
+  📹 _Mother_10_vertical.mp4                  → Urgent Winter Aid for Mother of 10
+       💰 https://whydonate.com/fundraising/-urgen...
+  📹 _Um_Mohammeds_children_vertical.mp4      → Save Um Mohammed's children
+       💰 https://whydonate.com/fundraising/save-u...
+  📹 _Umm_Iman_vertical.mp4                   → Help Umm Iman and Her family survive the genocide
+       💰 https://whydonate.com/fundraising/help-u...
+  📹 _Umm_Masoud_vertical.mp4                 → Help Umm Masoud and her daughter, survivors in the rubbles o
+       💰 https://whydonate.com/fundraising/help-u...
+  📹 _our_brother_vertical.mp4                → Help our brother with financial support
+       💰 https://whydonate.com/fundraising/help-o...
+  📹 _ام_علوش_Salman_AlWatts_vertical.mp4     → Save Salman Ali and his family from awful destruction
+       💰 https://whydonate.com/fundraising/save-s...
+
+Launching injection...
+
+🐦 Launching X.com injection context (@Upscrolledai)...
+Verifying X session...
+✅ Session valid. Injecting 25 pulses...
+📤 Posting pulse 1/25: PregnantA A...
+❌ Failed to post PregnantA A: Locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("[data-testid=\"tweetTextarea_0\"]")
+    - locator resolved to <div tabindex="0" role="textbox" spellcheck="true" aria-multiline="true" aria-label="Post text" contenteditable="true" aria-autocomplete="list" data-testid="tweetTextarea_0" no-focustrapview-refocus="true" aria-describedby="placeholder-eqps8" aria-controls="typeaheadDropdownWrapped-4" class="notranslate public-DraftEditor-content" aria-activedescendant="typeaheadFocus-0.3408135428054687">…</div>
+  - attempting click action
+    2 × waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1h8ys4a r-slzeqm r-ly4kne">…</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">…</div> subtree intercepts pointer events
+    - retrying click action
+    - waiting 20ms
+    - waiting for element to be visible, enabled and stable
+    - element is visible, enabled and stable
+    - scrolling into view if needed
+    - done scrolling
+    - <div class="css-175oi2r r-1h8ys4a r-slzeqm r-ly4kne">…</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">…</div> subtree intercepts pointer events
+  2 × retrying click action
+      - waiting 100ms
+      - waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div data-testid="twc-cc-mask" class="css-175oi2r r-1pi2tsx r-1d2f490 r-1xcajam r-ipm5af r-13qz1uu"></div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">…</div> subtree intercepts pointer events
+  2 × retrying click action
+      - waiting 500ms
+      - waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1h8ys4a r-slzeqm r-ly4kne">…</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">…</div> subtree intercepts pointer events
+    - retrying click action
+      - waiting 500ms
+      - waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1h8ys4a r-slzeqm r-ly4kne">…</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">…</div> subtree intercepts pointer events
+    - retrying click action
+      - waiting 500ms
+      - waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div data-testid="twc-cc-mask" class="css-175oi2r r-1pi2tsx r-1d2f490 r-1xcajam r-ipm5af r-13qz1uu"></div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">…</div> subtree intercepts pointer events
+    - retrying click action
+      - waiting 500ms
+      - waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div data-testid="twc-cc-mask" class="css-175oi2r r-1pi2tsx r-1d2f490 r-1xcajam r-ipm5af r-13qz1uu"></div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">…</div> subtree intercepts pointer events
+  2 × retrying click action
+      - waiting 500ms
+      - waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1h8ys4a r-slzeqm r-ly4kne">…</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">…</div> subtree intercepts pointer events
+  - retrying click action
+    - waiting 500ms
+    - waiting for element to be visible, enabled and stable
+
+📤 Posting pulse 2/25: PregnantA A...
+❌ Failed to post PregnantA A: Locator.set_input_files: Error: strict mode violation: locator("input[data-testid=\"fileInput\"]") resolved to 2 elements:
+    1) <input multiple type="file" tabindex="-1" data-testid="fileInput" class="r-8akbif r-orgf3d r-1udh08x r-u8s1d r-xjis5s r-1wyyakw" accept="image/jpeg,image/png,image/webp,image/gif,video/mp4,video/quicktime"/> aka get_by_role("button", name="Choose File")
+    2) <input multiple type="file" tabindex="-1" data-testid="fileInput" class="r-8akbif r-orgf3d r-1udh08x r-u8s1d r-xjis5s r-1wyyakw" accept="image/jpeg,image/png,image/webp,image/gif,video/mp4,video/quicktime"/> aka get_by_test_id("primaryColumn").get_by_test_id("fileInput")
+
+Call log:
+  - waiting for locator("input[data-testid=\"fileInput\"]")
+
+📤 Posting pulse 3/25: PregnantA A...
+❌ Failed to post PregnantA A: Locator.wait_for: Error: strict mode violation: locator("[data-testid=\"tweetTextarea_0\"]") resolved to 2 elements:
+    1) <div tabindex="0" role="textbox" spellcheck="true" aria-multiline="true" aria-label="Post text" contenteditable="true" aria-autocomplete="list" data-testid="tweetTextarea_0" no-focustrapview-refocus="true" aria-describedby="placeholder-d4l6h" aria-controls="typeaheadDropdownWrapped-0" class="notranslate public-DraftEditor-content" aria-activedescendant="typeaheadFocus-0.8414197120315383">…</div> aka get_by_role("textbox", name="Post text")
+    2) <div tabindex="0" role="textbox" spellcheck="true" aria-multiline="true" aria-label="Post text" contenteditable="true" aria-autocomplete="list" data-testid="tweetTextarea_0" no-focustrapview-refocus="true" aria-describedby="placeholder-b7knp" aria-controls="typeaheadDropdownWrapped-4" class="notranslate public-DraftEditor-content" aria-activedescendant="typeaheadFocus-0.3101444849221796">…</div> aka get_by_test_id("primaryColumn").get_by_test_id("tweetTextarea_0")
+
+Call log:
+  - waiting for locator("[data-testid=\"tweetTextarea_0\"]") to be visible
+
+📤 Posting pulse 4/25: PregnantA A...
+❌ Failed to post PregnantA A: Locator.wait_for: Error: strict mode violation: locator("[data-testid=\"tweetTextarea_0\"]") resolved to 2 elements:
+    1) <div tabindex="0" role="textbox" spellcheck="true" aria-multiline="true" aria-label="Post text" contenteditable="true" aria-autocomplete="list" data-testid="tweetTextarea_0" no-focustrapview-refocus="true" aria-describedby="placeholder-d8i0v" aria-controls="typeaheadDropdownWrapped-0" class="notranslate public-DraftEditor-content" aria-activedescendant="typeaheadFocus-0.8846526475561646">…</div> aka get_by_role("textbox", name="Post text")
+    2) <div tabindex="0" role="textbox" spellcheck="true" aria-multiline="true" aria-label="Post text" contenteditable="true" aria-autocomplete="list" data-testid="tweetTextarea_0" no-focustrapview-refocus="true" aria-describedby="placeholder-d1fe1" aria-controls="typeaheadDropdownWrapped-1" class="notranslate public-DraftEditor-content" aria-activedescendant="typeaheadFocus-0.19877222834397312">…</div> aka get_by_test_id("primaryColumn").get_by_test_id("tweetTextarea_0")
+
+Call log:
+  - waiting for locator("[data-testid=\"tweetTextarea_0\"]") to be visible
+
+📤 Posting pulse 5/25: PregnantA A...
+❌ Failed to post PregnantA A: Locator.wait_for: Error: strict mode violation: locator("[data-testid=\"tweetTextarea_0\"]") resolved to 2 elements:
+    1) <div tabindex="0" role="textbox" spellcheck="true" aria-multiline="true" aria-label="Post text" contenteditable="true" aria-autocomplete="list" data-testid="tweetTextarea_0" no-focustrapview-refocus="true" aria-describedby="placeholder-3s8fk" aria-controls="typeaheadDropdownWrapped-0" class="notranslate public-DraftEditor-content" aria-activedescendant="typeaheadFocus-0.6947763515613194">…</div> aka get_by_role("textbox", name="Post text")
+    2) <div tabindex="0" role="textbox" spellcheck="true" aria-multiline="true" aria-label="Post text" contenteditable="true" aria-autocomplete="list" data-testid="tweetTextarea_0" no-focustrapview-refocus="true" aria-describedby="placeholder-4of2a" aria-controls="typeaheadDropdownWrapped-1" class="notranslate public-DraftEditor-content" aria-activedescendant="typeaheadFocus-0.39719611330618">…</div> aka get_by_test_id("primaryColumn").get_by_test_id("tweetTextarea_0")
+
+Call log:
+  - waiting for locator("[data-testid=\"tweetTextarea_0\"]") to be visible
+
+📤 Posting pulse 6/25: Beneficiary B...
+❌ Failed to post Beneficiary B: Locator.wait_for: Timeout 10000ms exceeded.
+Call log:
+  - waiting for locator("[data-testid=\"tweetTextarea_0\"]") to be visible
+
+📤 Posting pulse 7/25: Beneficiary B...
+❌ Failed to post Beneficiary B: Locator.set_input_files: Error: strict mode violation: locator("input[data-testid=\"fileInput\"]") resolved to 2 elements:
+    1) <input multiple type="file" tabindex="-1" data-testid="fileInput" class="r-8akbif r-orgf3d r-1udh08x r-u8s1d r-xjis5s r-1wyyakw" accept="image/jpeg,image/png,image/webp,image/gif,video/mp4,video/quicktime"/> aka get_by_role("button", name="Choose File")
+    2) <input multiple type="file" tabindex="-1" data-testid="fileInput" class="r-8akbif r-orgf3d r-1udh08x r-u8s1d r-xjis5s r-1wyyakw" accept="image/jpeg,image/png,image/webp,image/gif,video/mp4,video/quicktime"/> aka get_by_test_id("primaryColumn").get_by_test_id("fileInput")
+
+Call log:
+  - waiting for locator("input[data-testid=\"fileInput\"]")
+
+📤 Posting pulse 8/25: Ahmed Al-Flit pop...
+❌ Failed to post Ahmed Al-Flit pop: Locator.click: Error: strict mode violation: locator("[data-testid=\"tweetTextarea_0\"]") resolved to 2 elements:
+    1) <div tabindex="0" role="textbox" spellcheck="true" aria-multiline="true" aria-label="Post text" contenteditable="true" aria-autocomplete="list" data-testid="tweetTextarea_0" no-focustrapview-refocus="true" aria-describedby="placeholder-arb5a" aria-controls="typeaheadDropdownWrapped-2" class="notranslate public-DraftEditor-content" aria-activedescendant="typeaheadFocus-0.3795526910040329">…</div> aka get_by_role("textbox", name="Post text")
+    2) <div tabindex="0" role="textbox" spellcheck="true" aria-multiline="true" aria-label="Post text" contenteditable="true" aria-autocomplete="list" data-testid="tweetTextarea_0" no-focustrapview-refocus="true" aria-describedby="placeholder-16i1i" aria-controls="typeaheadDropdownWrapped-1" class="notranslate public-DraftEditor-content" aria-activedescendant="typeaheadFocus-0.07103160184886659">…</div> aka get_by_test_id("primaryColumn").get_by_test_id("tweetTextarea_0")
+
+Call log:
+  - waiting for locator("[data-testid=\"tweetTextarea_0\"]")
+
+📤 Posting pulse 9/25: D1 Gaza Family...
+❌ Failed to post D1 Gaza Family: Locator.wait_for: Error: strict mode violation: locator("[data-testid=\"tweetTextarea_0\"]") resolved to 2 elements:
+    1) <div tabindex="0" role="textbox" spellcheck="true" aria-multiline="true" aria-label="Post text" contenteditable="true" aria-autocomplete="list" data-testid="tweetTextarea_0" no-focustrapview-refocus="true" aria-describedby="placeholder-8f798" aria-controls="typeaheadDropdownWrapped-0" class="notranslate public-DraftEditor-content" aria-activedescendant="typeaheadFocus-0.3123696770187957">…</div> aka get_by_role("textbox", name="Post text")
+    2) <div tabindex="0" role="textbox" spellcheck="true" aria-multiline="true" aria-label="Post text" contenteditable="true" aria-autocomplete="list" data-testid="tweetTextarea_0" no-focustrapview-refocus="true" aria-describedby="placeholder-vi75" aria-controls="typeaheadDropdownWrapped-1" class="notranslate public-DraftEditor-content" aria-activedescendant="typeaheadFocus-0.7994732057448367">…</div> aka get_by_test_id("primaryColumn").get_by_test_id("tweetTextarea_0")
+
+Call log:
+  - waiting for locator("[data-testid=\"tweetTextarea_0\"]") to be visible
+
+📤 Posting pulse 10/25: Akram D...
+❌ Failed to post Akram D: Locator.wait_for: Timeout 10000ms exceeded.
+Call log:
+  - waiting for locator("[data-testid=\"tweetTextarea_0\"]") to be visible
+
+📤 Posting pulse 11/25: Akram D...
+❌ Failed to post Akram D: Locator.set_input_files: Error: strict mode violation: locator("input[data-testid=\"fileInput\"]") resolved to 2 elements:
+    1) <input multiple type="file" tabindex="-1" data-testid="fileInput" class="r-8akbif r-orgf3d r-1udh08x r-u8s1d r-xjis5s r-1wyyakw" accept="image/jpeg,image/png,image/webp,image/gif,video/mp4,video/quicktime"/> aka get_by_role("button", name="Choose File")
+    2) <input multiple type="file" tabindex="-1" data-testid="fileInput" class="r-8akbif r-orgf3d r-1udh08x r-u8s1d r-xjis5s r-1wyyakw" accept="image/jpeg,image/png,image/webp,image/gif,video/mp4,video/quicktime"/> aka get_by_test_id("primaryColumn").get_by_test_id("fileInput")
+
+Call log:
+  - waiting for locator("input[data-testid=\"fileInput\"]")
+
+📤 Posting pulse 12/25: Mohammed F...
+❌ Failed to post Mohammed F: Locator.wait_for: Timeout 10000ms exceeded.
+Call log:
+  - waiting for locator("[data-testid=\"tweetTextarea_0\"]") to be visible
+
+📤 Posting pulse 13/25: Help Mohammed...
+❌ Failed to post Help Mohammed: Locator.wait_for: Timeout 10000ms exceeded.
+Call log:
+  - waiting for locator("[data-testid=\"tweetTextarea_0\"]") to be visible
+
+📤 Posting pulse 14/25: Urgent Medical...
+❌ Failed to post Urgent Medical: Locator.wait_for: Timeout 10000ms exceeded.
+Call log:
+  - waiting for locator("[data-testid=\"tweetTextarea_0\"]") to be visible
+
+📤 Posting pulse 15/25: Abdel Rahim...
+❌ Failed to post Abdel Rahim: Locator.wait_for: Timeout 10000ms exceeded.
+Call log:
+  - waiting for locator("[data-testid=\"tweetTextarea_0\"]") to be visible
+
+📤 Posting pulse 16/25: Abdullah hoping...
+❌ Failed to post Abdullah hoping: Locator.wait_for: Timeout 10000ms exceeded.
+Call log:
+  - waiting for locator("[data-testid=\"tweetTextarea_0\"]") to be visible
+
+📤 Posting pulse 17/25: Ahmed smile...
+❌ Failed to post Ahmed smile: Locator.wait_for: Timeout 10000ms exceeded.
+Call log:
+  - waiting for locator("[data-testid=\"tweetTextarea_0\"]") to be visible
+
+📤 Posting pulse 18/25:  Aysha...
+❌ Failed to post  Aysha: Locator.wait_for: Timeout 10000ms exceeded.
+Call log:
+  - waiting for locator("[data-testid=\"tweetTextarea_0\"]") to be visible
+
+📤 Posting pulse 19/25:  Marah...
+❌ Failed to post  Marah: Locator.wait_for: Timeout 10000ms exceeded.
+Call log:
+  - waiting for locator("[data-testid=\"tweetTextarea_0\"]") to be visible
+
+📤 Posting pulse 20/25: Mother 10...
+❌ Failed to post Mother 10: Locator.wait_for: Timeout 10000ms exceeded.
+Call log:
+  - waiting for locator("[data-testid=\"tweetTextarea_0\"]") to be visible
+
+📤 Posting pulse 21/25: Um Mohammeds children...
+❌ Failed to post Um Mohammeds children: Locator.wait_for: Timeout 10000ms exceeded.
+Call log:
+  - waiting for locator("[data-testid=\"tweetTextarea_0\"]") to be visible
+
+📤 Posting pulse 22/25: Umm Iman...
+❌ Failed to post Umm Iman: Locator.wait_for: Timeout 10000ms exceeded.
+Call log:
+  - waiting for locator("[data-testid=\"tweetTextarea_0\"]") to be visible
+
+📤 Posting pulse 23/25: Umm Masoud...
+❌ Failed to post Umm Masoud: Locator.wait_for: Timeout 10000ms exceeded.
+Call log:
+  - waiting for locator("[data-testid=\"tweetTextarea_0\"]") to be visible
+
+📤 Posting pulse 24/25: our brother...
+❌ Failed to post our brother: Locator.wait_for: Timeout 10000ms exceeded.
+Call log:
+  - waiting for locator("[data-testid=\"tweetTextarea_0\"]") to be visible
+
+📤 Posting pulse 25/25: ام علوش Salman Al-Watts...
+❌ Failed to post ام علوش Salman Al-Watts: Locator.wait_for: Timeout 10000ms exceeded.
+Call log:
+  - waiting for locator("[data-testid=\"tweetTextarea_0\"]") to be visible
+
+🌀 X.com injection complete.
+
+✅ Done.

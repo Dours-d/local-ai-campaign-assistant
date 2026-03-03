@@ -1,0 +1,422 @@
+🌀 X.com Injection Engine — @Upscrolledai
+==================================================
+Found 25 pulse files.
+⚠️ Limiting to 25 pulses.
+
+Preparing to inject 25 pulses:
+  📹 A_Abu_Haytham_A_vertical.mp4             → PregnantA
+       💰 https://whydonate.com/fundraising/urgent...
+  📹 A_Abu_Muhammad_A_vertical.mp4            → PregnantA
+       💰 https://whydonate.com/fundraising/urgent...
+  📹 A_Hope_A_vertical.mp4                    → PregnantA
+       💰 https://whydonate.com/fundraising/urgent...
+  📹 A_PregnantA_A_vertical.mp4               → PregnantA
+       💰 https://whydonate.com/fundraising/urgent...
+  📹 A_Umm_Sami_A_vertical.mp4                → PregnantA
+       💰 https://whydonate.com/fundraising/urgent...
+  📹 B_Heba_B_vertical.mp4                    → Beneficiary
+       💰 https://whydonate.com/fundraising/emerge...
+  📹 B_Yasmine_B_vertical.mp4                 → Beneficiary
+       💰 https://whydonate.com/fundraising/emerge...
+  📹 C_Ahmed_AlFlit_pop_vertical.mp4          → Help Ahmed and family survive genocide in Gaza
+       💰 https://whydonate.com/fundraising/help-a...
+  📹 D1_Gaza_Family_vertical.mp4              → D1 Gaza Family
+  📹 D_Akram_D_vertical.mp4                   → Help Akram and his family despite the pain in Gaza
+       💰 https://whydonate.com/fundraising/help-a...
+  📹 D_Help_Ahmed_D_vertical.mp4              → Help Akram and his family despite the pain in Gaza
+       💰 https://whydonate.com/fundraising/help-a...
+  📹 F_Mohammed_F_vertical.mp4                → Help Abdullah Mohammed support his 7 sons & daughters in Gaz
+       💰 https://whydonate.com/fundraising/help-a...
+  📹 X_Help_Mohammed_vertical.mp4             → Help Mohammed Pursue Dentistry and Support His Family
+       💰 https://whydonate.com/fundraising/help-m...
+  📹 X_Urgent_Medical_vertical.mp4            → Urgent Medical Aid for My Child and Husband
+       💰 https://whydonate.com/fundraising/urgent...
+  📹 _Abdel_Rahim_vertical.mp4                → They Are Living in a Tent! Help Gaza Nurse !
+       💰 https://whydonate.com/fundraising/help-g...
+  📹 _Abdullah_hoping_vertical.mp4            → Help Abdullah who is hoping for a future
+       💰 https://whydonate.com/fundraising/help-a...
+  📹 _Ahmed_smile_vertical.mp4                → Let's draw a smile together
+       💰 https://whydonate.com/fundraising/lets-d...
+  📹 _Aysha_vertical.mp4                      →  Aysha
+  📹 _Marah_vertical.mp4                      →  Marah
+  📹 _Mother_10_vertical.mp4                  → Urgent Winter Aid for Mother of 10
+       💰 https://whydonate.com/fundraising/-urgen...
+  📹 _Um_Mohammeds_children_vertical.mp4      → Save Um Mohammed's children
+       💰 https://whydonate.com/fundraising/save-u...
+  📹 _Umm_Iman_vertical.mp4                   → Help Umm Iman and Her family survive the genocide
+       💰 https://whydonate.com/fundraising/help-u...
+  📹 _Umm_Masoud_vertical.mp4                 → Help Umm Masoud and her daughter, survivors in the rubbles o
+       💰 https://whydonate.com/fundraising/help-u...
+  📹 _our_brother_vertical.mp4                → Help our brother with financial support
+       💰 https://whydonate.com/fundraising/help-o...
+  📹 _ام_علوش_Salman_AlWatts_vertical.mp4     → Save Salman Ali and his family from awful destruction
+       💰 https://whydonate.com/fundraising/save-s...
+
+Launching injection...
+
+🐦 Launching X.com injection context (@Upscrolledai)...
+Verifying X session...
+✅ Session valid. Injecting 25 pulses...
+📤 Posting pulse 1/25: PregnantA A...
+⏳ Uploading video: A_Abu_Haytham_A_vertical.mp4...
+🚀 Submitting post...
+✅ Posted: PregnantA A
+⏱️ Cooling down 25s before next post...
+📤 Posting pulse 2/25: PregnantA A...
+❌ Failed to post PregnantA A: Locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("[data-testid=\"tweetTextarea_0\"], [aria-label=\"Post text\"]").first
+    - locator resolved to <div tabindex="0" role="textbox" spellcheck="true" aria-multiline="true" aria-label="Post text" contenteditable="true" aria-autocomplete="list" data-testid="tweetTextarea_0" no-focustrapview-refocus="true" aria-describedby="placeholder-6qdll" aria-controls="typeaheadDropdownWrapped-5" class="notranslate public-DraftEditor-content" aria-activedescendant="typeaheadFocus-0.6419386149644619">…</div>
+  - attempting click action
+    2 × waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1h8ys4a r-slzeqm r-ly4kne">…</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">…</div> subtree intercepts pointer events
+    - retrying click action
+    - waiting 20ms
+    - waiting for element to be visible, enabled and stable
+    - element is visible, enabled and stable
+    - scrolling into view if needed
+    - done scrolling
+    - <div class="css-175oi2r r-1h8ys4a r-slzeqm r-ly4kne">…</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">…</div> subtree intercepts pointer events
+  2 × retrying click action
+      - waiting 100ms
+      - waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div data-testid="twc-cc-mask" class="css-175oi2r r-1pi2tsx r-1d2f490 r-1xcajam r-ipm5af r-13qz1uu"></div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">…</div> subtree intercepts pointer events
+  2 × retrying click action
+      - waiting 500ms
+      - waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1h8ys4a r-slzeqm r-ly4kne">…</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">…</div> subtree intercepts pointer events
+    - retrying click action
+      - waiting 500ms
+      - waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1h8ys4a r-slzeqm r-ly4kne">…</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">…</div> subtree intercepts pointer events
+    - retrying click action
+      - waiting 500ms
+      - waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div data-testid="twc-cc-mask" class="css-175oi2r r-1pi2tsx r-1d2f490 r-1xcajam r-ipm5af r-13qz1uu"></div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">…</div> subtree intercepts pointer events
+    - retrying click action
+      - waiting 500ms
+      - waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div data-testid="twc-cc-mask" class="css-175oi2r r-1pi2tsx r-1d2f490 r-1xcajam r-ipm5af r-13qz1uu"></div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">…</div> subtree intercepts pointer events
+  2 × retrying click action
+      - waiting 500ms
+      - waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1h8ys4a r-slzeqm r-ly4kne">…</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">…</div> subtree intercepts pointer events
+  - retrying click action
+    - waiting 500ms
+    - waiting for element to be visible, enabled and stable
+
+📤 Posting pulse 3/25: PregnantA A...
+⏳ Uploading video: A_Hope_A_vertical.mp4...
+🚀 Submitting post...
+✅ Posted: PregnantA A
+⏱️ Cooling down 25s before next post...
+📤 Posting pulse 4/25: PregnantA A...
+⏳ Uploading video: A_PregnantA_A_vertical.mp4...
+🚀 Submitting post...
+✅ Posted: PregnantA A
+⏱️ Cooling down 25s before next post...
+📤 Posting pulse 5/25: PregnantA A...
+⏳ Uploading video: A_Umm_Sami_A_vertical.mp4...
+🚀 Submitting post...
+✅ Posted: PregnantA A
+⏱️ Cooling down 25s before next post...
+📤 Posting pulse 6/25: Beneficiary B...
+⏳ Uploading video: B_Heba_B_vertical.mp4...
+🚀 Submitting post...
+✅ Posted: Beneficiary B
+⏱️ Cooling down 25s before next post...
+📤 Posting pulse 7/25: Beneficiary B...
+❌ Failed to post Beneficiary B: Locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("[data-testid=\"tweetTextarea_0\"], [aria-label=\"Post text\"]").first
+    - locator resolved to <div tabindex="0" role="textbox" spellcheck="true" aria-multiline="true" aria-label="Post text" contenteditable="true" aria-autocomplete="list" data-testid="tweetTextarea_0" no-focustrapview-refocus="true" aria-describedby="placeholder-ar3h8" aria-controls="typeaheadDropdownWrapped-2" class="notranslate public-DraftEditor-content" aria-activedescendant="typeaheadFocus-0.17188906224272915">…</div>
+  - attempting click action
+    2 × waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1h8ys4a r-slzeqm r-ly4kne">…</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">…</div> subtree intercepts pointer events
+    - retrying click action
+    - waiting 20ms
+    - waiting for element to be visible, enabled and stable
+    - element is visible, enabled and stable
+    - scrolling into view if needed
+    - done scrolling
+    - <div class="css-175oi2r r-1h8ys4a r-slzeqm r-ly4kne">…</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">…</div> subtree intercepts pointer events
+  2 × retrying click action
+      - waiting 100ms
+      - waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div data-testid="twc-cc-mask" class="css-175oi2r r-1pi2tsx r-1d2f490 r-1xcajam r-ipm5af r-13qz1uu"></div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">…</div> subtree intercepts pointer events
+  2 × retrying click action
+      - waiting 500ms
+      - waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1h8ys4a r-slzeqm r-ly4kne">…</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">…</div> subtree intercepts pointer events
+    - retrying click action
+      - waiting 500ms
+      - waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1h8ys4a r-slzeqm r-ly4kne">…</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">…</div> subtree intercepts pointer events
+    - retrying click action
+      - waiting 500ms
+      - waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div data-testid="twc-cc-mask" class="css-175oi2r r-1pi2tsx r-1d2f490 r-1xcajam r-ipm5af r-13qz1uu"></div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">…</div> subtree intercepts pointer events
+    - retrying click action
+      - waiting 500ms
+      - waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div data-testid="twc-cc-mask" class="css-175oi2r r-1pi2tsx r-1d2f490 r-1xcajam r-ipm5af r-13qz1uu"></div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">…</div> subtree intercepts pointer events
+  2 × retrying click action
+      - waiting 500ms
+      - waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1h8ys4a r-slzeqm r-ly4kne">…</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">…</div> subtree intercepts pointer events
+  - retrying click action
+    - waiting 500ms
+    - waiting for element to be visible, enabled and stable
+
+📤 Posting pulse 8/25: Ahmed Al-Flit pop...
+⏳ Uploading video: C_Ahmed_AlFlit_pop_vertical.mp4...
+🚀 Submitting post...
+✅ Posted: Ahmed Al-Flit pop
+⏱️ Cooling down 25s before next post...
+📤 Posting pulse 9/25: D1 Gaza Family...
+⏳ Uploading video: D1_Gaza_Family_vertical.mp4...
+🚀 Submitting post...
+✅ Posted: D1 Gaza Family
+⏱️ Cooling down 25s before next post...
+📤 Posting pulse 10/25: Akram D...
+⏳ Uploading video: D_Akram_D_vertical.mp4...
+🚀 Submitting post...
+✅ Posted: Akram D
+⏱️ Cooling down 25s before next post...
+📤 Posting pulse 11/25: Akram D...
+⏳ Uploading video: D_Help_Ahmed_D_vertical.mp4...
+🚀 Submitting post...
+✅ Posted: Akram D
+⏱️ Cooling down 25s before next post...
+📤 Posting pulse 12/25: Mohammed F...
+⏳ Uploading video: F_Mohammed_F_vertical.mp4...
+🚀 Submitting post...
+✅ Posted: Mohammed F
+⏱️ Cooling down 25s before next post...
+📤 Posting pulse 13/25: Help Mohammed...
+⏳ Uploading video: X_Help_Mohammed_vertical.mp4...
+🚀 Submitting post...
+✅ Posted: Help Mohammed
+⏱️ Cooling down 25s before next post...
+📤 Posting pulse 14/25: Urgent Medical...
+❌ Failed to post Urgent Medical: Locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("[data-testid=\"tweetTextarea_0\"], [aria-label=\"Post text\"]").first
+    - locator resolved to <div tabindex="0" role="textbox" spellcheck="true" aria-multiline="true" aria-label="Post text" contenteditable="true" aria-autocomplete="list" data-testid="tweetTextarea_0" no-focustrapview-refocus="true" aria-describedby="placeholder-88gql" aria-controls="typeaheadDropdownWrapped-1" class="notranslate public-DraftEditor-content" aria-activedescendant="typeaheadFocus-0.1227563970332809">…</div>
+  - attempting click action
+    2 × waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1h8ys4a r-slzeqm r-ly4kne">…</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">…</div> subtree intercepts pointer events
+    - retrying click action
+    - waiting 20ms
+    - waiting for element to be visible, enabled and stable
+    - element is visible, enabled and stable
+    - scrolling into view if needed
+    - done scrolling
+    - <div class="css-175oi2r r-1h8ys4a r-slzeqm r-ly4kne">…</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">…</div> subtree intercepts pointer events
+  2 × retrying click action
+      - waiting 100ms
+      - waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div data-testid="twc-cc-mask" class="css-175oi2r r-1pi2tsx r-1d2f490 r-1xcajam r-ipm5af r-13qz1uu"></div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">…</div> subtree intercepts pointer events
+  2 × retrying click action
+      - waiting 500ms
+      - waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1h8ys4a r-slzeqm r-ly4kne">…</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">…</div> subtree intercepts pointer events
+    - retrying click action
+      - waiting 500ms
+      - waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1h8ys4a r-slzeqm r-ly4kne">…</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">…</div> subtree intercepts pointer events
+    - retrying click action
+      - waiting 500ms
+      - waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div data-testid="twc-cc-mask" class="css-175oi2r r-1pi2tsx r-1d2f490 r-1xcajam r-ipm5af r-13qz1uu"></div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">…</div> subtree intercepts pointer events
+    - retrying click action
+      - waiting 500ms
+      - waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div data-testid="twc-cc-mask" class="css-175oi2r r-1pi2tsx r-1d2f490 r-1xcajam r-ipm5af r-13qz1uu"></div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">…</div> subtree intercepts pointer events
+  - retrying click action
+    - waiting 500ms
+    - waiting for element to be visible, enabled and stable
+    - element is visible, enabled and stable
+    - scrolling into view if needed
+    - done scrolling
+    - <div class="css-175oi2r r-1h8ys4a r-slzeqm r-ly4kne">…</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">…</div> subtree intercepts pointer events
+  - retrying click action
+    - waiting 500ms
+    - waiting for element to be visible, enabled and stable
+
+📤 Posting pulse 15/25: Abdel Rahim...
+⏳ Uploading video: _Abdel_Rahim_vertical.mp4...
+🚀 Submitting post...
+✅ Posted: Abdel Rahim
+⏱️ Cooling down 25s before next post...
+📤 Posting pulse 16/25: Abdullah hoping...
+⏳ Uploading video: _Abdullah_hoping_vertical.mp4...
+🚀 Submitting post...
+✅ Posted: Abdullah hoping
+⏱️ Cooling down 25s before next post...
+📤 Posting pulse 17/25: Ahmed smile...
+❌ Failed to post Ahmed smile: Locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("[data-testid=\"tweetTextarea_0\"], [aria-label=\"Post text\"]").first
+    - locator resolved to <div tabindex="0" role="textbox" spellcheck="true" aria-multiline="true" aria-label="Post text" contenteditable="true" aria-autocomplete="list" data-testid="tweetTextarea_0" no-focustrapview-refocus="true" aria-describedby="placeholder-76nt4" aria-controls="typeaheadDropdownWrapped-1" class="notranslate public-DraftEditor-content" aria-activedescendant="typeaheadFocus-0.17829186436846145">…</div>
+  - attempting click action
+    2 × waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1h8ys4a r-slzeqm r-ly4kne">…</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">…</div> subtree intercepts pointer events
+    - retrying click action
+    - waiting 20ms
+    - waiting for element to be visible, enabled and stable
+    - element is visible, enabled and stable
+    - scrolling into view if needed
+    - done scrolling
+    - <div class="css-175oi2r r-1h8ys4a r-slzeqm r-ly4kne">…</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">…</div> subtree intercepts pointer events
+  2 × retrying click action
+      - waiting 100ms
+      - waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div data-testid="twc-cc-mask" class="css-175oi2r r-1pi2tsx r-1d2f490 r-1xcajam r-ipm5af r-13qz1uu"></div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">…</div> subtree intercepts pointer events
+  2 × retrying click action
+      - waiting 500ms
+      - waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1h8ys4a r-slzeqm r-ly4kne">…</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">…</div> subtree intercepts pointer events
+    - retrying click action
+      - waiting 500ms
+      - waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1h8ys4a r-slzeqm r-ly4kne">…</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">…</div> subtree intercepts pointer events
+    - retrying click action
+      - waiting 500ms
+      - waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div data-testid="twc-cc-mask" class="css-175oi2r r-1pi2tsx r-1d2f490 r-1xcajam r-ipm5af r-13qz1uu"></div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">…</div> subtree intercepts pointer events
+    - retrying click action
+      - waiting 500ms
+      - waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div data-testid="twc-cc-mask" class="css-175oi2r r-1pi2tsx r-1d2f490 r-1xcajam r-ipm5af r-13qz1uu"></div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">…</div> subtree intercepts pointer events
+  2 × retrying click action
+      - waiting 500ms
+      - waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="css-175oi2r r-1h8ys4a r-slzeqm r-ly4kne">…</div> from <div id="layers" class="r-zchlnj r-1d2f490 r-u8s1d r-ipm5af">…</div> subtree intercepts pointer events
+  - retrying click action
+    - waiting 500ms
+    - waiting for element to be visible, enabled and stable
+
+📤 Posting pulse 18/25:  Aysha...
+⏳ Uploading video: _Aysha_vertical.mp4...
+🚀 Submitting post...
+✅ Posted:  Aysha
+⏱️ Cooling down 25s before next post...
+📤 Posting pulse 19/25:  Marah...
+⏳ Uploading video: _Marah_vertical.mp4...
+🚀 Submitting post...
+✅ Posted:  Marah
+⏱️ Cooling down 25s before next post...
+📤 Posting pulse 20/25: Mother 10...
+⏳ Uploading video: _Mother_10_vertical.mp4...
+🚀 Submitting post...
+✅ Posted: Mother 10
+⏱️ Cooling down 25s before next post...
+📤 Posting pulse 21/25: Um Mohammeds children...
+⏳ Uploading video: _Um_Mohammeds_children_vertical.mp4...
+🚀 Submitting post...
+✅ Posted: Um Mohammeds children
+⏱️ Cooling down 25s before next post...
+📤 Posting pulse 22/25: Umm Iman...
+⏳ Uploading video: _Umm_Iman_vertical.mp4...
+🚀 Submitting post...
+✅ Posted: Umm Iman
+⏱️ Cooling down 25s before next post...
+📤 Posting pulse 23/25: Umm Masoud...
+⏳ Uploading video: _Umm_Masoud_vertical.mp4...
+🚀 Submitting post...
+✅ Posted: Umm Masoud
+⏱️ Cooling down 25s before next post...
+📤 Posting pulse 24/25: our brother...
+⏳ Uploading video: _our_brother_vertical.mp4...
+🚀 Submitting post...
+✅ Posted: our brother
+⏱️ Cooling down 25s before next post...
+📤 Posting pulse 25/25: ام علوش Salman Al-Watts...
+⏳ Uploading video: _ام_علوش_Salman_AlWatts_vertical.mp4...
+🚀 Submitting post...
+✅ Posted: ام علوش Salman Al-Watts
+🌀 X.com injection complete.
+
+✅ Done.

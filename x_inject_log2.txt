@@ -1,0 +1,113 @@
+≡ƒîÇ X.com Injection Engine ΓÇö @Upscrolledai
+==================================================
+Found 25 pulse files.
+
+Preparing to inject 25 pulses:
+  ≡ƒô╣ A_Abu_Haytham_A_vertical.mp4             ΓåÆ PregnantA
+       ≡ƒÆ░ https://whydonate.com/fundraising/urgent...
+  ≡ƒô╣ A_Abu_Muhammad_A_vertical.mp4            ΓåÆ PregnantA
+       ≡ƒÆ░ https://whydonate.com/fundraising/urgent...
+  ≡ƒô╣ A_Hope_A_vertical.mp4                    ΓåÆ PregnantA
+       ≡ƒÆ░ https://whydonate.com/fundraising/urgent...
+  ≡ƒô╣ A_PregnantA_A_vertical.mp4               ΓåÆ PregnantA
+       ≡ƒÆ░ https://whydonate.com/fundraising/urgent...
+  ≡ƒô╣ A_Umm_Sami_A_vertical.mp4                ΓåÆ PregnantA
+       ≡ƒÆ░ https://whydonate.com/fundraising/urgent...
+  ≡ƒô╣ B_Heba_B_vertical.mp4                    ΓåÆ Beneficiary
+       ≡ƒÆ░ https://whydonate.com/fundraising/emerge...
+  ≡ƒô╣ B_Yasmine_B_vertical.mp4                 ΓåÆ Beneficiary
+       ≡ƒÆ░ https://whydonate.com/fundraising/emerge...
+  ≡ƒô╣ C_Ahmed_AlFlit_pop_vertical.mp4          ΓåÆ Help Ahmed and family survive genocide in Gaza
+       ≡ƒÆ░ https://whydonate.com/fundraising/help-a...
+  ≡ƒô╣ D1_Gaza_Family_vertical.mp4              ΓåÆ D1 Gaza Family
+  ≡ƒô╣ D_Akram_D_vertical.mp4                   ΓåÆ Help Akram and his family despite the pain in Gaza
+       ≡ƒÆ░ https://whydonate.com/fundraising/help-a...
+  ≡ƒô╣ D_Help_Ahmed_D_vertical.mp4              ΓåÆ Help Akram and his family despite the pain in Gaza
+       ≡ƒÆ░ https://whydonate.com/fundraising/help-a...
+  ≡ƒô╣ F_Mohammed_F_vertical.mp4                ΓåÆ Help Abdullah Mohammed support his 7 sons & daughters in Gaz
+       ≡ƒÆ░ https://whydonate.com/fundraising/help-a...
+  ≡ƒô╣ X_Help_Mohammed_vertical.mp4             ΓåÆ Help Mohammed Pursue Dentistry and Support His Family
+       ≡ƒÆ░ https://whydonate.com/fundraising/help-m...
+  ≡ƒô╣ X_Urgent_Medical_vertical.mp4            ΓåÆ Urgent Medical Aid for My Child and Husband
+       ≡ƒÆ░ https://whydonate.com/fundraising/urgent...
+  ≡ƒô╣ _Abdel_Rahim_vertical.mp4                ΓåÆ They Are Living in a Tent! Help Gaza Nurse !
+       ≡ƒÆ░ https://whydonate.com/fundraising/help-g...
+  ≡ƒô╣ _Abdullah_hoping_vertical.mp4            ΓåÆ Help Abdullah who is hoping for a future
+       ≡ƒÆ░ https://whydonate.com/fundraising/help-a...
+  ≡ƒô╣ _Ahmed_smile_vertical.mp4                ΓåÆ Let's draw a smile together
+       ≡ƒÆ░ https://whydonate.com/fundraising/lets-d...
+  ≡ƒô╣ _Aysha_vertical.mp4                      ΓåÆ  Aysha
+  ≡ƒô╣ _Marah_vertical.mp4                      ΓåÆ  Marah
+  ≡ƒô╣ _Mother_10_vertical.mp4                  ΓåÆ Urgent Winter Aid for Mother of 10
+       ≡ƒÆ░ https://whydonate.com/fundraising/-urgen...
+  ≡ƒô╣ _Um_Mohammeds_children_vertical.mp4      ΓåÆ Save Um Mohammed's children
+       ≡ƒÆ░ https://whydonate.com/fundraising/save-u...
+  ≡ƒô╣ _Umm_Iman_vertical.mp4                   ΓåÆ Help Umm Iman and Her family survive the genocide
+       ≡ƒÆ░ https://whydonate.com/fundraising/help-u...
+  ≡ƒô╣ _Umm_Masoud_vertical.mp4                 ΓåÆ Help Umm Masoud and her daughter, survivors in the rubbles o
+       ≡ƒÆ░ https://whydonate.com/fundraising/help-u...
+  ≡ƒô╣ _our_brother_vertical.mp4                ΓåÆ Help our brother with financial support
+       ≡ƒÆ░ https://whydonate.com/fundraising/help-o...
+  ≡ƒô╣ _╪º┘à_╪╣┘ä┘ê╪┤_Salman_AlWatts_vertical.mp4     ΓåÆ Save Salman Ali and his family from awful destruction
+       ≡ƒÆ░ https://whydonate.com/fundraising/save-s...
+
+Launching injection...
+
+≡ƒÉª Launching X.com injection context (@Upscrolledai)...
+Traceback (most recent call last):
+  File "C:\Users\gaelf\Documents\GitHub\local_ai_campaign_assistant\scripts\inject_x_now.py", line 118, in <module>
+    inject_x_posts(campaign_pulses, check_only=args.dry_run)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gaelf\Documents\GitHub\local_ai_campaign_assistant\scripts\publish_to_socials.py", line 162, in inject_x_posts
+    context = pw.chromium.launch_persistent_context(
+        user_data_dir=PROFILE_DIR,
+    ...<3 lines>...
+        user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+    )
+  File "C:\Users\gaelf\miniconda3\Lib\site-packages\playwright\sync_api\_generated.py", line 14861, in launch_persistent_context
+    self._sync(
+    ~~~~~~~~~~^
+        self._impl_obj.launch_persistent_context(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<50 lines>...
+        )
+        ^
+    )
+    ^
+  File "C:\Users\gaelf\miniconda3\Lib\site-packages\playwright\_impl\_sync_base.py", line 115, in _sync
+    return task.result()
+           ~~~~~~~~~~~^^
+  File "C:\Users\gaelf\miniconda3\Lib\site-packages\playwright\_impl\_browser_type.py", line 164, in launch_persistent_context
+    result = await self._channel.send_return_as_dict(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        "launchPersistentContext", TimeoutSettings.launch_timeout, params
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\gaelf\miniconda3\Lib\site-packages\playwright\_impl\_connection.py", line 83, in send_return_as_dict
+    return await self._connection.wrap_api_call(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\gaelf\miniconda3\Lib\site-packages\playwright\_impl\_connection.py", line 559, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.TargetClosedError: BrowserType.launch_persistent_context: Target page, context or browser has been closed
+Browser logs:
+
+<launching> C:\Users\gaelf\AppData\Local\ms-playwright\chromium-1208\chrome-win64\chrome.exe --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,Translate,AutoDeElevate,RenderDocument,OptimizationHints --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --enable-automation --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --no-sandbox --disable-blink-features=AutomationControlled --user-data-dir=C:\Users\gaelf\Documents\GitHub\local_ai_campaign_assistant\scripts\data\x_profile --remote-debugging-pipe about:blank
+<launched> pid=26276
+Call log:
+  - <launching> C:\Users\gaelf\AppData\Local\ms-playwright\chromium-1208\chrome-win64\chrome.exe --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,Translate,AutoDeElevate,RenderDocument,OptimizationHints --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --enable-automation --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --no-sandbox --disable-blink-features=AutomationControlled --user-data-dir=C:\Users\gaelf\Documents\GitHub\local_ai_campaign_assistant\scripts\data\x_profile --remote-debugging-pipe about:blank
+  - <launched> pid=26276
+  - [pid=26276] <gracefully close start>
+  - [pid=26276] <kill>
+  - [pid=26276] <will force kill>
+  - [pid=26276] taskkill stderr: 'taskkill' is not recognized as an internal or external command,
+
+operable program or batch file.
+  - [pid=26276] <process did exit: exitCode=21, signal=null>
+  - [pid=26276] starting temporary directories cleanup
+  - [pid=26276] finished temporary directories cleanup
+  - [pid=26276] <gracefully close end>
+
