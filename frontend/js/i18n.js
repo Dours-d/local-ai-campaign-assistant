@@ -35,7 +35,7 @@ const i18n = {
             about_cta: 'The Ledger Logic',
 
             // Footer
-            footer_rights: '© 2026 Sovereign Fajr Network. No programming accepted.',
+            footer_rights: '© 2026 · fajr.today',
 
             // Campaigns section
             campaigns_title: 'Paths of the Amanah',
@@ -76,7 +76,7 @@ const i18n = {
             about_cta: 'منطق السجل',
 
             // Footer
-            footer_rights: '© ٢٠٢٦ شبكة فجر السيادية. لا نقبل البرمجة الخارجية.',
+            footer_rights: '© ٢٠٢٦ · fajr.today',
 
             // Campaigns section
             campaigns_title: 'مسارات الأمانة',
