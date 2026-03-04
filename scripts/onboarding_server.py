@@ -728,6 +728,11 @@ def serve_portal(beneficiary_id=None):
 def serve_brain():
     return app.send_static_file('brain.html')
 
+@app.route('/favicon.ico')
+@app.route('/images/Fajr-enhanced.jpeg')
+def favicon():
+    return send_from_directory(os.path.join(BASE_DIR, 'frontend', 'images'), 'Fajr-enhanced.jpeg')
+
 @app.route('/mgmt')
 def mgmt_root():
     from flask import redirect, url_for
