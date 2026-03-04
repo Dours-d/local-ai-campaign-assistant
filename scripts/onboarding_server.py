@@ -27,6 +27,10 @@ app = Flask(__name__, static_folder="../onboarding", static_url_path="/onboardin
 app.secret_key = os.getenv("ADMIN_SECRET_KEY", "sovereign_fallback_key_123")
 CORS(app)
 
+# Register market routes blueprint
+from market_routes import market_bp
+app.register_blueprint(market_bp)
+
 # --- CONFIGURATION ---
 ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD", "admin123")
 ADMIN_EMAIL = os.getenv("ADMIN_EMAIL", "gaelf@example.com") 
@@ -749,6 +753,12 @@ def mgmt_root():
 def serve_mgmt(path):
     from flask import send_from_directory
     return send_from_directory('../frontend', path)
+
+# Serve data files from frontend/data directory
+@app.route('/data/<path:filename>')
+def serve_data(filename):
+    data_dir = os.path.join(BASE_DIR, 'frontend', 'data')
+    return send_from_directory(data_dir, filename)
 
 @app.route('/api/check_scope/<beneficiary_id>')
 def check_scope(beneficiary_id):

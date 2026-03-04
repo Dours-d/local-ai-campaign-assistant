@@ -3,7 +3,7 @@
  * Manages the dynamic product feed and sovereign settlement modal.
  */
 
-const PRODUCT_DATA_URL = 'data/products.json';
+const PRODUCT_DATA_URL = '/data/products.json';
 
 /**
  * Initialize the product feed.
