@@ -8,6 +8,10 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>Redirecting to Dunya دنيا...</title>
+    <script>
+        // Sync heartbeat placeholder for Sovereign Watchdog
+        var targetUrl = "";
+    </script>
     <style>
         body {
             font-family: 'Inter', 'Cairo', sans-serif;
@@ -115,7 +119,12 @@
 
         // Updated automatically by monitor script (Dynamic Resolver)
         async function initializeRedirect() {
-            let targetUrl = "https://permit-tamil-facing-patent.trycloudflare.com"; // Default/Fallback
+            let activeUrl = "https://permit-tamil-facing-patent.trycloudflare.com"; // Default/Fallback
+
+            // If watchdog has synced a URL, use it
+            if (typeof targetUrl !== 'undefined' && targetUrl && targetUrl.startsWith('http')) {
+                activeUrl = targetUrl;
+            }
 
             try {
                 const response = await fetch('data/status.json?t=' + Date.now());
