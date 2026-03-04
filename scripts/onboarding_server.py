@@ -58,13 +58,12 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 50 * 1024 * 1024  # 50MB limit
 
-print("\n" + "="*60)
+print("\n" + "="*50)
 print("  [ SOVEREIGN NODE ONLINE ]")
-print("  \"Truth is not in numbers, but in the intention.\"")
 print(f"  MODE: {'PRIVACY VAULT' if IS_PRIVATE else 'DEMO DATA'}")
 print(f"  ROOT: {ACTIVE_ROOT}")
 print(f"  DATA: {DATA_DIR}")
-print("="*60 + "\n")
+print("="*50 + "\n")
 
 
 # --- ACCESS TOKENS ---
