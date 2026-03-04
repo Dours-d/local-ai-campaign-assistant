@@ -214,3 +214,49 @@ button.secondary {
         flex-direction: row-reverse;
     }
 }
+
+/* Toggle Group */
+.toggle-group {
+    display: flex;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+    padding: 4px;
+    margin: 0 0 24px 0;
+    border: 1px solid var(--glass-border);
+}
+
+.toggle-btn {
+    flex: 1;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background: transparent;
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.toggle-btn.active {
+    background: var(--primary);
+    color: #1a1612;
+    box-shadow: 0 4px 12px rgba(212, 163, 115, 0.2);
+}
+
+.merchant-only {
+    display: none;
+    animation: fadeIn 0.4s ease-out;
+}
+
+.merchant-only.visible {
+    display: block;
+}
+
+.campaign-only {
+    display: block;
+}
+
+.campaign-only.hidden {
+    display: none;
+}

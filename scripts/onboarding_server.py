@@ -20,7 +20,7 @@ def set_terminal_title(title):
         sys.stdout.write(f"\x1b]2;{title}\x07")
         sys.stdout.flush()
 
-set_terminal_title("[ SOVEREIGN NODE: NOOR BRAIN ]")
+set_terminal_title("[ SOVEREIGN NODE: NOOR BRAIN | MARKET ]")
 
 
 app = Flask(__name__, static_folder="../onboarding", static_url_path="/onboarding")
@@ -842,11 +842,14 @@ def upload_file():
 
     submission_data = {
         "beneficiary_id": beneficiary_id,
+        "onboarding_type": request.form.get('onboarding_type', 'campaign'),
         "whatsapp_number": whatsapp_number,
         "title": request.form.get('title', ''),
         "story": request.form.get('story', ''),
         "display_name": request.form.get('display_name', ''),
         "personal_wallet": request.form.get('personal_wallet', ''),
+        "product_price": request.form.get('product_price', ''),
+        "product_category": request.form.get('product_category', ''),
         "files": [],
         "timestamp": datetime.datetime.now().isoformat()
     }

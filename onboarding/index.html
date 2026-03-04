@@ -67,6 +67,12 @@
         <div class="step active" id="step1">
             <h2 id="welcome_title" data-i18n="welcome_title">Salam Alaykum</h2>
 
+            <!-- Onboarding Type Toggle -->
+            <div class="toggle-group" id="onboarding_toggle">
+                <button class="toggle-btn active" id="btn_campaign" onclick="setOnboardingType('campaign')" data-i18n="type_campaign">Personal Campaign</button>
+                <button class="toggle-btn" id="btn_merchant" onclick="setOnboardingType('merchant')" data-i18n="type_merchant">Merchant/Artisan</button>
+            </div>
+
             <!-- Identity Lookup -->
             <div id="lookup_section">
                 <p style="font-size: 0.95rem; margin-top: 0;" data-i18n="lookup_desc">Enter your WhatsApp number to
@@ -112,13 +118,31 @@
 
         <!-- Step 2: Information Intake -->
         <div class="step" id="step2">
-            <h2 data-i18n="step2_title">Campaign Details</h2>
+            <h2 id="intake_title" data-i18n="step2_title">Campaign Details</h2>
+            
             <div class="input-group">
-                <label data-i18n="label_title">Proposed Title</label>
+                <label id="label_title" data-i18n="label_title">Proposed Title</label>
                 <input type="text" id="title" data-i18n-placeholder="placeholder_title">
             </div>
+
+            <div class="merchant-only">
+                <div class="input-group">
+                    <label data-i18n="label_price">Artisan Price (Price you receive)</label>
+                    <input type="text" id="price" placeholder="e.g. 25.00">
+                </div>
+                <div class="input-group">
+                    <label data-i18n="label_category">Category</label>
+                    <select id="category" style="width: 100%; background: rgba(0, 0, 0, 0.2); border: 1px solid var(--glass-border); border-radius: 12px; padding: 14px; color: white;">
+                        <option value="food" data-i18n="cat_food">Food & Spices</option>
+                        <option value="apparel" data-i18n="cat_clothing">Clothing & Tatreez</option>
+                        <option value="beauty" data-i18n="cat_beauty">Beauty & Soap</option>
+                        <option value="decor" data-i18n="cat_decor">Home & Decor</option>
+                    </select>
+                </div>
+            </div>
+
             <div class="input-group">
-                <label data-i18n="label_story">Your Story</label>
+                <label id="label_story" data-i18n="label_story">Your Story</label>
                 <textarea id="story" rows="4" data-i18n-placeholder="placeholder_story"></textarea>
             </div>
             <div class="input-group">
@@ -181,56 +205,21 @@
 
         const translations = {
             en: {
-                page_title: "Gaza Resilience Portal",
-                header_title: "Global Gaza Resilience Fund",
-                header_subtitle: "Unified Aid Allocation & Transparency Portal",
-                welcome_title: "Salam Alaykum",
-                updating_profile: "Updating profile for:",
-                not_you: "Not you? Start new",
-                welcome_desc: "To support you effectively, we follow a strictly transparent process designed for your sovereignty.",
-                li_transparency: "100% Transparency via unique Profile IDs.",
-                li_wallet_label: "Digital Wallet:",
-                li_wallet_text: "A unique secure address is assigned to your profile for aid accumulation.",
-                li_trust_label: "Management In-Trust:",
-                li_trust_text: "We can manage your wallet while you learn crypto first principles, ensuring safety and sovereignty.",
-                li_threshold_label: "Sustainability Threshold:",
-                threshold_text: "€100 minimum to ensure efficient and meaningful transfers.",
-                li_sustainability_label: "System Sustainability (25%)",
-                li_sustainability_text: "for project maintenance and automation.",
-                li_audits: "System-wide Audit Reports every Monday.",
-                btn_agree: "Agree & Continue",
-                step2_title: "Campaign Details",
-                label_title: "Proposed Title (Optional)",
-                placeholder_title: "e.g. Help my family rebuild...",
-                label_story: "Your Story (Optional)",
-                placeholder_story: "Tell us what happened and what you need...",
-                label_media: "Upload Media (Images/Videos)",
-                media_help: "Choose multiple photos or videos that tell your story.",
-                btn_back: "Back",
-                btn_next: "Next",
-                step3_title: "Final Review",
-                step3_desc: "Your unique Profile ID will be assigned upon documentation sync.",
-                label_whatsapp: "WhatsApp",
-                placeholder_whatsapp: "+970 ...",
-                whatsapp_help: "You can provide a number if you'd like us to reach out (completely optional).",
-                error_invalid_phone: "Note: Phone numbers usually start with +.",
-                label_name: "Preferred Name",
-                placeholder_name: "First Name Only",
-                label_wallet: "Your Digital Wallet (Optional)",
-                placeholder_wallet: "USDT Address (TRC20)",
-                wallet_help: "If you have your own TRC20 wallet, you can provide it here.",
-                agree_policy: "By submitting, you agree to our Zero-Waste and Transparency policies.",
-                btn_submit: "Submit",
-                btn_uploading: "Uploading...",
-                success_title: "Success!",
-                success_desc: "Your details and updates have been captured. The Global Gaza Resilience Fund draft will be synchronized with your latest changes automatically.",
-                success_footer: "Check back with your coordinator on Monday for the audit report.",
-                lookup_desc: "Enter your WhatsApp number to access your campaign:",
-                btn_go: "Go",
-                lookup_help: "Format: Country code + number (no + or spaces)",
-                out_of_scope: "This number is not registered in our current scope. Please contact your coordinator.",
-                access_noor: "Explore our collective memory:",
-                btn_noor: "Access Noor Knowledge Portal"
+                btn_noor: "Access Noor Knowledge Portal",
+                type_campaign: "Personal Campaign",
+                type_merchant: "Merchant/Artisan",
+                label_price: "Internal Price (What you want to receive)",
+                label_category: "Product Category",
+                cat_food: "Food & Spices",
+                cat_clothing: "Clothing & Tatreez",
+                cat_beauty: "Beauty & Soap",
+                cat_decor: "Home & Decor",
+                merchant_welcome: "Artisan Onboarding",
+                merchant_step2: "Product Information",
+                merchant_title: "Product Name",
+                merchant_story: "Product Description / History",
+                merchant_placeholder_title: "e.g. Extra Virgin Olive Oil 500ml",
+                merchant_placeholder_story: "Describe your tradition and the quality of your product..."
             },
             ar: {
                 page_title: "بوابة غزة للصمود",
@@ -282,7 +271,21 @@
                 lookup_help: "التنسيق: رمز الدولة + الرقم (بدون + أو مسافات)",
                 out_of_scope: "هذا الرقم غير مسجل في نطاق مساعداتنا الحالي. يرجى التواصل مع المنسق الخاص بك.",
                 access_noor: "استكشف ذاكرتنا الجماعية:",
-                btn_noor: "الدخول إلى بوابة نور المعرفية"
+                btn_noor: "الدخول إلى بوابة نور المعرفية",
+                type_campaign: "حملة شخصية",
+                type_merchant: "تاجر / فنان",
+                label_price: "السعر الداخلي (الذي تريد استلامه)",
+                label_category: "فئة المنتج",
+                cat_food: "أغذية وتوابل",
+                cat_clothing: "ملابس وتطريز",
+                cat_beauty: "جمال وصابون",
+                cat_decor: "منزل وديكور",
+                merchant_welcome: "انضمام التجار",
+                merchant_step2: "معلومات المنتج",
+                merchant_title: "اسم المنتج",
+                merchant_story: "وصف المنتج / القصة",
+                merchant_placeholder_title: "مثال: زيت زيتون بكر ممتاز 500 مل",
+                merchant_placeholder_story: "صف تقاليدك وجودة منتجك..."
             }
         };
 
@@ -312,6 +315,46 @@
                     el.placeholder = translations[lang][key];
                 }
             });
+
+            // Refresh Dynamic Titles if mode changed
+            updateModeSpecificText();
+        }
+
+        let onboardingType = 'campaign';
+
+        function setOnboardingType(type) {
+            onboardingType = type;
+            document.querySelectorAll('.toggle-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('btn_' + type).classList.add('active');
+            
+            // Show/Hide merchant fields
+            const merchantSection = document.querySelector('.merchant-only');
+            if (type === 'merchant') {
+                merchantSection.classList.add('visible');
+            } else {
+                merchantSection.classList.remove('visible');
+            }
+            
+            updateModeSpecificText();
+        }
+
+        function updateModeSpecificText() {
+            const lang = currentLang;
+            if (onboardingType === 'merchant') {
+                document.getElementById('welcome_title').textContent = translations[lang].merchant_welcome;
+                document.getElementById('intake_title').textContent = translations[lang].merchant_step2;
+                document.getElementById('label_title').textContent = translations[lang].merchant_title;
+                document.getElementById('title').placeholder = translations[lang].merchant_placeholder_title;
+                document.getElementById('label_story').textContent = translations[lang].merchant_story;
+                document.getElementById('story').placeholder = translations[lang].merchant_placeholder_story;
+            } else {
+                document.getElementById('welcome_title').textContent = translations[lang].welcome_title;
+                document.getElementById('intake_title').textContent = translations[lang].step2_title;
+                document.getElementById('label_title').textContent = translations[lang].label_title;
+                document.getElementById('title').placeholder = translations[lang].placeholder_title;
+                document.getElementById('label_story').textContent = translations[lang].label_story;
+                document.getElementById('story').placeholder = translations[lang].placeholder_story;
+            }
         }
 
         function nextStep(step) {
@@ -418,11 +461,17 @@
             // Relaxation: No strict validation alerts for viral arrivals
             const formData = new FormData();
             formData.append('beneficiary_id', beneficiaryId);
+            formData.append('onboarding_type', onboardingType);
             formData.append('title', document.getElementById('title').value);
             formData.append('story', document.getElementById('story').value);
             formData.append('display_name', document.getElementById('display_name').value);
             formData.append('personal_wallet', document.getElementById('personal_wallet').value);
             formData.append('whatsapp_number', whatsappNumber);
+            
+            if (onboardingType === 'merchant') {
+                formData.append('product_price', document.getElementById('price').value);
+                formData.append('product_category', document.getElementById('category').value);
+            }
 
             const fileInput = document.getElementById('media_files');
             for (let i = 0; i < fileInput.files.length; i++) {
