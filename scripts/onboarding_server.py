@@ -1,4 +1,5 @@
 import os
+import sys
 import json
 import datetime
 import requests
@@ -8,7 +9,19 @@ from werkzeug.utils import secure_filename
 from blood_detect import check_for_blood
 import sqlite3
 from dotenv import load_dotenv
+
 load_dotenv()
+
+def set_terminal_title(title):
+    if os.name == 'nt':
+        import ctypes
+        ctypes.windll.kernel32.SetConsoleTitleW(title)
+    else:
+        sys.stdout.write(f"\x1b]2;{title}\x07")
+        sys.stdout.flush()
+
+set_terminal_title("[ SOVEREIGN NODE: NOOR BRAIN ]")
+
 
 app = Flask(__name__, static_folder="../onboarding", static_url_path="/onboarding")
 app.secret_key = os.getenv("ADMIN_SECRET_KEY", "sovereign_fallback_key_123")
@@ -44,6 +57,14 @@ UPLOAD_FOLDER = os.path.abspath(os.path.join(DATA_DIR, "media"))
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 50 * 1024 * 1024  # 50MB limit
+
+print("\n" + "="*50)
+print("  [ SOVEREIGN NODE ONLINE ]")
+print(f"  MODE: {'PRIVACY VAULT' if IS_PRIVATE else 'DEMO DATA'}")
+print(f"  ROOT: {ACTIVE_ROOT}")
+print(f"  DATA: {DATA_DIR}")
+print("="*50 + "\n")
+
 
 # --- ACCESS TOKENS ---
 def load_access_tokens():

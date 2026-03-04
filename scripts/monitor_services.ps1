@@ -1,6 +1,9 @@
 # Robust Monitor for Onboarding Server and Cloudflare Tunnel
 # This script ensures both the intake server and the tunnel stay running all day.
 
+# Set Terminal Title
+$Host.UI.RawUI.WindowTitle = "[ SOVEREIGN WATCHDOG ]"
+
 param(
     [int]$HeartbeatTimeoutMin,
     [int]$HeartbeatTimeoutMax,
@@ -20,9 +23,15 @@ $ConfigFile = "$WorkDir\scripts\monitor_config.json"
 $IntegrityScript = "$WorkDir\scripts\verify_visual_integrity.py"
 $SnapshotScript = "$WorkDir\scripts\generate_health_snapshots.py"
 
+Write-Host "`n" + "="*50
+Write-Host "  [ SOVEREIGN WATCHDOG ONLINE ]"
+Write-Host "  Monitoring Onboarding Server & Tunnel..."
+Write-Host "="*50 + "`n"
+
 # 2. Defaults and Config Loading
 $Config = @{
     HeartbeatTimeoutMin  = 5
+
     HeartbeatTimeoutMax  = 15
     MaxRetries           = 3
     RetryDelayMin        = 2
@@ -198,7 +207,16 @@ while ($true) {
     $TunnelLogPath = "$WorkDir\data\tunnel.log"
     $CurrentUrl = $null
 
-    if (Test-Path $TunnelLogPath) {
+    if (Test-Path "$WorkDir\.cloudflared\config.yml") {
+        Write-Log "Named Tunnel Config detected. Extracting Sovereign hostname..." "DEBUG"
+        $ConfigLines = Get-Content "$WorkDir\.cloudflared\config.yml" -Raw
+        if ($ConfigLines -match "hostname:\s*([^\s\n\r]+)") {
+            $CurrentUrl = "https://" + $Matches[1]
+            Write-Log "  [SOVEREIGN] Permanent URL detected: $CurrentUrl" "INFO"
+        }
+    }
+
+    if (-not $CurrentUrl -and (Test-Path $TunnelLogPath)) {
         $Lines = Get-Content $TunnelLogPath -Tail 200 -ErrorAction SilentlyContinue
         if ($Lines) {
             $TunnelLogStr = $Lines -join "`n"
