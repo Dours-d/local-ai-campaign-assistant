@@ -797,3 +797,12 @@ select.search-bar option {
     color: rgba(255, 255, 255, 0.5);
     cursor: pointer;
 }
+
+.shahada-modal-img {
+    max-width: 340px;
+    width: 90%;
+    margin: 0 auto 1.5rem;
+    display: block;
+    border-radius: 8px;
+    opacity: 0.9;
+}
