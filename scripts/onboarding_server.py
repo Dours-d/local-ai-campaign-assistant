@@ -730,8 +730,15 @@ def serve_brain():
 
 @app.route('/favicon.ico')
 @app.route('/images/Fajr-enhanced.jpeg')
-def favicon():
-    return send_from_directory(os.path.join(BASE_DIR, 'frontend', 'images'), 'Fajr-enhanced.jpeg')
+@app.route('/onboarding/images/Fajr-enhanced.jpeg')
+@app.route('/images/<path:filename>')
+def favicon(filename=None):
+    img_dir = os.path.join(BASE_DIR, 'frontend', 'images')
+    # Handle the specific favicon requested or fallback to case-insensitive match
+    target = filename if filename else 'Fajr-enhanced.jpeg'
+    if target.lower() == 'fajr-enhanced.jpeg':
+        return send_from_directory(img_dir, 'Fajr-enhanced.jpeg')
+    return send_from_directory(img_dir, target)
 
 @app.route('/mgmt')
 def mgmt_root():
