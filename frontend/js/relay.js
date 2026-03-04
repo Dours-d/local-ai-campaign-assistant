@@ -83,9 +83,10 @@ syncRelayStatus();
  * Uses the dynamic status.json resolver for resilience.
  */
 async function openShahada() {
-    // Priority 1: Use the targetUrl synchronized by the watchdog (if present and valid)
+    // Priority 1: Use the targetUrl synchronized by the watchdog
     if (typeof targetUrl !== 'undefined' && targetUrl && targetUrl.startsWith('http')) {
-        window.open(targetUrl + '/brain' + window.location.search, '_blank');
+        const baseUrl = targetUrl.endsWith('/') ? targetUrl.slice(0, -1) : targetUrl;
+        window.open(baseUrl + '/brain' + window.location.search, '_blank');
         return;
     }
 
@@ -111,7 +112,8 @@ async function openShahada() {
 async function openOnboarding() {
     // Priority 1: Use the targetUrl synchronized by the watchdog
     if (typeof targetUrl !== 'undefined' && targetUrl && targetUrl.startsWith('http')) {
-        window.open(targetUrl + '/onboard' + window.location.search, '_blank');
+        const baseUrl = targetUrl.endsWith('/') ? targetUrl.slice(0, -1) : targetUrl;
+        window.open(baseUrl + '/onboard' + window.location.search, '_blank');
         return;
     }
 
@@ -126,6 +128,7 @@ async function openOnboarding() {
     } catch (e) {
         console.warn("Dynamic resolver failed for onboarding, falling back to cached URL.");
     }
+    // Final fallback: Use the root-level redirector on GitHub Pages
     window.open('https://dours-d.github.io/local-ai-campaign-assistant/onboard.html', '_blank');
 }
 
