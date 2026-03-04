@@ -758,7 +758,11 @@
     </div>
 
     <script>
-        const targetUrl = "https://jay-posted-related-tooth.trycloudflare.com"; // Updated automatically by monitor script
+        // Dynamic Resolution: Always use the current domain if it's a valid tunnel, otherwise fallback
+        const targetUrl = window.location.origin.includes('trycloudflare.com')
+            ? window.location.origin
+            : ""; // Empty string allows relative routing locally
+
         let currentRole = "GUEST";
         let currentLang = 'ar';
 

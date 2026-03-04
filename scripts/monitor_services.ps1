@@ -37,7 +37,7 @@ $Config = @{
     RetryDelayMin        = 2
     RetryDelayMax        = 6
     CheckInterval        = 60
-    SyncFiles            = @("index.html", "onboard.html", "brain.html", "campaigns.html", "docs\index.html", "docs\brain.html", "frontend\index.html", "frontend\campaigns.html")
+    SyncFiles            = @("index.html", "onboard.html", "brain.html", "campaigns.html", "docs\index.html", "docs\brain.html", "frontend\index.html", "frontend\campaigns.html", "onboarding\brain.html", "onboarding\index.html", "onboarding\onboard.html")
     LogLevel             = "INFO"
     ProviderStack        = @("cloudflare", "localtunnel", "ngrok")
     CurrentProviderIndex = 0
@@ -308,30 +308,40 @@ while ($true) {
             git add -f $StatusPath
             $FilesChangedCount++
 
-            $RedirectorTargets = $Config['SyncFiles']
+            $SyncList = $Config['SyncFiles']
 
-            # Update Redirector Targets (point to Vercel/GitHub Pages redirector)
-            foreach ($Target in $RedirectorTargets) {
+            # Update Redirector Targets
+            foreach ($Target in $SyncList) {
                 $FilePath = "$WorkDir\$Target"
                 if (Test-Path $FilePath) {
                     $Content = Get-Content $FilePath -Raw -ErrorAction SilentlyContinue
-                    if ([string]::IsNullOrWhiteSpace($Content)) {
-                        $Content = (Get-Content $FilePath) -join "`r`n"
-                    }
+                    if ([string]::IsNullOrWhiteSpace($Content)) { $Content = (Get-Content $FilePath) -join "`r`n" }
                             
                     $Changed = $false
                     $NewContent = $Content
                             
-                    $Pattern = '(var|const|let)\s+(githubOnboardingUrl|destination|targetUrl)\s*=\s*"([^"]*)";'
-                    $Regex = [regex]$Pattern
-                    $InnerMatch = $Regex.Match($Content)
+                    # Robust Pattern: Matches var|const|let|window.NAME = "..." OR "{{ targetUrl }}" OR TARGET_URL_PLACEHOLDER = "..."
+                    $Patterns = @(
+                        '(var|const|let|window\.)\s*(githubOnboardingUrl|destination|targetUrl|TARGET_URL_PLACEHOLDER)\s*=\s*"([^"]*)";?',
+                        '\{\{\s*(targetUrl)\s*\}\}'
+                    )
+
+                    foreach ($P in $Patterns) {
+                        $Regex = [regex]::new($P, [System.Text.RegularExpressions.RegexOptions]::IgnoreCase)
+                        if ($Regex.IsMatch($NewContent)) {
+                            $Match = $Regex.Match($NewContent)
+                            $OldValue = if ($Match.Groups.Count -gt 3) { $Match.Groups[3].Value } else { $Match.Value }
                             
-                    if ($InnerMatch.Success -and -not [string]::IsNullOrEmpty($CurrentUrl)) {
-                        if ($InnerMatch.Groups[3].Value -ne $CurrentUrl) {
-                            $VarKeyword = $InnerMatch.Groups[1].Value
-                            $VarName = $InnerMatch.Groups[2].Value
-                            $NewContent = $Regex.Replace($NewContent, "$VarKeyword $VarName = `"$CurrentUrl`";")
-                            $Changed = $true
+                            if ($OldValue -ne $CurrentUrl) {
+                                if ($P -like "*\{\{*") {
+                                    $NewContent = $Regex.Replace($NewContent, $CurrentUrl)
+                                } else {
+                                    $VarKeyword = $Match.Groups[1].Value
+                                    $VarName = $Match.Groups[2].Value
+                                    $NewContent = $Regex.Replace($NewContent, "$VarKeyword $VarName = `"$CurrentUrl`";")
+                                }
+                                $Changed = $true
+                            }
                         }
                     }
                             
@@ -341,23 +351,28 @@ while ($true) {
 
                     if ($Changed) {
                         $NewContent | Set-Content -Path $FilePath -Encoding UTF8 -NoNewline
-                        git add $FilePath
+                        git add -f $FilePath
                         $FilesChangedCount++
-                        Write-Log "Queued sync for $Target -> $CurrentUrl" "INFO"
+                        Write-Log "  [SYNC] Updated $Target -> $CurrentUrl" "INFO"
+                    } else {
+                        Write-Log "  [SYNC] Skipping $Target (already current or no match)" "DEBUG"
                     }
+                } else {
+                    Write-Log "  [WARN] Sync target NOT FOUND: $Target" "WARN"
                 }
             }
 
             if ($FilesChangedCount -gt 0) {
                 Write-Log "Pushing $FilesChangedCount critical updates to GitHub..." "INFO"
                 try {
+                    git pull --rebase origin main # Prevent stale repo state
                     git commit -m "System Sync: Persistent gateway at $Timestamp"
                     git push origin HEAD:main
                     Send-Alert "SYNC_SUCCESS" "Status: Pushed $FilesChangedCount updates to GitHub Pages."
                 }
                 catch {
-                    Write-Log "Git push failed: $($_.Exception.Message)" "ERROR"
-                    Send-Alert "SYNC_FAILURE" "Error: Git push failed. Manual intervention required."
+                    Write-Log "Git sync failed: $($_.Exception.Message)" "ERROR"
+                    Send-Alert "SYNC_FAILURE" "Error: Git sync failed. Manual intervention required."
                 }
             }
         }

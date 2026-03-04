@@ -33,13 +33,15 @@ ADMIN_EMAIL = os.getenv("ADMIN_EMAIL", "gaelf@example.com")
 
 
 # Knowledge path discovery
-APPDATA_PATH = os.environ.get('APPDATA', '')
-KI_PATH = os.path.join(APPDATA_PATH, 'antigravity', 'knowledge')
+KI_PATH = "C:\\Users\\gaelf\\.gemini\\antigravity\\knowledge"
 # Fallback search if above fails
 if not os.path.exists(KI_PATH):
-    potential_brain = os.path.join(APPDATA_PATH, 'antigravity', 'brain')
-    if os.path.exists(potential_brain):
-        KI_PATH = potential_brain
+    APPDATA_PATH = os.environ.get('APPDATA', '')
+    KI_PATH = os.path.join(APPDATA_PATH, 'antigravity', 'knowledge')
+    if not os.path.exists(KI_PATH):
+        potential_brain = os.path.join(APPDATA_PATH, 'antigravity', 'brain')
+        if os.path.exists(potential_brain):
+            KI_PATH = potential_brain
 
 # --- DATA PATHS (Vault vs Public) ---
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -564,7 +566,7 @@ def whoami():
     })
 
 # --- KNOWLEDGE (SHARED BRAIN) ROUTES ---
-@app.route('/api/knowledge', methods=['GET'])
+@app.route('/api/knowledge', methods=['GET'], strict_slashes=False)
 # @login_required - Public Access Enabled for Transparency
 def list_knowledge():
     """Lists available Knowledge Items (Distilled Intelligence)."""
@@ -592,7 +594,7 @@ def list_knowledge():
                     continue
     return jsonify(ki_list)
 
-@app.route('/api/knowledge/<ki_id>', methods=['GET'])
+@app.route('/api/knowledge/<ki_id>', methods=['GET'], strict_slashes=False)
 # @login_required - Public Access Enabled
 def get_knowledge_item(ki_id):
     """Reads a specific Knowledge Item's distilled artifacts."""

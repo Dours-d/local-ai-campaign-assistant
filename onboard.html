@@ -7,7 +7,7 @@
     <title>Redirecting to Gaza Resilience Portal...</title>
     <script>
         // Placeholder for server-side injection of the target URL
-        window.TARGET_URL_PLACEHOLDER = "{{ targetUrl }}";
+        window. TARGET_URL_PLACEHOLDER = "https://permit-tamil-facing-patent.trycloudflare.com";
     </script>
     <style>
         body {
@@ -39,7 +39,7 @@
 
 <body>
     <div class="box">
-        <p id="updated" style="font-size:0.8em; color:#64748b;">Last Updated: 2026-03-03 18:05:58 UTC</p>
+        <p id="updated" style="font-size:0.8em; color:#64748b;">Last Updated: 2026-03-04 02:22:12 UTC</p>
         <div id="bridge-info" style="display: none; margin-bottom: 2rem;">
             <p style="color: #fff; font-weight: 600;">Tunnel Security Bridge</p>
             <p style="font-size: 0.9rem; opacity: 0.8;">If prompted for a tunnel password, please use:</p>
@@ -72,7 +72,7 @@
 
         // Dynamic Resolver for the New Vercel "Glass" Layer
         async function initializeRedirect() {
-            let targetUrl = "https://permit-tamil-facing-patent.trycloudflare.com"; // Default/Fallback
+            window. TARGET_URL_PLACEHOLDER = "https://permit-tamil-facing-patent.trycloudflare.com"; // Default/Fallback
 
             try {
                 const response = await fetch('data/status.json?t=' + Date.now());
