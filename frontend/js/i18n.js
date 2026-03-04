@@ -11,7 +11,7 @@ const i18n = {
         en: {
             // Navigation
             nav_mission: 'Amanah',
-            nav_impact: 'Shahada',
+            nav_impact: 'Dunya',
             nav_campaigns: 'The Field',
             nav_contact: 'Direct Line',
             nav_donate: 'Bear Witness',
@@ -52,7 +52,7 @@ const i18n = {
         ar: {
             // Navigation
             nav_mission: 'الأمانة',
-            nav_impact: 'الشهادة',
+            nav_impact: 'دنيا',
             nav_campaigns: 'الميدان',
             nav_contact: 'الخط المباشر',
             nav_donate: 'كن شاهداً',

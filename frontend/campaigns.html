@@ -15,6 +15,23 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/animation.css">
+    <!-- Shahada Modal (visual - universal ritual) -->
+    <div class="shahada-modal-overlay" onclick="closeShahadaModal()">
+        <div class="shahada-modal-box" onclick="event.stopPropagation()">
+            <span class="shahada-modal-close" onclick="closeShahadaModal()">&times;</span>
+            <img src="images/Shahada.png" alt="Shahada" style="max-width:180px; margin: 0 auto 1.5rem; display:block;">
+            <div
+                style="font-family:'ANefelBotan',serif; font-size:1.8rem; color:#d4a373; text-align:center; line-height:1.6;">
+                لَا إِلٰهَ إِلَّا الله مُحَمَّدٌ رَسُولُ الله</div>
+            <div style="font-size:0.85rem; opacity:0.6; text-align:center; margin-top:0.5rem; letter-spacing:1px;">Lā
+                ilāha illā l-Lāh, Muḥammadur rasūlu l-Lāh</div>
+            <div style="text-align:center; margin-top:2rem;">
+                <a href="https://whydonate.com/fundraising/help-fajrtoday-the-first-crypto-utility-providing-critical-services"
+                    target="_blank" class="btn btn-primary" style="letter-spacing:2px;">DIRECT DONATION</a>
+            </div>
+        </div>
+    </div>
+
     <!-- Custom JS -->
     <script src="js/main.js"></script>
     <!-- Relay System -->
@@ -38,16 +55,15 @@
                     <ul>
                         <li><a href="index.html#campaigns" class="lang-dual"><span class="ar-main">الأمانة</span><span
                                     class="en-sub">Amanah</span></a></li>
-                        <li><a href="https://dours-d.github.io/local-ai-campaign-assistant/brain.html" target="_blank"
-                                class="lang-dual"><span class="ar-main">الشهادة</span><span
-                                    class="en-sub">Shahada</span></a></li>
+                        <li><a href="brain.html" target="_blank" class="lang-dual"><span
+                                    class="ar-main">دنيا</span><span class="en-sub">Dunya</span></a></li>
                         <li><a href="campaigns.html" class="lang-dual"><span class="ar-main">الميدان</span><span
                                     class="en-sub">The Field</span></a></li>
                         <li><a href="https://whydonate.com/fundraising/help-fajrtoday-the-first-crypto-utility-providing-critical-services"
                                 target="_blank" class="lang-dual"><span class="ar-main">الخط المباشر</span><span
                                     class="en-sub">Direct
                                     Line</span></a></li>
-                        <li><a href="javascript:void(0)" onclick="openShahada()" class="btn btn-primary"
+                        <li><a href="javascript:void(0)" onclick="openShahadaModal()" class="btn btn-primary"
                                 style="padding: 0.6rem 1.5rem;">I Bear Witness</a></li>
                     </ul>
                 </nav>

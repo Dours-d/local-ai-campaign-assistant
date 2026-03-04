@@ -128,3 +128,25 @@ async function openOnboarding() {
     }
     window.open('https://dours-d.github.io/local-ai-campaign-assistant/onboard.html', '_blank');
 }
+
+/**
+ * Sacred Ritual: Opens the Shahada visual modal.
+ */
+function openShahadaModal() {
+    const modal = document.querySelector('.shahada-modal-overlay');
+    if (modal) {
+        modal.classList.add('open');
+    } else {
+        console.error("Shahada modal not found in DOM.");
+    }
+}
+
+/**
+ * Closes the Shahada visual modal.
+ */
+function closeShahadaModal() {
+    const modal = document.querySelector('.shahada-modal-overlay');
+    if (modal) {
+        modal.classList.remove('open');
+    }
+}
