@@ -83,11 +83,17 @@ syncRelayStatus();
  * Uses the dynamic status.json resolver for resilience.
  */
 async function openShahada() {
+    // Priority 1: Use the targetUrl synchronized by the watchdog (if present and valid)
+    if (typeof targetUrl !== 'undefined' && targetUrl && targetUrl.startsWith('http')) {
+        window.open(targetUrl + '/brain' + window.location.search, '_blank');
+        return;
+    }
+
+    // Priority 2: Use the dynamic status.json resolver
     try {
         const response = await fetch('https://fajr.today/data/status.json?t=' + Date.now());
         if (response.ok) {
             const status = await response.json();
-            // The "I Bear Witness" button goes to the AI tunnel (Dunya/Noor)
             const url = status.services.brain_portal.public_url;
             window.open(url, '_blank');
             return;
@@ -103,11 +109,16 @@ async function openShahada() {
  * Uses the dynamic status.json resolver for resilience.
  */
 async function openOnboarding() {
+    // Priority 1: Use the targetUrl synchronized by the watchdog
+    if (typeof targetUrl !== 'undefined' && targetUrl && targetUrl.startsWith('http')) {
+        window.open(targetUrl + '/onboard' + window.location.search, '_blank');
+        return;
+    }
+
     try {
         const response = await fetch('https://fajr.today/data/status.json?t=' + Date.now());
         if (response.ok) {
             const status = await response.json();
-            // The "Become Sovereign" button goes to the Onboarding Server
             const url = status.services.shahada_portal.public_url;
             window.open(url, '_blank');
             return;
