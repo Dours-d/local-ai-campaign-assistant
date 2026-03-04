@@ -23,10 +23,11 @@ $ConfigFile = "$WorkDir\scripts\monitor_config.json"
 $IntegrityScript = "$WorkDir\scripts\verify_visual_integrity.py"
 $SnapshotScript = "$WorkDir\scripts\generate_health_snapshots.py"
 
-Write-Host "`n" + "="*50
+Write-Host "`n" + "="*60
 Write-Host "  [ SOVEREIGN WATCHDOG ONLINE ]"
+Write-Host "  `"Truth is not in numbers, but in the intention.`""
 Write-Host "  Monitoring Onboarding Server & Tunnel..."
-Write-Host "="*50 + "`n"
+Write-Host "="*60 + "`n"
 
 # 2. Defaults and Config Loading
 $Config = @{
