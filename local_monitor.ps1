@@ -216,23 +216,56 @@ if ($PSBoundParameters.ContainsKey('RetryDelayMax')) { $Config['RetryDelayMax'] 
 if ($PSBoundParameters.ContainsKey('CheckInterval')) { $Config['CheckInterval'] = $CheckInterval }
 if ($PSBoundParameters.ContainsKey('SyncFiles')) { $Config['SyncFiles'] = $SyncFiles }
 
-function Get-ServiceHeartbeat($Url, $Name) {
+# 3. Identity Calculation (Architectural Persistence)
+function Get-ExpectedNodeId {
+    $Seed = [Environment]::GetEnvironmentVariable("ADMIN_SECRET_KEY")
+    if ($null -eq $Seed) { $Seed = "sovereign_fallback_key_123" }
+    
+    $Raw = "noor-brain-$Seed"
+    $Sha = [System.Security.Cryptography.SHA256]::Create()
+    $Bytes = [System.Text.Encoding]::UTF8.GetBytes($Raw)
+    $Hash = $Sha.ComputeHash($Bytes)
+    $Hex = ($Hash | ForEach-Object { $_.ToString("x2") }) -join ""
+    return $Hex.Substring(0, 16)
+}
+
+$ExpectedNodeId = Get-ExpectedNodeId
+Write-Log "  NODE IDENTITY INITIALIZED: $ExpectedNodeId" "INFO"
+
+function Get-ServiceHeartbeat($Url, $Name, [string]$RequiredNodeId = $null) {
     $MaxRetries = $Config['MaxRetries']
     for ($Attempt = 1; $Attempt -le $MaxRetries; $Attempt++) {
         $Timeout = Get-Random -Minimum $Config['HeartbeatTimeoutMin'] -Maximum ($Config['HeartbeatTimeoutMax'] + 1)
         Write-Log "Checking heartbeat for $($Name) at $Url (Attempt $Attempt/$MaxRetries, Timeout: ${Timeout}s)..."
         try {
             $Response = Invoke-WebRequest -Uri $Url -Method Get -TimeoutSec $Timeout -ErrorAction Stop
-            Write-Log "  [OK] $($Name) responded (Status: $($Response.StatusCode))"
+            
+            # Identity Verification (High-Level Manifestation)
             try {
                 $Data = $Response.Content | ConvertFrom-Json
-                if ($null -ne $Data.status) { Write-Log "  [SERVICE STATUS] $($Data.status)" "DEBUG" }
+                if ($null -ne $RequiredNodeId) {
+                    if ($Data.node_id -eq $RequiredNodeId) {
+                        Write-Log "  [OK] $($Name) Identity Verified: $($Data.node_id)" "INFO"
+                        return $true
+                    } else {
+                        Write-Log "  [SECURITY ALERT] $($Name) Identity Mismatch! Expected: $RequiredNodeId, Found: $($Data.node_id)" "WARN"
+                        # This identifies a Tunnel Interstitial or Hijack
+                        return $false 
+                    }
+                }
+                
+                # Fallback: Success if status is 200 (Legacy/Simple endpoints)
+                Write-Log "  [OK] $($Name) responded (Status: $($Response.StatusCode))"
                 return $true
             }
             catch {
-                Write-Log "  [WARN] Failed to parse JSON response from $($Name). Content: $($Response.Content.Substring(0, [Math]::Min(100, $Response.Content.Length)))" "WARN"
-                # Resilience: Status 200 is success even if JSON fails (e.g. provider landing pages)
-                return $true
+                # Resilience: Status 200 is success if no specific ID is required
+                if ($null -eq $RequiredNodeId) {
+                    Write-Log "  [OK] $($Name) responded 200 (JSON parse failed, but status preserved)." "DEBUG"
+                    return $true
+                }
+                Write-Log "  [WARN] Failed to parse JSON identity from $($Name). Endpoint likely blocked." "WARN"
+                return $false
             }
         }
         catch {
@@ -256,7 +289,7 @@ while ($true) {
     $ServerProcess = Get-Process -Name python -ErrorAction SilentlyContinue | Where-Object { $_.CommandLine -like "*onboarding_server.py*" }
     $ServerAlive = $false
     if ($ServerProcess) {
-        if (Get-ServiceHeartbeat -Url "http://127.0.0.1:5010/health" -Name "Onboarding Server (Local)") {
+        if (Get-ServiceHeartbeat -Url "http://127.0.0.1:5010/health" -Name "Onboarding Server (Local)" -RequiredNodeId $ExpectedNodeId) {
             $ServerAlive = $true
         }
     }
@@ -303,8 +336,8 @@ while ($true) {
                     $AllMatches = [regex]::Matches($TunnelLog, "https://[a-z0-9-]+\.trycloudflare\.com")
                     $CurrentUrl = $AllMatches[$AllMatches.Count - 1].Value
                     
-                    # Public Heartbeat (verifies tunnel + server chain)
-                    Get-ServiceHeartbeat -Url "$CurrentUrl/health" -Name "Public Tunnel Gateway" | Out-Null
+                    # Public Heartbeat (verifies tunnel + server chain + identity)
+                    Get-ServiceHeartbeat -Url "$CurrentUrl/health" -Name "Public Tunnel Gateway" -RequiredNodeId $ExpectedNodeId | Out-Null
 
                     $RedirectorTargets = $Config['SyncFiles']
                     if ([string]::IsNullOrWhiteSpace($CurrentUrl)) {
@@ -327,29 +360,41 @@ while ($true) {
                             $Changed = $false
                             $NewContent = $Content
                             
-                            # Robust Pattern: Matches var|const|let|window.NAME = "..." OR {{ targetUrl }} OR TARGET_URL_PLACEHOLDER = "..."
+                            # Robust Pattern: Matches var|const|let|window.NAME = "..." OR {{ targetUrl }} OR TARGET_URL_PLACEHOLDER = "..." OR JSON "public_url": "..."
                             $Patterns = @(
-                                '(var|const|let|window\.)\s*(githubOnboardingUrl|destination|targetUrl|TARGET_URL_PLACEHOLDER)\s*=\s*"([^"]*)";?',
-                                '\{\{\s*(targetUrl)\s*\}\}'
+                                '(?m)(var|const|let|window\.)\s*(githubOnboardingUrl|destination|targetUrl|TARGET_URL_PLACEHOLDER)\s*=\s*"([^"]*)";?',
+                                '\{\{\s*(targetUrl)\s*\}\}',
+                                '"public_url":\s*"([^"]*)"'
                             )
 
                             foreach ($P in $Patterns) {
-                                $Regex = [regex]::new($P, [System.Text.RegularExpressions.RegexOptions]::IgnoreCase)
-                                if ($Regex.IsMatch($NewContent)) {
-                                    $Match = $Regex.Match($NewContent)
-                                    $OldValue = if ($Match.Groups.Count -gt 3) { $Match.Groups[3].Value } else { $Match.Value }
-                                    
-                                    if ($OldValue -ne $CurrentUrl) {
-                                        if ($P -like "*\{\{*") {
-                                            $NewContent = $Regex.Replace($NewContent, $CurrentUrl)
+                                try {
+                                    $Regex = [regex]::new($P, [System.Text.RegularExpressions.RegexOptions]::IgnoreCase)
+                                    $MatchColl = $Regex.Matches($NewContent)
+                                    foreach ($M in $MatchColl) {
+                                        # Group logic: 
+                                        # 1. Var/Const: Group 3 is the value
+                                        # 2. Mustache: Match is the value (no groups)
+                                        # 3. JSON: Group 1 is the value
+                                        $OldValue = if ($M.Groups.Count -gt 3) { $M.Groups[3].Value } elseif ($M.Groups.Count -gt 1) { $M.Groups[1].Value } else { $M.Value }
+                                        
+                                        if ($OldValue -ne $CurrentUrl) {
+                                            if ($P -like "*\{\{*") {
+                                                $NewContent = $NewContent.Replace($M.Value, $CurrentUrl)
+                                            } elseif ($P -match '"public_url"') {
+                                                $NewValue = "`"public_url`": `"$CurrentUrl`""
+                                                $NewContent = $NewContent.Replace($M.Value, $NewValue)
+                                            } else {
+                                                $VarKeyword = $M.Groups[1].Value
+                                                $VarName = $M.Groups[2].Value
+                                                $NewValue = "$VarKeyword $VarName = `"$CurrentUrl`";"
+                                                $NewContent = $NewContent.Replace($M.Value, $NewValue)
+                                            }
+                                            $Changed = $true
                                         }
-                                        else {
-                                            $VarKeyword = $Match.Groups[1].Value
-                                            $VarName = $Match.Groups[2].Value
-                                            $NewContent = $Regex.Replace($NewContent, "$VarKeyword $VarName = `"$CurrentUrl`";")
-                                        }
-                                        $Changed = $true
                                     }
+                                } catch {
+                                    Write-Log "Regex failure on pattern $P: $($_.Exception.Message)" "DEBUG"
                                 }
                             }
                             
@@ -371,7 +416,42 @@ while ($true) {
                         try {
                             git commit -m "System Sync: Persistent gateway at $Timestamp"
                             git push
-                            Send-Alert "SYNC_SUCCESS" "Status: Pushed $FilesChangedCount updates to GitHub Pages."
+                            
+                            # START: High-Level Edge Verification (Architectural Habit)
+                            Write-Log "--- High-Level Edge Verification Triggered ---" "INFO"
+                            $MaxEdgeAttempts = 12
+                            $EdgeWaitSeconds = 20 # Increased for GitHub CDN reliability
+                            $PublicJsonUrl = "https://raw.githubusercontent.com/Dours-d/local-ai-campaign-assistant/main/data/status.json"
+                            
+                            $EdgeSuccess = $false
+                            for ($i = 1; $i -le $MaxEdgeAttempts; $i++) {
+                                Write-Log "[EDGE VERIFY $i/$MaxEdgeAttempts] Polling public truth manifestation..." "INFO"
+                                try {
+                                    # Cache busting via timestamp
+                                    $Tick = [DateTimeOffset]::Now.ToUnixTimeSeconds()
+                                    $EdgeResponse = Invoke-RestMethod -Uri "$PublicJsonUrl?t=$Tick" -Method Get -TimeoutSec 10
+                                    $EdgeUrl = $EdgeResponse.services.onboarding_server.public_url
+                                    
+                                    if ($EdgeUrl -eq $CurrentUrl) {
+                                        Write-Log "[SUCCESS] Public edge truth manifested: $EdgeUrl" "INFO"
+                                        $EdgeSuccess = $true
+                                        break
+                                    } else {
+                                        Write-Log "  [STALE] Edge still lagging. Found: $EdgeUrl" "DEBUG"
+                                    }
+                                } catch {
+                                    Write-Log "  [WARN] Edge poll error: $($_.Exception.Message)" "DEBUG"
+                                }
+                                Start-Sleep -Seconds $EdgeWaitSeconds
+                            }
+                            
+                            if ($EdgeSuccess) {
+                                Send-Alert "SYNC_VERIFIED" "Status: Pushed and VERIFIED $FilesChangedCount updates. Public edge is live."
+                            } else {
+                                Write-Log "[WARN] Pushed successfully, but edge propagation is still lagging beyond $MaxEdgeAttempts attempts." "WARN"
+                                Send-Alert "SYNC_STALE" "Status: Pushed $FilesChangedCount updates, but PUBLIC EDGE IS STILL STALE. Monitoring continues."
+                            }
+                            # END: High-Level Edge Verification
                         }
                         catch {
                             Write-Log "Git push failed: $($_.Exception.Message)" "ERROR"

@@ -27,6 +27,15 @@ app = Flask(__name__, static_folder="../onboarding", static_url_path="/onboardin
 app.secret_key = os.getenv("ADMIN_SECRET_KEY", "sovereign_fallback_key_123")
 CORS(app)
 
+# --- IDENTITY & PERSISTENCE ---
+import hashlib
+def generate_node_id():
+    seed = os.getenv("ADMIN_SECRET_KEY", "sovereign_fallback_key_123")
+    return hashlib.sha256(f"noor-brain-{seed}".encode()).hexdigest()[:16]
+
+NODE_ID = generate_node_id()
+print(f"  NODE IDENTITY: {NODE_ID}")
+
 # --- CONFIGURATION ---
 ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD", "admin123")
 ADMIN_EMAIL = os.getenv("ADMIN_EMAIL", "gaelf@example.com") 
@@ -424,9 +433,27 @@ def handle_growth_list():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+# --- PUBLIC DATA & STATUS ---
+@app.route('/data/<path:filename>')
+def serve_data(filename):
+    """Expose non-sensitive data files (like status.json) to the frontend."""
+    # Strict whitelist to prevent directory traversal or sensitive leaks
+    ALLOWED_DATA = ["status.json", "products.json", "inventory.json", "campaigns.json"]
+    if filename in ALLOWED_DATA:
+        return send_from_directory(DATA_ROOT, filename)
+    return jsonify({"error": "Access denied"}), 403
+
+@app.route('/status')
+def get_public_status():
+    """Direct JSON endpoint for state discovery."""
+    try:
+        with open(os.path.join(DATA_ROOT, 'status.json'), 'r', encoding='utf-8') as f:
+            return jsonify(json.load(f))
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
 @app.route('/health')
 def health_check():
-    """Lightweight endpoint for watchdog pings."""
     return jsonify({
         "status": "healthy",
         "timestamp": datetime.datetime.now().isoformat(),
@@ -998,9 +1025,18 @@ def translate_arabic():
         err_msg = f"Groq API Error ({status_code}): {http_err.response.text}"
         print(f"[ERR] {err_msg}")
         return jsonify({'error': err_msg}), status_code
-    except Exception as e:
-        print(f"[ERR] Translation unexpected error: {e}")
         return jsonify({'error': str(e)}), 500
+
+@app.route('/health')
+def health_check():
+    """High-Level Health Check with Identity Verification."""
+    return jsonify({
+        "status": "healthy",
+        "node_id": NODE_ID,
+        "timestamp": datetime.datetime.now().isoformat(),
+        "mode": "PRIVACY VAULT" if IS_PRIVATE else "DEMO DATA",
+        "version": "v1.2-resilient"
+    })
 
 if __name__ == '__main__':
     msg = "DUNYA دنيا Sovereign Intelligence starting on http://0.0.0.0:5010"
