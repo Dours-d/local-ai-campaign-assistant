@@ -26,7 +26,7 @@ $Config = @{
     RetryDelayMin       = 2
     RetryDelayMax       = 6
     CheckInterval       = 60
-    SyncFiles           = @("index.html", "onboard.html", "brain.html")
+    SyncFiles           = @("index.html", "onboard.html", "brain.html", "campaigns.html", "docs\index.html", "docs\brain.html", "frontend\index.html", "frontend\campaigns.html", "onboarding\brain.html", "onboarding\index.html", "onboarding\onboard.html")
     LogLevel            = "INFO"
     Alerting            = @{
         Enabled         = $false
@@ -227,12 +227,13 @@ function Get-ServiceHeartbeat($Url, $Name) {
             try {
                 $Data = $Response.Content | ConvertFrom-Json
                 if ($null -ne $Data.status) { Write-Log "  [SERVICE STATUS] $($Data.status)" "DEBUG" }
+                return $true
             }
             catch {
                 Write-Log "  [WARN] Failed to parse JSON response from $($Name). Content: $($Response.Content.Substring(0, [Math]::Min(100, $Response.Content.Length)))" "WARN"
-                return $false
+                # Resilience: Status 200 is success even if JSON fails (e.g. provider landing pages)
+                return $true
             }
-            return $true
         }
         catch {
             Write-Log "  [WARN] Attempt $Attempt failed for $($Name): $($_.Exception.Message)"
@@ -306,6 +307,10 @@ while ($true) {
                     Get-ServiceHeartbeat -Url "$CurrentUrl/health" -Name "Public Tunnel Gateway" | Out-Null
 
                     $RedirectorTargets = $Config['SyncFiles']
+                    if ([string]::IsNullOrWhiteSpace($CurrentUrl)) {
+                        Write-Log "  [SKIP] Current URL is empty, skipping sync." "DEBUG"
+                        continue
+                    }
 
                     $FilesChangedCount = 0
                     $Timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss UTC"
@@ -322,16 +327,29 @@ while ($true) {
                             $Changed = $false
                             $NewContent = $Content
                             
-                            $Pattern = '(var|const|let)\s+(githubOnboardingUrl|destination|targetUrl)\s*=\s*"([^"]*)";'
-                            $Regex = [regex]$Pattern
-                            $InnerMatch = $Regex.Match($Content)
-                            
-                            if ($InnerMatch.Success) {
-                                if ($InnerMatch.Groups[3].Value -ne $CurrentUrl) {
-                                    $VarKeyword = $InnerMatch.Groups[1].Value
-                                    $VarName = $InnerMatch.Groups[2].Value
-                                    $NewContent = $Regex.Replace($NewContent, "$VarKeyword $VarName = `"$CurrentUrl`";")
-                                    $Changed = $true
+                            # Robust Pattern: Matches var|const|let|window.NAME = "..." OR {{ targetUrl }} OR TARGET_URL_PLACEHOLDER = "..."
+                            $Patterns = @(
+                                '(var|const|let|window\.)\s*(githubOnboardingUrl|destination|targetUrl|TARGET_URL_PLACEHOLDER)\s*=\s*"([^"]*)";?',
+                                '\{\{\s*(targetUrl)\s*\}\}'
+                            )
+
+                            foreach ($P in $Patterns) {
+                                $Regex = [regex]::new($P, [System.Text.RegularExpressions.RegexOptions]::IgnoreCase)
+                                if ($Regex.IsMatch($NewContent)) {
+                                    $Match = $Regex.Match($NewContent)
+                                    $OldValue = if ($Match.Groups.Count -gt 3) { $Match.Groups[3].Value } else { $Match.Value }
+                                    
+                                    if ($OldValue -ne $CurrentUrl) {
+                                        if ($P -like "*\{\{*") {
+                                            $NewContent = $Regex.Replace($NewContent, $CurrentUrl)
+                                        }
+                                        else {
+                                            $VarKeyword = $Match.Groups[1].Value
+                                            $VarName = $Match.Groups[2].Value
+                                            $NewContent = $Regex.Replace($NewContent, "$VarKeyword $VarName = `"$CurrentUrl`";")
+                                        }
+                                        $Changed = $true
+                                    }
                                 }
                             }
                             

@@ -144,12 +144,13 @@ function Get-ServiceHeartbeat($Url, $Name) {
             try {
                 $Data = $Response.Content | ConvertFrom-Json
                 if ($null -ne $Data.status) { Write-Log "  [SERVICE STATUS] $($Data.status)" "DEBUG" }
+                return $true
             }
             catch {
                 Write-Log "  [WARN] Failed to parse JSON response from $($Name). Content: $($Response.Content.Substring(0, [Math]::Min(100, $Response.Content.Length)))" "WARN"
-                return $false
+                # If we got a 200 OK, the service IS alive even if it returned HTML (e.g. ngrok landing page)
+                return $true
             }
-            return $true
         }
         catch {
             Write-Log "  [WARN] Attempt $Attempt failed for $($Name): $($_.Exception.Message)"
@@ -272,10 +273,9 @@ while ($true) {
             # Public Heartbeat (verifies tunnel + server chain)
             if (-not (Get-ServiceHeartbeat -Url "$CurrentUrl/health" -Name "Public Tunnel Gateway")) {
                 Write-Log "CRITICAL: Public Heartbeat failed. Forcing tunnel reset..." "ERROR"
-                $CurrentUrl = $null
             }
-
-            # 4. Update status.json (Dynamic Resolver)
+            else {
+                # 4. Update status.json (Dynamic Resolver)
             $StatusPath = "$WorkDir\data\status.json"
             $StatusData = @{
                 last_updated = $Timestamp
@@ -311,7 +311,8 @@ while ($true) {
             $SyncList = $Config['SyncFiles']
 
             # Update Redirector Targets
-            foreach ($Target in $SyncList) {
+            if (-not [string]::IsNullOrWhiteSpace($CurrentUrl)) {
+                foreach ($Target in $SyncList) {
                 $FilePath = "$WorkDir\$Target"
                 if (Test-Path $FilePath) {
                     $Content = Get-Content $FilePath -Raw -ErrorAction SilentlyContinue
