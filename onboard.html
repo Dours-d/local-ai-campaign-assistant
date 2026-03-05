@@ -72,52 +72,9 @@
         }
 
         // Dynamic Resolver for the New Vercel "Glass" Layer
-        async function initializeRedirect() {
-            window. TARGET_URL_PLACEHOLDER = "https://fitted-dublin-marc-mass.trycloudflare.com"; // Default/Fallback
-
-            try {
-                const response = await fetch('data/status.json?t=' + Date.now());
-                if (response.ok) {
-                    const status = await response.json();
-                    targetUrl = status.services.onboarding_server.public_url;
-                }
-            } catch (e) {
-                console.warn("Status registry unreachable. Using fallback.");
-            }
-
-            // Detect Localtunnel to show bridge info
-            if (targetUrl.includes("loca.lt")) {
-                document.getElementById('bridge-info').style.display = 'block';
-                document.getElementById('msg').innerText = "Preparing secure tunnel access...";
-            }
-
-            // Handle path/hash for deep links
-            var path = window.location.pathname;
-            var hash = window.location.hash;
-            var beneficiaryId = "";
-
-            if (hash && hash.length > 1) {
-                beneficiaryId = hash.substring(1);
-                if (beneficiaryId.startsWith('/')) beneficiaryId = beneficiaryId.substring(1);
-            }
-
-            // Construct clean path
-            var destination = beneficiaryId ? "/onboard/" + beneficiaryId : "/onboard";
-            var search = window.location.search || "";
-            var finalUrl = targetUrl + destination + search;
-
-            document.getElementById("link").href = finalUrl;
-
-            // Wait 3 seconds for Localtunnel to let user read the password
-            const waitTime = targetUrl.includes("loca.lt") ? 3500 : 1000;
-            setTimeout(() => {
-                document.getElementById('msg').innerText = "Redirecting now...";
-                window.location.replace(finalUrl);
-            }, waitTime);
-        }
-
-        initializeRedirect();
+        function initializeRedirect() { const targetUrl = "https://fitted-dublin-marc-mass.trycloudflare.com"; const hash = window.location.hash; let beneficiaryId = ""; if (hash && hash.length > 1) { beneficiaryId = hash.substring(1); if (beneficiaryId.startsWith(/)) beneficiaryId = beneficiaryId.substring(1); } const destination = beneficiaryId ? /onboard/ + beneficiaryId : /onboard; const finalUrl = targetUrl + destination + window.location.search; document.getElementById("link").href = finalUrl; setTimeout(() => { window.location.replace(finalUrl); }, 1000); } initializeRedirect();
     </script>
 </body>
 
 </html>
+
