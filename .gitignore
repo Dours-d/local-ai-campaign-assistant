@@ -1,46 +1,29 @@
-.env
+# Environments
+.env*
+!.env.monitoring.example
+!.env.social.example
 
-# Vault & Sensitive Data
-vault/
-data/UNIFIED_REGISTRY.json
-data/final_real_growth_list.json
-data/campaign_registry.json
-data/whydonate_creation_log.json
-data/whydonate_return_links.csv
-data/all_wd_links.txt
-data/access_tokens.json
-data/onboarding_outbox/
+# Cache & Logs
+**/Cache/
+**/logs/
+*.log
+*.bak
+*.tmp
 
-# Data & Logs
-data/
-!data/status.json
-!data/onboarding_submissions/media/
-!data/logs/watchdog_pulse.log
-logs/
-backups/
-temp_search_umm.txt
-temp_summary.txt
-validation_report.txt
-debug_output*.txt
-diag_output.txt
-run_output*.log
-wa_dump.json
-fidf_source.html
-profile_source.html
-whydonate_dashboard_debug.html
-whydonate_debug.html
-whydonate_elements.json
-whydonate_magic_debug.json
-whydonate_network_fails.json
-dashboard_sample.html
-debug_html_dump.txt
+# Dependencies
+node_modules/
+dist/
+build/
+.next/
+.vercel/
+.venv/
 
-cloudflared.exe
+# System
+.DS_Store
+Thumbs.db
 
-# Browser Profiles
-edge_profile/
-chrome-profile/
-SCRIBE_VAULT/
+# Workspace
+.vscode/
+.idea/
 .gemini/
-*.local
-.env.social
+.agents/
