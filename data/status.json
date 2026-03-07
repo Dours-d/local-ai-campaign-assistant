@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-03-07 00:45:00 UTC",
+  "last_updated": "2026-03-07 01:33:00 UTC",
   "services": {
     "onboarding_server": {
-      "public_url": "https://inch-along-librarian-collapse.trycloudflare.com",
-      "status": "online"
+      "status": "online",
+      "public_url": "https://local-ai-onboarding-portal.loca.lt"
     }
   }
 }
