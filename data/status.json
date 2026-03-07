@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-03-07 01:33:00 UTC",
+  "last_updated": "2026-03-07 02:04:41 UTC",
   "services": {
     "onboarding_server": {
-      "status": "online",
-      "public_url": "https://local-ai-onboarding-portal.loca.lt"
+      "public_url": "https://unmotionable-altha-unhanging.ngrok-free.dev",
+      "status": "online"
     }
   }
 }
