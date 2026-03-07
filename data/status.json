@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-03-07 00:11:31 UTC",
   "services": {
     "onboarding_server": {
-      "public_url": "https://hypothesis-garden-perspective-levitra.trycloudflare.com",
-      "status": "online"
+      "status": "online",
+      "public_url": "https://sip-mix-space-diabetes.trycloudflare.com"
     }
-  }
+  },
+  "last_updated": "2026-03-07 00:32:36 UTC"
 }
