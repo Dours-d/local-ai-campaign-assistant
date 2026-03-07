@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-03-07 00:40:55 UTC",
   "services": {
     "onboarding_server": {
-      "public_url": "https://grateful-private-event-every.trycloudflare.com",
-      "status": "online"
+      "status": "online",
+      "public_url": "https://alice-bridge-horse-wool.trycloudflare.com"
     }
-  }
+  },
+  "last_updated": "2026-03-07 00:42:56 UTC"
 }
